@@ -1,0 +1,230 @@
+//mixin//
+@import 'mixin/_mixin.scss';
+
+
+//var//
+@import 'base/var.scss';
+@import 'base/font';
+
+
+
+
+//pages//
+@import 'page/blog';
+@import 'page/blog_article';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body{
+    @include all();
+    
+    display: flex;
+    height: 2000px;
+    flex-direction: column;
+    font-family: $fontFamily;
+    
+    
+ //判斷式
+    
+    
+    @if $loop == 30px {
+        p{
+            color: darkgrey;
+            font-size: 30px;
+        }
+    }@else{
+        p{
+            font-size: 50px;
+        }
+    }
+
+ //運算式
+    header{
+        width: 100%;
+        margin: floor(16/7); //ceil無條件進位/round四捨五入/floor無條件捨去
+        background-color: $sectionColor;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+       
+
+        ul{ 
+            text-align:end;
+            width: 90%;
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            li{
+                @include btn(100px , 30px);
+                @include hover();
+                
+                
+
+            }
+            button{
+                
+                @include btn(100px, 30px);
+                @include hover();
+                font-family: $fontFamily;
+            }
+        }
+        
+        
+    }
+    header:after{
+        background-size: cover;
+        content: "11111";
+    }
+
+    main{
+        div{
+         display: inline-flex;
+         @include rect( 100% );
+         border: 1px solid blue;
+
+        }
+    }
+    section{
+        width: 100%;
+        height: 50%;
+        border: 1px solid red;
+        align-items: center;
+        display: flex;
+        justify-content: space-around;
+        ul{
+            @include rect(200px, 400px); //高可以是null mixin設定
+            border: 1px solid red;
+            display: flex;
+            flex-direction: row;
+            
+            padding: 0;
+            overflow: hidden;
+            span{
+                flex-shrink: 0;
+                list-style: none;
+                height: 100%;
+                border: 1px solid blue;
+                width: 100%;
+                background-repeat: no-repeat;
+            }
+       }
+    }
+    footer{
+        display: inline-flex;
+        width: 100%;
+        background-color: $sectionColor;
+        height: $height;
+        
+    }
+
+}
+
+// 置中
+// .marginAuto {
+//     margin: 0 auto;
+//  }
+
+// @mixin layout($w){
+//     @if $w == 100{
+//         width: 100%;
+//         display: block;
+//     }else{
+//         width:$w ;
+//         @extend .marginAuto;
+//     }
+// }
+// .wrapperfix {
+//     @include layout(1366px);
+//     background-color: palevioletred;
+//     height: 290px;
+// }
+
+// .wrpperfull{
+//     @include layout(100);
+//     background-color: papayawhip;
+//     height: 90px;
+// }
+
+
+@for $i from 1 through 10{
+    .push-#{$i}{
+        position: relative;
+        top:$i * 1px;
+    }
+}
+
+@each $k,$v in $img{
+    .bg-#{$k}{
+        background-color: #{$v};
+        width:100%;
+   
+    }
+
+}
+span[data-show]{
+    transform: translateX(-100%);
+    // transition: all .3s ease-in-out;
+}
+span[data-left]{
+    transform: translateX(-200%);
+    transition: all .3s ease-in-;
+    
+}
+
+@each $t, $val in $head{
+    #{$t}{
+        font-size: $val;
+    }
+}
+
+
+@each $k , $v in $colorb {
+    .head-#{$k} {
+        color: $v;
+    }
+}
+
+
+@each $k , $v in $colorb {
+    .rect-#{$k} {
+      @include rect (100px , 30px);
+      background-color: $v;
+    } 
+ }
+ 
+ 
+ @each $k , $v in $colorb {
+   
+   .card_#{$k} {
+     @include rect(20% , 240px);
+     box-shadow: 1px 1px 10px rgb(216, 216, 216);
+     background-color: $v;
+     
+   }
+ 
+ }
+
+ @include desk(){
+    body{
+        background-color: lightgrey;
+    }
+ }
+ @include mobile(){
+    body{
+        background-color: grey;
+    }
+ }
