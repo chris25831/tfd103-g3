@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;400;700&display=swap');
+
+
+$notosans :('notosans' : 400,
+    'notosans100' : 100,
+    'notosans300' : 300,
+    'notosans500' : 500,
+    'notosans900' : 900,
+    'notosans700' : 700,
+);
+
+$NotoSerif :(
+'NotoSerif100' : 100,
+'NotoSerif200' : 200,
+'NotoSerif' : 400,
+'NotoSerif700' : 700,
+);
+
+
+@mixin fontstyle($fontFamily ,$font) {
+    @each $k,$w in $NotoSerif {
+        .#{$k} {
+            font-family: $fontFamily;
+            font-weight: $w;
+        }
+    }
+}
+
+
+// @include fontstyle("'Noto Sans TC', sans-serif", $notosans);
+@include fontstyle("'Noto Serif TC', serif;', sans-serif", $NotoSerif);
