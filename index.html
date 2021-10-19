@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scss pratice</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <p>這是header
+        12222222222
+        </p>
+        <ul>
+            <li>第一項</li>
+            <button>開始</button>
+            <li>第二項</li>
+            <button>開始</button>
+            <li>第三項</li>
+            <button>開始</button>
+            
+        </ul>
+        <ul>
+        <h1 class="head-primary" >h1</h1>
+        <h2 class="head-secondary">h2</h1>
+        <h3 class="head-succes">h3</h1>
+        <h4 class="head-info">h4</h1>
+        </ul>
+
+        
+            
+   </header>
+
+   <main>
+    <div>
+        <div class="rect-primary"></div>
+        <div class="rect-secondary"></div>
+        <div class="rect-succes"></div>
+        <div class="rect-info"></div>
+    </div>
+
+    <div>
+        <div class="card_primary"></div>
+        <div class="card_secondary"></div>
+        <div class="card_succes"></div>
+        <div class="card_info"></div>
+    </div>
+
+   </main>
+   <section>
+        <ul>
+            <span data-show class="bg-a1"></span>
+            <span class="bg-a2"></span>
+            <span class="bg-a3"></span>
+        </ul>
+   </section>
+   
+
+    <footer><p>這是footer</p></footer>
+    <script>
+        setInterval(function (){
+            const show = document.querySelector('span[data-show]');
+            const left = document.querySelector('span[data-left]');
+            const next = show.nextElementSibling || document.querySelector('span:first-child');
+
+            if(left){
+                left.removeAttribute('data-left');
+            }
+
+            show.removeAttribute('data-show');
+            show.setAttribute('data-left','');
+
+            next.setAttribute('data-show','');
+        },1500)
+    </script>
+</body>
+</html>
