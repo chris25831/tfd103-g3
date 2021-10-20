@@ -17,22 +17,36 @@
 
 <body>
     <!--這是header-->
-
-   <header id="header" >
+    <div id="header" >
         <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
-   </header>
-  
+    </div>
 
-   <!--內容所有都放在這div裡面-->
-   <div>
-   </div>
 
-   
-   <!--這是footer-->
-   <footer id="footer">
-      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
-   </footer>
+    <!--內容所有都放在這div裡面-->
+    <main class="new-article modal">
+        <span class="info">發表文章</span>
+        <input type="text" class="title" placeholder="請輸入文章標題">
+        <select class="category" name="" id="">
+            <option value="">閒聊</option>
+            <option value="">裝備</option>
+            <option value="">心得</option>
+            <option value="">問題</option>
+        </select>
+        <textarea class="new-article-content" name="" id="" cols="30" rows="10"></textarea>
+        <div class="upload-images">
+            <div class="single-image"></div>
+            <div class="single-image"></div>
+            <div class="single-image"> </div>
+        </div>
+        
+        <button type="submit">送出</button>
+    </main>
 
+
+    <!--這是footer-->
+    <div id="footer">
+        <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+    </div>
 
 
 <!--header/footer component-->
