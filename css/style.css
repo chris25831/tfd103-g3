@@ -11,9 +11,10 @@ header {
   align-items: center;
 }
 
-header ul#header_inside {
+header ul#header_wrapper {
   display: flex;
   border: 1px solid white;
+  justify-content: left;
   width: 1200px;
   height: 100%;
   align-items: center;
@@ -21,49 +22,97 @@ header ul#header_inside {
   padding: 0;
 }
 
-header ul#header_inside li {
+header ul#header_wrapper li {
   position: relative;
   display: flex;
   list-style: none;
-  border: 1px solid #ff0095;
-  width: 100%;
-  height: 50%;
+  width: 20%;
   vertical-align: middle;
   justify-content: center;
   align-items: center;
 }
 
-header ul#header_inside li a {
+header ul#header_wrapper li:first-child {
+  flex-basis: 10%;
+}
+
+header ul#header_wrapper li:nth-child(6) {
+  flex-basis: 5%;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+header ul#header_wrapper li a {
   color: white;
   text-decoration: none;
   width: 100%;
   text-align: center;
 }
 
-header ul#header_inside li a i {
-  border: 1px solid #e9e9e9;
+header ul#header_wrapper li a i {
+  color: white;
 }
 
-header ul#header_inside li a:nth-child(2) {
+a.logo {
+  flex-basis: 100%;
+}
+
+a.logo img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+a.secondChoice {
   background-color: #00429D;
   position: absolute;
-  width: 199px;
   width: 100%;
+  padding: 15px 0;
   top: 100%;
-  border: 1px solid green;
 }
 
-header ul#header_inside li a:nth-child(2) .active {
-  background-color: aqua;
+footer {
+  background-color: #00429D;
+  height: 300px;
+  color: white;
 }
 
-svg {
-  width: 100%;
+footer #footer_wrapper {
+  display: flex;
+  width: 1200px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+
+footer #footer_wrapper div {
+  flex: 1 1 auto;
+}
+
+footer #footer_wrapper div:first-child {
+  flex: 0 1 10%;
+}
+
+footer #footer_wrapper div:last-child {
+  flex-grow: 1;
+}
+
+div.sitemap {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+div.sitemap li {
+  list-style: none;
+}
+
+div.contactus {
+  display: flex;
+  flex-direction: row;
   border: 1px solid white;
-  margin: 0;
+  flex: 0 1 20%;
 }
 
-/* header .logo{
-
-} */
+div.contactus a i {
+  color: white;
+}
 /*# sourceMappingURL=style.css.map */

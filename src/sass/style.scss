@@ -1,0 +1,22 @@
+//這裡全部不准動
+
+//mixin//
+@import 'mixin/_mixin.scss';
+
+
+//var//
+@import 'base/var';
+@import 'base/font';
+@import 'base/color';
+
+
+//layout//
+@import 'layout/header';
+@import 'layout/footer';
+
+
+//pages//
+@import './page/page';
+
+
+
