@@ -11,40 +11,56 @@ header {
   align-items: center;
 }
 
-ul#header_inside {
+header ul#header_inside {
   display: flex;
-  /* border: 1px solid white; */
+  border: 1px solid white;
   width: 1200px;
+  height: 100%;
+  align-items: center;
   margin: 0 auto;
   padding: 0;
 }
 
-#header_inside li {
+header ul#header_inside li {
+  position: relative;
   display: flex;
-  justify-content: center;
   list-style: none;
-  /* border: 1px solid rgb(255, 0, 149); */
+  border: 1px solid #ff0095;
   width: 100%;
-  height: 100%;
+  height: 50%;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
 }
 
-#header_inside li a {
+header ul#header_inside li a {
   color: white;
   text-decoration: none;
-  height: 100%;
   width: 100%;
   text-align: center;
-  /* border: 1px solid yellow; */
+}
+
+header ul#header_inside li a i {
+  border: 1px solid #e9e9e9;
+}
+
+header ul#header_inside li a:nth-child(2) {
+  background-color: #00429D;
+  position: absolute;
+  width: 199px;
+  width: 100%;
+  top: 100%;
+  border: 1px solid green;
+}
+
+header ul#header_inside li a:nth-child(2) .active {
+  background-color: aqua;
 }
 
 svg {
   width: 100%;
-  /* border: 1px solid white; */
+  border: 1px solid white;
   margin: 0;
-}
-
-.icon {
-  border: 1px solid blue;
 }
 
 /* header .logo{
