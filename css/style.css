@@ -15,7 +15,8 @@ header ul#header_wrapper {
   display: flex;
   border: 1px solid white;
   justify-content: left;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   height: 100%;
   align-items: center;
   margin: 0 auto;
@@ -49,10 +50,6 @@ header ul#header_wrapper li a {
   text-align: center;
 }
 
-header ul#header_wrapper li a i {
-  color: white;
-}
-
 a.logo {
   flex-basis: 100%;
 }
@@ -72,33 +69,33 @@ a.secondChoice {
 
 footer {
   background-color: #00429D;
-  height: 300px;
   color: white;
 }
 
-footer #footer_wrapper {
+footer div#footer_wrapper {
+  min-height: 300px;
   display: flex;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   flex-wrap: wrap;
+  min-height: 300px;
   justify-content: space-evenly;
+  border: 1px solid white;
   margin: 0 auto;
 }
 
-footer #footer_wrapper div {
+footer div#footer_wrapper div {
+  border: 1px solid pink;
   flex: 1 1 auto;
 }
 
-footer #footer_wrapper div:first-child {
+footer div#footer_wrapper div:first-child {
   flex: 0 1 10%;
-}
-
-footer #footer_wrapper div:last-child {
-  flex-grow: 1;
 }
 
 div.sitemap {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 div.sitemap li {
@@ -106,10 +103,15 @@ div.sitemap li {
 }
 
 div.contactus {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid white;
-  flex: 0 1 20%;
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+div.contactus a {
+  border: 1px solid #c76547;
+  display: inline-block;
+  margin-right: 20px;
 }
 
 div.contactus a i {
