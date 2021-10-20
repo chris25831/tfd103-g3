@@ -1,6 +1,6 @@
 
 Vue.component("my-header", {
-template: `<header>
+template: `
     <ul id="header_wrapper">
         <li>
             <a class="logo" href="" ><img src="./src/images/icons/logo.svg"/></a>
@@ -20,7 +20,7 @@ template: `<header>
         </li>
 
     </ul>  
-</header>`,
+`,
 });
 
 let header = new Vue({
