@@ -1,13 +1,13 @@
-//這裡全部不准動
+//這裡全部不准動(除非要import新的東西不然不要刪
+
+//var//
+@import 'base/font';
+@import 'base/color';
+
 
 //mixin//
 @import 'mixin/_mixin.scss';
 
-
-//var//
-@import 'base/var';
-@import 'base/font';
-@import 'base/color';
 
 
 //layout//
