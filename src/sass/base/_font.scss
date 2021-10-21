@@ -7,6 +7,7 @@ $fontsizes : (
         '.title3': 24px, //header主選單
         '.article': 16px, //內文
         '.small': 14px, //小字
+        '.smallfont': 12px, //小字
 );
 
 @each $fonttype,$fontsize in $fontsizes {
