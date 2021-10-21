@@ -1,3 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;400;700&display=swap");
+.deco {
+  font-size: 100px;
+}
+
+.title1 {
+  font-size: 50px;
+}
+
+.title2 {
+  font-size: 30px;
+}
+
+.title3 {
+  font-size: 24px;
+}
+
+.article {
+  font-size: 16px;
+}
+
+.small {
+  font-size: 14px;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;

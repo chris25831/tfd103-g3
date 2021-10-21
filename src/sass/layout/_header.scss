@@ -28,8 +28,10 @@ header{
             list-style: none;
             // border: 1px solid rgb(255, 0, 149);
             width: 20%;
-            // flex-basis: 30%;
             @include center();
+            
+            
+            
 
             &:first-child{
                 flex-basis: 10%;

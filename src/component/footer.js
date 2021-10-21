@@ -8,17 +8,17 @@ Vue.component("my-footer", {
     <div class="sitemap">
         
         <ul>
-            <p2>三鐵資訊</p2>
+            <p>三鐵資訊</p>
             <li>近期賽程</li>
         </ul>
         <ul>
-            <p2>訓練課程</p2>
+            <p>訓練課程</p>
             <li>團練課程</li>
             <li>個人教練</li>
             <li>營養菜單</li>
         </ul>
         <ul>
-            <p2>討論區</p2>
+            <p>討論區</p>
             <li>心得</li>
             <li>問題</li>
             <li>裝備</li>
@@ -37,7 +37,7 @@ Vue.component("my-footer", {
     </div>
 
     <div>
-        <p>
+        <p class="small">
             本網站為緯育TibaMe前端設計工程師班第70期第__組學員專題成果作品，本平台僅供學習、展示之用。參考資源：＿＿＿＿＿＿＿＿（請填入你們參考的網站）。若有侵權疑慮，您可以私訊 [ 緯育TibaMe ]，後續會由專人協助處理
         </p>
     </div>
