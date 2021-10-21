@@ -1,79 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>scss pratice</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>首頁|Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
+    
 </head>
+
 <body>
-    <header>
-        <p>這是header
-        12222222222
-        33333
-        </p>
-        <ul>
-            <li>第一項</li>
-            <button>開始</button>
-            <li>第二項</li>
-            <button>開始</button>
-            <li>第三項</li>
-            <button>開始</button>
-            
-        </ul>
-        <ul>
-        <h1 class="head-primary" >h1</h1>
-        <h2 class="head-secondary">h2</h1>
-        <h3 class="head-succes">h3</h1>
-        <h4 class="head-info">h4</h1>
-        </ul>
+    <!--這是header-->
 
-        
-            
+   <header id="header" >
+        <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
+  
 
-   <main>
-    <div>
-        <div class="rect-primary"></div>
-        <div class="rect-secondary"></div>
-        <div class="rect-succes"></div>
-        <div class="rect-info"></div>
-    </div>
+   <!--內容所有都放在這div裡面-->
+   <div>
+   </div>
 
-    <div>
-        <div class="card_primary"></div>
-        <div class="card_secondary"></div>
-        <div class="card_succes"></div>
-        <div class="card_info"></div>
-    </div>
-
-   </main>
-   <section>
-        <ul>
-            <span data-show class="bg-a1"></span>
-            <span class="bg-a2"></span>
-            <span class="bg-a3"></span>
-        </ul>
-   </section>
    
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
 
-    <footer><p>這是footer</p></footer>
-    <script>
-        setInterval(function (){
-            const show = document.querySelector('span[data-show]');
-            const left = document.querySelector('span[data-left]');
-            const next = show.nextElementSibling || document.querySelector('span:first-child');
 
-            if(left){
-                left.removeAttribute('data-left');
-            }
 
-            show.removeAttribute('data-show');
-            show.setAttribute('data-left','');
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/header.js"></script>
+<script src="./src/component/footer.js"></script>
 
-            next.setAttribute('data-show','');
-        },1500)
-    </script>
+
 </body>
 </html>
