@@ -9,11 +9,12 @@ $fontsizes : (
         '.small': 14px, //小字
 );
 
-
-    
-
 @each $fonttype,$fontsize in $fontsizes {
-      #{$fonttype}{
-              font-size:#{$fontsize};
-      }
- }
+        #{$fonttype} {
+            font-size: #{$fontsize};
+        }
+    }
+
+
+
+

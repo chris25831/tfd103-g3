@@ -1,5 +1,5 @@
 footer{
-    background-color: #00429D;
+    background-image: $bluegradient;
     color: white;
     div#footer_wrapper{
         min-height: 300px;
@@ -13,11 +13,10 @@ footer{
         margin: 0 auto;
         
         div{
-            border:1px solid pink;
+            // border:1px solid pink;
             flex: 1 1 auto;
-            
             &:first-child{
-                // border: 1px solid green;
+                border: 1px solid green;
                 flex: 0 1 10%;
             }
  
@@ -27,22 +26,36 @@ footer{
 
 
 div.sitemap{
+    @include fontfamily(500);
     display: flex;
     justify-content: space-around;
+    
+    ul{
+        padding: 0;
+        margin-top: 0;
+        vertical-align: top;
+        border:1px solid rgb(199, 101, 71);
+        flex: 1 0 auto;
+        text-align: center;
+        // @include center();
+    }
     li{
         list-style: none;
-        // border: 1px solid red;
+        
     }
 }
 div.contactus{
+    @include fontfamily(500);
     display: inline-flex;
     flex-direction: column;
     flex-wrap: wrap;
+//    margin-left: 10%;
    
     a{  
-        border:1px solid rgb(199, 101, 71);
+        // border:1px solid rgb(199, 101, 71);
         display: inline-block;
         margin-right: 20px;
+       
         i{
            
             color:white;

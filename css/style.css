@@ -56,6 +56,8 @@ header ul#header_wrapper li {
   vertical-align: middle;
   justify-content: center;
   align-items: center;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 400;
 }
 
 header ul#header_wrapper li:first-child {
@@ -93,7 +95,7 @@ a.secondChoice {
 }
 
 footer {
-  background-color: #00429D;
+  background-image: linear-gradient(#00429D, #00214F);
   color: white;
 }
 
@@ -110,17 +112,28 @@ footer div#footer_wrapper {
 }
 
 footer div#footer_wrapper div {
-  border: 1px solid pink;
   flex: 1 1 auto;
 }
 
 footer div#footer_wrapper div:first-child {
+  border: 1px solid green;
   flex: 0 1 10%;
 }
 
 div.sitemap {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 500;
   display: flex;
   justify-content: space-around;
+}
+
+div.sitemap ul {
+  padding: 0;
+  margin-top: 0;
+  vertical-align: top;
+  border: 1px solid #c76547;
+  flex: 1 0 auto;
+  text-align: center;
 }
 
 div.sitemap li {
@@ -128,13 +141,14 @@ div.sitemap li {
 }
 
 div.contactus {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 500;
   display: inline-flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 
 div.contactus a {
-  border: 1px solid #c76547;
   display: inline-block;
   margin-right: 20px;
 }
