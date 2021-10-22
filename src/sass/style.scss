@@ -3,7 +3,7 @@
 //var//
 @import 'base/font';
 @import 'base/color';
-
+@import 'base/test';
 
 //mixin//
 @import 'mixin/_mixin.scss';
@@ -13,6 +13,7 @@
 //layout//
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/bookmark';
 
 
 //pages//
