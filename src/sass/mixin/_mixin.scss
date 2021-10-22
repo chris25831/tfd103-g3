@@ -4,4 +4,25 @@
     align-items: center;
 }
 
+//字體與字重參數自行輸入//
+@mixin fontfamily($weight){
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: $weight;
+}
 
+//計畫表的背景
+@mixin bgplan($height) {
+    height:$height;
+    background-color: $blue;
+    background-image: url("../src/images/images/background-yellow-gradient.svg");
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+//其他頁背景
+@mixin bgnormal($height) {
+    height:$height;
+    background-color: $white;
+    background-image: url("../src/images/images/background-traning.svg");
+    background-size:cover;
+    background-repeat: no-repeat;
+}

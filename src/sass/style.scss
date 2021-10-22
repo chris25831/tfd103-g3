@@ -1,14 +1,12 @@
 //這裡全部不准動(除非要import新的東西不然不要刪
 
 //var//
-@import 'base/font';
-@import 'base/color';
-@import 'base/test';
+@import "base/reset"; // normalize.css v8.0.1
+@import "base/font";
+@import "base/color";
 
 //mixin//
-@import 'mixin/_mixin.scss';
-
-
+@import "mixin/_mixin.scss";
 
 //layout//
 @import 'layout/header';
@@ -17,7 +15,4 @@
 
 
 //pages//
-@import './page/page';
-
-
-
+@import "./page/page";
