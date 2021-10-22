@@ -43,3 +43,26 @@
         height: 10px;
     }
 }
+
+.graybutton{
+    border: 3px solid #00429D;
+    width: 262px;
+    height: 56px;
+    border-radius: 30px;
+    &:hover{
+        background-color: #707070;
+        color: #ffffff;
+    }
+}
+
+.orangebutton{
+    width: 262px;
+    height: 56px;
+    border-radius: 30px;
+    background-color: #E75F49;
+    color: #ffffff;
+    border: none;
+    &:hover{
+        background-color: #FFA10A;
+    }
+}
