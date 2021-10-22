@@ -1,0 +1,45 @@
+.previouspage{
+    border-radius: 10px 0 10px 0;
+    background-color: #E75F49;
+    width: 50px;
+    height: 50px;
+    .arrow{
+        border: 1px solid #ffffff;
+        border-width: 0px 5px 5px 0;
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(135deg);
+        position: relative;
+        left: 38%;
+        top: 28%;
+    }
+}
+
+.title{    
+    position: relative;
+    display: inline-block;
+    border: 1px solid blue;
+    &::after{
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #E75F49;
+        width: 150px;
+        height: 3px;
+    }
+    .titlelinearrow{
+        border: solid #E75F49;
+        border-width: 0px 3px 0 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(-45deg);
+        position: absolute;
+        left: 130px;
+        top: 79%;
+        width: 10px;
+        height: 10px;
+    }
+}
