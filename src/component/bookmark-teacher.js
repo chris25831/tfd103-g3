@@ -6,7 +6,7 @@ Vue.component("bookmark-teacher",{
 });
 
 //記得貼上路徑
-// <script src="./src/component/bookmark-forum.js"></script> 
+// <script src="./src/component/bookmark-teacher.js"></script> 
 
 // 請於你的script寫入以下：
 // new Vue({
