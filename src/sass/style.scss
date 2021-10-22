@@ -11,8 +11,10 @@
 @import "mixin/_mixin.scss";
 
 //layout//
-@import "layout/header";
-@import "layout/footer";
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/bookmark';
+
 
 //pages//
 @import "./page/page";

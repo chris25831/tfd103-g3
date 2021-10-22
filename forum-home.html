@@ -6,7 +6,7 @@
     <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>TriclubSample|Triclub</title> 
+    <title>討論區 | Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
@@ -23,48 +23,117 @@
 
 
     <!--內容所有都放在這div裡面-->
-    <main class="main">
+    <main class="main" id="main">
         <div class="bookmark">
-            <!--頁籤放置區-->
+            <bookmark-forum v-for="category in categories" :category="category">
         </div>
 
         <div class="article-list">
             <div class="article-item">
                 <div class="left">
                     <div class="author">
-                        <img class="avatar" src="" alt="">
-                        <div class="name"> </div>
-                        <div class="time"></div>
+                        <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
+                        <span class="name">Maggie</span>
+                        <span class="time">5 hours ago</span>
                     </div>
-                    <h3></h3>
-                    <p class="p2"></p>
+                    <h3 class="article-title">關於卡鞋</h3>
+                    <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
                     <div class="counts">
                         <div class="views">
-                            <img src="" alt="">
-                            <span></span>
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
                         </div>
                         <div class="likes">
-                            <img src="" alt="">
-                            <span></span>
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
                         </div>
                         <div class="comments">
-                            <img src="" alt="">
-                            <span></span>
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
                         </div>
                     </div>
                     
                 </div>
                 <div class="right">
-                    <img class="demo-image" src="" alt="">
+                    <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
                 </div>
             </div>
             <div class="pagination">
                 <!--分頁器放置區-->
             </div>
-        </main>
-    </div>
+        </div>
 
+        <div class="article-list">
+            <div class="article-item">
+                <div class="left">
+                    <div class="author">
+                        <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
+                        <span class="name">Maggie</span>
+                        <span class="time">5 hours ago</span>
+                    </div>
+                    <h3 class="article-title">關於卡鞋</h3>
+                    <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
+                    <div class="counts">
+                        <div class="views">
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
+                        </div>
+                        <div class="likes">
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
+                        </div>
+                        <div class="comments">
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="right">
+                    <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
+                </div>
+            </div>
+            <div class="pagination">
+                <!--分頁器放置區-->
+            </div>
+        </div>
 
+        <div class="article-list">
+            <div class="article-item">
+                <div class="left">
+                    <div class="author">
+                        <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
+                        <span class="name">Maggie</span>
+                        <span class="time">5 hours ago</span>
+                    </div>
+                    <h3 class="article-title">關於卡鞋</h3>
+                    <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
+                    <div class="counts">
+                        <div class="views">
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
+                        </div>
+                        <div class="likes">
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
+                        </div>
+                        <div class="comments">
+                            <img src="https://via.placeholder.com/30x30" alt="">
+                            <span>100</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="right">
+                    <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
+                </div>
+            </div>
+            <div class="pagination">
+                <!--分頁器放置區-->
+            </div>
+        </div>
+    </main>
+    
     <!--這是footer-->
     <footer id="footer">
         <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
@@ -75,7 +144,15 @@
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/header.js"></script>
 <script src="./src/component/footer.js"></script>
-
+<script src="./src/component/bookmark-forum.js"></script>
+<script>
+    new Vue({
+        el: "#main",
+        data: {
+            categories: ["全部","閒聊","裝備","心得","問題"],
+        }
+    })
+</script>
 
 </body>
 </html>

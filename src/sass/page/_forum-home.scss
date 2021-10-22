@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+}
+
+
+$item-height: 213px;
+
+main.main {
+    border: solid red 1px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    .article-list {
+        width: 915px;
+        margin: 0 auto;
+        .article-item {
+            border: solid black 1px;
+            width: 100%;
+            height: $item-height;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            
+            .left{
+                // border: solid red 1px;
+                width: 70%;
+                display: inline-block;
+                height: 100%; 
+                .author {
+                    height: 70px;
+                    img.avatar {
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 50%;
+                        margin: 13px 0 0 25px;
+                        vertical-align: center;
+                    }
+                    span.name, span.time {
+                        display: inline-block;
+                        height: 100%;
+                        vertical-align: top;
+                        line-height: 70px;
+                    }
+
+                    span.name {
+                        margin: 0 15px 0 18px;
+                    }
+                }
+                h3.article-title {
+                    margin: 5px 25px 0;
+                    font-size: 24px;
+                }
+                
+                p.preview-content {
+                    display: inline-block;
+                    max-width: 90%;
+                    min-width: 70%;
+                    margin: 18px 0 0 25px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .counts {
+                    margin: 16px 25px 16px;
+                    font-size: 0;
+                    .views {
+                        display:inline-block;
+                        height: 30px;
+                        img {
+                            width: 30px;
+                            height: 30px;
+                        }
+                        span {
+                            display:inline-block;
+                            vertical-align: top;
+                            line-height: 30px;
+                            font-size: 1rem;
+                            margin-left: 15px;
+                        }
+                    }   
+
+                    .likes {
+                        margin-left: 20px;
+                        @extend .views;
+                        
+                    }
+
+                    .comments {
+                        @extend .likes;
+                       
+                    }
+                }
+            }
+            
+            
+
+
+
+
+            .right {
+                font-size: 0;
+                // border: solid red 1px;
+                display: inline-block;
+                width: auto;
+                height: 100%;
+                margin-left: 40px;
+                vertical-align: top;
+                padding-top: calc((212px - 167px) / 2);
+                padding-bottom: calc((212px - 167px) / 2);
+                img.demo-image {
+                    width: 167px;
+                    height: 167px;
+                }
+            }
+
+        }
+        .pagination {
+
+        }
+    }
+}
