@@ -50,7 +50,8 @@ h1 {
    * 2. Show the overflow in Edge and IE.
    */
 hr {
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   /* 1 */
   height: 0;
   /* 1 */
@@ -87,7 +88,8 @@ abbr[title] {
   /* 1 */
   text-decoration: underline;
   /* 2 */
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
   /* 2 */
 }
 
@@ -234,7 +236,8 @@ fieldset {
    *    `fieldset` elements in all browsers.
    */
 legend {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   color: inherit;
   /* 2 */
@@ -268,7 +271,8 @@ textarea {
    */
 [type="checkbox"],
 [type="radio"] {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */
@@ -384,7 +388,8 @@ template {
   height: 10px;
   display: inline-block;
   padding: 3px;
-  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
   position: relative;
   left: 38%;
   top: 28%;
@@ -411,7 +416,8 @@ template {
   border-width: 0px 3px 0 0;
   display: inline-block;
   padding: 3px;
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
   position: absolute;
   left: 130px;
   top: 79%;
@@ -445,49 +451,68 @@ template {
 }
 
 body {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
 }
 
 header {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   height: 80px;
   background-color: #00429D;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header ul#header_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: left;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
   max-width: 1200px;
   width: 100%;
   height: 100%;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0 auto;
   padding: 0;
 }
 
 header ul#header_wrapper li {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style: none;
   border: 1px solid #ff0095;
   width: 20%;
   height: 80%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Noto Sans TC', sans-serif;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Noto Sans TC", sans-serif;
   font-weight: 400;
 }
 
 header ul#header_wrapper li:first-child {
-  flex-basis: 10%;
+  -ms-flex-preferred-size: 10%;
+      flex-basis: 10%;
 }
 
 header ul#header_wrapper li:nth-child(6) {
-  flex-basis: 5%;
+  -ms-flex-preferred-size: 5%;
+      flex-basis: 5%;
   gap: 10px;
   margin-right: 10px;
 }
@@ -499,13 +524,20 @@ header ul#header_wrapper li a {
   height: 100%;
   text-align: center;
   border: 1px solid yellow;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 a.logo {
-  flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
 a.logo img {
@@ -523,42 +555,57 @@ a.secondChoice {
 }
 
 footer {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#00429D), to(#00214F));
   background-image: linear-gradient(#00429D, #00214F);
   color: white;
 }
 
 footer div#footer_wrapper {
   min-height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   max-width: 1200px;
   width: 100%;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   min-height: 300px;
-  justify-content: space-evenly;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   margin: 0 auto;
 }
 
 footer div#footer_wrapper div {
-  flex: 1 1 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
 footer div#footer_wrapper div:first-child {
   border: 1px solid green;
-  flex: 0 1 10%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 10%;
+          flex: 0 1 10%;
 }
 
 div.sitemap {
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
   font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 div.sitemap ul {
   padding: 0;
   margin-top: 0;
   vertical-align: top;
-  flex: 1 0 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   text-align: center;
 }
 
@@ -567,11 +614,17 @@ div.sitemap li {
 }
 
 div.contactus {
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
   font-weight: 500;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 div.contactus a {
@@ -614,7 +667,8 @@ div.contactus a i {
 }
 
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 main.main {
@@ -724,11 +778,25 @@ main.main .article-list .article-item .right img.demo-image {
   height: 167px;
 }
 
+<<<<<<< HEAD
 #plan {
   height: 900px;
 }
 
 #plan #raceinfo {
   height: 30px;
+=======
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main#main {
+  height: 1000px;
+  background-color: #EDEDED;
+  background-image: url("../src/images/img/common/background-traning.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+>>>>>>> b7ede6757779ab1f5f4c0e0dd2cc93700e683a98
 }
 /*# sourceMappingURL=style.css.map */
