@@ -24,8 +24,11 @@
   
 
    <!--內容所有都放在這div裡面-->
-   <div>
-   </div>
+   <main id="main">
+    <div class="bookmark">
+        <bookmark-classes v-for="category in categories" :category="category"></bookmark-classes>
+    </div>
+   </main>
 
    
    <!--這是footer-->
@@ -35,10 +38,20 @@
 
 
 
-<!--header/footer component-->
+<!--component-->
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
+<script src="./src/component/common/bookmark-classes.js"></script>
+<script>
+    new Vue({
+        el: "main",
+        data:{
+            categories: ["團練課程", "個人教練","營養規劃"],
+        },
+
+    });
+</script> 
 
 
 </body>
