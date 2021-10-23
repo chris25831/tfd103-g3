@@ -21,11 +21,14 @@
         <my-header></my-header><!--這是自定義標籤會被覆蓋-->
     </header>
 
-
     <!--內容所有都放在這div裡面-->
-    <main class="main" id="main">
+    <main class="main forum-home" id="main">
         <div class="bookmark">
             <bookmark-forum v-for="category in categories" :category="category">
+        </div>
+
+        <div class="button-block">
+            <button class="new-post">發表文章</button>
         </div>
 
         <div class="article-list">
