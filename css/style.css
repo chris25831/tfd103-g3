@@ -359,7 +359,7 @@ template {
 }
 
 .title3 {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .article {
@@ -472,8 +472,10 @@ header ul#header_wrapper li {
   position: relative;
   display: flex;
   list-style: none;
+  border: 1px solid #ff0095;
   width: 20%;
-  vertical-align: center;
+  height: 80%;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Noto Sans TC', sans-serif;
@@ -494,7 +496,12 @@ header ul#header_wrapper li a {
   color: white;
   text-decoration: none;
   width: 100%;
+  height: 100%;
   text-align: center;
+  border: 1px solid yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a.logo {
@@ -512,6 +519,7 @@ a.secondChoice {
   width: 100%;
   padding: 15px 0;
   top: 100%;
+  display: none;
 }
 
 footer {

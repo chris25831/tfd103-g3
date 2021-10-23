@@ -1,8 +1,10 @@
-@mixin center() {
-    vertical-align: center;
+@mixin flexcenter() {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
+       
+
 
 //字體與字重參數自行輸入//
 @mixin fontfamily($weight){

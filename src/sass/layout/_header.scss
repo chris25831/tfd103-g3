@@ -26,9 +26,11 @@ header{
             position: relative;
             display: flex;
             list-style: none;
-            // border: 1px solid rgb(255, 0, 149);
+            
+            border: 1px solid rgb(255, 0, 149);
             width: 20%;
-            @include center();
+            height: 80%;
+            @include flexcenter();
             @include fontfamily(400);
             
             
@@ -45,12 +47,15 @@ header{
             }
 
             a{
+                
                 color: white;
                 text-decoration: none;
                 width: 100%;
+                height: 100%;
                 text-align: center;
-                // border: 1px solid yellow;
-               
+                border: 1px solid yellow;
+                @include flexcenter();
+              
             }
         }
     }
@@ -82,6 +87,7 @@ a.secondChoice{
     width: 100%;
     padding: 15px 0;
     top: 100%;
+    display: none;
     // border: 1px solid green;
     
         
