@@ -723,4 +723,12 @@ main.main .article-list .article-item .right img.demo-image {
   width: 167px;
   height: 167px;
 }
+
+#plan {
+  height: 900px;
+}
+
+#plan #raceinfo {
+  height: 30px;
+}
 /*# sourceMappingURL=style.css.map */
