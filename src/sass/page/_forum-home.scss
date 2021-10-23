@@ -9,7 +9,7 @@ main.main.forum-home {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-
+    padding-bottom: 50px;
     .button-block {
         max-width: 914px;
         margin: 0 auto 34px;
@@ -38,7 +38,7 @@ main.main.forum-home {
             height: $item-height;
             margin-bottom: 20px;
             border-radius: 10px;
-            
+            background-color: white;
             .left{
                 // border: solid red 1px;
                 width: 70%;

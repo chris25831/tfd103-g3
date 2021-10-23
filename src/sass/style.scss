@@ -1,14 +1,8 @@
 /*
 這裡全部不准動(除非要import新的東西不然不要刪)，
-<<<<<<< HEAD
-var分類請放在第一行，(reset尤其要當第一個!!!)，其他再往下新增！！！
-*/
-//測試1111//
-=======
 var分類請放在第一行，(reset尤其要當第一個!!!)，其他~再往下新增！！！
 */
 
->>>>>>> dev
 //var//
 @import "base/reset"; // normalize.css v8.0.1
 @import "base/font";   
@@ -24,7 +18,7 @@ var分類請放在第一行，(reset尤其要當第一個!!!)，其他~再往下
 @import "layout/header";
 @import "layout/footer";
 @import "layout/bookmark";
-
+ 
 //pages//
 @import "./page/page";
 @import "./page/plan-temporary";
