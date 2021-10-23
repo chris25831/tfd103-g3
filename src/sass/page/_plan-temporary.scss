@@ -1,12 +1,38 @@
- #plan_mian{
+#plan_mian{
     height: 500px;
     @include bgplan(900px);
+    margin-bottom: 50px;
+    border: 3px solid rgb(255, 255, 255);
+    #plan_head{
+       background-color: #FFFFFF;
+       border: 1px solid $yellow;
+       box-shadow: 10px 10px 0px 10px $yellow;
+       width: 200px; 
+       margin: 0 auto;
+    }
+    
+    
 }
 
-
-#plan_head{
-   background-color: #FFFFFF;
-   box-shadow: 0px 0px 0px 10px $yellow;
-   width: 300px; 
-   
+section{
+    article{
+        #week{
+            
+            ul{
+                
+                padding: 10px;
+                color: black;
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                
+                margin: 0 auto;
+                li{
+                    @include fontfamily(500);
+                }
+            }
+        }
+    }
 }
+
