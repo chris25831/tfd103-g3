@@ -1,4 +1,4 @@
-Vue.component("bookmark-teacher",{
+Vue.component("bookmark-classes",{
     props: ["category"],
     template: `
         <span class="bookmark-item">{{category}}</span>
@@ -6,7 +6,7 @@ Vue.component("bookmark-teacher",{
 });
 
 //記得貼上路徑
-// <script src="./src/component/bookmark-forum.js"></script> 
+// <script src="./src/component/common/bookmark-classes.js"></script> 
 
 // 請於你的script寫入以下：
 // new Vue({
@@ -18,5 +18,5 @@ Vue.component("bookmark-teacher",{
 
 // 你的html標籤寫法：
 // <div class="bookmark">
-//      <bookmark-teacher v-for="category in categories" :category="category">
+//      <bookmark-classes v-for="category in categories" :category="category"></bookmark-classes>
 // </div>

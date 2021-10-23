@@ -4,15 +4,17 @@ $fontsizes : (
         '.deco': 100px, //裝飾大字2222222
         '.title1': 50px,  //大標題
         '.title2': 30px, //小標題
-        '.title3': 24px, //header主選單
+        '.title3': 16px, //header主選單
         '.article': 16px, //內文
         '.small': 14px, //小字
-        '.smallfont': 12px, //小字
+        
+      
 );
 
 @each $fonttype,$fontsize in $fontsizes {
         #{$fonttype} {
             font-size: #{$fontsize};
+           
         }
     }
 
