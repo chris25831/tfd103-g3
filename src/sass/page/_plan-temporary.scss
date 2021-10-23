@@ -1,6 +1,12 @@
-#plan{
-    height: 900px;
-    #raceinfo{
-        height: 30px;
-    }
+ #plan_mian{
+    height: 500px;
+    @include bgplan(900px);
+}
+
+
+#plan_head{
+   background-color: #FFFFFF;
+   box-shadow: 0px 0px 0px 10px $yellow;
+   width: 300px; 
+   
 }
