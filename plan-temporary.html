@@ -23,53 +23,11 @@
   
 
    <!--內容所有都放在這div裡面-->
-   <main id="plan_main">
-        <div id="plan_head">
-            
-                <p>比賽日期:</p><span>33</span>
-                <p>訓練週數:</p><span>44</span>
-        
-        </div>
-       <section>
-           <article>
-               <div id="week">
-                   <ul>
-                       <li class="title2">D1</li>
-                       <li class="title2">D2</li>
-                       <li class="title2">D3</li>
-                       <li class="title2">D4</li>
-                       <li class="title2">D5</li>
-                       <li class="title2">D6</li>
-                       <li class="title2">D7</li>
-                    </ul>
-                </div>
-               <section>
-                   <span>W1</span>
-                   <ul>
-                       <li>
-                           <span><i class="fa-solid fa-person-biking"></i></span>
-                           <span><i class="fa-solid fa-person-swimming"></i></span>
-                           <div>
-                               <p>Swim 1hr</p>
-                               <p>Run 1hr</p>
-                           </div>
-                       </li>
-                       <li></li>
-                       <li></li>
-                       <li></li>
-                       <li></li>
-                       <li></li>
-                       <li></li>
-                       <li></li>
-                   </ul>
-                   
-               </section>
-                <div>
-                    <button>重新製作</button>
-                    <button>儲存</button>
-                </div>
-           </article>
-       </section>
+   <main id="plan_wrapper">
+       <plan-head></plan-head>
+       <div class="plan_table">
+            <plan-section></plan-section>
+       </div>
    </main>
 
    
