@@ -1,30 +1,30 @@
 .bookmark {
-    max-width: 915px;
-    margin: 0 auto 37px;
-    padding: 60px 0 20px; 
-    font-size: 0;
-    border-bottom: solid black 1px;
-    .bookmark-item {
-        // border: solid red 1px;
-        display: inline-block;
-        font-size: 24px;
-        margin: 0 27px;
-        position: relative;
-        cursor: pointer;
-        &::after{
-            content: "";
-            width: 1px;
-            height: 34px;
-            color: black;
-            border-right: solid black 1px;
-            position: absolute;
-            right: -27px;
-            cursor: auto;            
-        }
-        &:last-child {
-            &::after{
-                border-right: 0;
-            }
-        }
+  max-width: 915px;
+  margin: 0 auto 37px;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  font-size: 0;
+  border-bottom: solid black 1px;
+  .bookmark-item {
+    // border: solid red 1px;
+    display: inline-block;
+    font-size: 24px;
+    margin: 0 27px;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: "";
+      width: 1px;
+      height: 34px;
+      color: black;
+      border-right: solid black 1px;
+      position: absolute;
+      right: -27px;
     }
+    &:last-child {
+      &::after {
+        border-right: 0;
+      }
+    }
+  }
 }
