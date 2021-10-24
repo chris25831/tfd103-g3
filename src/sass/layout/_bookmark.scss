@@ -1,7 +1,7 @@
 .bookmark {
     max-width: 915px;
-    margin: 60px auto 37px;
-    padding-bottom: 20px;
+    margin: 0 auto 37px;
+    padding: 60px 0 20px; 
     font-size: 0;
     border-bottom: solid black 1px;
     .bookmark-item {
@@ -18,7 +18,8 @@
             color: black;
             border-right: solid black 1px;
             position: absolute;
-            right: -27px;            
+            right: -27px;
+            cursor: auto;            
         }
         &:last-child {
             &::after{
