@@ -5,7 +5,8 @@
 $item-height: 213px;
 
 main.main.forum-home {
-    border: solid red 1px;
+    // border: solid red 1px;
+    @include bgnormal(100%);
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;

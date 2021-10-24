@@ -1,38 +1,131 @@
-#plan_mian{
-    height: 500px;
+
+#plan_wrapper {
+    
     @include bgplan(900px);
-    margin-bottom: 50px;
-    border: 3px solid rgb(255, 255, 255);
     #plan_head{
-       background-color: #FFFFFF;
-       border: 1px solid $yellow;
-       box-shadow: 10px 10px 0px 10px $yellow;
-       width: 200px; 
+       border: 3px solid rgb(255, 255, 255);
+       position: relative;
+       width: 100%;
+       height: 16%;
+       display: inline-flex;
+       @include flexcenter;
        margin: 0 auto;
+       
+       .plan_bg{
+        position: absolute;
+        top:10%;
+        left: 40%;
+           svg{
+            // border: 1px solid black;
+            position: absolute;
+           }
+        }
+       .plan_info{
+           position: absolute;
+        //    border: 1px solid black;
+           z-index: 3;
+           color: #282828;
+           width: 200px;
+           top:10px;
+           left: 80px;
+           @include fontfamily(500);
+       }
     }
     
+   
     
+}
+//資訊欄//
+#bevelyellow{
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+    box-shadow: 10 10 black;
+}
+#bevelwhite{
+    z-index: 2;
 }
 
 section{
-    article{
-        #week{
-            
-            ul{
-                
-                padding: 10px;
-                color: black;
-                list-style: none;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                
-                margin: 0 auto;
-                li{
-                    @include fontfamily(500);
-                }
+    //天數head 
+    margin: 0 auto;
+    // border: 1px solid silver;
+    #plan_week{
+        // border: 2px solid rgb(224, 78, 78);
+        width:1200px ;
+        margin: 0 auto;
+        ul{
+            width: 90%;
+            padding: 10px;
+            color: black;
+            list-style: none;
+            @include flexcenter;
+            justify-content: space-around;
+            width:90% ;
+            margin-left: 10%;
+            border-radius: 10px;
+            background-color: rgba(255,255,255,0.8);
+            li{
+                @include fontfamily(500);
             }
         }
     }
+    //訓練表主要內容//
+    #plan_main_content{
+        display: flex;
+        -ms-flex-direction: row;
+        max-width: 1200px;
+        // border: 3px solid rgb(238, 16, 16);
+        .week_mark{
+            width: 10%;
+            display: inline-flex;
+            background-color: #E75F49;
+            padding: 20px;
+
+        }
+        ul{
+            width: 90%;
+            background-color: $white;
+            border-radius: 10px;
+            box-shadow: 3px 2px 2px 2px rgba(175, 84, 10, 0.2);
+            margin: 0 auto;
+            display: grid;
+            list-style: none;
+            padding-left: 0;
+            grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-auto-flow: row;
+            border: 3px solid rgb(255, 255, 255);
+            
+        }
+      
+    }
 }
 
+
+.plan_eachday{
+    border-right: 1px solid $orange;
+    display: flex;
+    flex-direction: column;
+    div:first-child{
+        border: 1px solid blue;
+        height: 50%;
+        background-color: $orange;
+        @include flexcenter;
+        justify-content: right;
+        span{
+            transform: translate(-50%, -50%);
+            border: 2px solid $orange;
+            border-radius: 50%;
+            background-color: $white;
+            padding: 8px;
+            box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
+
+            i{
+                width: 20px;
+                @include flexcenter;
+            }
+        }
+    }
+    // border: 3px solid rgb(255, 255, 255);
+
+}

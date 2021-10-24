@@ -10,7 +10,7 @@
   font-weight: $weight;
 }
 
-//計畫表的背景
+//計畫表的背景 
 @mixin bgplan($height) {
   height: $height;
   background-color: $blue;

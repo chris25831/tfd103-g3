@@ -15,7 +15,7 @@ header{
     ul#header_wrapper{
         display: flex;
         // border: 1px solid white;
-        justify-content: left;
+        justify-content: center;
         max-width: 1200px;
         width: 100%;
         height: 100%;
@@ -27,7 +27,7 @@ header{
             display: flex;
             list-style: none;
             
-            border: 1px solid rgb(255, 0, 149);
+            // border: 1px solid rgb(255, 0, 149);
             width: 20%;
             height: 80%;
             @include flexcenter();
@@ -43,7 +43,6 @@ header{
             &:nth-child(6){
                 flex-basis: 5%;
                 gap: 10px;
-                margin-right: 10px;
             }
 
             a{
@@ -53,7 +52,7 @@ header{
                 width: 100%;
                 height: 100%;
                 text-align: center;
-                border: 1px solid yellow;
+                // border: 1px solid yellow;
                 @include flexcenter();
               
             }
@@ -81,13 +80,15 @@ a.logo{
 
 
 
-a.secondChoice{
+.secondChoice{
+    display: none;
     background-color:#00429D;
     position: absolute;
     width: 100%;
     padding: 15px 0;
     top: 100%;
-    display: none;
+
+
     // border: 1px solid green;
     
         
