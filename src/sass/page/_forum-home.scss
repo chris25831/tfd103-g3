@@ -11,25 +11,6 @@ main.main.forum-home {
     max-width: 1200px;
     margin: 0 auto;
     padding-bottom: 50px;
-    .button-block {
-        max-width: 914px;
-        margin: 0 auto 34px;
-        display: flex;
-        justify-content: flex-end;
-        
-        button.new-post {
-            width: 96px;
-            height: 38px;
-            color: #00429d;
-            border-radius: 30px;
-            border: solid #00429d 1px; 
-            box-shadow: 5px 5px #00429d;
-            cursor: pointer;
-            &:active {
-                box-shadow: 0px 0px #00429d;
-            }
-        }
-    }
     .article-list {
         width: 915px;
         margin: 0 auto;

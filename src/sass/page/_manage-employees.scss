@@ -1,0 +1,101 @@
+main.manage-main.manage-employees {
+    // border: solid red 1px;
+    padding-bottom: 50px;
+    h1.managers-list {
+        
+    }
+    form.managers-list {
+        div.button-block {
+            button.manage-save {
+                
+            }
+        }
+
+        div.managers-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            > div {
+                // border: solid red 1px;
+                height: 100%;    
+                // width: 100%;
+            }
+            input[type="text"], input[type="password"] {
+                width: 150px;
+            }
+
+            border: solid black 1px;
+            width: 914px;
+            height: 233px;
+            margin: 0 auto 30px;
+            padding: 40px 40px;
+            // display: flex;
+            // flex-direction: column;
+            // flex-wrap: wrap;
+            // justify-content: space-evenly;
+            div.left-block {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                div.manager-authority {
+                    padding-top: 5px;
+                    height: auto;
+                    width: auto;
+                    span.auth-title {
+                        vertical-align: top;
+                        height: 100%;
+                        width: auto;
+                        display: inline-block;
+                    }
+                    div.auth-classify {
+                        display: inline-block;
+                        
+                        width: 100px;
+                        height: 80px;
+                        // margin-bottom: 20px;
+                            .top-authority {
+                                margin-bottom: 20px;
+                                // border: solid red 1px;
+                                input, label {
+                                    cursor: pointer;
+                                }
+                            }
+                            .authority {
+                                @extend .top-authority;
+                                // margin-bottom: 0;
+                            }
+                            .none {
+                                @extend .top-authority;
+                            }
+                        
+                    }
+                }
+                div.manager-number {
+                }
+            }
+
+            div.middle-block {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            div.right-block {
+                .manager-signup-date, .manage-last-login  {
+                    height: 24px;
+                    line-height: 24px;
+                }
+                .manager-signup-date {
+                    margin-bottom: 39.5px;
+                }
+
+            }
+
+
+            
+        
+        }
+
+         
+    }
+}
