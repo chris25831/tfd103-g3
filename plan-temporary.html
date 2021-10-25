@@ -23,11 +23,19 @@
   
 
    <!--內容所有都放在這div裡面-->
+   
+   <section id="plan_question" class="plan_question_wrapper">
+      
+
+          <plan-question-component :is="content"></plan-question-component>
+          
+      
+   </section>
+
+
    <main id="plan_wrapper">
        <plan-head></plan-head>
-       <div class="plan_table">
-            <plan-section></plan-section>
-       </div>
+       <plan-section></plan-section>
    </main>
 
    

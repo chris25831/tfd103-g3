@@ -54,6 +54,7 @@ header{
                 text-align: center;
                 // border: 1px solid yellow;
                 @include flexcenter();
+                z-index: 100;
               
             }
         }

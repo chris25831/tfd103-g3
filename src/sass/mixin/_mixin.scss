@@ -10,6 +10,15 @@
   font-weight: $weight;
 }
 
+
+//白襯底
+@mixin bgwhite {
+  background-color: rgba($white, 0.8);
+  border-radius:10px;
+}
+
+
+
 //計畫表的背景
 @mixin bgplan($height) {
   height: $height;
@@ -25,4 +34,10 @@
   background-image: url("../src/images/img/common/background-traning.svg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+//
+@mixin bgnorepeat(){
+  background-repeat: no-repeat;
+  
 }
