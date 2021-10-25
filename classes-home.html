@@ -25,15 +25,17 @@
 
    <!--內容所有都放在這div裡面-->
    <main class="classes-home" id="classes-home">
+        <div>
+            <!-- bookmark -->
+            <div class="bookmark" id="classes-bookmark">
+                <bookmark-classes v-for="category in categories" :category="category"></bookmark-classes>
+            </div>
 
-        <div class="bookmark" id="classes-bookmark">
-            <bookmark-classes v-for="category in categories" :category="category"></bookmark-classes>
+            <!-- gird -->
+            <div class="classesgrid" id="classes-grid">
+                <grid-classes v-for=" trainer in trainers" :imgurl="trainer.imgurl" :imgsrc="trainer.imgsrc"></grid-classes>
+            </div>
         </div>
-
-        <div class="grid">
-            <p>123</p>
-        </div>
-   
    </main>
 
    
@@ -49,21 +51,80 @@
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/common/bookmark-classes.js"></script>
+<script src="./src/component/common/grid-classes.js"></script>
 
 <script>
     // 書籤組件
     const bookmark = new Vue({
         data:{
             categories: ["團練課程", "個人教練","營養規劃"],
+            
         },
-
     });
 
     // 課程組件
-
+    const classesgrid = new Vue({
+        data:{
+            
+            trainers:[
+                // 1
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 2
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 3
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 4
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 5
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 6
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 7
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 8
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                // 9
+                {
+                    imgurl:'#',
+                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                },
+                //10
+                // {
+                //     imgurl:'#',
+                //     imgsrc:'./src/images/img/classes/trainer/trainer01.jpg', 
+                // },
+            ],       
+        },
+    });
 
     // 掛載
     bookmark.$mount('#classes-bookmark');
+    classesgrid.$mount('#classes-grid');
+
 </script> 
 
 
