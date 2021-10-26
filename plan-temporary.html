@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
-
-    
 </head>
 
 <body>
@@ -21,15 +19,43 @@
         <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
   
+   <!--這是計畫表lightbox-->
+   <section id="plan_question" class="plan_question_wrapper">
+        <button class="previouspage">
+            <span class="arrow">
+            </span>
+        </button>
 
-   <!--內容所有都放在這div裡面-->
+        <div class="plan_main_wrapper">
+            <div class="plan_main_content">
+
+                <h1 class="title2">計畫表使用說明</h1>
+                <hr>
+                <p>
+                    *此運動計畫表適用於最少八週以上之訓練時程
+                    <br>
+                    *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷，可自行調整當天運動時長
+                    
+                </p>
+    
+            </div>
+
+            <keep-alive>
+                <plan-question-component :is="content"></plan-question-component>
+                
+            </keep-alive>
+        </div>
+
+        <button   @click="action" class="orangebutton title2">{{nextTab}}</button>
+      
+
+   </section>
+
+   <!--這是計畫表主體-->
    <main id="plan_wrapper">
        <plan-head></plan-head>
-       <div class="plan_table">
-            <plan-section></plan-section>
-       </div>
+       <plan-section></plan-section>
    </main>
-
    
    <!--這是footer-->
    <footer id="footer">
@@ -43,7 +69,6 @@
 <script src="./src/component/plan/plan.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
-
 
 </body>
 </html>

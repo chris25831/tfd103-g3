@@ -1,9 +1,55 @@
 
+
+// ***lightbox*** //
+.plan_question_wrapper{
+    width: 100%;
+    margin: auto 0;
+    @include bgplantem(650px);
+    
+
+    .plan_main_wrapper{
+        display: flex;
+        align-items: center;
+        background-position: center;
+        border: 2px solid rgb(98, 0, 255);
+        height: 80%;
+        width: 80%;
+        min-width: 700px;
+        margin: 0 auto;
+        @include questionbox();
+        
+        .plan_main_content{
+            display: flex;
+            align-items: center;
+            text-align: left;
+            border: 2px solid red;
+            width: 80%;
+            height: 70%;
+            margin: 0 auto;
+            flex-direction:column;
+            hr{
+                width: 100%;
+                border:0.8px solid $orange;
+            }
+        }
+    }
+}
+
+
+
+
+
+// ***計畫表*** //
+.plan_scroll{
+    height: 500px;
+    padding-top: 15px;
+    overflow-y: scroll;
+    
+}
 #plan_wrapper {
     
     @include bgplan(900px);
     #plan_head{
-       border: 3px solid rgb(255, 255, 255);
        position: relative;
        width: 100%;
        height: 16%;
@@ -14,7 +60,7 @@
        .plan_bg{
         position: absolute;
         top:10%;
-        left: 40%;
+        left: 30%;
            svg{
             // border: 1px solid black;
             position: absolute;
@@ -35,24 +81,24 @@
    
     
 }
+
 //資訊欄//
 #bevelyellow{
     z-index: 1;
-    top: 10px;
+    top: 20px;
     left: 10px;
-    box-shadow: 10 10 black;
-}
+    filter: drop-shadow(5px 5px 3px rgba(97, 95, 95, 0.39));}
 #bevelwhite{
     z-index: 2;
+    filter: drop-shadow(2px 2px 3px rgba(97, 95, 95, 0.103));
+
 }
 
 section{
-    //天數head 
     margin: 0 auto;
-    // border: 1px solid silver;
+    //天數head 
     #plan_week{
-        // border: 2px solid rgb(224, 78, 78);
-        width:1200px ;
+        max-width:1200px ;
         margin: 0 auto;
         ul{
             width: 90%;
@@ -70,25 +116,37 @@ section{
             }
         }
     }
+   .plan_scroll{
+    max-width: 1200px;
+    margin: 0 auto;
+    @include bgwhite;
+   }
     //訓練表主要內容//
     #plan_main_content{
         display: flex;
-        -ms-flex-direction: row;
+        flex-direction: row;
         max-width: 1200px;
-        // border: 3px solid rgb(238, 16, 16);
         .week_mark{
+            display: flex;
+            color: white;
+            background-image:url("../src/images/icons/plan_week_bgicon.svg");
             width: 10%;
-            display: inline-flex;
-            background-color: #E75F49;
-            padding: 20px;
-
+            height: 100px;
+            background-position: right;
+            background-size:contain;
+            justify-content: right;
+            align-items: center;
+            align-self: center;
+            @include bgnorepeat();
+            @include fontfamily(500);
+            
         }
         ul{
+            
             width: 90%;
             background-color: $white;
             border-radius: 10px;
             box-shadow: 3px 2px 2px 2px rgba(175, 84, 10, 0.2);
-            margin: 0 auto;
             display: grid;
             list-style: none;
             padding-left: 0;
@@ -101,7 +159,7 @@ section{
     }
 }
 
-
+//每天的運動icon
 .plan_eachday{
     border-right: 1px solid $orange;
     display: flex;
@@ -111,16 +169,16 @@ section{
         height: 50%;
         background-color: $orange;
         @include flexcenter;
-        justify-content: right;
+        justify-content:space-around;
         span{
-            transform: translate(-50%, -50%);
+            transform: translate(0%, -50%);
             border: 2px solid $orange;
             border-radius: 50%;
             background-color: $white;
             padding: 8px;
             box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
-
             i{
+                
                 width: 20px;
                 @include flexcenter;
             }
@@ -129,3 +187,25 @@ section{
     // border: 3px solid rgb(255, 255, 255);
 
 }
+
+//內文字
+.plan_exe{
+    @include flexcenter;
+    @include fontfamily(400);
+}
+
+//button
+.plan_button{
+    // border: 1px solid white;
+    margin-top: 20px;
+    @include flexcenter;
+    justify-content: end;
+    @include fontfamily(400);
+    button{
+        margin:10px 20px;
+    }
+}
+.title2{
+    @include fontfamily(400);
+}
+

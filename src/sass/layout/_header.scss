@@ -3,6 +3,13 @@ body{
     margin: 0;
 }
 
+.sticky {
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    transition: all .8s .8s;
+    box-shadow: 1px 2px 3px  rgb(43, 42, 66);
+  }
 
 
 header{
@@ -11,7 +18,7 @@ header{
     height: 80px;
     background-color: #00429D;
     align-items: center;
-    
+    transition: all .8s;
     ul#header_wrapper{
         display: flex;
         // border: 1px solid white;
@@ -26,7 +33,6 @@ header{
             position: relative;
             display: flex;
             list-style: none;
-            
             // border: 1px solid rgb(255, 0, 149);
             width: 20%;
             height: 80%;
@@ -54,6 +60,7 @@ header{
                 text-align: center;
                 // border: 1px solid yellow;
                 @include flexcenter();
+                z-index: 100;
               
             }
         }

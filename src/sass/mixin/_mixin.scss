@@ -10,7 +10,20 @@
   font-weight: $weight;
 }
 
+<<<<<<< HEAD
 //計畫表的背景 
+=======
+
+//白襯底
+@mixin bgwhite {
+  background-color: rgba($white, 0.8);
+  border-radius:10px;
+}
+
+
+
+//計畫表的背景
+>>>>>>> maggie
 @mixin bgplan($height) {
   height: $height;
   background-color: $blue;
@@ -18,6 +31,19 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+@mixin bgplantem($height){
+  height: $height;
+  background-color: $white;
+  background-image: url("../src/images/img/common/background-yellow-gradient.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@mixin questionbox(){
+  background-image: url("../src/images/icons/plan_questionbox.svg");
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+
 //其他頁背景
 @mixin bgnormal($height) {
   height: $height;
@@ -26,3 +52,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+//背景設定repeat
+@mixin bgnorepeat(){
+  background-repeat: no-repeat;
+  
+}
+

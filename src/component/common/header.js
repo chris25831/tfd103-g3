@@ -9,7 +9,7 @@ template: `
         
         <li>
             <a class="info title3" href="">三鐵資訊</a>
-            <a class="secondChoice title3" href="">賽程資訊</a>
+            <!--<a class="secondChoice title3" href="">賽程資訊</a>-->
         </li>
         <li><a href="" class="title3">訓練課程</a></li>
         <li><a href="" class="title3">討論區</a></li>
@@ -28,3 +28,17 @@ let header = new Vue({
 
     
 })
+
+
+window.onscroll = function() {myFunction()};
+
+var globalheader = document.getElementById("header");
+var sticky = globalheader.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    globalheader.classList.add("sticky");
+  } else {
+    globalheader.classList.remove("sticky");
+  }
+}

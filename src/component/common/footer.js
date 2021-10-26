@@ -51,12 +51,6 @@ let footer = new Vue({
   
     components:{
         'my-footer':{
-        mounted(){
-
-            
-
-
-        },
         data(){
             return {
                 information:['近期賽事','三鐵資訊'],
