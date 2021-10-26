@@ -1,3 +1,45 @@
+
+
+// ***lightbox*** //
+.plan_question_wrapper{
+    width: 100%;
+    margin: auto 0;
+    @include bgplantem(650px);
+    
+
+    .plan_main_wrapper{
+        display: flex;
+        align-items: center;
+        background-position: center;
+        border: 2px solid rgb(98, 0, 255);
+        height: 80%;
+        width: 80%;
+        min-width: 700px;
+        margin: 0 auto;
+        @include questionbox();
+        
+        .plan_main_content{
+            display: flex;
+            align-items: center;
+            text-align: left;
+            border: 2px solid red;
+            width: 80%;
+            height: 70%;
+            margin: 0 auto;
+            flex-direction:column;
+            hr{
+                width: 100%;
+                border:0.8px solid $orange;
+            }
+        }
+    }
+}
+
+
+
+
+
+// ***計畫表*** //
 .plan_scroll{
     height: 500px;
     padding-top: 15px;
@@ -39,6 +81,7 @@
    
     
 }
+
 //資訊欄//
 #bevelyellow{
     z-index: 1;
@@ -81,7 +124,7 @@ section{
     //訓練表主要內容//
     #plan_main_content{
         display: flex;
-        -ms-flex-direction: row;
+        flex-direction: row;
         max-width: 1200px;
         .week_mark{
             display: flex;
@@ -162,3 +205,7 @@ section{
         margin:10px 20px;
     }
 }
+.title2{
+    @include fontfamily(400);
+}
+

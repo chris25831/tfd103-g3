@@ -51,8 +51,8 @@
     box-shadow: 2px 2px 3px 4px white inset, 2.3px 2.3px #00429D, 2px 2px 3px  #5d6269;
     color: #00429D;
     transition: letter-spacing 1s ;
-   
-    &:hover{
+    &:active{
+        cursor: pointer;
         box-shadow: 2px 2px #00429D;
         background-color: $white;
         box-shadow:  .3px .3px 3px 4px rgb(255, 255, 255) inset,2px 2px 5px 3px rgb(131, 128, 128) inset, 1px 1px #00429D;
@@ -71,7 +71,8 @@
     transition: letter-spacing 1s ;
 
 
-    &:hover{
+    &:active{
+        cursor: pointer;
         background-color: $white;
         box-shadow:  .3px .3px 3px 4px rgb(255, 255, 255) inset,2px 2px 5px 3px rgb(131, 128, 128) inset, 1px 1px $orange;
         letter-spacing: 1.5px;

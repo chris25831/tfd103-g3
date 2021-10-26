@@ -1,14 +1,22 @@
 //====== *** *** *** *** ======//
 
+
+
 // ***lightbox*** //
-Vue.component('racedate',{
+
+//使用說明
+Vue.component('q-01',{
+name:'Q-01',
+data(){
+    return{
+        
+    }
+},
+
 template:`
     <div>
 
-            <button class="previouspage">
-                <span class="arrow">
-                </span>
-            </button>
+            
             <h1 class="title2">計畫表使用說明</h1>
             <hr>
             <p>
@@ -16,42 +24,148 @@ template:`
                 <br>
                 *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷，可自行調整當天運動時長
             </p>
-            <button @click="content = 'week'" class="orangebutton">開始</button>
 
     </div>
     `
 });
-
-
-Vue.component('week',{
+//Q1比賽日期
+Vue.component('q-02',{
+    name:'Q-02',
+    data(){
+        return{
+            next:'送出',
+        }
+    },
+    
     template:`
         <div>
-                <button @click="content = 'racedate'" class="previouspage">
-                    <span class="arrow">
-                    </span>
-                </button>
-                  <h1 class="title2">想制定幾週的訓練計畫呢？</h1>
-                  <hr>
-                  <seletor>
-                      <option>16</option>
-                      <option>12</option>
-                      <option>8</option>
-                  </seletor>
-                  <button @click="content = 'week'" class="orangebutton">開始</button>
+            <span>1/4</span>
+
+            <hr>
+            <h1 class="title2">Q1-你的參賽日期</h1>
+            <hr>
+
+            <div>
+                <select>
+                    <option></option>
+                </select>
+            </div>
 
         </div>
         `
-    });
+});
+//Q2比賽距離
+Vue.component('q-03',{
+    name:'Q-03',
+    data(){
+        return{
+            next:'下一步',
+        }
+    },
+    
+    template:`
+        <div>
+            <span>2/4</span>
+
+            <hr>
+            <h1 class="title2">Q2-想挑戰的競賽距離</h1>
+            <hr>
+
+            <div>
+                <input class="title2" type="radio" value="226">
+                <label>226全程距離</label>
+                <input class="title2" type="radio" value="113">
+                <label>113半程距離 </label>
+                <input class="title2" type="radio" value="51.5">
+                <label>51.5標準賽 </label>
+            </div>
+
+        </div>
+        `
+});
+//Q3訓練週數
+Vue.component('q-04',{
+    name:'Q-04',
+    data(){
+        return{
+            next:'下一步',
+        }
+    },
+    
+    template:`
+    <div>
+        <span>3/4</span>
+
+        <hr>
+        <h1 class="title2"><span/>Q3-想制定幾週的訓練計畫呢？</h1>
+        <hr>
+
+        <div>
+            <input class="title2" type="radio" value="16">
+            <label>16週</label>
+            <input class="title2" type="radio" value="12">
+            <label>12週</label>
+            <input class="title2" type="radio" value="8">
+            <label>8週</label>
+        </div>
+        <button v-model="next" v-show="first" @click="content = 'week'"  class="orangebutton">{{btn}}</button>
+
+    </div>
+        `
+});
+//Q4訓練強度
+Vue.component('q-05',{
+    name:'Q-04',
+    data(){
+        return{
+            next:'下一步',
+        }
+    },
+   
+    template:`
+        <div>
+            <span>3/4</span>
+
+            <hr>
+            <h1 class="title2">Q4-選擇訓練強度</h1>
+            <hr>
+
+            <div>
+                <input name="05" id="hard" class="title2" type="radio" value="hard">
+                <label for="hard">強</label>
+                <input name="05" id="normal" class="title2" type="radio" value="normal">
+                <label for="normal">中</label>
+                <input name="05" id="eazy" class="title2" type="radio" value="eazy">
+                <label for="eazy">弱</label>
+            </div>
+
+        </div>
+        `
+});
 
 const question = new Vue({
     el: '#plan_question',
-   data(){
-       return{
-           content: 'racedate',
-       }
-   }
-
+    data(){
+        return{
+            nexttab:["01", "02", "03", "04", "05"],
+            next:"下一步",
+            send:"送出",
+            start:"開始",
+        }
+    },
+    
+    computed:{
+        content(){
+            
+        }
+    }
+       
 });
+
+
+
+
+
 
 // ***上面斜斜的資訊欄*** //
 Vue.component('plan-head',{
