@@ -1,8 +1,10 @@
 .previouspage{
+    border:none;
     border-radius: 10px 0 10px 0;
-    background-color: #E75F49;
+    background-color: #E75F49; 
     width: 50px;
     height: 50px;
+    box-shadow: 2px 2px 3px #6e6d6d49;
     .arrow{
         border: 1px solid #ffffff;
         border-width: 0px 5px 5px 0;
@@ -12,8 +14,6 @@
         padding: 3px;
         transform: rotate(135deg);
         position: relative;
-        left: 38%;
-        top: 28%;
     }
 }
 
@@ -44,25 +44,38 @@
 }
 
 .graybutton{
-    border: 3px solid #00429D;
+    border: .3px solid $blue;
     width: 262px;
     height: 56px;
     border-radius: 30px;
-    &:hover{
-        background-color: #707070;
-        color: #ffffff;
+    box-shadow: 2px 2px 3px 4px white inset, 2.3px 2.3px #00429D, 2px 2px 3px  #5d6269;
+    color: #00429D;
+    transition: letter-spacing 1s ;
+    &:active{
+        cursor: pointer;
+        box-shadow: 2px 2px #00429D;
+        background-color: $white;
+        box-shadow:  .3px .3px 3px 4px rgb(255, 255, 255) inset,2px 2px 5px 3px rgb(131, 128, 128) inset, 1px 1px #00429D;
+        letter-spacing: 1.5px;
     }
 }
 
 .orangebutton{
+    border: .3px solid $orange;
     width: 262px;
     height: 56px;
     border-radius: 30px;
-    background-color: #E75F49;
-    color: #ffffff;
-    border: none;
-    &:hover{
-        background-color: #FFA10A;
+    background-color: $white;
+    color: $orange;
+    box-shadow:  2px 2px 3px 4px white inset, 2px 2px 1px  $orange;
+    transition: letter-spacing 1s ;
+
+
+    &:active{
+        cursor: pointer;
+        background-color: $white;
+        box-shadow:  .3px .3px 3px 4px rgb(255, 255, 255) inset,2px 2px 5px 3px rgb(131, 128, 128) inset, 1px 1px $orange;
+        letter-spacing: 1.5px;
     }
 }
 
