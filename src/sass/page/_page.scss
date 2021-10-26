@@ -12,4 +12,7 @@
 @import "./plan-temporary";
 
 //後台
-@import "./manage-employees"  //人員管理
+@import "./manage-employees";  //人員管理
+@import "./manage-forum-home"; //討論區管理首頁
+@import "./manage-forum-content";
+@import "./manage-forum-report";

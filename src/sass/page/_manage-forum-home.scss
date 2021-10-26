@@ -1,0 +1,12 @@
+main#manage-forum-home.manage-forum-home {
+    padding-bottom: 50px;
+    h1.manage-title.manage-forum-home-title {
+        padding-bottom: 0;
+    }
+
+    .article-list {
+        @extend %article-list;
+    }
+
+}
+

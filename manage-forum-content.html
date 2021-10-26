@@ -5,35 +5,32 @@
     <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
     <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 此為後台頁面樣板 -->
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>討論區 | Triclub</title> 
+    <title>討論區管理 | Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
 </head>
 
 <body>
     <!--這是header-->
-    <header id="header" >
-        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
+    <header id="manage-header">
+        <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
     </header>
+  
 
-
-    <!--內容所有都放在這div裡面-->
-    
-    <main class="forum-content main" id="forum-content">
-        <div class="bookmark">
-            <bookmark-forum v-for="category in categories" :category="category">
-        </div>
-
+   <!--內容所有都放在此，manage-main為引入通用的scss之用。-->
+    <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
+    <main id="manage-forum-content" class="manage-main manage-forum-content">  
+        <h1 class="manage-title title1">討論區管理</h1>
         <div class="back">
             <!-- 回上一頁按鈕放置處 -->
-            
+            <div class="previouspage">
+                <div class="arrow"></div>
+            </div>
         </div>
-
         <div class="page-container-single-article">
             <div class="single-article">
                 <div class="head">
@@ -42,17 +39,29 @@
                         <span class="name">Maggie</span>
                         <span class="time">5 hours ago</span>
                     </div>
-                    <div class="action">
+                    <!-- <div class="action">
                         <div class="like">
                             <img src="https://via.placeholder.com/30x30" alt="" class="like">
                         </div>
                         <div class="report">
                             <img src="https://via.placeholder.com/6x24">
-                        </div>  <!--檢舉鈕-->
+                        </div>-->  <!--檢舉鈕-->
+                    <!--</div> -->
+                    
+                    <!---->
+                    <div class="control-buttons">
+                        <div class="button-block">
+                            <button class="small-blue edit-self">編輯本文</button>
+                        </div>
+                        <div class="button-block">
+                            <button class="small-red delete-article">下架本文</button>
+                        </div>
                     </div>
+                    <!---->
+
                 </div>
                 <div class="middle">
-                    <h3 class="title">關於卡鞋
+                    <h3 class="title">關於卡鞋關於卡鞋關於卡鞋關於卡鞋關於卡鞋關於卡
                         <div class="titlelinearrow"></div>
                     </h3>
                     
@@ -112,26 +121,21 @@
             </div>
         </div>
     </main>
-    
-    <!--這是footer-->
+
+   
+   <!-- 這是footer-->
     <footer id="footer">
-        <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+        <my-footer></my-footer>   
+    <!--這是目標標籤會被覆蓋 -->
     </footer>
+
 
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
-<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
 <script src="./src/component/common/footer.js"></script>
-<script src="./src/component/common/bookmark-forum.js"></script>
-<script>
-    new Vue({
-        el: "#forum-content",
-        data: {
-            categories: ["全部","閒聊","裝備","心得","問題"],
-        },
-    })
-</script>
+
 
 </body>
 </html>

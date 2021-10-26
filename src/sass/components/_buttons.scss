@@ -66,13 +66,13 @@
     }
 }
 
-//圓形藍色小按鈕，用於前台討論區
+//圓形小按鈕，主要用於前台討論區
 .button-block {
     max-width: 914px;
     margin: 0 auto 34px;
     display: flex;
     justify-content: flex-end;
-    button.new-post, button.small-blue {
+    button.new-post, button.small-blue, button.small-red{
         width: 96px;
         height: 38px;
         color: #00429d;

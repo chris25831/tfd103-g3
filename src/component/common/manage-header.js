@@ -8,22 +8,22 @@ template: `
         <nav class="manage-nav">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="" class="manage-link">後台人員管理</a>
+                    <a href="../../../manage-employees.html" class="manage-link">後台人員管理</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="manage-link">賽程管理</a>
+                    <a href="#" class="manage-link">賽程管理</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="manage-link">課程管理</a>
+                    <a href="#" class="manage-link">課程管理</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="manage-link">討論區管理</a>
+                    <a href="../../../manage-forum-home.html" class="manage-link">討論區管理</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="manage-link">會員管理</a>
+                    <a href="#" class="manage-link">會員管理</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="manage-link">登出</a>
+                    <a href="#" class="manage-link">登出</a>
                 </li>
             </ul>
         </nav>    
