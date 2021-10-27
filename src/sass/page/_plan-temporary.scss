@@ -1,28 +1,28 @@
 
 
-// ***lightbox*** //
+// // ***lightbox*** //
 .plan_question_wrapper{
     width: 100%;
     margin: auto 0;
     @include bgplantem(650px);
     
 
-    .plan_main_wrapper{
+    .plan_ques_wrapper{
         display: flex;
         align-items: center;
         background-position: center;
-        border: 2px solid rgb(98, 0, 255);
+        // border: 2px solid rgb(98, 0, 255);
         height: 80%;
         width: 80%;
         min-width: 700px;
         margin: 0 auto;
         @include questionbox();
         
-        .plan_main_content{
+        .plan_question_content{
             display: flex;
             align-items: center;
             text-align: left;
-            border: 2px solid red;
+            // border: 2px solid red;
             width: 80%;
             height: 70%;
             margin: 0 auto;
@@ -36,49 +36,46 @@
 }
 
 
-
-
-
 // ***計畫表*** //
 .plan_scroll{
-    height: 500px;
     padding-top: 15px;
-    overflow-y: scroll;
-    
 }
 #plan_wrapper {
-    
-    @include bgplan(900px);
+    @include bgplan(100%);
+    padding-bottom: $bottomspacing;
     #plan_head{
+       border: 1px solid red;
        position: relative;
        width: 100%;
-       height: 16%;
-       display: inline-flex;
+       height: 80%;
        @include flexcenter;
-       margin: 0 auto;
+    //    margin: 30px auto;
        
        .plan_bg{
-        position: absolute;
+        border: 1px solid red;
+        width: 100%;
         top:10%;
-        left: 30%;
+        left: 0%;
            svg{
-            // border: 1px solid black;
+            width: 100%;
+            border: 1px solid black;
             position: absolute;
            }
         }
        .plan_info{
            position: absolute;
-        //    border: 1px solid black;
+           border: 1px solid pink;
            z-index: 3;
            color: #282828;
-           width: 200px;
-           top:10px;
-           left: 80px;
+           width: 100%;
+           display: flex;
+           flex-direction: column;
+           top:20%;
+           @include flexcenter;
            @include fontfamily(500);
        }
     }
     
-   
     
 }
 
@@ -100,6 +97,7 @@ section{
     #plan_week{
         max-width:1200px ;
         margin: 0 auto;
+        margin-top: 200px;
         ul{
             width: 90%;
             padding: 10px;
