@@ -10,11 +10,12 @@ var分類請放在第一行，(reset尤其要當第一個!!!)，其他再往下�
 @import "base/spacing";
 @import "base/pattern";
 
+//mixin//
+@import "mixin/mixin";
+
 //components//
 @import "./components/buttons";
 
-//mixin//
-@import "mixin/mixin";
 
 //layout//
 @import "layout/manage-main";
@@ -32,6 +33,13 @@ var分類請放在第一行，(reset尤其要當第一個!!!)，其他再往下�
 // *****共同使用語法*****
 * {
   box-sizing: border-box;
+}
+
+ .sample-paddingtop{
+   padding-top: 60px;
+ }
+body{
+  position: relative;
 }
 
 .sample-paddingtop {

@@ -14,12 +14,12 @@ data(){
 },
 
 template:`
-    <div>
+    <div class="plan_question_content">
 
             
             <h1 class="title2">計畫表使用說明</h1>
             <hr>
-            <p>
+            <p class="title3">
                 *此運動計畫表適用於最少八週以上之訓練時程
                 <br>
                 *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷，可自行調整當天運動時長
@@ -38,7 +38,7 @@ Vue.component('q-02',{
     },
     
     template:`
-        <div>
+        <div class="plan_question_content">
             <span>1/4</span>
 
             <hr>
@@ -64,7 +64,7 @@ Vue.component('q-03',{
     },
     
     template:`
-        <div>
+        <div class="plan_question_content">
             <span>2/4</span>
 
             <hr>
@@ -93,7 +93,7 @@ Vue.component('q-04',{
     },
     
     template:`
-    <div>
+    <div class="plan_question_content">
         <span>3/4</span>
 
         <hr>
@@ -123,7 +123,7 @@ Vue.component('q-05',{
     },
    
     template:`
-        <div>
+        <div class="plan_question_content">
             <span>3/4</span>
 
             <hr>
@@ -161,6 +161,10 @@ const question = new Vue({
     }
        
 });
+
+
+
+
 
 
 
@@ -220,7 +224,7 @@ Vue.component('plan-section',{
 
       
     <div class="plan_button">
-        <button class="graybutton title3">重新製作</button>
+        <button class="bluebutton title3">重新製作</button>
         <button class="orangebutton title3">儲存</button>
     </div>
 </section>
