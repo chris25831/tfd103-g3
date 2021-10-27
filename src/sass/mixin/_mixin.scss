@@ -1,3 +1,47 @@
+
+//斷點 ⬇⬇⬇⬇⬇下方有範例⬇⬇⬇⬇⬇//
+@mixin pc(){
+    @media all and (max-width: 1366px){
+        @content;
+    }
+}
+
+@mixin table(){
+    @media all and (max-width: 767px){
+      @content;
+  }
+}
+
+@mixin mobile(){
+    @media all and (max-width: 576px){
+        @content;
+    }
+}
+
+//⬇⬇⬇⬇⬇斷點引用範例⬇⬇⬇⬇⬇//
+
+// .box{
+//   float:left;
+//   width: 30%;
+//   @include tablet() {
+//     float: none;
+//     width: 100%;
+//   }
+// }
+//編譯出來的CSS
+// .box {
+//   float: left;
+//   width: 30%;
+// }
+// @media only screen and (max-width: 767px) {
+//   .box {
+//     float: none;
+//     width: 100%;
+//   }
+// }
+
+
+
 @mixin flexcenter() {
   display: flex;
   justify-content: center;
@@ -14,7 +58,7 @@
 //白襯底
 @mixin bgwhite {
   background-color: rgba($white, 0.8);
-  border-radius:10px;
+ 
 }
 
 

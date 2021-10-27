@@ -32,7 +32,7 @@
         top: 100%;
         left: 0;
         background-color: #E75F49;
-        width: 150px;
+        width: 150%;
         height: 3px;
     }
     .titlelinearrow{
@@ -42,14 +42,14 @@
         padding: 3px;
         transform: rotate(-45deg);
         position: absolute;
-        left: 130px;
-        top: 79%;
+        left: 137%;
+        top: 80%;
         width: 10px;
         height: 10px;
     }
 }
 
-.graybutton{
+.bluebutton{
     border: .3px solid $blue;
     width: 262px;
     height: 56px;
@@ -57,6 +57,8 @@
     box-shadow: 2px 2px 3px 4px white inset, 2.3px 2.3px #00429D, 2px 2px 3px  #5d6269;
     color: #00429D;
     transition: letter-spacing 1s ;
+    
+   
     &:active{
         cursor: pointer;
         box-shadow: 2px 2px #00429D;
