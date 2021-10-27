@@ -25,16 +25,19 @@
 
    <!--內容所有都放在這div裡面-->
    <main class="classes-home" id="classes-home">
-        <div>
+        <div id="classes-frame">
             <!-- bookmark -->
             <div class="bookmark" id="classes-bookmark">
-                <bookmark-classes v-for="category in categories" :category="category"></bookmark-classes>
+                <bookmark-classes v-for="category in categories" :key="category" :class="['bookmark-item classesonly', {active: currentcategory === category }]" :category="category" v-on:changetab="changeTab"></bookmark-classes>
             </div>
 
             <!-- gird -->
             <div class="classesgrid" id="classes-grid">
-                <grid-classes v-for=" trainer in trainers" :imgurl="trainer.imgurl" :imgsrc="trainer.imgsrc" :classtitle="trainer.classtitle" :classsubtitle="trainer.classsubtitle"></grid-classes>
-                
+
+                <triclass-classes v-for="triclass in triclasses" v-bind="triclass"></triclass-classes>
+                <trainer-classes v-for="trainer in trainers" v-bind="trainer"></trainer-classes>
+                <menu-classes v-for="menu in menus" v-bind="menu"></menu-classes>
+                <!-- <component :is="currentCategoryComponent"></component>   -->
             </div>
         </div>
    </main>
@@ -48,6 +51,7 @@
 
 
 <!--component-->
+
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
@@ -55,91 +59,166 @@
 <script src="./src/component/common/grid-classes.js"></script>
 
 <script>
+    // TODO: 如何在兩個Vue根實體間傳送資料?
+
     // 書籤組件
     const bookmark = new Vue({
         data:{
+            currentcategory:"團練課程",
             categories: ["團練課程", "個人教練","營養規劃"],
+
             
+        },
+        methods:{
+            changeTab(newcategory){
+                // console.log(currentcategory);
+                this.currentcategory = newcategory;
+            },
+
         },
     });
 
     // 課程組件
     const classesgrid = new Vue({
         data:{
-            
+            // **訓練課程**
+            triclasses:[
+                // 1
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/class/class01.jpg',
+                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                    classSubtitle:"", 
+                },
+                 // 2
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/class/class01.jpg',
+                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                    classSubtitle:"", 
+                },
+                 // 3
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/class/class01.jpg',
+                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                    classSubtitle:"", 
+                },
+
+            ],
+
+
+            // **個人教練**
             trainers:[
                 // 1
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"12311111111111111" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"12311111111111111" 
                 },
                 // 2
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
                 // 3
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
                 // 4
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
                 // 5
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
                 // 6
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
                 // 7
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
                 // 8
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
                 // 9
                 {
-                    imgurl:'#',
-                    imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classtitle:"黃雨欣",
-                    classsubtitle:"" 
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
                 },
-                //10
-                // {
-                //     imgurl:'#',
-                //     imgsrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                // classtitle:"這是測試文字這是測試文字"
-                // classsubtitle:"12345" 
-                // },
             ],       
+
+
+            //**營養規劃** 
+            menus:[
+                // 1
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                    classSubtitle:"", 
+                },
+                 // 2
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                    classSubtitle:"", 
+                },
+                 // 3
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                    classSubtitle:"", 
+                },
+
+            ],
         },
+        // computed:{
+        //     currentCategoryComponent(){
+
+        //         if(this.currentcategory == "團練課程" ){
+        //             return "triclass-classes";     
+        //         }
+        //         if(this.currentcategory == "個人教練"){
+        //             return "trainer-classes";   
+        //         }
+        //         if(this.currentcategory == "營養菜單"){
+        //             return "menu-classes";  
+        //         }
+        //         else{
+        //             console.log(this);
+        //         }
+        //     },
+        // },
     });
 
     // 掛載

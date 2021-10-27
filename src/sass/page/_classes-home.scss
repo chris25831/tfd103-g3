@@ -6,7 +6,11 @@ main.classes-home {
     margin: 0 auto;
     padding-bottom: $bottomspacing;
     background-color: rgba($color: $white, $alpha: 0.8);
-    border: 1px solid red;
+    // border: 1px solid red;
+    // bookmark for classes only
+    .classesonly {
+      border: none;
+    }
     // grid
     .classesgrid {
       border: 1px solid green;
