@@ -10,9 +10,6 @@
   font-weight: $weight;
 }
 
-<<<<<<< HEAD
-//計畫表的背景 
-=======
 
 //白襯底
 @mixin bgwhite {
@@ -23,7 +20,6 @@
 
 
 //計畫表的背景
->>>>>>> maggie
 @mixin bgplan($height) {
   height: $height;
   background-color: $blue;

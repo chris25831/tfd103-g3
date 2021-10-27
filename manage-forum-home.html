@@ -26,11 +26,11 @@
     <main id="manage-forum-home" class="manage-main manage-forum-home">  
         <h1 class="manage-title title1 manage-forum-home-title">討論區管理</h1>
         <div class="bookmark">
-            <bookmark-forum v-for="category in categories" :category="category">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
         </div>
         
         <div class="button-block">
-            <button class="new-post">發表文章</button>
+            <button @click="openModal" class="new-post">發表文章</button>
         </div>
 
         <div class="article-list">
@@ -71,7 +71,7 @@
             </div>
         </div>    
 
-
+        <forum-new-post-modal @closing="closeModal" v-show="showModal"></forum-new-post-modal>
 
     </main>
 
@@ -89,12 +89,23 @@
 <script src="./src/component/common/manage-header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/common/bookmark-forum.js"></script>
+<script src="./src/component/common/forum-new-post-modal.js"></script>
+
     <script>
         new Vue({
             el: "#manage-forum-home",
             data: {
                 categories: ["全部", "公告", "檢舉"],
+                showModal: false,
             },
+            methods: {
+                openModal(){
+                    this.showModal = true;
+                },
+                closeModal(){
+                    this.showModal = false;
+                },
+            }
         });
     </script>
 

@@ -9,6 +9,7 @@
         border-radius: 10px;
         background-color: white;
         a.enter-article {
+            text-decoration: none;
             color: black;
             &:visited {
                 @extend a.enter-article;
@@ -60,31 +61,39 @@
             .counts {
                 margin: 16px 25px 16px;
                 font-size: 0;
+                display: flex;
+                
                 .views {
-                    display:inline-block;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    align-items: center;
                     height: 30px;
+                    
                     img {
                         width: 30px;
-                        height: 30px;
+                        height: auto;
+                        vertical-align: top;
                     }
                     span {
                         display:inline-block;
                         vertical-align: top;
                         line-height: 30px;
                         font-size: 1rem;
-                        margin-left: 15px;
+                        margin-left: 10px;
                     }
                 }   
 
                 .likes {
                     margin-left: 20px;
                     @extend .views;
-                    
+                    // display:inline-block;
+                    margin-left: 30px;
                 }
 
                 .comments {
                     @extend .likes;
-                   
+                    margin-left: 30px;
                 }
             }
         }
