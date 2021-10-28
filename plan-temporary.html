@@ -15,38 +15,42 @@
 
 <body>
     <!--這是header-->
-   <header id="header" >
-        <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
+   <header id="header" :class="{sticky: active}" >
+        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
   
    <!--這是計畫表lightbox-->
    <section id="plan_question" class="plan_question_wrapper">
-        <button class="previouspage">
-            <span class="arrow">
-            </span>
-        </button>
-
+       
         <div class="plan_ques_wrapper">
-            <div class="plan_question_content">
+           
+            
+            <div  class="plan_question_content">
 
-                <h1 class="title2">計畫表使用說明</h1>
-                <hr>
-                <p >
-                    *此運動計畫表適用於最少八週以上之訓練時程
-                    <br>
-                    *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷，可自行調整當天運動時長
-                    
-                </p>
-    
-            </div>
+                        <button class="previouspage">
+                            <span class="arrow">
+                            </span>
+                        </button>
+
+                        <div class="plan_question_content_article">
+                            <h1 class="title2">計畫表使用說明</h1>
+                            <hr>
+                            <p style="border: 2px solid red">
+                                *此運動計畫表適用於最少八週以上之訓練時程
+                                <br>
+                                *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷，可自行調整當天運動時長
+                            </p>
+                            <button   @click="action" class="orangebutton title2" ></button>
+                        </div>
+             </div>
 
             <keep-alive>
-                <plan-question-component :is="content"></plan-question-component>
-                
+                <plan-question-component :is="content"></plan-question-component>               
             </keep-alive>
+
+            
         </div>
 
-        <button   @click="action" class="orangebutton title2">{{nextTab}}</button>
       
 
    </section>
@@ -63,12 +67,10 @@
    </footer>
 
 
-
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/plan/plan.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
-
 </body>
 </html>

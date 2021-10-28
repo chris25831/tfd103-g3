@@ -122,7 +122,8 @@ Vue.component('q-05',{
         }
     },
    
-    template:`
+    template:
+       `
         <div class="plan_question_content">
             <span>3/4</span>
 
@@ -153,12 +154,6 @@ const question = new Vue({
             start:"開始",
         }
     },
-    
-    computed:{
-        content(){
-            
-        }
-    }
        
 });
 
@@ -196,6 +191,7 @@ Vue.component('plan-head',{
                 <svg id="bevelwhite" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
                     <path id="bevelwhite" data-name="Path 200" d="M56,0H308.81L257,107H0Z" fill="white" stroke="url(#linear-gradient)"/>
                 </svg>
+
             </div>
         </div>
     `
@@ -216,11 +212,11 @@ Vue.component('plan-section',{
 
   <!--訓練表主要內容-->
   <div class="plan_scroll">
-      <section  v-for="week in 12" id="plan_main_content">
-        <span class="week_mark title2">W1</span>
+      <section  v-for="week in 8" id="plan_main_content">
+        <span class="week_mark title2">W{{week}}</span>
           <plan-perweek></plan-perweek>         <!--***計畫表本體component***-->
       </section>
-  </div>
+  </div>s
 
       
     <div class="plan_button">
@@ -248,14 +244,14 @@ Vue.component('plan-perweek',{
     <ul>
         <li  v-for="week in 7" class="plan_eachday">
                 <div>
-                <span v-show="planicon"><i class="fa-solid fa-person-swimming"></i></span>
+                    <span v-show="planicon"><i class="fa-solid fa-person-swimming"></i></span>
                     <span v-show="planicon"><i class="fa-solid fa-person-biking"></i></span>
                     <span v-show="planicon"><i class="fa-solid fa-person-running"></i></span>
                 </div>
                 <div class="plan_exe">
-                <p v-show="swimtime">Swim <span>{{}}hr</span></p>
-                <p v-show="biketime">Bike <span>{{}}hr</span></p>
-                <p v-show="runtime"> Run  <span>{{}}hr</span></p>
+                    <p v-show="swimtime">Swim <span>1hr</span></p>
+                    <p v-show="biketime">Bike <span>.5hr</span></p>
+                    <p v-show="runtime"> Run  <span>.3hr</span></p>
                 </div>
         </li>
         

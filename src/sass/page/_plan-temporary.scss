@@ -1,39 +1,102 @@
 
-
 // // ***lightbox*** //
 .plan_question_wrapper{
     width: 100%;
     margin: auto 0;
     @include bgplantem(650px);
+    @include flexcenter;
     
 
     .plan_ques_wrapper{
-        display: flex;
-        align-items: center;
+        position: relative;
         background-position: center;
-        // border: 2px solid rgb(98, 0, 255);
-        height: 80%;
-        width: 80%;
-        min-width: 700px;
+        height: 70%;
+        width: 50%;
+        min-width: 500px;
+        flex-direction: column;
         margin: 0 auto;
+        transition: all .5s;
+        @include flexcenter;
         @include questionbox();
-        
+        @include table(){
+            width: 100%;
+            transition: all .5s;
+            justify-content:center;
+
+        }
+       
+        .previouspage{
+            align-self:flex-start ;
+            @include table(){
+                top: 15%;
+                transition: all .5s;
+
+            }
+            @include mobile(){
+               line-height: 2;
+            }
+        }
         .plan_question_content{
             display: flex;
             align-items: center;
-            text-align: left;
-            // border: 2px solid red;
-            width: 80%;
-            height: 70%;
+            width: 100%;
             margin: 0 auto;
+            height:80%;
+            
             flex-direction:column;
-            hr{
-                width: 100%;
-                border:0.8px solid $orange;
+            @include table(){
+                vertical-align: middle;
+                transition: all .5s;
+                height:50%;
+                max-height: 400px;
+                min-height: 400px;
             }
+            @include mobile(){
+                transition: all .5s;
+                // height:20%;
+                min-height: 300px;
+            }
+
+            div{
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                text-align: center;
+                @include table(){
+                    width: 80%;
+                    transition: all .5s;
+                    
+                }
+                .title2{
+                    @include mobile(){
+                      font-size: 18px;
+                        
+                    }
+                }
+                hr{
+                    width: 100%;
+                    border:0.8px solid $orange;
+                }
+                p{
+                    @include fontfamily(300); 
+                    text-align: left;
+                    height: 100px;
+                }
+                button{
+                    display: flex;
+                    width: 40%;
+                    @include mobile(){
+                        height: 30%;
+                     }
+                }   
+            }
+           
         }
     }
 }
+
 
 
 // ***計畫表*** //
@@ -44,52 +107,45 @@
     @include bgplan(100%);
     padding-bottom: $bottomspacing;
     #plan_head{
-       border: 1px solid red;
-       position: relative;
        width: 100%;
-       height: 80%;
        @include flexcenter;
-    //    margin: 30px auto;
-       
-       .plan_bg{
-        border: 1px solid red;
-        width: 100%;
-        top:10%;
-        left: 0%;
-           svg{
-            width: 100%;
-            border: 1px solid black;
-            position: absolute;
-           }
-        }
-       .plan_info{
-           position: absolute;
-           border: 1px solid pink;
-           z-index: 3;
-           color: #282828;
-           width: 100%;
-           display: flex;
-           flex-direction: column;
-           top:20%;
-           @include flexcenter;
-           @include fontfamily(500);
-       }
+    
+   }
+    
+}
+
+
+.plan_bg{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    // border: 1px solid red;
+    margin-top: 10%;
+    width: 40%;
+    svg{
+        position: absolute;
+        filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
+        height: 100%;
     }
-    
-    
+    #bevelyellow{
+        left: 30%;
+        
+    }
+    .plan_info{
+        
+        z-index: 3;
+        color: #282828;
+        margin: auto 0;
+        flex-direction: column;
+        @include flexcenter;
+        @include fontfamily(500);
+    }
+
 }
 
-//資訊欄//
-#bevelyellow{
-    z-index: 1;
-    top: 20px;
-    left: 10px;
-    filter: drop-shadow(5px 5px 3px rgba(97, 95, 95, 0.39));}
-#bevelwhite{
-    z-index: 2;
-    filter: drop-shadow(2px 2px 3px rgba(97, 95, 95, 0.103));
 
-}
+
+
 
 section{
     margin: 0 auto;
@@ -97,16 +153,17 @@ section{
     #plan_week{
         max-width:1200px ;
         margin: 0 auto;
-        margin-top: 200px;
+        margin-top: 50px;
         ul{
-            width: 90%;
+            // border: 3px solid white;
+            margin: 0 auto;
+            width: 95%;
+            margin-left: 5%;
             padding: 10px;
             color: black;
             list-style: none;
             @include flexcenter;
             justify-content: space-around;
-            width:90% ;
-            margin-left: 10%;
             border-radius: 10px;
             background-color: rgba(255,255,255,0.8);
             li{
@@ -116,23 +173,28 @@ section{
     }
    .plan_scroll{
     max-width: 1200px;
+    // border: 3px solid white;
     margin: 0 auto;
-    @include bgwhite;
+    
    }
     //訓練表主要內容//
     #plan_main_content{
         display: flex;
         flex-direction: row;
         max-width: 1200px;
+        margin: 0 auto;
         .week_mark{
+            filter: drop-shadow(0px 5px  $yellow);
+            font-size: 20px;
+            width: 5%;
             display: flex;
             color: white;
             background-image:url("../src/images/icons/plan_week_bgicon.svg");
-            width: 10%;
             height: 100px;
+            background-size: 100%;
             background-position: right;
-            background-size:contain;
-            justify-content: right;
+            background-size:cover;
+            justify-content: center;
             align-items: center;
             align-self: center;
             @include bgnorepeat();
@@ -141,7 +203,7 @@ section{
         }
         ul{
             
-            width: 90%;
+            width: 95%;
             background-color: $white;
             border-radius: 10px;
             box-shadow: 3px 2px 2px 2px rgba(175, 84, 10, 0.2);
@@ -150,7 +212,7 @@ section{
             padding-left: 0;
             grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-auto-flow: row;
-            border: 3px solid rgb(255, 255, 255);
+            border: 3px solid $orange;
             
         }
       
@@ -158,25 +220,28 @@ section{
 }
 
 //每天的運動icon
+
 .plan_eachday{
     border-right: 1px solid $orange;
     display: flex;
     flex-direction: column;
+    &:nth-last-child(){
+        border-right: none;
+    }
     div:first-child{
-        border: 1px solid blue;
+        // border: 1px solid blue;
         height: 50%;
         background-color: $orange;
         @include flexcenter;
-        justify-content:space-around;
+        justify-content:center;
         span{
             transform: translate(0%, -50%);
             border: 2px solid $orange;
             border-radius: 50%;
             background-color: $white;
-            padding: 8px;
+            padding: 5px;
             box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
             i{
-                
                 width: 20px;
                 @include flexcenter;
             }
@@ -188,7 +253,9 @@ section{
 
 //內文字
 .plan_exe{
-    @include flexcenter;
+    
+    display: block;
+    text-align: center;
     @include fontfamily(400);
 }
 
@@ -203,6 +270,7 @@ section{
         margin:10px 20px;
     }
 }
+
 .title2{
     @include fontfamily(400);
 }
