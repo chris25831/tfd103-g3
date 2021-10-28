@@ -1,21 +1,20 @@
-
 //斷點 ⬇⬇⬇⬇⬇下方有範例⬇⬇⬇⬇⬇//
-@mixin pc(){
-    @media all and (max-width: 1366px){
-        @content;
-    }
-}
-
-@mixin table(){
-    @media all and (max-width: 767px){
-      @content;
+@mixin pc() {
+  @media all and (max-width: 1366px) {
+    @content;
   }
 }
 
-@mixin mobile(){
-    @media all and (max-width: 576px){
-        @content;
-    }
+@mixin table() {
+  @media all and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin mobile() {
+  @media all and (max-width: 576px) {
+    @content;
+  }
 }
 
 //⬇⬇⬇⬇⬇斷點引用範例⬇⬇⬇⬇⬇//
@@ -40,8 +39,6 @@
 //   }
 // }
 
-
-
 @mixin flexcenter() {
   display: flex;
   justify-content: center;
@@ -54,14 +51,10 @@
   font-weight: $weight;
 }
 
-
 //白襯底
 @mixin bgwhite {
   background-color: rgba($white, 0.8);
- 
 }
-
-
 
 //計畫表的背景
 @mixin bgplan($height) {
@@ -71,17 +64,17 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-@mixin bgplantem($height){
+@mixin bgplantem($height) {
   height: $height;
   background-color: $white;
   background-image: url("../src/images/img/common/background-yellow-gradient.svg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-@mixin questionbox(){
+@mixin questionbox() {
   background-image: url("../src/images/icons/plan_questionbox.svg");
   background-repeat: no-repeat;
-  background-size:contain;
+  background-size: contain;
 }
 
 //其他頁背景
@@ -94,8 +87,6 @@
 }
 
 //背景設定repeat
-@mixin bgnorepeat(){
+@mixin bgnorepeat() {
   background-repeat: no-repeat;
-  
 }
-

@@ -1,17 +1,13 @@
-* {
-    box-sizing: border-box;
-}
-
-
-
-main.main.forum-home {
-    // border: solid red 1px;
-    @include bgnormal(100%);
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 50px;
-    .article-list {
-        @extend %article-list;
+body {
+    position: relative;
+    main.main.forum-home {
+        @include bgnormal(100%);
+        width: 100%;
+        // max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 50px;
+        .article-list {
+            @extend %article-list;
+        }
     }
 }

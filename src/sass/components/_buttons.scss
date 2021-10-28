@@ -4,7 +4,8 @@
     background-color: #E75F49; 
     width: 50px;
     height: 50px;
-    box-shadow: 2px 2px 3px #6e6d6d49;
+    box-shadow: 2px 2px 3px #6e6d6d;
+    cursor: pointer;
     .arrow{
         border: 1px solid #ffffff;
         border-width: 0px 5px 5px 0;
@@ -14,6 +15,11 @@
         padding: 3px;
         transform: rotate(135deg);
         position: relative;
+        a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
@@ -26,7 +32,7 @@
         top: 100%;
         left: 0;
         background-color: #E75F49;
-        width: 150px;
+        width: 150%;
         height: 3px;
     }
     .titlelinearrow{
@@ -36,8 +42,8 @@
         padding: 3px;
         transform: rotate(-45deg);
         position: absolute;
-        left: 130px;
-        top: 79%;
+        left: 137%;
+        top: 80%;
         width: 10px;
         height: 10px;
     }

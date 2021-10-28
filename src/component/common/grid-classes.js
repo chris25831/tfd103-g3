@@ -1,13 +1,44 @@
-Vue.component("grid-classes",{
-    props: ["imgurl","imgsrc","classtitle","classsubtitle"],
+// 團練課程
+Vue.component("triclass-classes",{
+    props: ["classUrl","imgSrc","classTitle","classSubtitle"],
     template: `
     <div class="classesgrid_simple">
-        <a :href="imgurl"></a> 
+        <a :href="classUrl"></a> 
         <p> 
-            <span class="title3">{{classtitle}}</span><br>
-            <span class="article">{{classsubtitle}}</span>
+            <span class="title3">{{classTitle}}</span><br>
+            <span class="article">{{classSubtitle}}</span>
         </p>
-        <img :src="imgsrc" alt="無法讀取照片" />       
+        <img :src="imgSrc" alt="無法讀取照片" />       
+    </div>
+    `,
+});
+
+// 個人教練
+Vue.component("trainer-classes",{
+    props: ["classUrl","imgSrc","classTitle","classSubtitle"],
+    template: `
+    <div class="classesgrid_simple">
+        <a :href="classUrl"></a> 
+        <p> 
+            <span class="title3">{{classTitle}}</span><br>
+            <span class="article">{{classSubtitle}}</span>
+        </p>
+        <img :src="imgSrc" alt="無法讀取照片" />       
+    </div>
+    `,
+});
+
+// 營養規劃
+Vue.component("menu-classes",{
+    props: ["classUrl","imgSrc","classTitle","classSubtitle"],
+    template: `
+    <div class="classesgrid_simple">
+        <a :href="classUrl"></a> 
+        <p> 
+            <span class="title3">{{classTitle}}</span><br>
+            <span class="article">{{classSubtitle}}</span>
+        </p>
+        <img :src="imgSrc" alt="無法讀取照片" />       
     </div>
     `,
 });

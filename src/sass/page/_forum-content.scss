@@ -4,6 +4,14 @@
 
 main.main.forum-content {
     padding-bottom: 50px;
+    @include bgnormal(100%);
+    .back {
+        .button-block {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    
     .page-container-single-article {
         @extend %page-container-single-article;
     }
