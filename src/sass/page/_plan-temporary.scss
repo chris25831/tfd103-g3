@@ -84,18 +84,27 @@
                     text-align: left;
                     height: 100px;
                 }
-                button{
-                    display: flex;
-                    width: 40%;
-                    @include mobile(){
-                        height: 30%;
-                     }
-                }   
+                
             }
            
         }
     }
 }
+
+
+#lightboxbtn{
+        display: flex;
+        @include flexcenter();
+        width: 40%;
+        @include mobile(){
+            height: 30%;
+  }
+}  
+
+
+
+
+
 
 
 
@@ -142,10 +151,6 @@
     }
 
 }
-
-
-
-
 
 section{
     margin: 0 auto;
