@@ -97,7 +97,6 @@ body{
             width: 80%;
             height: 100%;
             text-decoration: none;
-            @include fontfamily(400);
             @include flexcenter;
             transition:all .3s;
             &:hover {
