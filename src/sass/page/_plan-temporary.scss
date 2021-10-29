@@ -1,92 +1,72 @@
 
 // // ***lightbox*** //
 .plan_question_wrapper{
-    width: 100%;
-    margin: auto 0;
-    @include bgplantem(650px);
-    @include flexcenter;
-    
-
-    .plan_ques_wrapper{
-        position: relative;
-        background-position: center;
-        height: 70%;
-        width: 50%;
-        min-width: 500px;
-        flex-direction: column;
-        margin: 0 auto;
-        transition: all .5s;
-        @include flexcenter;
+     @include bgplantem(100vh);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   .plan_ques_wrapper{
         @include questionbox();
-        @include table(){
-            width: 100%;
-            transition: all .5s;
-            justify-content:center;
-
-        }
-       
-        .previouspage{
-            align-self:flex-start ;
-            @include table(){
-                top: 15%;
-                transition: all .5s;
-
-            }
-            @include mobile(){
-               line-height: 2;
-            }
-        }
+        display: flex;
+        flex-direction: column;
+        background-size:contain ;
+        background-position: center;
+        border: 2px solid white;
+        height: 400px;
+        width: 800px;
         .plan_question_content{
-            display: flex;
-            align-items: center;
-            width: 100%;
-            margin: 0 auto;
-            height:80%;
-            
-            flex-direction:column;
-            @include table(){
-                vertical-align: middle;
-                transition: all .5s;
-                height:50%;
-                max-height: 400px;
-                min-height: 400px;
-            }
-            @include mobile(){
-                transition: all .5s;
-                // height:20%;
-                min-height: 300px;
-            }
-
-            div{
-                width: 90%;
-                display: flex;
+            border:2px solid rgb(64, 125, 224);
+            height: 90%;
+            .plan_question_content_article{
+                @include flexcenter;
                 flex-direction: column;
-                justify-content: space-evenly;
-                align-items: center;
-                text-align: center;
-                @include table(){
-                    width: 80%;
-                    transition: all .5s;
-                    
-                }
-                .title2{
-                    @include mobile(){
-                      font-size: 18px;
-                        
-                    }
-                }
-                hr{
-                    width: 100%;
-                    border:0.8px solid $orange;
-                }
-                p{
-                    @include fontfamily(300); 
-                    text-align: left;
-                    height: 100px;
-                }
-                
+                justify-content:space-around;
+                border:2px solid turquoise;
+                height: 100%;
             }
-           
+        }
+
+        .previouspage{
+            
+            border: 1px solid white;
+        }
+    }
+}
+
+.plan_question_content_article{
+    div{
+      display: flex;
+      
+      flex-direction: column;
+    //   border: 2px solid deepskyblue;
+      width: 80%;  
+
+        h1{
+            border: 1px solid $orange;
+            text-align: center;
+        }
+        hr{
+            width: 100%;
+            border: 1px solid $orange;
+        }
+        p{
+            border: 1px solid $orange;
+            width: 100%;
+            height: 100%;
+            line-height: 1.5;
+            white-space:wrap;
+        }
+    }
+    div.select{
+        border: 2px solid deepskyblue;
+        height: 50%;
+        select{
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(-30deg,#e75e49c9,#ffa10aa1,#f8e72b);
+            padding: 2px 10px;
+            width: 400px;
+            box-shadow: 2px 2px $orange;
         }
     }
 }
@@ -98,7 +78,7 @@
         width: 40%;
         @include mobile(){
             height: 30%;
-  }
+        }
 }  
 
 
@@ -194,6 +174,7 @@ section{
             width: 5%;
             display: flex;
             color: white;
+            border-radius: 30% 0 0 30%;
             background-image:url("../src/images/icons/plan_week_bgicon.svg");
             height: 100px;
             background-size: 100%;
@@ -203,8 +184,7 @@ section{
             align-items: center;
             align-self: center;
             @include bgnorepeat();
-            @include fontfamily(500);
-            
+            font-weight: 600;
         }
         ul{
             
@@ -258,7 +238,6 @@ section{
 
 //內文字
 .plan_exe{
-    
     display: block;
     text-align: center;
     @include fontfamily(400);
@@ -269,14 +248,10 @@ section{
     // border: 1px solid white;
     margin-top: 20px;
     @include flexcenter;
-    justify-content: end;
-    @include fontfamily(400);
+    @include fontfamily(500);
     button{
         margin:10px 20px;
     }
 }
 
-.title2{
-    @include fontfamily(400);
-}
 
