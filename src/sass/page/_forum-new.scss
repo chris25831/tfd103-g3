@@ -9,7 +9,7 @@
     .modal.new-article { 
         margin: 0 auto;
         max-width: 800px;
-        height: 500px;
+        min-height: 400px;
         background-color: #ededed;
         position: relative;
         top: 50px;
@@ -19,6 +19,13 @@
         align-items: center;
         border-radius: 50px;
         z-index: 1100;
+        @include table() {
+            width: calc(576px * .8);
+        }
+
+        @include mobile() {
+            width: calc(375px * .9);
+        }
         span.info {
             position: absolute;
             display: inline-block;
@@ -35,13 +42,17 @@
             // line-height: 40px;
         }
         .cross {
-            // border: solid red 1px;
-            // width: 649px;
-            // text-align: right;
             position:absolute;
             right: 30px;
             top: 20px;
             cursor: pointer;
+            @include table() {
+                right: 16px;
+            }
+            @include mobile() {
+                right: 13px;    
+            }
+
         }
         input.title {
             width: 80%;
@@ -58,7 +69,9 @@
 
         textarea.new-article-content {
             @extend input.title;
+            min-height: 100px;
             height: 200px;
+            resize: none;
         }
         .upload-images {
             display: flex;
@@ -72,6 +85,9 @@
                 height: 100px;
                 background-color: white;
                 position: relative;
+                @include mobile(){
+                    height: 80px;
+                }
                 .rectangle {
                     position: absolute;
                     background-color: #ededed;

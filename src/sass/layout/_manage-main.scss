@@ -1,12 +1,17 @@
 //後臺介面通用設定
-main.manage-main {
-    width: 1200px;
-    margin: 0 auto;
-    h1.manage-title {
-        color: $blue;
-        width: 100%;
-        text-align: center;
-        padding: 60px 0 0 0;
-        margin: 0;
+body {
+   
+    main.manage-main {
+        position: relative;
+        top: 80px;
+        width: 1200px;
+        margin: 0 auto; 
+        h1.manage-title {
+            color: $blue;
+            width: 100%;
+            text-align: center;
+            padding: 60px 0 0 0;
+            margin: 0;
+        }
     }
 }
