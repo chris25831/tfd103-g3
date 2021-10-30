@@ -11,8 +11,8 @@ const question = new Vue({
     data(){
 
         return{
-            
-            current_tab: 0,
+            tab:"下一步",
+            current_tab:0,
             max:4,
             questions:[
                 {
@@ -88,16 +88,18 @@ const question = new Vue({
 
         }
     },
-    methods:{
-        btntext(){
-            if(current_tab.length <= max){
-                current_tab ++ 
-            }else{
-                
+
+    methods: {
+        currenttab(){
+                if(this.current_tab < this.max){
+                    return  this.current_tab ++
+                }else{
+                    return  this.tab = "送出"
+                }
             }
-        },
-    }
+      },       
 });
+
 
 
 
@@ -158,7 +160,7 @@ Vue.component('plan-section',{
         <span class="week_mark title2">W{{week}}</span>
           <plan-perweek></plan-perweek>         <!--***計畫表本體component***-->
       </section>
-  </div>s
+  </div>
 
       
     <div class="plan_button">
