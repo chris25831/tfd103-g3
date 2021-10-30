@@ -18,214 +18,269 @@
 <body>
     <!--這是header-->
 
-   <header id="header" >
+   <header id="header" :class="{sticky:active}">
         <my-header></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
   
 
    <!--內容所有都放在這div裡面-->
    <main class="classes-home" id="classes-home">
-        <div id="classes-frame">
+        <div>
             <!-- bookmark -->
             <div class="bookmark" id="classes-bookmark">
-                <bookmark-classes v-for="category in categories" :key="category" :class="['bookmark-item classesonly', {active: currentcategory === category }]" :category="category" v-on:changetab="changeTab"></bookmark-classes>
+                <button  v-for="(category,index) in categories" :key="category" class="bookmark-item classesonly" :class="[{active: currentcategory === index }]"  @click="currentcategory = index">{{category}}</button>
             </div>
 
             <!-- gird -->
             <div class="classesgrid" id="classes-grid">
-
-                <triclass-classes v-for="triclass in triclasses" v-bind="triclass"></triclass-classes>
-                <trainer-classes v-for="trainer in trainers" v-bind="trainer"></trainer-classes>
-                <menu-classes v-for="menu in menus" v-bind="menu"></menu-classes>
-                <!-- <component :is="currentCategoryComponent"></component>   -->
+                <triclasses  v-for="subdata in this[classdata[currentcategory]]" :img-src="subdata.imgSrc" :class-url="subdata.classUrl" :class-title="subdata.classTitle" :class-subtitle="subdata.classSubtitle"></triclasses>  
             </div>
         </div>
    </main>
 
-   
    <!--這是footer-->
    <footer id="footer">
       <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
    </footer>
 
+   
+    <!--component-->
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/component/common/header.js"></script>
+    <script src="./src/component/common/footer.js"></script>
+    <script src="./src/component/common/grid-classes.js"></script>
 
-
-<!--component-->
-
-<script src="./src/js/vue.js"></script>
-<script src="./src/component/common/header.js"></script>
-<script src="./src/component/common/footer.js"></script>
-<script src="./src/component/common/bookmark-classes.js"></script>
-<script src="./src/component/common/grid-classes.js"></script>
-
-<script>
-    // TODO: 如何在兩個Vue根實體間傳送資料?
-
-    // 書籤組件
-    const bookmark = new Vue({
-        data:{
-            currentcategory:"團練課程",
-            categories: ["團練課程", "個人教練","營養規劃"],
-
+    <script>
+        new Vue({
+            el:'#classes-home',
+            data:{
+                
+                // 書籤組件data
+                currentcategory: 0,
+                categories: ["團練課程", "個人教練","營養規劃"],
+                classdata: ["triclasses", "trainers","menus"],
+                // en_categories: ["triclass-classes", "trainer-classes","menu-classes"],
+                // list_data:[[],[],[]],
             
-        },
-        methods:{
-            changeTab(newcategory){
-                // console.log(currentcategory);
-                this.currentcategory = newcategory;
+                
+                // **課程組件data**
+                // 訓練課程
+                triclasses:[
+                    // 1
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 2
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 3
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 4
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 5
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 6
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 7
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 8
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    // 9
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/class/class01.jpg',
+                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                        classSubtitle:"", 
+                    },
+                    
+                ],
+                
+                
+                // 個人教練
+                trainers:[
+                    // 1
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 2
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 3
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 4
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 5
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 6
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 7
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 8
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                    // 9
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                        classTitle:"黃雨欣",
+                        classSubtitle:"游泳四段調整" 
+                    },
+                ],       
+
+                
+                // 營養規劃 
+                menus:[
+                    // 1
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+                    // 2
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+                    // 3
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+                    // 4
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+                    // 5
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+                    // 6
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+
+                    // 7
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+                    // 8
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+                    // 9
+                    {
+                        classUrl:'#',
+                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                        classSubtitle:"", 
+                    },
+
+                ],
             },
+            
+            // computed:{
+            //     currentCategoryComponent(){
 
-        },
-    });
+            //         return this.en_categories[this.currentcategory];          
+            //     },
+            // },
 
-    // 課程組件
-    const classesgrid = new Vue({
-        data:{
-            // **訓練課程**
-            triclasses:[
-                // 1
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/class/class01.jpg',
-                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                    classSubtitle:"", 
-                },
-                 // 2
-                 {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/class/class01.jpg',
-                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                    classSubtitle:"", 
-                },
-                 // 3
-                 {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/class/class01.jpg',
-                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                    classSubtitle:"", 
-                },
+        });
 
-            ],
-
-
-            // **個人教練**
-            trainers:[
-                // 1
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"12311111111111111" 
-                },
-                // 2
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-                // 3
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-                // 4
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-                // 5
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-                // 6
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-                // 7
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-                // 8
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-                // 9
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                    classTitle:"黃雨欣",
-                    classSubtitle:"" 
-                },
-            ],       
-
-
-            //**營養規劃** 
-            menus:[
-                // 1
-                {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                    classSubtitle:"", 
-                },
-                 // 2
-                 {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                    classSubtitle:"", 
-                },
-                 // 3
-                 {
-                    classUrl:'#',
-                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                    classSubtitle:"", 
-                },
-
-            ],
-        },
-        // computed:{
-        //     currentCategoryComponent(){
-
-        //         if(this.currentcategory == "團練課程" ){
-        //             return "triclass-classes";     
-        //         }
-        //         if(this.currentcategory == "個人教練"){
-        //             return "trainer-classes";   
-        //         }
-        //         if(this.currentcategory == "營養菜單"){
-        //             return "menu-classes";  
-        //         }
-        //         else{
-        //             console.log(this);
-        //         }
-        //     },
-        // },
-    });
-
-    // 掛載
-    bookmark.$mount('#classes-bookmark');
-    classesgrid.$mount('#classes-grid');
-
-</script> 
+    </script> 
 
 
 </body>
