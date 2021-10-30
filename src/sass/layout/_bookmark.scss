@@ -5,6 +5,15 @@
   padding-bottom: 20px;
   font-size: 0;
   border-bottom: solid black 1px;
+  @include table() {
+    width: 576px;
+  }
+  @include mobile() {
+    width: 375px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
   .bookmark-item {
     // border: solid red 1px;
     display: inline-block;
@@ -12,15 +21,37 @@
     margin: 0 27px;
     position: relative;
     cursor: pointer;
+    @include table() {
+      font-size: 20px;
+      margin: 0 20px;
+    }
+  
+    @include mobile() {
+      width: auto;
+      height: 22px;
+      font-size: 20px;
+      margin: 0; 
+      // border-right: solid black 1px;
+    }
+
     &::after {
       content: "";
       width: 1px;
-      height: 34px;
+      height: 27px;
       color: black;
       border-right: solid black 1px;
       position: absolute;
       right: -27px;
       cursor: default;
+      // line-height: 34px;
+      @include table() {
+        right: -20px;
+        height: 22px;
+      }
+      @include mobile() {
+        // right: -10%;
+        border: 0;
+      }
     }
     &:last-child {
       &::after {

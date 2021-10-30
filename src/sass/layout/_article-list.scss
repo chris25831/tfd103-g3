@@ -1,13 +1,24 @@
 %article-list {
-    width: 915px;
+    // border: solid red 1px;
+    max-width: 915px;
+    width: 100%;
     margin: 0 auto;
+    @include table() {
+        width: 576px;
+    }
+
+    @include mobile() {
+        width: 375px;
+    }
+    
     .article-item {
         border: solid black 1px;
         width: 100%;
-        height: 213px;
+        height: auto;
         margin-bottom: 20px;
         border-radius: 10px;
         background-color: white;
+        font-size: 0;
         a.enter-article {
             text-decoration: none;
             color: black;
@@ -17,110 +28,157 @@
             &:active {
                 @extend a.enter-article;
             }
-        }
-        .left{
-            // border: solid red 1px;
-            width: 70%;
-            display: inline-block;
-            height: 100%; 
-            .author {
-                height: 70px;
-                img.avatar {
-                    width: 44px;
-                    height: 44px;
-                    border-radius: 50%;
-                    margin: 13px 0 0 25px;
-                    vertical-align: center;
-                }
-                span.name, span.time {
-                    display: inline-block;
-                    height: 100%;
-                    vertical-align: top;
-                    line-height: 70px;
+        
+            .left{
+                // border: solid red 1px;
+                width: 70%;
+                display: inline-block;
+                height: 100%;
+                @include table() {
+                    width: 60%;
                 }
 
-                span.name {
-                    margin: 0 15px 0 18px;
+                @include mobile() {
+                    width: 100%;
                 }
-            }
-            h3.article-title {
-                margin: 5px 25px 0;
-                font-size: 24px;
+                 
+                .author {
+                    height: 70px;
+                    img.avatar {
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 50%;
+                        margin: 13px 0 0 25px;
+                        vertical-align: center;
+                    }
+                    span.name, span.time {
+                        display: inline-block;
+                        height: 100%;
+                        vertical-align: top;
+                        line-height: 70px;
+                        font-size: 1rem;
+                        max-width: 40%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        font-size: 1rem;
+                    }
+
+                    span.name {
+                        margin: 0 15px 0 18px;
+                        max-width: 60%;
+                        @include table() {
+                            max-width: 45%;
+                        }
+        
+                        @include mobile() {
+                            max-width: 40%;
+                        }
+                    }
+                }
+                h3.article-title {
+                    margin: 5px 25px 0;
+                    font-size: 24px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    @include mobile() {
+                        white-space: normal;
+                        text-overflow: none;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
+                        overflow: hidden;
+                    }
+                }
+                
+                p.preview-content {
+                    display: inline-block;
+                    max-width: 90%;
+                    // min-width: 70%;
+                    margin: 18px 0 0 25px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: 1rem;
+                    @include table() {
+                        max-width: 90%;
+                    }
+                    
+                    @include mobile() {
+                        max-width: 90%;
+                    }
+                }
+
+                .counts {
+                    margin: 16px 25px 13px;
+                    font-size: 0;
+                    display: flex;
+                    
+                    .views {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                        align-items: center;
+                        height: 30px;
+                        
+                        img {
+                            width: 30px;
+                            height: auto;
+                            vertical-align: top;
+                        }
+                        span {
+                            display:inline-block;
+                            vertical-align: top;
+                            line-height: 30px;
+                            font-size: 1rem;
+                            margin-left: 10px;
+                        }
+                    }   
+
+                    .likes {
+                        margin-left: 20px;
+                        @extend .views;
+                        // display:inline-block;
+                        margin-left: 30px;
+                    }
+
+                    .comments {
+                        @extend .likes;
+                        margin-left: 30px;
+                    }
+                }
             }
             
-            p.preview-content {
-                display: inline-block;
-                max-width: 90%;
-                min-width: 70%;
-                margin: 18px 0 0 25px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
+            
 
-            .counts {
-                margin: 16px 25px 16px;
+
+
+
+            .right {
                 font-size: 0;
-                display: flex;
-                
-                .views {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                    align-items: center;
-                    height: 30px;
-                    
-                    img {
-                        width: 30px;
-                        height: auto;
-                        vertical-align: top;
-                    }
-                    span {
-                        display:inline-block;
-                        vertical-align: top;
-                        line-height: 30px;
-                        font-size: 1rem;
-                        margin-left: 10px;
-                    }
-                }   
-
-                .likes {
-                    margin-left: 20px;
-                    @extend .views;
-                    // display:inline-block;
-                    margin-left: 30px;
+                display: inline-block;
+                width: 30%;
+                height: 197px;
+                margin: 0;
+                vertical-align: top;
+                @include table() {
+                    width: 40%;
                 }
 
-                .comments {
-                    @extend .likes;
-                    margin-left: 30px;
+                @include mobile() {
+                    display: none;
+                }
+                img.demo-image {
+                    display: block;
+                    width: 167px;
+                    height: 167px;
+                    margin: calc((197px - 167px) / 2) 25px calc((197px - 167px) / 2) auto ;
                 }
             }
         }
-        
-        
-
-
-
-
-        .right {
-            font-size: 0;
-            // border: solid red 1px;
-            display: inline-block;
-            width: auto;
-            height: 100%;
-            margin-left: 40px;
-            vertical-align: top;
-            padding-top: calc((212px - 167px) / 2);
-            padding-bottom: calc((212px - 167px) / 2);
-            img.demo-image {
-                width: 167px;
-                height: 167px;
-            }
-        }
-
     }
-    .pagination {
+    // .pagination {
 
-    }
+    // }
 }
