@@ -248,7 +248,7 @@ section{
     // border: 1px solid white;
     margin-top: 20px;
     @include flexcenter;
-    @include fontfamily(500);
+    @include fontfamily(400);
     button{
         margin:10px 20px;
     }
