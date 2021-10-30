@@ -1,0 +1,83 @@
+footer#manage-footer {
+    background-image: $bluegradient;
+    color: white;
+    padding: 10px 0;
+    transition: all .1s;
+    // @include table(){
+    //     position: absolute;
+    //     transform: translate(-100%,-100%);
+    //     opacity: 0;
+    //     transition: all .5s;
+    // }   
+        
+    div#manage-footer-wrapper {
+        display: flex;
+        max-width: 1200px;
+        width: 100%;
+        flex-wrap: wrap;
+        min-height: 300px;
+        justify-content: center;
+        // border: 1px solid rgb(255, 255, 255);
+        margin: 0 auto;
+        
+        div{
+            flex: 1 1 auto;
+            padding: 20px 10px;
+            justify-content: space-between;
+            line-height:1.8;
+        }
+    
+        div#footer-logo-wrapper {
+            // border:1px solid rgb(238, 255, 0);
+            width: 10%;
+            
+            img{
+                display: flex;
+                justify-self: center;
+                // border:1px solid rgb(238, 255, 0);
+                max-width: 70%;
+                margin: 0 auto;
+            }
+        }
+        div.manager-sitemap{
+            @include fontfamily(400);
+            display: flex;
+            // width: 10%;
+            justify-content: space-around;
+            // border:1px solid pink;
+            ul{
+                
+                padding: 0;
+                margin-top: 0;
+                vertical-align: top;
+                flex: 1 0 auto;
+                text-align: center;
+            }
+            li{
+                list-style: none;
+            }
+        }
+        div.contact-us{
+            @include fontfamily(400);
+            display: inline-flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            // border:1px solid rgb(2, 255, 116);
+            margin-left: 30px;
+            p {
+                margin: 0;
+            }
+            div.social-media {
+                padding-left: 0;
+                a {  
+                    display: inline-block;
+                    margin-right: 20px;
+                    i{
+                        width: 100%;
+                        color:white;
+                    }
+                }
+            }    
+        }
+    }
+}
