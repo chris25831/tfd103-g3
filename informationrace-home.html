@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>TriclubSample|Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
+    
+</head>
+
+<body>
+    <!--這是header-->
+   <header id="header" >
+        <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+   <!--內容所有都放在這div裡面-->
+   <main>
+       <div id="informationrace">
+           <header>這裡是頁籤</header>
+           <main> 
+               
+               <template v-for="game in games">
+                   <div>
+                        <label for="{{game.date}}">{{game.date}}</label>
+                        
+                   </div>
+               </template>
+           </main>
+           <nav>這裡是navid</nav>
+       </div>
+   </main>
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+
+<script>
+    const raceinfo = new Vue({
+        el: '#informationrace',
+        data(){
+         return{
+            
+            games :[
+            {
+                date:"日期",
+                place:"地點",
+                title:"賽事",
+                distance :"項目",
+                state:"活動狀態"
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distance :["51.5k", "113k", "226k"],
+                state:20210927
+    
+            },
+            
+        ]
+         }   
+      }
+    });
+    
+</script>
+</body>
+</html>
