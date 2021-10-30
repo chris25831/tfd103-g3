@@ -1,5 +1,9 @@
 //**記得在這邊import你的scss**
 
+//首頁
+@import "./index";
+
+
 // 討論區
 @import "./forum-home";
 @import "./forum-content";
@@ -16,6 +20,3 @@
 @import "./manage-forum-home"; //討論區管理首頁
 @import "./manage-forum-content";
 @import "./manage-forum-report";
-// 訓練課程
-@import "./class-home";
-@import "./plan-temporary";
