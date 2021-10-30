@@ -24,7 +24,7 @@
 
        <div class="plan_ques_wrapper">
            <!--上一步-->
-           <button @click="last" class="previouspage">
+           <button @click="current_tab--" class="previouspage">
                <span class="arrow">
                    <a href=""></a>
                </span>
@@ -61,8 +61,8 @@
                             <div class="select">
                                 <div v-if="question.type === 'radio'">
                                     <template v-for="choice in question.choices">
-                                        <label :for=choice.value>{{choice.title}}</label>
-                                        <input :id="choice.value" :name="question.name" type="radio" v-model="question.choices" :value="choice.value">
+                                        <label for="choice.value">{{choice.title}}</label>
+                                        <input :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
                                     </template>    
                                 </div>
                              <!--Q-1-->
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         <!--下一步-->
-                        <button  id="lightboxbtn"  @click="currenttab" class="orangebutton title3 " >{{tab}}</button>
+                        <button v-model="tab" id="lightboxbtn"  @click="currenttab" class="orangebutton title3 ">{{tab}}</button>
                     </div>
                 </template> 
 

@@ -3,6 +3,9 @@
 
 
 // ***lightbox*** //
+
+
+
 const question = new Vue({
     el: '#plan_question',
     data(){
@@ -87,22 +90,14 @@ const question = new Vue({
     },
 
     methods: {
-        last(){
-            if(this.current_tab <= this.max  && this.current_tab > 0){
-                this.current_tab --     
-            }
-        },
         currenttab(){
-                if(this.current_tab < this.max && this.current_tab > 0){
-                    this.current_tab ++
-                }
-                if(this.current_tab == 4){
-                    return this.tab ="完成"  //有傳回值就要return
+                if(this.current_tab < this.max){
+                    return  this.current_tab ++
                 }else{
-                    return this.tab ="下一步"
+                    return  this.tab = "送出"
                 }
             }
-      }, 
+      },       
 });
 
 

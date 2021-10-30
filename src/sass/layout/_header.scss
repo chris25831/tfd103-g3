@@ -14,6 +14,7 @@ body{
         padding: 0 83px;
     }
     #header_wrapper{
+        border: 1px solid white;
         max-width: 1200px;
         margin: 0  10px;
         display: flex;
@@ -30,6 +31,7 @@ body{
         a.logo{
             display: flex;
             align-items: center;
+            border: 1px solid white;
             color: $white;
             width:15%;
             @include table(){
@@ -50,7 +52,7 @@ body{
 
 
 .header_menu{
-    // border: 1px solid white;
+    border: 1px solid white;
     display: flex;
     width: 70%;
     justify-content: space-around;
@@ -58,23 +60,25 @@ body{
     margin: 0 auto;
     margin-left: 0%;
     padding: 0;
-    
     @include table(){
-        // border: 1px solid rgb(194, 6, 6);
+        flex-grow: 0;
+        justify-content: start;
         background-color: $blue;
-        height: calc(100vh - 80px);
+        z-index: -10;
         position: absolute;
-        flex-direction: column;
-        z-index: 100;
-        // opacity: 0;
-        transform:translateY(80px);
+        opacity: 0;
+        transform:translateY(-100%);
+        margin:0;
         left: 0;
+        margin-top: 0;
+        right: 0;
+        width: 50%;
+        flex-direction: column;
     }
 
 
     @include mobile(){
         width: 100%;
-        
     }
     li{ 
         @include flexcenter;
@@ -82,7 +86,6 @@ body{
         width: 100%;
         list-style: none;
         transition:all .2s;
-        
         &:hover {
             letter-spacing: 3px;
             background:linear-gradient( -30deg, $yellow, $lightyellow);
@@ -96,70 +99,12 @@ body{
             text-decoration: none;
             @include flexcenter;
             transition:all .3s;
-            
             &:hover {
                 color: $blue;
             }
         }
-
     }
  
-}
-//header下拉選單
-.slidedown{
-   
-    @include table(){
-        opacity: 0;
-        transform: translateY(-100%);
-        ul{
-            color: white;
-        }
-    }
-}
-
-li.head_title {
-    @include table(){
-        height: 40%;
-        margin-bottom: 10px;
-        // border: 1px solid white;
-      
-    }
-}
-
-ul.head_subtitle{
-    display: none;
-    padding: 0;
-    @include table(){
-        display: flex;
-        height: 100%;
-        align-items: center;
-        // border: 1px solid white;
-        flex-direction: column;
-        width: 50%;
-        li{
-            &:hover{
-                background: none;
-            }
-        }
-    }
-    
-}
-
-ul.head_contactus{
-    width: 100%;
-    // border: 1px solid rgb(255, 0, 0);
-    li{
-        a{
-            &:hover{
-                background: $yellowgradient ;
-            }
-        }
-        p{
-            padding: 0 20px;
-            color: white;
-            letter-spacing: normal;
-        }
-    }
 }
 
 
@@ -190,7 +135,7 @@ a.header_icon{
         width: 10%;
     }
     .btn{
-        // border: 1px solid $white;
+        border: 1px solid $white;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -238,7 +183,7 @@ a.header_icon{
    
 }
 
-//header固定選單
+
 .sticky {
     z-index: 100;
     position: sticky;
@@ -249,10 +194,17 @@ a.header_icon{
 
 
 
+.slidedown{
+    @include table(){
+        z-index: 100;
+        opacity: 1;
+        transform:translateY(100%);
+    }
+}
 
-//header hamBar
+
 .-close{
-    // border: 1px solid $white;
+    border: 1px solid $white;
     position: absolute;
     width: 100%;
     height: 2px;
