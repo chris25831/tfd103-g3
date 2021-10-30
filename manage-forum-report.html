@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 此為後台頁面樣板 -->
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>討論區管理 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+</head>
+
+<body>
+    <!--這是header-->
+    <header id="manage-header">
+        <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
+    </header>
+    
+
+   <!--內容所有都放在此，manage-main為引入通用的scss之用。-->
+    <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
+    <main id="manage-forum-report" class="manage-main manage-forum-report">  
+        <h1 class="manage-title title1">討論區管理</h1>
+        
+        
+        <form action="">
+            <div class="button-block-manage">
+                <button class="small-red report">解除檢舉</button>
+            </div>
+        
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>文章編號</td>
+                        <td>文章標題</td>
+                        <td>文章內容</td>
+                        <td>發文者編號</td>
+                        <td>檢舉事由</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="single-report">
+                        <td>
+                            <input type="checkbox" name="report" id="">
+                        </td>
+                        <td>A3958</td>
+                        <td>跟著老師一起賺</td>
+                        <td>
+                            <span class="article-content">
+                                明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                            </span>
+                        </td>
+                        <td>M4593845</td>
+                        <td>垃圾訊息</td>
+                    </tr>
+
+                    <tr class="single-report">
+                        <td>
+                            <input type="checkbox" name="report" id="">
+                        </td>
+                        <td>A3958</td>
+                        <td>跟著老師一起賺</td>
+                        <td>
+                            <span class="article-content">
+                                明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                                發大財!明天股市就要起飛啦!
+                            </span>
+                        </td>
+                        <td>M4593845</td>
+                        <td>垃圾訊息</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </form>
+    </main>
+
+    
+   <!-- 這是footer-->
+    <footer id="manage-footer">
+        <manage-footer></manage-footer>   
+    <!--這是目標標籤會被覆蓋 -->
+    </footer>
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
+<script src="./src/component/common/manage-footer.js"></script>
+<script src="./src/component/common/bookmark-forum.js"></script>
+
+<script>
+    new Vue({
+        el: "#manage-forum-report",
+        data: {
+            categories: ["全部", "公告", "檢舉"],
+            word: "解除檢舉",
+            report: "report",
+        },
+    });
+</script>
+
+</body>
+</html>

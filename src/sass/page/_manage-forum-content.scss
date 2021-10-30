@@ -1,0 +1,12 @@
+main.manage-forum-content {
+    padding-bottom: 50px;
+    width: 100%;
+    .back {
+        width: 915px;
+        margin: 10px auto;
+    }
+    
+    .page-container-single-article {
+        @extend %page-container-single-article;
+    }
+}

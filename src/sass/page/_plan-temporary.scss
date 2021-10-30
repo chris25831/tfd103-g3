@@ -1,0 +1,257 @@
+
+// // ***lightbox*** //
+.plan_question_wrapper{
+     @include bgplantem(100vh);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   .plan_ques_wrapper{
+        @include questionbox();
+        display: flex;
+        flex-direction: column;
+        background-size:contain ;
+        background-position: center;
+        border: 2px solid white;
+        height: 400px;
+        width: 800px;
+        .plan_question_content{
+            border:2px solid rgb(64, 125, 224);
+            height: 90%;
+            .plan_question_content_article{
+                @include flexcenter;
+                flex-direction: column;
+                justify-content:space-around;
+                border:2px solid turquoise;
+                height: 100%;
+            }
+        }
+
+        .previouspage{
+            
+            border: 1px solid white;
+        }
+    }
+}
+
+.plan_question_content_article{
+    div{
+      display: flex;
+      
+      flex-direction: column;
+    //   border: 2px solid deepskyblue;
+      width: 80%;  
+
+        h1{
+            border: 1px solid $orange;
+            text-align: center;
+        }
+        hr{
+            width: 100%;
+            border: 1px solid $orange;
+        }
+        p{
+            border: 1px solid $orange;
+            width: 100%;
+            height: 100%;
+            line-height: 1.5;
+            white-space:wrap;
+        }
+    }
+    div.select{
+        border: 2px solid deepskyblue;
+        height: 50%;
+        select{
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(-30deg,#e75e49c9,#ffa10aa1,#f8e72b);
+            padding: 2px 10px;
+            width: 400px;
+            box-shadow: 2px 2px $orange;
+        }
+    }
+}
+
+
+#lightboxbtn{
+        display: flex;
+        @include flexcenter();
+        width: 40%;
+        @include mobile(){
+            height: 30%;
+        }
+}  
+
+
+
+
+
+
+
+
+// ***計畫表*** //
+.plan_scroll{
+    padding-top: 15px;
+}
+#plan_wrapper {
+    @include bgplan(100%);
+    padding-bottom: $bottomspacing;
+    #plan_head{
+       width: 100%;
+       @include flexcenter;
+    
+   }
+    
+}
+
+
+.plan_bg{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    // border: 1px solid red;
+    margin-top: 10%;
+    width: 40%;
+    svg{
+        position: absolute;
+        filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
+        height: 100%;
+    }
+    #bevelyellow{
+        left: 30%;
+        
+    }
+    .plan_info{
+        
+        z-index: 3;
+        color: #282828;
+        margin: auto 0;
+        flex-direction: column;
+        @include flexcenter;
+        @include fontfamily(500);
+    }
+
+}
+
+section{
+    margin: 0 auto;
+    //天數head 
+    #plan_week{
+        max-width:1200px ;
+        margin: 0 auto;
+        margin-top: 50px;
+        ul{
+            // border: 3px solid white;
+            margin: 0 auto;
+            width: 95%;
+            margin-left: 5%;
+            padding: 10px;
+            color: black;
+            list-style: none;
+            @include flexcenter;
+            justify-content: space-around;
+            border-radius: 10px;
+            background-color: rgba(255,255,255,0.8);
+            li{
+                @include fontfamily(500);
+            }
+        }
+    }
+   .plan_scroll{
+    max-width: 1200px;
+    // border: 3px solid white;
+    margin: 0 auto;
+    
+   }
+    //訓練表主要內容//
+    #plan_main_content{
+        display: flex;
+        flex-direction: row;
+        max-width: 1200px;
+        margin: 0 auto;
+        .week_mark{
+            filter: drop-shadow(0px 5px  $yellow);
+            font-size: 20px;
+            width: 5%;
+            display: flex;
+            color: white;
+            border-radius: 30% 0 0 30%;
+            background-image:url("../src/images/icons/plan_week_bgicon.svg");
+            height: 100px;
+            background-size: 100%;
+            background-position: right;
+            background-size:cover;
+            justify-content: center;
+            align-items: center;
+            align-self: center;
+            @include bgnorepeat();
+            font-weight: 600;
+        }
+        ul{
+            
+            width: 95%;
+            background-color: $white;
+            border-radius: 10px;
+            box-shadow: 3px 2px 2px 2px rgba(175, 84, 10, 0.2);
+            display: grid;
+            list-style: none;
+            padding-left: 0;
+            grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-auto-flow: row;
+            border: 3px solid $orange;
+            
+        }
+      
+    }
+}
+
+//每天的運動icon
+
+.plan_eachday{
+    border-right: 1px solid $orange;
+    display: flex;
+    flex-direction: column;
+    &:nth-last-child(){
+        border-right: none;
+    }
+    div:first-child{
+        // border: 1px solid blue;
+        height: 50%;
+        background-color: $orange;
+        @include flexcenter;
+        justify-content:center;
+        span{
+            transform: translate(0%, -50%);
+            border: 2px solid $orange;
+            border-radius: 50%;
+            background-color: $white;
+            padding: 5px;
+            box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
+            i{
+                width: 20px;
+                @include flexcenter;
+            }
+        }
+    }
+    // border: 3px solid rgb(255, 255, 255);
+
+}
+
+//內文字
+.plan_exe{
+    display: block;
+    text-align: center;
+    @include fontfamily(400);
+}
+
+//button
+.plan_button{
+    // border: 1px solid white;
+    margin-top: 20px;
+    @include flexcenter;
+    @include fontfamily(500);
+    button{
+        margin:10px 20px;
+    }
+}
+
+

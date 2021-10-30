@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>TriclubSample|Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+</head>
+
+<body>
+    <!--這是header-->
+   <header id="header" :class="{sticky: active}" >
+        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+  
+   <!--這是計畫表lightbox-->
+   <section id="plan_question" class="plan_question_wrapper">
+
+       <div class="plan_ques_wrapper">
+           <!--上一步-->
+           <button @click="current_tab--" class="previouspage">
+               <span class="arrow">
+                   <a href=""></a>
+               </span>
+            </button>
+
+            <div  class="plan_question_content">
+                
+                <!--1計畫表說明-->
+                <div class="plan_question_content_article" v-if="current_tab === 0">
+                        <div> 
+                            <h1 class="title2">計畫表使用說明</h1>
+                            <hr>
+                        </div>
+                        <div class="select">
+                            <p>
+                                *此運動計畫表適用於最少八週以上之訓練時程
+                                <br>
+                                *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷可自行調整當天運動時長
+                            </p>
+                        </div>
+                    <button id="lightboxbtn"  @click="current_tab ++" class="orangebutton title3 ">開始</button>
+                </div>
+            
+                <!--2問題-->
+                <template  v-for="(question,index) in questions" >        
+                    <!--index[0]是說明 那當我點擊button的時候current_tab就會+1 當button_tab=1的時候顯示以下問題-->
+                    <div  v-if="(index+1) === current_tab" class="plan_question_content_article">
+                            <div>
+                                <h1 class="title2">Q-{{index + 1}}{{question.title}}</h1>
+                                <hr>
+                                <span class="title2">{{index+1}}/{{questions.length}}</span>
+                            </div>
+                             <!--Q-234-->
+                            <div class="select">
+                                <div v-if="question.type === 'radio'">
+                                    <template v-for="choice in question.choices">
+                                        <label for="choice.value">{{choice.title}}</label>
+                                        <input :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
+                                    </template>    
+                                </div>
+                             <!--Q-1-->
+                                <div v-else>
+                                    <select>
+                                        <template v-for="choice in question.choices">
+                                                <option  :name="question.name" :value="choice.value" >{{choice.title}}</option>
+                                        </template>    
+                                    </select>
+                                </div>
+                            </div>
+                        <!--下一步-->
+                        <button v-model="tab" id="lightboxbtn"  @click="currenttab" class="orangebutton title3 ">{{tab}}</button>
+                    </div>
+                </template> 
+
+            </div>
+        </div>
+
+      
+
+   </section>
+
+   <!--這是計畫表主體-->
+   <main id="plan_wrapper">
+       <plan-head></plan-head>
+       <plan-section></plan-section>
+   </main>
+   
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/plan/plan.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+</body>
+</html>

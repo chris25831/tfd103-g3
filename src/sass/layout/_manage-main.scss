@@ -1,0 +1,15 @@
+//後臺介面通用設定
+main.manage-main {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    width: 1200px;
+    margin: 0 auto; 
+    h1.manage-title {
+        color: $blue;
+        width: 100%;
+        text-align: center;
+        padding-top: 60px;
+        margin: 0;
+    }
+}

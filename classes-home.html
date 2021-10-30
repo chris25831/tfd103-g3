@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>訓練課程 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
+    
+</head>
+
+<body>
+    <!--這是header-->
+
+   <header id="header" >
+        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+  
+
+   <!--內容所有都放在這div裡面-->
+   <main class="classes-home" id="classes-home">
+        <div id="classes-frame">
+            <!-- bookmark -->
+            <div class="bookmark" id="classes-bookmark">
+                <bookmark-classes v-for="category in categories" :key="category" :class="['bookmark-item classesonly', {active: currentcategory === category }]" :category="category" v-on:changetab="changeTab"></bookmark-classes>
+            </div>
+
+            <!-- gird -->
+            <div class="classesgrid" id="classes-grid">
+
+                <triclass-classes v-for="triclass in triclasses" v-bind="triclass"></triclass-classes>
+                <trainer-classes v-for="trainer in trainers" v-bind="trainer"></trainer-classes>
+                <menu-classes v-for="menu in menus" v-bind="menu"></menu-classes>
+                <!-- <component :is="currentCategoryComponent"></component>   -->
+            </div>
+        </div>
+   </main>
+
+   
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+
+
+<!--component-->
+
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+<script src="./src/component/common/bookmark-classes.js"></script>
+<script src="./src/component/common/grid-classes.js"></script>
+
+<script>
+    // TODO: 如何在兩個Vue根實體間傳送資料?
+
+    // 書籤組件
+    const bookmark = new Vue({
+        data:{
+            currentcategory:"團練課程",
+            categories: ["團練課程", "個人教練","營養規劃"],
+
+            
+        },
+        methods:{
+            changeTab(newcategory){
+                // console.log(currentcategory);
+                this.currentcategory = newcategory;
+            },
+
+        },
+    });
+
+    // 課程組件
+    const classesgrid = new Vue({
+        data:{
+            // **訓練課程**
+            triclasses:[
+                // 1
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/class/class01.jpg',
+                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                    classSubtitle:"", 
+                },
+                 // 2
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/class/class01.jpg',
+                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                    classSubtitle:"", 
+                },
+                 // 3
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/class/class01.jpg',
+                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
+                    classSubtitle:"", 
+                },
+
+            ],
+
+
+            // **個人教練**
+            trainers:[
+                // 1
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"12311111111111111" 
+                },
+                // 2
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+                // 3
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+                // 4
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+                // 5
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+                // 6
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+                // 7
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+                // 8
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+                // 9
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
+                    classTitle:"黃雨欣",
+                    classSubtitle:"" 
+                },
+            ],       
+
+
+            //**營養規劃** 
+            menus:[
+                // 1
+                {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                    classSubtitle:"", 
+                },
+                 // 2
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                    classSubtitle:"", 
+                },
+                 // 3
+                 {
+                    classUrl:'#',
+                    imgSrc:'./src/images/img/classes/menu/menu01.jpg',
+                    classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                    classSubtitle:"", 
+                },
+
+            ],
+        },
+        // computed:{
+        //     currentCategoryComponent(){
+
+        //         if(this.currentcategory == "團練課程" ){
+        //             return "triclass-classes";     
+        //         }
+        //         if(this.currentcategory == "個人教練"){
+        //             return "trainer-classes";   
+        //         }
+        //         if(this.currentcategory == "營養菜單"){
+        //             return "menu-classes";  
+        //         }
+        //         else{
+        //             console.log(this);
+        //         }
+        //     },
+        // },
+    });
+
+    // 掛載
+    bookmark.$mount('#classes-bookmark');
+    classesgrid.$mount('#classes-grid');
+
+</script> 
+
+
+</body>
+</html>

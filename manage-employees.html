@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 此為後台頁面樣板 -->
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>這是後台頁面 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+</head>
+
+<body>
+    <!--這是header-->
+    <header id="manage-header" >
+        <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
+    </header>
+
+
+    <!--內容所有都放在此，manage-main為引入通用的scss之用。-->
+    <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
+    <main class="manage-main manage-employees">  
+        <h1 class="manage-title title1">後台人員管理</h1>
+        <form class="managers-list" action="">
+
+            <div class="button-block-manage">
+                <button type="submit" class="small-blue manage-save">儲存</button>
+            </div>
+            
+            <div class="managers-item">
+                <div class="left-block">
+                    <div class="manager-authority">
+                        <span class="auth-title">管理員權限：</span>
+
+                        <div class="auth-classify">
+
+                            <div class="top-authority">
+                                <input type="radio" name="authority" id="top-authority">
+                                <label for="top-authority">總管理員</label>
+                            </div>    
+                            
+                            <div class="authority">
+                                <input type="radio" name="authority" id="authority">
+                                <label for="authority">一般管理員</label>
+                            </div>
+
+                            <div class="none">
+                                <input type="radio" name="authority" id="none" value="none">
+                                <label for="none">無管理權限</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="manager-number">
+                        <label for="">管理員編號：</label>
+                        <input type="text">
+                    </div>
+                </div>
+
+                <div class="middle-block">
+                    <div class="manager-fullname">
+                        <label for="">管理員姓名：</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="manager-username">
+                        <label for="">管理員帳號：</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="manager-password">
+                        <label for="">管理員密碼：</label>
+                        <input type="password">
+                    </div>
+                </div>
+
+                <div class="right-block">
+                    <div class="manager-signup-date">
+                        <label for="">註冊日期：</label>
+                        <span class="signup-date">2021/09/10</span>
+                    </div>
+
+                    <div class="manage-last-login">
+                        <label for="">最後上線時間：</label>
+                        <span class="last-login">2021/9/10 18:30</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="managers-item">
+                <div class="left-block">
+                    <div class="manager-authority">
+                        <span class="auth-title">管理員權限：</span>
+
+                        <div class="auth-classify">
+
+                            <div class="top-authority">
+                                <input type="radio" name="authority" id="top-authority">
+                                <label for="top-authority">總管理員</label>
+                            </div>    
+                            
+                            <div class="authority">
+                                <input type="radio" name="authority" id="authority">
+                                <label for="authority">一般管理員</label>
+                            </div>
+
+                            <div class="none">
+                                <input type="radio" name="authority" id="none" value="none">
+                                <label for="none">無管理權限</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="manager-number">
+                        <label for="">管理員編號：</label>
+                        <input type="text">
+                    </div>
+                </div>
+
+                <div class="middle-block">
+                    <div class="manager-fullname">
+                        <label for="">管理員姓名：</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="manager-username">
+                        <label for="">管理員帳號：</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="manager-password">
+                        <label for="">管理員密碼：</label>
+                        <input type="password">
+                    </div>
+                </div>
+
+                <div class="right-block">
+                    <div class="manager-signup-date">
+                        <label for="">註冊日期：</label>
+                        <span class="signup-date">2021/09/10</span>
+                    </div>
+
+                    <div class="manage-last-login">
+                        <label for="">最後上線時間：</label>
+                        <span class="last-login">2021/9/10 18:30</span>
+                    </div>
+                </div>
+            </div>
+            
+
+        </form>
+    </main>
+
+    <!-- 這是footer-->
+    <footer id="manage-footer">
+        <manage-footer></manage-footer>   
+    <!--這是目標標籤會被覆蓋 -->
+    </footer>
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
+<script src="./src/component/common/manage-footer.js"></script>
+
+
+
+</body>
+</html>

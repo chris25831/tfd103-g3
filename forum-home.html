@@ -6,76 +6,138 @@
     <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>TriclubSample|Triclub</title> 
+    <title>討論區 | Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    
 </head>
 
 <body>
     <!--這是header-->
-    <header id="header" >
+    <header id="header" :class="{sticky: active}">
         <my-header></my-header><!--這是自定義標籤會被覆蓋-->
     </header>
 
-
     <!--內容所有都放在這div裡面-->
-    <main class="main">
-        <div class="bookmark">
-            <!--頁籤放置區-->
+    <main class="main forum-home" id="forum-home">
+        <div class="bookmark-frontend">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
+        </div>
+
+        <div class="button-block-frontend">
+            <button class="new-post" @click="openModal">發表文章</button>
         </div>
 
         <div class="article-list">
             <div class="article-item">
-                <div class="left">
-                    <div class="author">
-                        <img class="avatar" src="" alt="">
-                        <div class="name"> </div>
-                        <div class="time"></div>
+                <a class="enter-article" href="./forum-content.html">
+                    <div class="left">
+                        <div class="author">
+                            <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
+                            <span class="name">Maggie Wang</span>
+                            <span class="time">5 hours ago</span>
+                        </div>
+                        <h3 class="article-title">關於卡鞋</h3>
+                        <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
+                        <div class="counts">
+                            <div class="views">
+                                <img src="./src/images/img/forum/views.png" alt="">
+                                <span>100</span>
+                            </div>
+                            <div class="likes">
+                                <img src="./src/images/img/forum/likes-count.png" alt="">
+                                <span>100</span>
+                            </div>
+                            <div class="comments">
+                                <img src="./src/images/img/forum/comments-count.png" alt="">
+                                <span>100</span>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <h3></h3>
-                    <p class="p2"></p>
-                    <div class="counts">
-                        <div class="views">
-                            <img src="" alt="">
-                            <span></span>
-                        </div>
-                        <div class="likes">
-                            <img src="" alt="">
-                            <span></span>
-                        </div>
-                        <div class="comments">
-                            <img src="" alt="">
-                            <span></span>
-                        </div>
+                    <div class="right">
+                        <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
                     </div>
-                    
-                </div>
-                <div class="right">
-                    <img class="demo-image" src="" alt="">
-                </div>
+                </a>
             </div>
+
+            <div class="article-item">
+                <a class="enter-article" href="./forum-content.html">
+                    <div class="left">
+                        <div class="author">
+                            <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
+                            <span class="name">Maggie Wang</span>
+                            <span class="time">5 hours ago</span>
+                        </div>
+                        <h3 class="article-title">關於卡鞋</h3>
+                        <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
+                        <div class="counts">
+                            <div class="views">
+                                <img src="./src/images/img/forum/views.png" alt="">
+                                <span>100</span>
+                            </div>
+                            <div class="likes">
+                                <img src="./src/images/img/forum/likes-count.png" alt="">
+                                <span>100</span>
+                            </div>
+                            <div class="comments">
+                                <img src="./src/images/img/forum/comments-count.png" alt="">
+                                <span>100</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="right">
+                        <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
+                    </div>
+                </a>
+            </div>
+
             <div class="pagination">
                 <!--分頁器放置區-->
             </div>
-        </main>
-    </div>
+        </div>
 
-
+        <forum-new-post-modal @closing="closeModal" v-show="showModal"></forum-new-post-modal>   <!-- @closing="closeModal"-->
+    </main>
+    
     <!--這是footer-->
     <footer id="footer">
         <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
     </footer>
+ 
+    
+
+
 
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
-<script src="./src/component/header.js"></script>
-<script src="./src/component/footer.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+<script src="./src/component/common/bookmark-forum.js"></script>
+<script src="./src/component/common/forum-new-post-modal.js"></script>
 
+<script>
+    new Vue({
+        el: "#forum-home",
+        data: {
+            categories: ["全部","閒聊","裝備","心得","問題"],
+            showModal: false,
+        },
+        methods: {
+            openModal(){
+                this.showModal = true;
+            },
+            closeModal(){
+                console.log("test");            
+                this.showModal = false;
+            },
+        }
+        
+    })
+</script>
 
 </body>
 </html>

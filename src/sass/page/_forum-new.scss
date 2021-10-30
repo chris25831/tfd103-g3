@@ -1,0 +1,129 @@
+.darken-background#forum-new-post-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, .5);
+    top: 0;
+    z-index: 9000;
+    // display: none;
+    .modal.new-article { 
+        margin: 0 auto;
+        max-width: 800px;
+        min-height: 400px;
+        background-color: #ededed;
+        position: relative;
+        top: 50px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 50px;
+        z-index: 1100;
+        @include table() {
+            width: calc(576px * .8);
+        }
+
+        @include mobile() {
+            width: calc(375px * .9);
+        }
+        span.info {
+            position: absolute;
+            display: inline-block;
+            background-color: #ededed;
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            padding: 17px;
+            border-radius: 30px 30px 0 0;
+            top: -40px;
+            left: 50%;
+            z-index: 0;
+            transform: translateX(-50%);
+            // line-height: 40px;
+        }
+        .cross {
+            position:absolute;
+            right: 30px;
+            top: 20px;
+            cursor: pointer;
+            @include table() {
+                right: 16px;
+            }
+            @include mobile() {
+                right: 13px;    
+            }
+
+        }
+        input.title {
+            width: 80%;
+            height: 40px;
+            margin-top: 15px;
+            border: solid #00429d 2px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        select.category {
+            @extend input.title;
+        }
+
+        textarea.new-article-content {
+            @extend input.title;
+            min-height: 100px;
+            height: 200px;
+            resize: none;
+        }
+        .upload-images {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 80%;
+            .single-image {
+                @extend input.title;
+                width: 30%;
+                height: 100px;
+                background-color: white;
+                position: relative;
+                @include mobile(){
+                    height: 80px;
+                }
+                .rectangle {
+                    position: absolute;
+                    background-color: #ededed;
+                    width: 50px;
+                    height: 50px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    &::before {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        content: "";
+                        background-color: #707070;
+                        width: 37px;
+                        height: 1px;
+                    }
+                    &::after {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        content: "";
+                        background-color: #707070;
+                        width: 1px;
+                        height: 37px;
+                    }
+                }
+            }
+        }
+
+        button.send {
+            @extend input.title;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+    }
+}

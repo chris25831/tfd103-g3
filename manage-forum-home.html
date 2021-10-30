@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 此為後台頁面樣板 -->
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>討論區管理 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+</head>
+
+<body>
+    <!--這是header-->
+    <header id="manage-header">
+        <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
+    </header>
+  
+
+   <!--內容所有都放在此，manage-main為引入通用的scss之用。-->
+    <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
+    <main id="manage-forum-home" class="manage-main manage-forum-home">  
+        <h1 class="manage-title title1 manage-forum-home-title">討論區管理</h1>
+        <div class="bookmark-manage">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
+        </div>
+        
+        <div class="button-block-manage">
+            <button @click="openModal" class="new-post">發表文章</button>
+        </div>
+
+        <div class="article-list">
+            <div class="article-item">
+                <a class="enter-article" href="./manage-forum-content.html">
+                    <div class="left">
+                        <div class="author">
+                            <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
+                            <span class="name">Maggie</span>
+                            <span class="time">5 hours ago</span>
+                        </div>
+                        <h3 class="article-title">關於卡鞋</h3>
+                        <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
+                        <div class="counts">
+                            <div class="views">
+                                <img src="https://via.placeholder.com/30x30" alt="">
+                                <span>100</span>
+                            </div>
+                            <div class="likes">
+                                <img src="https://via.placeholder.com/30x30" alt="">
+                                <span>100</span>
+                            </div>
+                            <div class="comments">
+                                <img src="https://via.placeholder.com/30x30" alt="">
+                                <span>100</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="right">
+                        <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
+                    </div>
+                </a>
+            </div>          
+                        
+            <div class="pagination">
+                <!--分頁器放置區-->
+            </div>
+        </div>    
+
+        <forum-new-post-modal @closing="closeModal" v-show="showModal"></forum-new-post-modal>
+
+    </main>
+
+   
+   <!-- 這是footer-->
+    <footer id="manage-footer">
+        <manage-footer></manage-footer>   
+    <!--這是目標標籤會被覆蓋 -->
+    </footer>
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
+<script src="./src/component/common/manage-footer.js"></script>
+<script src="./src/component/common/bookmark-forum.js"></script>
+<script src="./src/component/common/forum-new-post-modal.js"></script>
+
+    <script>
+        new Vue({
+            el: "#manage-forum-home",
+            data: {
+                categories: ["全部", "公告", "檢舉"],
+                showModal: false,
+            },
+            methods: {
+                openModal(){
+                    this.showModal = true;
+                },
+                closeModal(){
+                    this.showModal = false;
+                },
+            }
+        });
+    </script>
+
+</body>
+</html>

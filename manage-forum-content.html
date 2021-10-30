@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 此為後台頁面樣板 -->
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>討論區管理 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+</head>
+
+<body>
+    <!--這是header-->
+    <header id="manage-header">
+        <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
+    </header>
+  
+
+   <!--內容所有都放在此，manage-main為引入通用的scss之用。-->
+    <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
+    <main id="manage-forum-content" class="manage-main manage-forum-content">  
+        <h1 class="manage-title title1">討論區管理</h1>
+        <div class="back">
+            <!-- 回上一頁按鈕放置處 -->
+            <a href="./manage-forum-home.html">
+                <div class="previouspage">
+                    <div class="arrow"></div>
+                </div>
+            </a>
+        </div>
+        <div class="page-container-single-article">
+            <div class="single-article">
+                <div class="head">
+                    <div class="author">
+                        <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
+                        <span class="name">Maggie</span>
+                        <span class="time">5 hours ago</span>
+                    </div>
+      
+                    <!---->
+                    <div class="control-buttons">
+                        <div class="button-block-manage in-content">
+                            <button class="small-blue edit-self">編輯本文</button>
+                        </div>
+                        <div class="button-block-manage in-content">
+                            <button class="small-red delete-article">下架本文</button>
+                        </div>
+                    </div>
+                    <!---->
+
+                </div>
+                <div class="middle">
+                    <h3 class="title">關於卡鞋關於卡鞋關於卡鞋關於卡鞋關於卡鞋關於卡
+                        <div class="titlelinearrow"></div>
+                    </h3>
+                    
+                    <div class="content">
+                        <p class="text">
+                            自行車與走路、慢跑、登山等同樣是腿部的運動，但最大的差別就是多了一台車子。不像慢跑等運動腳部直接接觸地面，自行車騎士的主要施力點是在自行車踏板上，靠著踩踏踏板，經過鍊條將騎士的能量傳導到車輪，獲得前進的動力。在自行車高速前進的狀態下，踏板迴轉也相當快速，此時腳若離開踏板，不但會造成能量流失，也容易因突然的重心不穩而導致摔車，相當危險。因此自行車廠商開發出專用的自行車鞋與踏板，鞋底有特殊的扣片，能與專用踏板緊密相扣，比起穿一般運動鞋能提升騎乘效能，除了向下踩的力量，更增加上提的能量，使得踩踏的畫圓動作更為協調、順暢。
+                        </p>
+                        <img src="" alt="" class="photo">
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="new-comment">
+                <img class="avatar avatar-new-comment" src="https://via.placeholder.com/44x44" alt="">
+                
+                <button class="submit-comment">留言</button>
+
+                <div class="button-block">
+                    <button class="submit-comment small-blue">留言</button>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="comments">
+                <div class="single-comment">
+                    <img class="avatar avatar-comment" src="https://via.placeholder.com/44x44" alt="">
+                    <p class="comment-content">
+                        自行車與走路、慢跑、登山等同樣是腿部的運動，但最大的差別就是多了一台車子。不像慢跑等運動腳部直接接觸地面，自行車騎士的主要施力點是在自行車踏板上，靠著踩踏踏板，經過鍊條將騎士的能量傳導到車輪，獲得前進的動力。在自行車高速前進的狀態下，踏板迴轉也相當快速，此時腳若離開踏板，不但會造成能量流失，也容易因突然的重心不穩而導致摔車，相當危險。因此自行車廠商開發出專用的自行車鞋與踏板，鞋底有特殊的扣片，能與專用踏板緊密相扣，比起穿一般運動鞋能提升騎乘效能，除了向下踩的力量，更增加上提的能量，使得踩踏的畫圓動作更為協調、順暢。
+                    </p>
+                    <div class="report">
+                        <img src="./src/images/img/forum/report-button.png" alt="">
+                    </div>
+                    
+                    <div class="drop-down-comment">
+                        <span>下架此留言</span>
+                    </div>  
+                </div>
+
+                
+                
+            </div>
+        </div>
+    </main>
+
+   
+   <!-- 這是footer-->
+    <footer id="manage-footer">
+        <manage-footer></manage-footer>   
+    <!--這是目標標籤會被覆蓋 -->
+    </footer>
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
+<script src="./src/component/common/manage-footer.js"></script>
+
+
+
+</body>
+</html>

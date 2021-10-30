@@ -1,0 +1,64 @@
+main#manage-forum-report {
+    padding-bottom: 50px;
+    .button-block {
+        margin-top: 34px;
+        .report {
+            border: solid red 1px;
+            color: red;
+            box-shadow: 5px 5px red;
+            &:active {
+                box-shadow: 0px 0px;
+            }
+        }
+    }
+    table.report-table {
+        margin: 0 auto;
+        width: 915px;
+        border-collapse: collapse; 
+        thead {
+            tr{
+                height: 40px;
+                td {
+                    &:first-child {
+                        width: auto;
+                    }
+                } 
+            }
+        }
+        tbody {
+            tr.single-report {
+                background-color: white;
+                width: 950px;
+                height: 130px;
+                border: solid black 1px;
+                border-bottom: 0;
+                padding: 120px;
+                &:last-child {
+                    border: solid black 1px;
+                }
+                td {
+                    height: 100%;
+                    &:nth-child(1) {
+                        padding: 10px;
+                        input[type="checkbox"] {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                    &:nth-child(4) {
+                        width: 330px;
+                        height: 100%;
+                        span.article-content {
+                            width: 90%;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 5;
+                            overflow: hidden;
+                        }
+                    }
+                    
+                }
+            }
+        }       
+    }
+}
