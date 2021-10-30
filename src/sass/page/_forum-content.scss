@@ -2,7 +2,7 @@ main.main.forum-content {
     padding-bottom: 50px;
     @include bgnormal(100%);
     .back {
-        .button-block {
+        .button-block-frontend.back-post {
             display: flex;
             justify-content: space-between;
         }

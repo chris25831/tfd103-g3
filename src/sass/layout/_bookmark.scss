@@ -1,67 +1,82 @@
-.bookmark {
-  max-width: 915px;
-  margin: 0 auto 37px;
-  padding-top: 60px;
-  padding-bottom: 20px;
-  font-size: 0;
-  border-bottom: solid black 1px;
-  @include table() {
-    width: 576px;
-  }
-  @include mobile() {
-    width: 375px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .bookmark-item {
-    // border: solid red 1px;
-    display: inline-block;
-    font-size: 24px;
-    margin: 0 27px;
-    position: relative;
-    cursor: pointer;
-    @include table() {
-      font-size: 20px;
-      margin: 0 20px;
-    }
-  
-    @include mobile() {
-      width: auto;
-      height: 22px;
-      font-size: 20px;
-      margin: 0; 
-      // border-right: solid black 1px;
-    }
+$places : "frontend", "manage";
 
-    &::after {
-      content: "";
-      width: 1px;
-      height: 27px;
-      color: black;
-      border-right: solid black 1px;
-      position: absolute;
-      right: -27px;
-      cursor: default;
-      // line-height: 34px;
+@each $place in $places {
+  .bookmark-#{$place} {
+    max-width: 915px;
+    margin: 0 auto 37px;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    font-size: 0;
+    border-bottom: solid black 1px;
+
+    @if $place == "frontend" {
       @include table() {
-        right: -20px;
-        height: 22px;
+        width: 576px;
       }
       @include mobile() {
-        // right: -10%;
-        border: 0;
+        width: 375px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
       }
+    } @else if $place == "manage" {
+      min-width: 915px;
     }
-    &:last-child {
+    
+    .bookmark-item {
+      // border: solid red 1px;
+      display: inline-block;
+      font-size: 24px;
+      margin: 0 27px;
+      position: relative;
+      cursor: pointer;
+      @if $place == "frontend" {
+        @include table() {
+          font-size: 20px;
+          margin: 0 20px;
+        }
+      
+        @include mobile() {
+          width: auto;
+          height: 22px;
+          font-size: 20px;
+          margin: 0; 
+          // border-right: solid black 1px;
+        }
+      }
       &::after {
-        border-right: 0;
+        content: "";
+        width: 1px;
+        height: 27px;
+        color: black;
+        border-right: solid black 1px;
+        position: absolute;
+        right: -27px;
+        cursor: default;
+        @if $place == "frontend" {
+          @include table() {
+            right: -20px;
+            height: 22px;
+          }
+          @include mobile() {
+            // right: -10%;
+            border: 0;
+          }
+        }
+      }
+      &:last-child {
+        &::after {
+          border-right: 0;
+        }
       }
     }
   }
 }
+
 
 // 目前點選位置
 .active {
   color: $yellow;
 }
+
+

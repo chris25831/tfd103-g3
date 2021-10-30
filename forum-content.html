@@ -25,13 +25,13 @@
     <!--內容所有都放在這div裡面-->
     
     <main class="forum-content main" id="forum-content">
-        <div class="bookmark">
+        <div class="bookmark-frontend">
             <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
         </div>
         
         <div class="back">
             <!-- 回上一頁按鈕放置處 -->
-            <div class="button-block">
+            <div class="button-block-frontend back-post">
                 <a href="./forum-home.html">
                     <div class="previouspage change-display">
                         <div class="arrow"></div>
