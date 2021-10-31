@@ -3,7 +3,6 @@
 //首頁
 @import "./index";
 
-
 // 討論區
 @import "./forum-home";
 @import "./forum-content";
@@ -19,19 +18,11 @@
 //後台
 @import "./manage-employees"; //人員管理
 @import "./manage-forum-home"; //討論區管理首頁
-@import "./manage-forum-content";  //討論區管理 - 單一文章
-@import "./manage-forum-report";    //討論區管理 - 檢舉 
-@import "./manage-member-personal-info";  //會員資料管理
-@import "./manage-order-list";   //訂單管理 - 列表
-@import "./manage-order-single";   //訂單管理 - 單筆
-
-
-
-// 訓練課程
-@import "./class-home";
-@import "./plan-temporary";
-@import "./manage-forum-content";
-@import "./manage-forum-report";
+@import "./manage-forum-content"; //討論區管理 - 單一文章
+@import "./manage-forum-report"; //討論區管理 - 檢舉
+@import "./manage-member-personal-info"; //會員資料管理
+@import "./manage-order-list"; //訂單管理 - 列表
+@import "./manage-order-single"; //訂單管理 - 單筆
 
 //賽程資訊
 @import "./race";
