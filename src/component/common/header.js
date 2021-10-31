@@ -21,17 +21,17 @@ template: `
           <li class="head_title">
               <a class="info title3" href="">三鐵資訊</a>
               <ul class="head_subtitle">
-              <a><li>近期賽事</li></a>
+              <a href="../../race-home.html"><li>近期賽事</li></a>
               </ul>
           </li>
-          <li class="head_title"><a href="" class="title3">訓練課程</a>
+          <li class="head_title"><a href="../../classes-home.html" class="title3">訓練課程</a>
             <ul class="head_subtitle">
               <a><li>團練課程</li></a>
               <a><li>個人教練</li></a>
               <a><li>營養菜單</li></a>
             </ul>
           </li>
-          <li class="head_title"><a href="" class="title3">討論區</a>
+          <li class="head_title"><a href="../../forum-home.html" class="title3">討論區</a>
             <ul class="head_subtitle">
               <a><li>閒聊</li></a>
               <a><li>心得</li></a>
@@ -39,7 +39,7 @@ template: `
               <a><li>問題</li></a>
             </ul>
           </li>
-          <li class="head_title"><a href="" class="title3">訂製計畫表</a></li>
+          <li class="head_title"><a href="../../plan-temporary.html" class="title3">訂製計畫表</a></li>
           <ul class="head_subtitle head_contactus">
               <li>
               <p class="small" >聯絡我們<br>
