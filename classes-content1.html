@@ -27,7 +27,12 @@
    <main class="classes-content" id="classes-content">
         <div>
             <!-- breadcrumb  -->
-            <p></p>
+            <p class="small" v-if="checkCatReG()">團練課程 > 課程介紹</p>
+            <p class="small" v-else-if="checkCatReT()">個人教練 > 教練介紹</p>
+            <p class="small" v-else-if="checkCatReM()">營養規劃 > 菜單介紹</p>
+
+            <!-- 如何做到一個V-for 跑完?  V-if如何寫-->
+            <!-- <p v-for="bc in n" v-if="bc.show == 'this[classID]'">{{bc.key1}} > {{bc.key2}}</p> -->
 
             <!-- TODO: next&prv -->
 
@@ -35,17 +40,15 @@
             <div class="content1">       
                 <!-- img -->
                 <div class="classcontentimg" id="class-contentimg">
-                    <contentimg src="" alt="">
+                    <img v-for="(img,index) in imgs" :src="imgs[index]" alt="無法讀取照片"/>
                 </div>
                 <!-- word -->
-                <div>
-                    <div class="classtitle">
-                        <contentdetail></contentdetail>
-                    </div>
-                    <div class="classintro">
-                        <contentintro></contentintro>
-                    </div>
-                </div>
+                <!-- 組件一 -->
+                <contentdetail-1  v-if="checkCatReG() || checkCatReM()" :checkG="checkCatReG()" :checkM="checkCatReM()" :class-title="classTitle" :classID="classID" :trainer="trainer" :class-location="classLocation" :nutrients="nutrients"></contentdetail-1>
+
+                <!-- 組件二 -->
+                <contentdetail-2  v-else :class-title="classTitle" ></contentdetail-2>
+               
             </div>
         </div>
    </main>
@@ -61,8 +64,96 @@
     <script src="./src/js/vue.js"></script>
     <script src="./src/component/common/header.js"></script>
     <script src="./src/component/common/footer.js"></script>
+    <script src="./src/component/classes/content-detail.js"></script>
     <script>
+        // 正規表達式判斷
+        var catRE_G = /^G/ ;
+        var catRE_T = /^T/ ;
+        var catRE_M = /^M/ ;
 
+
+        new Vue({
+            el:'#classes-content',
+            data:{
+                // n:[
+                //     {
+                //       key1:"課程",
+                //       key2:"dddd",
+                //       show:"G12345",
+                //     },
+                //     {
+                //       key1:"課程2",
+                //       key2:"ttttt",
+                //       show:"T",
+                //     },
+                //     {
+                //       key1:"課程3",
+                //       key2:"fffff",
+                //       show:"M",
+                //     },
+                // ],
+
+                classID:'M12345',
+                classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                trainer:"許上元",
+                en_trainer:"",
+                classLocation:"台北",
+                nutrients:{
+                    cal:822,
+                    protein:55.4,
+                    carb:69.7,
+                    fat:36.6,
+                },
+
+
+
+                imgs:[
+                    // 1
+                    ['./src/images/img/classes/menu/menu01-d1.jpg'],
+                    // 2
+                    ['./src/images/img/classes/menu/menu01-d1.jpg'],
+                    // 3
+                    ['./src/images/img/classes/menu/menu01-d1.jpg'],    
+                ],
+
+            },
+            methods:{
+                // 團體課程
+                checkCatReG(){
+                    if(catRE_G.test(this.classID)){
+                        console.log(this.classID);
+                        return true;
+                    }else{
+                        return false;
+                    }  
+                },
+
+                // 個人教練
+                checkCatReT(){
+                    if(catRE_T.test(this.classID)){
+                        console.log(this.classID);
+                        return true;
+                    }else{
+                        return false;
+                    }   
+                },
+
+                // 營養菜單
+                checkCatReM(){
+                    if(catRE_M.test(this.classID)){
+                        console.log(this.classID);
+                        return true;
+                    }else{
+                        return false;
+                    }    
+                },
+            }
+
+
+
+
+        });
     </script>
+
 </body>
 </html>
