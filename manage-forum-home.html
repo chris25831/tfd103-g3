@@ -25,11 +25,11 @@
     <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
     <main id="manage-forum-home" class="manage-main manage-forum-home">  
         <h1 class="manage-title title1 manage-forum-home-title">討論區管理</h1>
-        <div class="bookmark">
+        <div class="bookmark-manage">
             <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
         </div>
         
-        <div class="button-block">
+        <div class="button-block-manage">
             <button @click="openModal" class="new-post">發表文章</button>
         </div>
 

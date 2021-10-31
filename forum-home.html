@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    
 </head>
 
 <body>
@@ -23,11 +21,11 @@
 
     <!--內容所有都放在這div裡面-->
     <main class="main forum-home" id="forum-home">
-        <div class="bookmark">
+        <div class="bookmark-frontend">
             <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
         </div>
 
-        <div class="button-block">
+        <div class="button-block-frontend">
             <button class="new-post" @click="openModal">發表文章</button>
         </div>
 

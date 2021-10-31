@@ -88,30 +88,38 @@
 }
 
 //圓形小按鈕，主要用於前台討論區
-.button-block {
-    max-width: 914px;
-    margin: 0 auto 34px;
-    display: flex;
-    justify-content: flex-end;
-    @include table() {
-        width: 576px;       
-    }
+$places : "frontend", "manage";
+@each $place in $places {
+    .button-block-#{$place} {
+        max-width: 915px;
+        margin: 0 auto 34px;
+        display: flex;
+        justify-content: flex-end;
+        @if $place == "frontend" {
+             
+            @include table() {
+                width: 576px;       
+            }
 
-    @include mobile() {
-        width: 375px;       
-    }
-    button.new-post, button.small-blue, button.small-red{
-        width: 96px;
-        height: 38px;
-        color: #00429d;
-        border-radius: 30px;
-        border: solid #00429d 1px; 
-        box-shadow: 5px 5px #00429d;
-        cursor: pointer;
-        
+            @include mobile() {
+                width: 375px;       
+            }
+        } @else if $place == "manage" {
+            min-width: 915px;
+        }
 
-        &:active {
-            box-shadow: 0px 0px #00429d;
+        button.new-post, button.small-blue, button.small-red{
+            width: 96px;
+            height: 38px;
+            color: #00429d;
+            border-radius: 30px;
+            border: solid #00429d 1px; 
+            box-shadow: 5px 5px #00429d;
+            cursor: pointer;
+            
+            &:active {
+                box-shadow: 0px 0px #00429d;
+            }
         }
     }
 }

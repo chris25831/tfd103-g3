@@ -110,16 +110,21 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                .button-block {
+                justify-content: center;
+                .button-block-manage.in-content {
+                    max-width: 120px; 
+                    min-width: 120px;
                     margin-bottom: 0;
-                    .edit-self {
-                        margin-right: 35px;
+                    .edit-self.small-blue {
                         // display: none;
                     }
-                    .delete-article {
+                    .delete-article.small-red {
                         border: solid #E75F49 1px;
                         color: #E75F49;
                         box-shadow: 5px 5px #E75F49;
+                        &:active {
+                            box-shadow: 0;
+                        }
                     }
                 }
             }
