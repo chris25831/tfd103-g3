@@ -1,115 +1,6 @@
 //====== *** *** *** *** ======//
 
 
-
-// ***lightbox*** //
-
-
-
-const question = new Vue({
-    el: '#plan_question',
-    data(){
-
-        return{
-            tab:"下一步",
-            current_tab:0,
-            max:4,
-            questions:[
-                {
-                    title:'你的參賽日期',
-                    choices:
-                    [{
-                        title:'2021普悠瑪鐵人三項競賽',
-                        value:'20211101'
-                    },{
-                        title:'2021梅花湖三鐵',
-                        value:'20211203'
-                    },{
-                        title:'2021台東活水湖三鐵',
-                        value:'20211203'
-                    }],
-                    name:'racedate',
-                    type:'select',
-                    answer: null
-                },
-                {
-                    title:'想挑戰的競賽距離',
-                    choices:
-                    [{
-                        title:'226K全程距離',
-                        value:'226'
-                    },{
-                        title:'113K半程距離',
-                        value:'113'
-                    },{
-                        title:'51.5K標準距離',
-                        value:'51.5'
-                    }],
-                    name:'distance',
-                    type:'radio',
-                    answer: null
-                },
-                {
-                    title:'想制定幾週的訓練計畫呢',
-                    choices:
-                    [{
-                        title:'16',
-                        value:'16'
-                    },{
-                        title:'12',
-                        value:'12'
-                    },{
-                        title:'8',
-                        value:'8'
-                    }],
-                    name:'week',
-                    type:'radio',
-                    answer: null
-                },
-                {
-                    title:'選擇訓練強度',
-                    choices:
-                    [{
-                        title:'強',
-                        value:'hard'
-                    },{
-                        title:'中',
-                        value:'normal'
-                    },{
-                        title:'弱',
-                        value:'eazy'
-                    }],
-                    name:'level',
-                    type:'radio',
-                    answer: null
-                },
-                
-            ]
-
-        }
-    },
-
-    methods: {
-        currenttab(){
-                if(this.current_tab < this.max){
-                    return  this.current_tab ++
-                }else{
-                    return  this.tab = "送出"
-                }
-            }
-      },       
-});
-
-
-
-
-
-
-
-
-
-
-
 // ***上面斜斜的資訊欄*** //
 Vue.component('plan-head',{
     
@@ -208,7 +99,13 @@ new Vue({
   el: '#plan_wrapper',
   data(){
     return{
-
+        memberinfo:
+            {
+                photo:"./src/images/img/plan/memberphoto.png",
+                membername:"maggie",
+                racedate:20221127,
+                week:12
+            },
       }
   },
 });

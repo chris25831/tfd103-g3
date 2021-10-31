@@ -1,0 +1,60 @@
+.race_list_wrapper{
+    @include bgnormal(1000px);
+    
+    #race_list{
+        border:2px solid red ;
+        margin: 0 83px;
+        
+    }
+}
+.race_wrapper{
+    display: grid;
+    grid-template-rows: auto;
+    gap: 10px;
+    div.race_title{
+        &:hover{
+            box-shadow: none;
+        }
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
+        border: 1px solid aquamarine;
+        padding: 15px;
+        background-color: $orange;
+        
+    }
+    .raceinfo{
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
+        border-radius: 10px;
+        background-color: $white;
+        
+       
+        &:hover{
+            // background: $yellowgradient;
+            box-shadow: 5px 5px 0 $orange;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            border: 1px solid red;
+            @include flexcenter();
+            &:nth-child(1){
+                flex-grow: 0;
+            }
+            &:nth-child(3){
+                flex-grow: 1;
+            }
+            label{
+                width: 100%;
+                border: 1px solid rgb(0, 110, 255);
+            }
+            &:hover{
+                color: $blue;
+                font-weight: 500;
+                letter-spacing: 0.8px;
+            }
+        }
+        
+    }
+}
+

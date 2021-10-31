@@ -10,12 +10,13 @@
 @import "./classes-home";
 //訓練計畫表
 @import "./plan-temporary";
+@import "./plan-member";
 
 //後台
 @import "./manage-employees";  //人員管理
 @import "./manage-forum-home"; //討論區管理首頁
 @import "./manage-forum-content";
 @import "./manage-forum-report";
-// 訓練課程
-@import "./class-home";
-@import "./plan-temporary";
+
+//賽程資訊
+@import "./race";

@@ -1,0 +1,86 @@
+main.plan_member_wrapper{
+    border: 2px solid rgb(250, 250, 250);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 0 83px;
+    
+}
+header.plan_member_aside{
+    background-color: rgba(237, 237, 237, .9);
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    
+    .plan_member_aside_container{
+        @include flexcenter();
+        flex-direction: column;
+        position: sticky;
+        top: 80px;
+        height: 40%;
+        border:2px solid blue;
+            header{
+                width: 100%;
+                @include flexcenter();
+                flex-direction: column;
+                .plan_member_photo{
+                    width: 100px;
+                    border-radius: 50%;
+                    font-size: 0;
+                    position:relative;
+                    &::after{
+                        clear: both;
+                        content: "";
+                        z-index: -1;
+                        position:absolute;
+                        top:5px;
+                        left:5px;
+                        border-radius: 50%;
+                        width:100px;
+                        height:100px;
+                        background: $yellowgradient;
+                    }
+                    img{
+                        border-radius: 50%;
+                        border:1px solid $orange;
+                        width: 100%;
+                        
+                    }
+                }
+            }
+
+            div.plan_member_button{
+                border: 2px solid red;
+                display: flex;
+                width: 100%;
+                height: 150px;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                button{
+                    width: 150px;
+                    height: 35px;
+                }
+            }
+    }
+}
+//計畫表
+section.plan_member_content{
+    border: 2px solid red;
+}
+
+main.plan_member_main_content{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+    width: 100%;
+    div{
+        border: 2px solid rgb(0, 255, 200);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+    }
+}
