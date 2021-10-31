@@ -18,7 +18,7 @@ template: `
         
 
         <ul class="header_menu" :class="{slidedown:slide}">
-          <li>
+          <li class="head_title">
               <a class="info title3" href="">三鐵資訊</a>
               <ul class="head_subtitle">
               <a href="../../race-home.html"><li>近期賽事</li></a>
@@ -40,24 +40,25 @@ template: `
             </ul>
           </li>
           <li class="head_title"><a href="../../plan-temporary.html" class="title3">訂製計畫表</a></li>
-          <ul class="head_subtitle head_contactus">
-              <li>
-              <p class="small" >聯絡我們<br>
-              (02)2470-8053</p>
-              </li>
-              <li>
-                <a href=""><i class="fa-brands fa-facebook-square fa-2xl" ></i></a>
-                <a href=""><i class="fa-solid fa-envelope fa-2xl"></i></a>
-                <a href=""><i class="fa-brands fa-line fa-2xl"></i></a>
-              </li>
-              <li>
-                <p class="small">
-                本網站為緯育TibaMe前端設計工程師班第70期第__組學員專題成果作品，本平台僅供學習、展示之用。參考資源：＿＿＿＿＿＿＿＿（請填入你們參考的網站）。若有侵權疑慮，您可以私訊 [ 緯育TibaMe ]，後續會由專人協助處理
-                </p>
-              </li>
-              
-              
-          </ul>
+          
+         
+            <ul class="head_subtitle head_contactus">
+                <li>
+                  <p class="small" >聯絡我們<br>
+                  (02)2470-8053</p>
+                </li>
+                <li>
+                  <a href=""><i class="fa-brands fa-facebook-square fa-2xl" ></i></a>
+                  <a href=""><i class="fa-solid fa-envelope fa-2xl"></i></a>
+                  <a href=""><i class="fa-brands fa-line fa-2xl"></i></a>
+                </li>
+                <li>
+                  <p class="small">
+                  本網站為緯育TibaMe前端設計工程師班第70期第__組學員專題成果作品，本平台僅供學習、展示之用。參考資源：＿＿＿＿＿＿＿＿（請填入你們參考的網站）。若有侵權疑慮，您可以私訊 [ 緯育TibaMe ]，後續會由專人協助處理
+                  </p>
+                </li>
+            </ul>
+          
         </ul>
         
         <a class="header_icon "href=""><i class="fas fa-user fa-xl"></i></a>
