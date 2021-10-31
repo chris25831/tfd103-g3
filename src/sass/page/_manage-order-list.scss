@@ -1,0 +1,35 @@
+main#manage-order-list {
+    .order-list {
+        width: 915px;
+        margin: 0 auto;
+        table.order-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0px 15px;
+            tr{
+                td {
+                    width: calc(100% / 5);
+                    padding: 0 10px;
+                    
+                }
+            }
+            tr.single-order {
+                td {
+                    border: solid black 1px;
+                    border-right: 0;
+                    border-left: 0;
+                    height: 3rem;
+                    padding: 5px 10px;
+                    &:first-child {
+                        border-left: solid black 1px;
+                    }
+                    &:last-child {
+                        border-right: solid black 1px;
+
+                    }
+                }
+
+            }
+        }
+    }
+}

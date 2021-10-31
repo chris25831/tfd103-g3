@@ -1,0 +1,52 @@
+main#manage-member-personal-info {
+    .member-list {
+        width: 915px;
+        margin: 0 auto;
+        table.info-table{
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0px 15px;
+            // border: solid red 1px;
+            thead.member-title {
+                tr.info-items {  
+                    td {
+                        width: calc(100% / 6);
+                        min-height: 20px;
+                        line-height: 20px;
+                        padding: 0 10px;
+                        // &:nth-child(5) {
+                        //     width: 150px;
+                        // }
+                        &:last-child {
+                            width: 100px;
+                        }
+                    }           
+                    
+                }
+            }
+            tbody.member-info {
+                tr.single-member { 
+                    height: 3rem;                 
+                    td {
+                        width: calc(100% / 6);
+                        border-top: solid black 1px;
+                        border-bottom: solid black 1px;
+                        padding: 5px 10px;
+                        &:first-child {
+                            border-left: solid black 1px;
+                        }
+                        // &:nth-child(5) {
+                        //     width: 150px;
+                        // }
+                        &:last-child {
+                            width: 100px;
+                            border-right: solid black 1px;
+                        }
+                    }
+                   
+                }
+            }
+        }
+
+    }
+}
