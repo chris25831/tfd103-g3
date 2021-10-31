@@ -24,7 +24,7 @@
 
        <div class="plan_ques_wrapper">
            <!--上一步-->
-           <button @click="current_tab--" class="previouspage">
+           <button @click="last" class="previouspage">
                <span class="arrow">
                    <a href=""></a>
                </span>
@@ -105,111 +105,111 @@
 <script src="./src/component/common/footer.js"></script>
 <script>
 
-// ***lightbox*** //
-const question = new Vue({
-    el: '#plan_question',
-    data(){
+// // ***lightbox*** //
+// const question = new Vue({
+//     el: '#plan_question',
+//     data(){
 
-        return{
-            tab:"下一步",
-            current_tab:0,
-            max:4,
-            questions:[
-                //第一題
-                {
-                    title:'你的參賽日期',
-                    choices:
-                    [{
-                        title:'2021普悠瑪鐵人三項競賽',
-                        value:'20211101'
-                    },{
-                        title:'2021梅花湖三鐵',
-                        value:'20211203'
-                    },{
-                        title:'2021台東活水湖三鐵',
-                        value:'20211203'
-                    }],
-                    name:'racedate',
-                    type:'select',
-                    answer: null //前面要塞值的話就判斷是question[0](哪一題)結果立一個變數 === {{question.answer}}
-                },
-                //第二題
-                {
-                    title:'想挑戰的競賽距離',
-                    choices:
-                    [{
-                        title:'226K全程距離',
-                        value:'226'
-                    },{
-                        title:'113K半程距離',
-                        value:'113'
-                    },{
-                        title:'51.5K標準距離',
-                        value:'51.5'
-                    }],
-                    name:'distance',
-                    type:'radio',
-                    answer: null
-                },
-                //第三題
-                {
-                    title:'想制定幾週的訓練計畫呢',
-                    choices:
-                    [{
-                        title:'16',
-                        value:'16'
-                    },{
-                        title:'12',
-                        value:'12'
-                    },{
-                        title:'8',
-                        value:'8'
-                    }],
-                    name:'week',
-                    type:'radio',
-                    answer: null
-                },
-                {
-                    title:'選擇訓練強度',
-                    choices:
-                    [{
-                        title:'強',
-                        value:'hard'
-                    },{
-                        title:'中',
-                        value:'normal'
-                    },{
-                        title:'弱',
-                        value:'eazy'
-                    }],
-                    name:'level',
-                    type:'radio',
-                    answer: null
-                },
+//         return{
+//             tab:"下一步",
+//             current_tab:0,
+//             max:4,
+//             questions:[
+//                 //第一題
+//                 {
+//                     title:'你的參賽日期',
+//                     choices:
+//                     [{
+//                         title:'2021普悠瑪鐵人三項競賽',
+//                         value:'20211101'
+//                     },{
+//                         title:'2021梅花湖三鐵',
+//                         value:'20211203'
+//                     },{
+//                         title:'2021台東活水湖三鐵',
+//                         value:'20211203'
+//                     }],
+//                     name:'racedate',
+//                     type:'select',
+//                     answer: null //前面要塞值的話就判斷是question[0](哪一題)結果立一個變數 === {{question.answer}}
+//                 },
+//                 //第二題
+//                 {
+//                     title:'想挑戰的競賽距離',
+//                     choices:
+//                     [{
+//                         title:'226K全程距離',
+//                         value:'226'
+//                     },{
+//                         title:'113K半程距離',
+//                         value:'113'
+//                     },{
+//                         title:'51.5K標準距離',
+//                         value:'51.5'
+//                     }],
+//                     name:'distance',
+//                     type:'radio',
+//                     answer: null
+//                 },
+//                 //第三題
+//                 {
+//                     title:'想制定幾週的訓練計畫呢',
+//                     choices:
+//                     [{
+//                         title:'16',
+//                         value:'16'
+//                     },{
+//                         title:'12',
+//                         value:'12'
+//                     },{
+//                         title:'8',
+//                         value:'8'
+//                     }],
+//                     name:'week',
+//                     type:'radio',
+//                     answer: null
+//                 },
+//                 {
+//                     title:'選擇訓練強度',
+//                     choices:
+//                     [{
+//                         title:'強',
+//                         value:'hard'
+//                     },{
+//                         title:'中',
+//                         value:'normal'
+//                     },{
+//                         title:'弱',
+//                         value:'eazy'
+//                     }],
+//                     name:'level',
+//                     type:'radio',
+//                     answer: null
+//                 },
                 
-            ]
+//             ]
 
-        }
-    },
+//         }
+//     },
 
-    methods: {
-        last(){
-            if(this.current_tab <= this.max  && this.current_tab > 0){
-                this.current_tab --     
-            }
-        },
-        currenttab(){
-                if(this.current_tab < this.max && this.current_tab > 0){
-                    this.current_tab ++
-                }
-                if(this.current_tab == 4){
-                    return this.tab ="完成"  //有傳回值就要return
-                }else{
-                    return this.tab ="下一步"
-                }
-            }
-      }, 
-});
+//     methods: {
+//         last(){
+//             if(this.current_tab <= this.max  && this.current_tab > 0){
+//                 this.current_tab --     
+//             }
+//         },
+//         currenttab(){
+//                 if(this.current_tab < this.max && this.current_tab > 0){
+//                     this.current_tab ++
+//                 }
+//                 if(this.current_tab == 4){
+//                     return this.tab ="完成"  //有傳回值就要return
+//                 }else{
+//                     return this.tab ="下一步"
+//                 }
+//             }
+//       }, 
+// });
 
 </script>
 </body>

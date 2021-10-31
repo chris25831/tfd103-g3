@@ -238,6 +238,7 @@ ul.head_contactus{
 
 .sticky {
     z-index: 100;
+    top: 0;
     position: sticky;
     transition: all  .8s;
     box-shadow: 1px 2px 3px  rgb(43, 42, 66);
