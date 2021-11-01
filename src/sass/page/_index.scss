@@ -141,7 +141,7 @@
 
 .slider__navi {
 	position: absolute;
-	top: 50%;
+	top: 400px;
 	right: 20px;
 	transform: translateY(-50%);
 	z-index: 999;
@@ -196,16 +196,133 @@
 }
 
 
-
-
-.container {
-  margin: 0 auto;
-  padding: 4rem;
-  width: 48rem;
-  background: #fff;
-  color: #4d5974;
-  display: flex;
+.pro__training{
+	display: block;
+	position: relative;
 }
+
+.banner{
+	text-align: left;
+	max-width: 100%;
+	background-color: #FFEF36;
+	// padding: 1rem,0;
+	// margin: 0 0 3rem;
+	max-height: 68px;
+	position: absolute;
+	bottom: 100px;
+  }
+  
+  marquee{
+	padding: 10px;
+	color: #000000;
+	text-transform: uppercase;
+	font-size: 30px;
+	font-weight: 800;
+  }
+  
+  span{
+	color: #000000;
+  }
+
+
+
+.training__plan{
+	display: block;
+}
+
+
+
+@keyframes scroll1 {
+	0% {
+		transform: translate(100%);
+	}
+	100% {
+		transform: translate(-100%);
+	}
+}
+@keyframes scroll2 {
+	0% {
+		transform: translate(0);
+	}
+	100% {
+		transform: translate(-200%);
+	}
+}
+
+
+// section {
+// 	position: relative;
+// 	width: 100%;
+// 	height: 100vh;
+// 	overflow: hidden;
+// 	.scroll {
+// 		width: 100%;
+// 		display: flex;
+// 		div {
+// 			color: #000000;
+// 			font-size: 4.5em;
+// 			background: #eeeeeeee;
+// 			white-space: nowrap;
+// 			font-weight: 700;
+// 			text-transform: uppercase;
+// 			letter-spacing: -2px;
+// 			animation: scroll1 30s linear infinite;
+// 			animation-delay: -40s;
+// 			&:nth-child(2) {
+// 				animation: scroll2 30s linear infinite;
+// 				animation-delay: -25s;
+// 			}
+// 			span {
+// 				font-weight: 100;
+// 			}
+// 		}
+// 		&:nth-child(even) {
+// 			div {
+// 				animation-direction: reverse;
+// 				&:nth-child(2) {
+// 					animation-direction: reverse;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	.scroll.text-1 {
+// 		transform: rotate(15deg) translateY(100px);
+// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+// 	}
+// 	.scroll.text-2 {
+// 		transform: rotate(-10deg) translateY(480px) translateX(-100px);
+// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+// 	}
+// 	.scroll.text-3 {
+// 		transform: rotate(-15deg) translateY(-100px);
+// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+// 	}
+// 	.scroll.text-4 {
+// 		transform: rotate(10deg) translateY(-250px);
+// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+// 	}
+// 	.scroll.text-5 {
+// 		transform: rotate(10deg) translateY(320px);
+// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+// 	}
+// 	.scroll.text-6 {
+// 		transform: rotate(5deg) translateY(100px);
+// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+// 	}
+// }
+
+
+
+
+
+// .container {
+//   margin: 0 auto;
+//   padding: 4rem;
+//   width: 48rem;
+//   background: #fff;
+//   color: #4d5974;
+//   display: flex;
+// }
 
 // .accordion {
 //   .accordion-item {
