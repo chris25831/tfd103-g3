@@ -6,43 +6,44 @@
      justify-content: center;
      align-items: center;
    .plan_ques_wrapper{
-        // @include questionbox();
-        // display: flex;
-        // flex-direction: column;
-        // background-size:contain ;
-        // background-position: center;
+        @include questionbox();
+        display: flex;
+        flex-direction: column;
+        background-size:contain ;
+        background-position: center;
         // border: 2px solid white;
-        // height: 400px;
-        // width: 800px;
+        height: 400px;
+        width: 800px;
         .plan_question_content{
-            border:2px solid rgb(64, 125, 224);
+            // border:2px solid rgb(64, 125, 224);
             height: 90%;
             .plan_question_content_article{
                 @include flexcenter;
                 flex-direction: column;
                 justify-content:space-around;
-                border:2px solid turquoise;
+                // border:2px solid turquoise;
                 height: 100%;
             }
         }
 
         .previouspage{
             
-            border: 1px solid white;
+            // border: 1px solid white;
         }
     }
 }
 
+
+
 .plan_question_content_article{
     div{
       display: flex;
-      
       flex-direction: column;
     //   border: 2px solid deepskyblue;
       width: 80%;  
 
         h1{
-            border: 1px solid $orange;
+            // border: 1px solid $orange;
             text-align: center;
         }
         hr{
@@ -50,7 +51,7 @@
             border: 1px solid $orange;
         }
         p{
-            border: 1px solid $orange;
+            // border: 1px solid $orange;
             width: 100%;
             height: 100%;
             line-height: 1.5;
@@ -58,7 +59,7 @@
         }
     }
     div.select{
-        border: 2px solid deepskyblue;
+        // border: 2px solid deepskyblue;
         height: 50%;
         select{
             border: none;
@@ -81,13 +82,6 @@
         }
 }  
 
-
-
-
-
-
-
-
 // ***計畫表*** //
 .plan_scroll{
     padding-top: 15px;
@@ -98,42 +92,116 @@
     #plan_head{
        width: 100%;
        @include flexcenter;
-    
+    //    border: 1px solid red;
    }
     
 }
+@mixin animationline {
+    @keyframes bevelmove {
+        5%{
+            left:50px;
+            
+        }
+        15%{
+            left:100px;
+        }
+        20%{
+            left:130px;
+            
+        }
+        25%{
+            left:100px;
+            
+        }
+        50%{
+            left:80px;
+            
+        }
+        80%{
+            left:100px;
+            
+        }
+        50%{
+            left:60px;
+            
+        }
+        
+    }
+    animation-name: bevelmove;
+    animation-duration:5s;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count:infinite;
+    
+}
 
+@mixin animationbevel {
+    @keyframes bevelrepeat {
+        0%{
+            
+            left:-20px;
+        }
+        15%{
+            
+            left:-15px;
+        }
+        25%{
+            
+            left:5px;
+        }
+        50%{
+            
+            left:10px;
+        }
+        80%{
+            
+            left:5px;
+        }
+        100%{
+            
+            left:0px;
+        }
+    }
+    animation-name: bevelrepeat;
+    animation-duration:2s;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count:infinite;
+}
 
 .plan_bg{
     position: relative;
     display: inline-flex;
     justify-content: center;
-    border: 1px solid red;
-    margin-top: 10%;
-    width: 40%;
-   
+    margin-top: 5%;
+    width: 20%;
+    height: 180px;
     svg{
         position: absolute;
         filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
         height: 100%;
     }
+   
+    
     #bevelyellow{
-        left: 30%;
-        
+        @include animationbevel();
     }
+    
     .plan_info{
         
         z-index: 3;
         color: #282828;
         margin: auto 0;
+        line-height: 2;
+        display: flex;
+        align-items: left;
         flex-direction: column;
-        @include flexcenter;
         @include fontfamily(500);
     }
-
+    
 }
 
-section{
+section.plan_tem_wrapper{
     margin: 0 auto;
     //天數head 
     #plan_week{
@@ -141,7 +209,7 @@ section{
         margin: 0 auto;
         margin-top: 50px;
         ul{
-            border: 3px solid white;
+            // border: 3px solid white;
             margin: 0 auto;
             width: 95%;
             margin-left: 5%;
@@ -168,20 +236,19 @@ section{
         display: flex;
         flex-direction: row;
         max-width: 1200px;
-        margin: 0 20px;
-        border: 3px solid purple;
+        margin-bottom:50px;
+        margin-top:20px;
+
         .week_mark{
-            filter: drop-shadow(0px 5px  $yellow);
+            // border: 3px solid white;
+            filter: drop-shadow(0px 3px  $orange);
+            background-color: $white ;
             font-size: 20px;
             width: 5%;
             display: flex;
-            color: white;
+            color: $orange;
             border-radius: 30% 0 0 30%;
-            background-image:url("../src/images/icons/plan_week_bgicon.svg");
             height: 100px;
-            background-size: 100%;
-            background-position: right;
-            background-size:cover;
             justify-content: center;
             align-items: center;
             align-self: center;
@@ -199,7 +266,6 @@ section{
             padding-left: 0;
             grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-auto-flow: row;
-            border: 3px solid $orange;
             
         }
       
@@ -209,49 +275,53 @@ section{
 //每天的運動icon
 
 .plan_eachday{
-    border-right: 1px solid $orange;
+    border-right: 2px dashed $orange;
     display: flex;
     flex-direction: column;
-    &:nth-last-child(){
+    &:last-child(){
         border-right: none;
     }
     div:first-child{
         // border: 1px solid blue;
-        height: 50%;
+        height: 30%;
         background-color: $orange;
         @include flexcenter;
         justify-content:center;
+       
         span{
             transform: translate(0%, -50%);
-            border: 2px solid $orange;
+            // border: 2px solid $orange;
             border-radius: 50%;
             background-color: $white;
-            padding: 5px;
+            padding: 10px;
             box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
+           
             i{
                 width: 20px;
+                height: auto;
                 @include flexcenter;
             }
         }
     }
-    // border: 3px solid rgb(255, 255, 255);
 
 }
 
 //內文字
 .plan_exe{
+    height: 120px;
     display: block;
     text-align: center;
+    line-height: 2;
     @include fontfamily(400);
 }
 
 //button
 .plan_button{
-    // border: 1px solid white;
     margin-top: 20px;
     @include flexcenter;
     @include fontfamily(500);
     button{
+        font-size: 16px;
         margin:10px 20px;
     }
 }

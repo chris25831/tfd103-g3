@@ -46,9 +46,9 @@
                         <p v-model="memberinfo">{{memberinfo.week}}<br>week</p>
                     </div>
                     <div id="plan_chart">
-                        <!-- <i class="fa-solid fa-person-swimming"></i>
+                        <i class="fa-solid fa-person-swimming"></i>
                         <i class="fa-solid fa-person-biking"></i>
-                        <i class="fa-solid fa-person-running"></i> -->
+                        <i class="fa-solid fa-person-running"></i>
                     </div>
                 </main>
                 <div class="plan_member_button">
@@ -58,7 +58,37 @@
             </section>
         </header>
         <section class="plan_member_content">
-            <plan-section></plan-section>
+            <section>
+                <!--天數head-->
+                    <div id="plan_week">
+                        <ul>
+                            <li v-for="day in 7" class="title2">D{{day}}</li>
+                        </ul>
+                    </div>
+              
+                <!--訓練表主要內容-->
+                <div class="plan_scroll">
+                    <section  v-for="week in 8" id="plan_member_table">
+                      <span class="week_mark title2">W{{week}}</span>
+                        <ul>
+                            <li  v-for="week in 7" class="plan_member_eachday">
+                                    <div>
+                                        <span v-show="planicon"><i class="fa-solid fa-person-swimming"></i></span>
+                                        <span v-show="planicon"><i class="fa-solid fa-person-biking"></i></span>
+                                        <span v-show="planicon"><i class="fa-solid fa-person-running"></i></span>
+                                    </div>
+                                    <div @click="checkoneday" class="plan_member_exe" :class="{ done: checkdone}" >
+                                        <p v-show="swimtime">Swim <span>1hr</span></p>
+                                        <p v-show="biketime">Bike <span>.5hr</span></p>
+                                        <p v-show="runtime"> Run  <span>.3hr</span></p>
+                                    </div>
+                            </li>
+                            
+                        </ul>         <!--***計畫表本體component***-->
+                    </section>
+                </div>
+              
+              </section>
         </section>
    </main>
 
@@ -68,7 +98,6 @@
    </footer>
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
-<script src="./src/component/plan/plan.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script>
@@ -77,7 +106,7 @@
       bindto: "#plan_chart",
       size: {
             height: 140,
-            width: 240
+            width: 190
         },
       data: {  //針對圖表的樣式資料屬性寫在data內
         columns: [
@@ -121,7 +150,36 @@
       
     });
     
-    
-    </script>
+    new Vue({
+  el: '#plan_wrapper',
+  data(){
+    return{
+        checkdone:false,
+        memberinfo:
+            {
+                photo:"./src/images/img/plan/memberphoto.png",
+                membername:"maggie",
+                racedate:20221127,
+                week:12
+            },
+            planicon: true,
+            swimtime: true,
+            runtime: true,
+            biketime: true,
+      
+     }
+    },
+    methods: {
+        checkoneday(){
+            this.checkdone = !this.checkdone
+            
+        }
+    },
+
+   computed:{
+       
+   }
+});  
+</script>
 </body>
 </html>
