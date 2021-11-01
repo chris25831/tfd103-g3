@@ -122,14 +122,8 @@
          <img class="slider__img" src="./pic/runningman.png" />
       </div>
 
-<<<<<<< HEAD
    </section>
        
-=======
-   </div>
-   
-   <!-- slider button -->
->>>>>>> dev
    <div class="slider__navi">
       <a href="#" class="slide-nav active" data-slide="1">one</a>
       <a href="#" class="slide-nav" data-slide="2">two</a>
@@ -137,7 +131,6 @@
    </div>
 
 
-<<<<<<< HEAD
    
    <!-- 讓TriClub 帶你更專業 -->
    <section class="pro__training" style="border: 1px solid red; height: 935px;">
@@ -190,9 +183,6 @@
             <span>Experimental&nbsp;</span>
          </div>
       </div>
-=======
-   <div style="border: 1px solid red; height: 100px;"></div>
->>>>>>> dev
    
       <div class="scroll text-4">
          <div>
@@ -205,7 +195,6 @@
          </div>
       </div>
    
-<<<<<<< HEAD
       <div class="scroll text-5">
          <div>
             Portraits <span>Portraits</span> Portraits <span>Portraits</span> Portraits <span>Portraits</span> Portraits
@@ -284,25 +273,6 @@
       </div>
       <div class="accordion-item">
          <button id="accordion-button-3" aria-expanded="false"><span class="accordion-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><span class="icon" aria-hidden="true"></span></button>
-=======
-   <!-- FAQ -->
-   <div class="container">
-      <h2>FAQ</h2>
-      <div class="accordion">
-      <div class="accordion-item">
-         <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><span class="icon" aria-hidden="true"></span></button>
-         <div class="accordion-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-         </div>
-      </div>
-      <div class="accordion-item">
-         <button id="accordion-button-2" aria-expanded="false"><span class="accordion-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><span class="icon" aria-hidden="true"></span></button>
-         <div class="accordion-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-         </div>
-      </div>
-      <div class="accordion-item">
-         <button id="accordion-button-3" aria-expanded="false"><span class="accordion-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><span class="icon" aria-hidden="true"></span></button>
          <div class="accordion-content">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
          </div>
@@ -315,26 +285,10 @@
       </div>
       <div class="accordion-item">
          <button id="accordion-button-5" aria-expanded="false"><span class="accordion-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><span class="icon" aria-hidden="true"></span></button>
->>>>>>> dev
          <div class="accordion-content">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
          </div>
       </div>
-<<<<<<< HEAD
-      <div class="accordion-item">
-         <button id="accordion-button-4" aria-expanded="false"><span class="accordion-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><span class="icon" aria-hidden="true"></span></button>
-         <div class="accordion-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-         </div>
-      </div>
-      <div class="accordion-item">
-         <button id="accordion-button-5" aria-expanded="false"><span class="accordion-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><span class="icon" aria-hidden="true"></span></button>
-         <div class="accordion-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-         </div>
-      </div>
-=======
->>>>>>> dev
       </div>
    </div>
    
@@ -355,7 +309,6 @@
 
 
 
-<<<<<<< HEAD
    <!--header/footer component-->
    <script src="./src/js/vue.js"></script>
    <script src="./src/component/common/header.js"></script>
@@ -389,36 +342,6 @@
    </script>
 
    
-=======
-<!--header/footer component-->
-<script src="./src/js/vue.js"></script>
-<script src="./src/component/common/header.js"></script>
-<script src="./src/component/common/footer.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
-  
-<!-- slider -->
-<script>
-$('.slide-nav').on('click', function(e) {
-   e.preventDefault();  // get current slide
-   var current = $('.flex--active').data('slide'),  // get button data-slide
-   next = $(this).data('slide');
-
-   $('.slide-nav').removeClass('active');
-   $(this).addClass('active');
-
-   if (current === next) {
-   return false;
-   } else {
-   $('.slider__warpper').find('.flex__container[data-slide=' + next + ']').addClass('flex--preStart');
-   $('.flex--active').addClass('animate--end');
-   setTimeout(function() {
-      $('.flex--preStart').removeClass('animate--start flex--preStart').addClass('flex--active');
-      $('.animate--end').addClass('animate--start').removeClass('animate--end flex--active');
-   }, 800);
-   }
-   });
-</script>
->>>>>>> dev
 
 
 </body>
