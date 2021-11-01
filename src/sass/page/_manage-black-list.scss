@@ -1,0 +1,36 @@
+main#manage-black-list {
+    div.black-list {
+        width: 915px;
+        margin: 0 auto;
+        table.black-list-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0px 15px;
+            thead {
+                tr.table-title {
+                    td {
+                        width: calc(100% / 5);
+                        padding: 0px 10px;
+                        
+                    }
+                }
+            }
+            tbody.black-list-items {
+                tr.black-list-item {
+                    td {
+                        border-top: solid black 1px;
+                        border-bottom: solid black 1px;
+                        padding: 15px 10px;
+                        &:first-child {
+                            border-left: solid black 1px;
+                        }
+                        &:last-child {
+                            width: 100px;
+                            border-right: solid black 1px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

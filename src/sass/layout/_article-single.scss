@@ -119,9 +119,9 @@
                         // display: none;
                     }
                     .delete-article.small-red {
-                        border: solid #E75F49 1px;
-                        color: #E75F49;
-                        box-shadow: 5px 5px #E75F49;
+                        border: solid $orange 1px;
+                        color: $orange;
+                        box-shadow: 5px 5px $orange;
                         &:active {
                             box-shadow: 0;
                         }

@@ -27,7 +27,7 @@
    <main class="classes-home" id="classes-home">
         <div>
             <!-- bookmark -->
-            <div class="bookmark" id="classes-bookmark">
+            <div class="bookmark-frontend" id="classes-bookmark">
                 <button  v-for="(category,index) in categories" :key="category" class="bookmark-item classesonly" :class="[{active: currentcategory === index }]"  @click="currentcategory = index">{{category}}</button>
             </div>
 

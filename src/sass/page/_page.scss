@@ -24,14 +24,7 @@
 @import "./manage-member-personal-info";  //會員資料管理
 @import "./manage-order-list";   //訂單管理 - 列表
 @import "./manage-order-single";   //訂單管理 - 單筆
-
-
-
-// 訓練課程
-@import "./class-home";
-@import "./plan-temporary";
-@import "./manage-forum-content";
-@import "./manage-forum-report";
+@import "./manage-black-list";   //黑名單管理
 
 //賽程資訊
 @import "./race";
