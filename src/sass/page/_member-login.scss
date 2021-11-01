@@ -1,0 +1,94 @@
+#member-login{
+    @include bgplan(100vh);
+    display: flex;
+    justify-content: center;
+    padding: $bottomspacing;
+    align-items: center;
+    .login-bg{
+        @include questionbox();
+        width: 720px;
+        height: 400px;
+        border: 1px solid red;
+        .login-content{
+            // border: 1px solid blue;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            img{
+                width: 220px;
+                height: 30px;
+                // border: 1px solid red;
+                margin-bottom: 20px;
+                display: flex;
+                align-self: center;
+            }
+            h2{
+                // border: 1px solid blue;
+                text-align: center;
+                margin-bottom: 20px;
+                position: relative;
+                &::after{
+                    content: "";
+                    width: 650px;
+                    height: 2px;
+                    background-color: $orange;
+                    position: absolute;
+                    top: 120%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+            .input-wrapper{
+                // border: 1px solid green;
+                text-align: center;
+                .login-input{
+                    border: none;
+                    border-bottom: 3px solid $blue;
+                    background-color: transparent;
+                    padding: 5px;
+                    margin-bottom: 10px;
+                    width: 300px;
+                    outline: none;
+                }
+            }
+            .fb-btn{
+                font-size: 30px;
+                color: #3B5998;
+                background-color: transparent;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-self: center;
+                border: none;
+                cursor: pointer;
+            }
+            p{
+                text-align: center;
+            }
+            .register-btn{
+                text-align: center;
+                color: black;
+                margin: 5px auto;
+                text-decoration: none;
+            }
+            .forgotpw{
+                color: black;
+                text-align: center;
+                margin: 5px auto;
+            }
+            .btn-wrapper{
+                // border: 1px solid red;
+                text-align: center;
+                .orangebutton{
+                    width: 250px;
+                    height: 40px;
+                }
+            }
+        }
+        .previouspage{
+            display: inline-block;
+        }
+    }
+}

@@ -26,13 +26,14 @@
 .title {
   position: relative;
   display: inline-block;
+  margin: 10px;
   &::after {
     content: "";
     position: absolute;
     top: 100%;
     left: 0;
     background-color: #e75f49;
-    width: 150%;
+    width: 120%;
     height: 3px;
   }
   .titlelinearrow {
