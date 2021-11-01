@@ -128,11 +128,10 @@ Vue.component('plan-head',{
                         </linearGradient>
                     </defs>
                     <path  data-name="Path 201" d="M56,0H308.81L257,107H0Z" fill="url(#linear-gradient)"/>
-                    
-                </svg>
-                <svg id="bevelwhite" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
+                    </svg>
+                    <svg id="bevelwhite" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
                     <path id="bevelwhite" data-name="Path 200" d="M56,0H308.81L257,107H0Z" fill="white" stroke="url(#linear-gradient)"/>
-                </svg>
+                    </svg>
 
             </div>
         </div>
@@ -144,7 +143,7 @@ Vue.component('plan-head',{
 Vue.component('plan-section',{
   
   template:`
-  <section>
+  <section class="plan_tem_wrapper">
   <!--天數head-->
       <div id="plan_week">
           <ul>
@@ -162,8 +161,8 @@ Vue.component('plan-section',{
 
       
     <div class="plan_button">
-        <button class="bluebutton title3">重新製作</button>
-        <button class="orangebutton title3">儲存</button>
+        <button  class="bluebutton title3">重新製作</button>
+        <button href="./../../plan-member.html" class="orangebutton title3">儲存</button>
     </div>
 </section>
     `
@@ -175,12 +174,12 @@ Vue.component('plan-section',{
 Vue.component('plan-perweek',{
     data(){
         return{
-          planicon: true,
-          swimtime: true,
-          runtime: true,
-          biketime: true,
+            planicon: true,
+            swimtime: true,
+            runtime: true,
+            biketime: true,
         }
-      },
+    },
     template:`
     
     <ul>
@@ -213,8 +212,8 @@ new Vue({
                 racedate:20221127,
                 week:12
             },
-      }
-  },
+     }
+   },
 });
 
 
