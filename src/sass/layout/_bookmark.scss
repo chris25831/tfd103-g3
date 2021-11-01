@@ -8,7 +8,7 @@ $places : "frontend", "manage";
     padding-bottom: 20px;
     font-size: 0;
     border-bottom: solid black 1px;
-
+    
     @if $place == "frontend" {
       @include table() {
         width: 576px;
