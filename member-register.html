@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>會員登入 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
+    
+</head>
+
+<body>
+    <!--這是header-->
+   <header id="header" :class="{sticky: active}">
+        <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+  
+
+   <!--內容所有都放在這div裡面-->
+   <main id="member-register" class="register-login">
+       <div class="register-bg">
+           <a href="#" class="previouspage">
+               <div class="arrow"></div>
+           </a>
+           <div class="register-content">
+               <img src="./src/images/icons/logo.svg">
+               <h2>註冊</h2>
+               <div class="input-wrapper">
+                   <label class="required">*</label>
+                   <input type="text" class="register-input" placeholder="請輸入帳號/Email"><br>
+                   <label class="required">*</label>
+                   <input type="password" class="register-input" placeholder="請輸入密碼"><br>
+                   <label class="required">*</label>
+                   <input type="password" class="register-input" placeholder="再次確認密碼"><br>
+                   <label  class="notice">
+                        <input type="radio">我已同意遵守本網站個人隱私權政策及交易安全宣告與其他有關著作權、版權、商標專用權等之法律規定。
+                   </label>
+               </div>
+               <button class="fb-btn">
+                   <i class="fab fa-facebook"></i>
+               </button>
+               <p>使用Facebook註冊/登入</p>
+               <div class="btn-wrapper">
+                   <button class="orangebutton">加入會員</button>
+               </div>
+           </div>
+       </div>
+   </main>
+
+   
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+
+
+</body>
+</html>

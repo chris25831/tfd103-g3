@@ -1,0 +1,209 @@
+.member-main{
+    @include bgnormal(100%);
+    .member-bgwhite{
+        @include bgwhite();
+        width: 1200px;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        .left-area{
+            display: inline-block;
+            text-align: center;
+            margin: 50px 30px 0 20px;
+            .member-photo img{
+                width: 76px;
+                height: 76px;
+                border-radius: 100%;
+                box-shadow: 1px 2px 0 3px $orange;
+            }
+            .member-name-left{
+                border: 1px solid black;
+                border-radius: 10px;
+                background-color: $white;
+                width: 100px;
+                text-align: center;
+                margin: 20px auto;
+                position: relative;
+                &::before, &::after{
+                    content: "";
+                    background-color: rgba(0, 0, 0, .5);
+                    width: 70%;
+                    height: 2px;
+                    position: absolute;
+                    transform: rotate(-5deg);
+                }
+                &::before{
+                    left: 100%;
+                    top: 10%;
+                }
+                &::after{
+                    right: 100%;
+                    top: 80%;
+                }
+            }
+            .member-info-left{
+                list-style: none;
+                padding: 0;
+                margin: 30px 0 100px 0;
+                text-align: center;
+                li{
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        .right-area{
+            display: inline-block;
+            margin-top: 50px;
+            .title{
+                margin: 0 0 30px 0;
+            }
+            .member-info-right{
+                background-color: $white;
+                box-shadow: 5px 5px 0 5px $orange;
+                border-radius: 10px;
+                width: 817px;
+                height: 374px;
+                position: relative;
+                margin-bottom: $bottomspacing;
+                .member-info-right-top{
+                    display: flex;
+                    justify-content: space-evenly;
+                    padding-top: 20px;
+                    .firstpartleft{
+                        display: inline-block;
+                        input{
+                            margin: 15px 0;
+                        }
+                    }
+                    .firstpartright{
+                        list-style: none;
+                        padding: 0;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                    }
+                }
+                #savebutton{
+                    position: absolute;
+                    right: 10px;
+                    bottom: 10px;
+                }
+                input[type="button"]{
+                    position: absolute;
+                    right: $buttonwidth+$buttonspacing+10px;
+                    bottom: 10px;
+                }
+                .changepw{
+                    color: black;
+                }
+                #popup-bg{
+                    z-index: 1;
+                    display: none;
+                    position: fixed;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, .5);
+                    .content{
+                        width: 450px;
+                        height: 450px;
+                        background-color: $white;
+                        border-radius: 10px;
+                        box-shadow: 3px 3px 0 3px $orange;
+                        margin: 10% auto;
+                        padding: 20px 50px;
+                        h2{
+                            text-align: center;
+                            margin-top: 8%;
+                        }
+                        .maincontent{
+                            text-align: center;
+                            margin-top: 15%;
+                            .editarea{
+                                background-color: transparent;
+                                border: none;
+                                border-bottom: 3px solid $blue;
+                                padding: 5px;
+                                margin: 15px 0;
+                                width: 310px;
+                                outline: none;
+                            }
+                            .required{
+                                color: red;
+                            }
+                        }
+                        .close-btn{
+                            text-align: end;
+                            margin-top: 10%;
+                            .cancel-btn{
+                                border: none;
+                                background-color: transparent;
+                                width: 80px;
+                                height: 30px;
+                                cursor: pointer;
+                            }
+                            .submit-btn{
+                                border: none;
+                                border-radius: 30px;
+                                background-color: $orange;
+                                color: white;
+                                width: 90px;
+                                height: 30px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+            .member-search{
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 10px;
+                .search-btn{
+                    border: 1px solid black;
+                    border-right: none;
+                    background-color: #FFF;
+                    cursor: pointer;
+                    padding: 3px;
+                }
+                .searchbar{
+                    border: 1px solid black;
+                    border-left: none;
+                    width: 15%;
+                    outline: none;
+                    padding-left: 5px;
+                }
+            }
+            .grid-order{
+                border: 1px solid black;
+                display: grid;
+                grid-template-columns: 65% auto auto;
+                margin: 5px 0 $bottomspacing 0;
+                .grid-items1{
+                    background-color: white;
+                    padding: 15px 15px;
+                    a{
+                        text-decoration: none;
+                        color: black;
+                        width: 100%;
+                        height: 100%;
+                        display: inline-block;
+                    }
+                }
+                .grid-items2{
+                    background-color: $blue;
+                    padding: 15px 15px;
+                    color: white;
+                    a{
+                        text-decoration: none;
+                        color: white;
+                        width: 100%;
+                        height: 100%;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
