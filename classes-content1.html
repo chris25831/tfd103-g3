@@ -27,12 +27,11 @@
    <main class="classes-content" id="classes-content">
         <div>
             <!-- breadcrumb  -->
-            <p class="small" v-if="checkCatReG()">團練課程 > 課程介紹</p>
+            <!-- <p class="small" v-if="checkCatReG()">團練課程 > 課程介紹</p>
             <p class="small" v-else-if="checkCatReT()">個人教練 > 教練介紹</p>
-            <p class="small" v-else-if="checkCatReM()">營養規劃 > 菜單介紹</p>
+            <p class="small" v-else-if="checkCatReM()">營養規劃 > 菜單介紹</p> -->
+            <p v-for="bc in categories" v-if=" checkCatRe() == bc.show" >{{bc.title}} > {{bc.subtitle}}</p>
 
-            <!-- 如何做到一個V-for 跑完?  V-if如何寫-->
-            <!-- <p v-for="bc in n" v-if="bc.show == 'this[classID]'">{{bc.key1}} > {{bc.key2}}</p> -->
 
             <!-- TODO: next&prv -->
 
@@ -44,7 +43,7 @@
                 </div>
                 <!-- word -->
                 <!-- 組件一 -->
-                <contentdetail-1  v-if="checkCatReG() || checkCatReM()" :checkG="checkCatReG()" :checkM="checkCatReM()" :class-title="classTitle" :classID="classID" :trainer="trainer" :class-location="classLocation" :nutrients="nutrients"></contentdetail-1>
+                <contentdetail-1  v-if="checkCatRe() == 'G' || checkCatRe() == 'M'" :check="checkCatRe()"  :class-title="classTitle" :classID="classID" :trainer="trainer" :class-location="classLocation" :nutrients="nutrients"></contentdetail-1>
 
                 <!-- 組件二 -->
                 <contentdetail-2  v-else :class-title="classTitle" ></contentdetail-2>
@@ -75,23 +74,24 @@
         new Vue({
             el:'#classes-content',
             data:{
-                // n:[
-                //     {
-                //       key1:"課程",
-                //       key2:"dddd",
-                //       show:"G12345",
-                //     },
-                //     {
-                //       key1:"課程2",
-                //       key2:"ttttt",
-                //       show:"T",
-                //     },
-                //     {
-                //       key1:"課程3",
-                //       key2:"fffff",
-                //       show:"M",
-                //     },
-                // ],
+                // 麵包屑判斷
+                categories:[
+                    {
+                      title:"團練課程",
+                      subtitle:"課程介紹",
+                      show:"G",
+                    },
+                    {
+                      title:"個人教練",
+                      subtitle:"教練介紹",
+                      show:"T",
+                    },
+                    {
+                      title:"營養規劃",
+                      subtitle:"菜單介紹",
+                      show:"M",
+                    },
+                ],
 
                 classID:'M12345',
                 classTitle:"檸香鮭魚蘆筍藍莓沙拉",
@@ -118,34 +118,16 @@
 
             },
             methods:{
-                // 團體課程
-                checkCatReG(){
+                // 判斷類別
+                checkCatRe(){
                     if(catRE_G.test(this.classID)){
-                        console.log(this.classID);
-                        return true;
-                    }else{
-                        return false;
+                        return "G";
+                    }else if(catRE_T.test(this.classID)){
+                        return "T";
+                    }else if(catRE_M.test(this.classID)){
+                        // console.log(this.classID);
+                        return "M";
                     }  
-                },
-
-                // 個人教練
-                checkCatReT(){
-                    if(catRE_T.test(this.classID)){
-                        console.log(this.classID);
-                        return true;
-                    }else{
-                        return false;
-                    }   
-                },
-
-                // 營養菜單
-                checkCatReM(){
-                    if(catRE_M.test(this.classID)){
-                        console.log(this.classID);
-                        return true;
-                    }else{
-                        return false;
-                    }    
                 },
             }
 
