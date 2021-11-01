@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>會員中心 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
+    
+</head>
+
+<body>
+    <!--這是header-->
+   <header id="header" :class="{sticky: active}">
+        <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+  
+
+   <!--內容所有都放在這div裡面-->
+   <main id="member-main" class="member-main">
+        <div class="member-bgwhite">
+			<aside class="left-area">
+				<div class="member-photo"><img src="./src/images/img/member/memberphoto.jpg"></div>
+				<div class="member-name-left">Lawrence</div>
+				<ul class="member-info-left">
+					<li>Lawrence Chen</li>
+					<li>0123456789</li>
+					<li>lawrence@gmail.com</li>
+					<li>103點</li>
+				</ul>
+				<input type="button" value="我的個人計畫" class="orangebutton">
+			</aside>
+			<aside class="right-area">
+				<h2 class="title">會員基本資料</h2>
+				<div class="member-info-right">
+					<div class="member-info-right-top">
+						<form action="" class="firstpartleft">
+							<label for="member-name">姓名：</label>
+							<input type="text" name="member-name" id="member-name" value="Lawrence Chen"><br>
+							<label for="member-birth">生日：</label>
+							<input type="text" name="member-birth" id="member-birth" value="2077-13-32"><br>
+							<label for="member-phone">電話：</label>
+							<input type="text" name="member-phone" id="member-phone" value="0912-345-678"><br>
+							<label for="member-address">地址：</label>
+							<input type="text" name="member-address" id="member-address" value="新北市新莊區建國路456號"><br>
+							<label for="member-password">密碼：</label>
+							<input type="password" name="member-password" id="member-password" value="0123456789">
+							<a href="javascript:void(0);" id="changepw" class="changepw">更改密碼</a>
+						</form>
+						<ul class="firstpartright">
+							<li>電子信箱：	lawrence@gmail.com</li>
+							<li>會員帳號：	0123456789</li>
+							<li>累積點數：	103</li>
+							<li>登入天數：	301天</li>
+						</ul>
+						<div id="popup-bg" class="popup-bg">
+							<div id="content" class="content">
+								<h2>更改密碼</h2>
+								<div class="maincontent">
+									 <label class="required">*</label>
+									 <input type="password" class="editarea" placeholder="目前密碼"><br>
+									 <label class="required">*</label>
+									 <input type="password" class="editarea" placeholder="新密碼"><br>
+									 <label class="required">*</label>
+									 <input type="password" class="editarea" placeholder="確認新密碼"><br>
+								</div>
+								<div class="close-btn">
+									<button id="cancel-btn" class="cancel-btn">取消</button>
+									<input type="submit" id="submit-btn" class="submit-btn" value="送出">
+								</div>
+							</div>
+						</div>
+					</div>
+					<input type="button" value="取消" class="orangebutton">
+					<input type="submit" value="保存設定" class="orangebutton" id="savebutton">
+				</div>
+				<h2 class="title">我的訂單</h2>
+				<div class="member-search">
+					<button class="search-btn">
+						<i class="fas fa-search"></i>
+					</button>
+					<input type="text" class="searchbar" name="searchbar" id="searchbar">
+				</div>
+				<div class="grid-order">
+					<div class="grid-items1"><a href="#">0123456789</a></div>
+					<div class="grid-items1">2021-10-06</div>
+					<div class="grid-items1">已完成</div>
+					<div class="grid-items2"><a href="#">0223456789</a></div>
+					<div class="grid-items2">2021-10-06</div>
+					<div class="grid-items2">未完成</div>
+					<div class="grid-items1"><a href="#">0323456789</a></div>
+					<div class="grid-items1">2021-10-06</div>
+					<div class="grid-items1">已取消</div>
+					<div class="grid-items2"><a href="#">0423456789</a></div>
+					<div class="grid-items2">2021-10-06</div>
+					<div class="grid-items2">已完成</div>
+					<div class="grid-items1"><a href="#">0523456789</a></div>
+					<div class="grid-items1">2021-10-06</div>
+					<div class="grid-items1">已完成</div>
+					<div class="grid-items2"><a href="#">0623456789</a></div>
+					<div class="grid-items2">2021-10-06</div>
+					<div class="grid-items2">未完成</div>
+				</div>
+				<h2 class="title">我的收藏</h2>
+				<div class="grid-order">
+					<div class="grid-items1"><a href="#">從零開始練三鐵！！</a></div>
+					<div class="grid-items1">2021-10-06</div>
+					<div class="grid-items1">黃雨心</div>
+					<div class="grid-items2"><a href="#">跟著阿晉動次動 - 鐵人三項進階訓練</a></div>
+					<div class="grid-items2">2021-10-06</div>
+					<div class="grid-items2">萬能阿晉</div>
+					<div class="grid-items1"><a href="#">Lawrence葛隔帶你變成金牌飛魚</a></div>
+					<div class="grid-items1">2021-10-06</div>
+					<div class="grid-items1">Lawrence葛格</div>
+					<div class="grid-items2"><a href="#">連河豚也能懂得三鐵訓練菜單 - Teacher April</a></div>
+					<div class="grid-items2">2021-10-06</div>
+					<div class="grid-items2">Teacher April</div>
+					<div class="grid-items1"><a href="#">小魔女王美蒂 - 跟著音樂練三鐵</a></div>
+					<div class="grid-items1">2021-10-06</div>
+					<div class="grid-items1">王美蒂</div>
+					<div class="grid-items2"><a href="#">宇哥講三鐵 - 宇哥出品，必屬精品</a></div>
+					<div class="grid-items2">2021-10-06</div>
+					<div class="grid-items2">宇哥</div>
+				</div>
+			</aside>
+		</div>
+   </main>
+
+   
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+<script src="./src/component/member/passwordpopup.js"></script>
+
+
+</body>
+</html>

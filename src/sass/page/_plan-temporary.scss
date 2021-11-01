@@ -6,14 +6,14 @@
      justify-content: center;
      align-items: center;
    .plan_ques_wrapper{
-        @include questionbox();
-        display: flex;
-        flex-direction: column;
-        background-size:contain ;
-        background-position: center;
-        border: 2px solid white;
-        height: 400px;
-        width: 800px;
+        // @include questionbox();
+        // display: flex;
+        // flex-direction: column;
+        // background-size:contain ;
+        // background-position: center;
+        // border: 2px solid white;
+        // height: 400px;
+        // width: 800px;
         .plan_question_content{
             border:2px solid rgb(64, 125, 224);
             height: 90%;
@@ -108,9 +108,10 @@
     position: relative;
     display: inline-flex;
     justify-content: center;
-    // border: 1px solid red;
+    border: 1px solid red;
     margin-top: 10%;
     width: 40%;
+   
     svg{
         position: absolute;
         filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
@@ -140,7 +141,7 @@ section{
         margin: 0 auto;
         margin-top: 50px;
         ul{
-            // border: 3px solid white;
+            border: 3px solid white;
             margin: 0 auto;
             width: 95%;
             margin-left: 5%;
@@ -167,7 +168,8 @@ section{
         display: flex;
         flex-direction: row;
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 0 20px;
+        border: 3px solid purple;
         .week_mark{
             filter: drop-shadow(0px 5px  $yellow);
             font-size: 20px;

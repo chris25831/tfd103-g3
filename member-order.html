@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>訂單頁面 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
+    
+</head>
+
+<body>
+    <!--這是header-->
+   <header id="header" :class="{sticky: active}">
+        <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+  
+
+   <!--內容所有都放在這div裡面-->
+   <main id="member-order" class="member-order">
+       <div class="member-bgwhite">
+           <div class="order-breadcrumb">
+               <ol>
+                   <li><a href="#">會員頁面</a></li>
+                   <li><a href="#">訂單資料</a></li>
+                   <li>訂單編號：0123456789</li>
+               </ol>
+           </div>
+           <a href="#" class="previouspage">
+               <div class="arrow"></div>
+           </a>
+           <div class="order-bottom">
+               <div class="left-area">
+                   <h2 class="title">訂單編號：0123456789</h2>
+                   <div class="top-part">
+                       <ul>
+                           <li>訂單狀態：   已付款</li>
+                           <li>下單日期：   2021-10-06</li>
+                           <li>訂單金額：   $4500TWD</li>
+                           <li>付款方式：   信用卡付款</li>
+                           <li>使用點數：   30</li>
+                       </ul>
+                       <button class="orangebutton">取消訂單</button>
+                   </div>
+                   <h2 class="title">注意事項</h2>
+                   <ol class="bottom-part">
+                       <li>課程皆為實體教學，依教練不同不一定為同一地點</li>
+                       <li>所有課程皆經過評估，可以放心選購</li>
+                       <li>鐵人三項為高強度運動，請依個人能力評估選購</li>
+                       <li>各項運動請自備運動裝備，課程不會提供</li>
+                       <li>課程旨在提升學員三鐵能力，僅提供課程與訓練方式，結束後不會有任何認證</li>
+                       <li>每位教練皆有各種國際證照，對於教練專業度無須擔心</li>
+                       <li>如訂單已超過指定時間則無法取消，請多加注意</li>
+                       <li>退款請提供原因與個人資料，以利進行作業</li>
+                       <li>因應新冠肺炎政府政策，上課除游泳外需全程配戴口罩，期間規定依政府政策做滾動式調整</li>
+                       <li>上課途中如感到不適請立刻通知教練或相關工作人員</li>
+                   </ol>
+               </div>
+               <div class="right-area">
+                   <h2 class="title">此訂單商品</h2>
+                   <div class="product-list">
+                       <a href="#" class="product">
+                           <img src="./src/images/img/member/class1.jpg">
+                           <p>跟著阿晉動次動 - 三鐵進階訓練<br><span>$1600TWD</span></p>
+                       </a>
+                       <a href="#" class="product">
+                           <img src="./src/images/img/member/class2.jpg">
+                           <p>從零開始練三鐵！！<br><span>$1450TWD</span></p>
+                       </a>
+                       <a href="#" class="product">
+                           <img src="./src/images/img/member/class3.jpg">
+                           <p>連河豚也能懂得三鐵訓練菜單 - Teacher April<br><span>$1450TWD</span></p>
+                       </a>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </main>
+
+   
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>TriclubSample|Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+</head>
+
+<body>
+    <!--這是header-->
+    <header id="header" :class="{sticky: active}" >
+        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+   <!--內容所有都放在這div裡面-->
+   <main class="race_list_wrapper">
+       <div id="race_list">
+           <nav>這裡是頁籤</nav>
+           <main class="race_wrapper"> 
+                <div class="race_title">日期 地點 賽事 項目 活動狀態</div>
+                <template v-for="game in games">
+                   <div class="raceinfo"> <!--王映婷請記得在寫scss時取消第一排a預設屬性！！！-->
+                        <a class="artical" href="./race-content.html">{{game.date}}</a>
+                        <a class="artical" href="./race-content.html">{{game.place}}</a> 
+                        <a class="artical" href="./race-content.html">{{game.title}}</a>
+                        <div>
+                             <a  v-for="distence in game.distences" :style="{backgroundColor:distence.color}" class="artical" href="./race-content.html">{{distence.dis}}</a>  
+                        </div>
+                        <a class="artical" href="./race-content.html">{{game.state}}</a>
+                   </div>
+                </template>
+            </main>
+           <nav>這裡是nav</nav>
+       </div>
+   </main>
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+    <!--header/footer component-->
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/component/common/header.js"></script>
+    <script src="./src/component/common/footer.js"></script>
+
+ <script>
+    const raceinfo = new Vue({
+        el: '#race_list',
+        data(){
+         return{
+            
+                // date:"日期",
+                // place:"地點",
+                // title:"賽事",
+                // distences :["項目","項目","項目"],
+                // state:"活動狀態"
+    
+           
+            games :[
+            
+            {   //王映婷要記得丟資料從[1]開始!!!!
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            {
+                date:20210927,
+                place:"新北市",
+                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                distences :[
+                    {
+                    dis:"51.5k",
+                    color:"yellow"
+                    }, 
+                    {
+                    dis:"113k",
+                    color:"orange"
+                    }, 
+                    {
+                    dis:"51.5k",
+                    color:"blue"}
+                    ],
+                state:20210927
+    
+            },
+            
+        ]
+         }   
+      }
+    });
+    
+ </script>
+</body>
+</html>

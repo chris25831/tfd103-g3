@@ -20,11 +20,73 @@
         <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
     </header>
   
-
-   <!--內容所有都放在此，manage-main為引入通用的scss之用。-->
-    <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
-    <main class="manage-main">  
+    <main id="manage-member-personal-info" class="manage-main manage-member-personal-info">  
         <h1 class="manage-title title1">會員資料管理</h1>
+        <div class="bookmark-manage">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
+        </div>
+        <div class="member-list">
+            <table class="info-table">
+                <thead class="member-title">
+                    <tr class="info-items">
+                        <td class="info-item">會員編號</td>
+                        <td class="info-item">會員名稱</td>
+                        <td class="info-item">擁有點數</td>
+                        <td class="info-item">註冊日期</td>
+                        <td class="info-item">最後登入時間</td>
+                        <td class="info-item">會員狀態</td>
+                    </tr>
+                </thead>
+            
+                <tbody class="member-info">
+                    <tr class="single-member">
+                            <td class="member-number">M12345</td>
+                            <td class="member-name">王曉明</td>
+                            <td class="member-points">123點</td>
+                            <td class="member-signup-date">2021/09/08</td>
+                            <td class="member-signin-date">2021/09/08 18:30</td>
+                            <td class="member-signup-status">
+                                <label for="">
+                                    黑名單<input type="checkbox" name="" id="">
+                                </label>
+                            </td>
+                    </tr>
+                    <tr class="single-member">
+                        <td class="member-number">M12345</td>
+                        <td class="member-name">王曉明</td>
+                        <td class="member-points">123點</td>
+                        <td class="member-signup-date">2021/09/08</td>
+                        <td class="member-signin-date">2021/09/08 18:30</td>
+                        <td class="member-signup-status">
+                            <label for="">
+                                黑名單<input type="checkbox" name="" id="">
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <ul class="info-items">
+                <li class="info-item">會員編號</li>
+                <li class="info-item">會員名稱</li>
+                <li class="info-item">擁有點數</li>
+                <li class="info-item">註冊日期</li>
+                <li class="info-item">最後登入時間</li>
+                <li class="info-item">會員狀態</li>
+            </ul> -->
+            <!-- <ul class="member-info">
+                <li class="member-number">M12345</li>
+                <li class="member-name">王曉明</li>
+                <li class="member-points">123點</li>
+                <li class="member-signup-date">2021/09/08</li>
+                <li class="member-signin-date">2021/09/08 18:30</li>
+                <li class="member-signup-status">
+                    <label for="">
+                        黑名單<input type="checkbox" name="" id="">
+                    </label>
+                </li>                
+            </ul> -->
+        </div>
+
     </main>
 
    
@@ -34,14 +96,19 @@
     <!--這是目標標籤會被覆蓋 -->
     </footer>
 
-
-
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/common/manage-header.js"></script>
 <script src="./src/component/common/manage-footer.js"></script>
-<script src="./src/component/common/.js"></script>
-
+<script src="./src/component/common/bookmark-forum.js"></script>
+<script>
+    new Vue({
+        el:"#manage-member-personal-info",
+        data: { 
+            categories: ["會員基本資料","訂單管理","黑名單管理"],
+        },
+    })
+</script>
 
 
 </body>

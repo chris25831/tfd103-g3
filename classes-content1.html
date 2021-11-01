@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>訓練課程-課程介紹 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
+    
+</head>
+
+<body>
+    <!--這是header-->
+
+   <header id="header" :class="{sticky:active}">
+        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+  
+
+   <!--內容所有都放在這div裡面-->
+   <main class="classes-content" id="classes-content">
+        <div>
+            <!-- breadcrumb  -->
+            <p class="small" v-if="checkCatReG()">團練課程 > 課程介紹</p>
+            <p class="small" v-else-if="checkCatReT()">個人教練 > 教練介紹</p>
+            <p class="small" v-else-if="checkCatReM()">營養規劃 > 菜單介紹</p>
+
+            <!-- 如何做到一個V-for 跑完?  V-if如何寫-->
+            <!-- <p v-for="bc in n" v-if="bc.show == 'this[classID]'">{{bc.key1}} > {{bc.key2}}</p> -->
+
+            <!-- TODO: next&prv -->
+
+            <!-- content -->
+            <div class="content1">       
+                <!-- img -->
+                <div class="classcontentimg" id="class-contentimg">
+                    <img v-for="(img,index) in imgs" :src="imgs[index]" alt="無法讀取照片"/>
+                </div>
+                <!-- word -->
+                <!-- 組件一 -->
+                <contentdetail-1  v-if="checkCatReG() || checkCatReM()" :checkG="checkCatReG()" :checkM="checkCatReM()" :class-title="classTitle" :classID="classID" :trainer="trainer" :class-location="classLocation" :nutrients="nutrients"></contentdetail-1>
+
+                <!-- 組件二 -->
+                <contentdetail-2  v-else :class-title="classTitle" ></contentdetail-2>
+               
+            </div>
+        </div>
+   </main>
+
+   
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+
+    <!--component-->
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/component/common/header.js"></script>
+    <script src="./src/component/common/footer.js"></script>
+    <script src="./src/component/classes/content-detail.js"></script>
+    <script>
+        // 正規表達式判斷
+        var catRE_G = /^G/ ;
+        var catRE_T = /^T/ ;
+        var catRE_M = /^M/ ;
+
+
+        new Vue({
+            el:'#classes-content',
+            data:{
+                // n:[
+                //     {
+                //       key1:"課程",
+                //       key2:"dddd",
+                //       show:"G12345",
+                //     },
+                //     {
+                //       key1:"課程2",
+                //       key2:"ttttt",
+                //       show:"T",
+                //     },
+                //     {
+                //       key1:"課程3",
+                //       key2:"fffff",
+                //       show:"M",
+                //     },
+                // ],
+
+                classID:'M12345',
+                classTitle:"檸香鮭魚蘆筍藍莓沙拉",
+                trainer:"許上元",
+                en_trainer:"",
+                classLocation:"台北",
+                nutrients:{
+                    cal:822,
+                    protein:55.4,
+                    carb:69.7,
+                    fat:36.6,
+                },
+
+
+
+                imgs:[
+                    // 1
+                    ['./src/images/img/classes/menu/menu01-d1.jpg'],
+                    // 2
+                    ['./src/images/img/classes/menu/menu01-d1.jpg'],
+                    // 3
+                    ['./src/images/img/classes/menu/menu01-d1.jpg'],    
+                ],
+
+            },
+            methods:{
+                // 團體課程
+                checkCatReG(){
+                    if(catRE_G.test(this.classID)){
+                        console.log(this.classID);
+                        return true;
+                    }else{
+                        return false;
+                    }  
+                },
+
+                // 個人教練
+                checkCatReT(){
+                    if(catRE_T.test(this.classID)){
+                        console.log(this.classID);
+                        return true;
+                    }else{
+                        return false;
+                    }   
+                },
+
+                // 營養菜單
+                checkCatReM(){
+                    if(catRE_M.test(this.classID)){
+                        console.log(this.classID);
+                        return true;
+                    }else{
+                        return false;
+                    }    
+                },
+            }
+
+
+
+
+        });
+    </script>
+
+</body>
+</html>

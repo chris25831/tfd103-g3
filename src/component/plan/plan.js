@@ -1,11 +1,6 @@
 //====== *** *** *** *** ======//
 
-
-
 // ***lightbox*** //
-
-
-
 const question = new Vue({
     el: '#plan_question',
     data(){
@@ -15,6 +10,7 @@ const question = new Vue({
             current_tab:0,
             max:4,
             questions:[
+                //第一題
                 {
                     title:'你的參賽日期',
                     choices:
@@ -30,8 +26,9 @@ const question = new Vue({
                     }],
                     name:'racedate',
                     type:'select',
-                    answer: null
+                    answer: null //前面要塞值的話就判斷是question[0](哪一題)結果立一個變數 === {{question.answer}}
                 },
+                //第二題
                 {
                     title:'想挑戰的競賽距離',
                     choices:
@@ -49,6 +46,7 @@ const question = new Vue({
                     type:'radio',
                     answer: null
                 },
+                //第三題
                 {
                     title:'想制定幾週的訓練計畫呢',
                     choices:
@@ -90,23 +88,23 @@ const question = new Vue({
     },
 
     methods: {
+        last(){
+            if(this.current_tab <= this.max  && this.current_tab > 0){
+                this.current_tab --     
+            }
+        },
         currenttab(){
-                if(this.current_tab < this.max){
-                    return  this.current_tab ++
+                if(this.current_tab < this.max && this.current_tab > 0){
+                    this.current_tab ++
+                }
+                if(this.current_tab == 4){
+                    return this.tab ="完成"  //有傳回值就要return
                 }else{
-                    return  this.tab = "送出"
+                    return this.tab ="下一步"
                 }
             }
-      },       
+      }, 
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -208,7 +206,13 @@ new Vue({
   el: '#plan_wrapper',
   data(){
     return{
-
+        memberinfo:
+            {
+                photo:"./src/images/img/plan/memberphoto.png",
+                membername:"maggie",
+                racedate:20221127,
+                week:12
+            },
       }
   },
 });

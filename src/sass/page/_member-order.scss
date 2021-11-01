@@ -1,0 +1,123 @@
+.member-order{
+    @include bgnormal(100%);
+    .member-bgwhite{
+        @include bgwhite();
+        width: 1200px;
+        height: 100%;
+        margin: 0 auto;
+        padding-top: 10px;
+        .order-breadcrumb{
+            padding: 5px 10px 5px 30px;
+            margin-bottom: 10px;
+            ol{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                li{
+                    display: inline-block;
+                    a{
+                        text-decoration: none;
+                        color: black;
+                        &:hover{
+                            color: $orange;
+                        }
+                    }
+                    &::before{
+                        content: "/";
+                        margin: 0 10px;
+                    }
+                    &:first-child::before{
+                        display: none;
+                    }
+                }
+            }
+        }
+        .previouspage{ //a標籤
+            border-radius: 10px 0 10px 0;
+            background-color: $orange;
+            display: block;
+            width: 50px;
+            height: 50px;
+            box-shadow: 2px 2px 3px #6e6d6d;
+            position: relative;
+            .arrow{ //div
+                border: 5px solid $white;
+                border-width: 0px 5px 5px 0;
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                transform: rotate(135deg);
+                position: absolute;
+                top: 35%;
+                left: 43%;
+            }
+        }
+        .order-bottom{
+            margin: 20px 50px 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            .left-area{
+                display: inline-block;
+                .top-part{
+                    width: 454px;
+                    height: 291px;
+                    background-color: white;
+                    border-left: 20px solid $orange;
+                    border-radius: 10px;
+                    box-shadow: 2px 2px 3px #6e6d6d;
+                    margin-bottom: 150px;
+                    position: relative;
+                    ul{
+                        list-style: none;
+                        padding: 30px 40px;
+                        margin: 0;
+                        height: 100%;
+                        li{
+                            margin: 25px auto;
+                        }
+                    }
+                    .orangebutton{
+                        position: absolute;
+                        top: 110%;
+                        right: 5%;
+                        width: 150px;
+                    }
+                }
+                .bottom-part{
+                    width: 454px;
+                    margin-bottom: $bottomspacing;
+                    li{
+                        margin: 5px;
+                    }
+                }
+            }
+            .right-area{
+                display: inline-block;
+                .product-list{
+                    .product{
+                        border-radius: 10px;
+                        background-color: white;
+                        box-shadow: 2px 2px 3px #6e6d6d;
+                        width: 510px;
+                        display: flex;
+                        justify-content: start;
+                        text-decoration: none;
+                        margin-bottom: 30px;
+                        img{
+                            width: 175px;
+                            height: 175px;
+                        }
+                        p{
+                            margin-left: 15px;
+                            color: black;
+                            span{
+                                color: red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 此為後台頁面樣板 -->
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>會員資料管理 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+</head>
+
+<body>
+    <!--這是header-->
+    <header id="manage-header">
+        <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
+    </header>
+  
+    <main id="manage-order-single" class="manage-main manage-order-list">  
+        <h1 class="manage-title title1">會員資料管理</h1>
+        <div class="bookmark-manage">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
+        </div>
+        <div class="back">
+            <!-- 回上一頁按鈕放置處 -->
+            <a href="./manage-forum-home.html">
+                <div class="previouspage">
+                    <div class="arrow"></div>
+                </div>
+            </a>
+        </div>
+
+        <div class="order-single-detail">
+
+        </div>
+
+        <div class="order-detail-items">
+            <h3 class="order-detail-title">購買項目</h3>
+
+            <div class="order-item">
+                <div class="left">
+                    <div class="img-wrapper">
+                        <img src="https://via.placeholder.com/141" alt="">
+                    </div>
+                </div>
+
+                <div class="right">
+                    <span class="course-title">成人團體跑步課程</span>
+                    <span class="course-number">課程編號：G1123555</span>
+                    <span class="price">金額：$ 200</span>
+                </div>
+            </div>
+
+            <div class="order-item">
+                <div class="left">
+                    <div class="img-wrapper">
+                        <img src="https://via.placeholder.com/141" alt="">
+                    </div>
+                </div>
+
+                <div class="right">
+                    <span class="course-title">成人團體跑步課程</span>
+                    <span class="course-number">課程編號：G1123555</span>
+                    <span class="price">金額：$ 200</span>
+                </div>
+            </div>
+
+        </div>
+        
+
+    </main>
+
+   
+   <!-- 這是footer-->
+    <footer id="manage-footer">
+        <manage-footer></manage-footer>   
+    <!--這是目標標籤會被覆蓋 -->
+    </footer>
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
+<script src="./src/component/common/manage-footer.js"></script>
+<script src="./src/component/common/bookmark-forum.js"></script>
+<script>
+    new Vue({
+        el:"#manage-order-single",
+        data: { 
+            categories: ["會員基本資料","訂單管理","黑名單管理"],
+        },
+    })
+</script>
+
+
+</body>
+</html>
