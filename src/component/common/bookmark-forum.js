@@ -3,5 +3,5 @@ Vue.component("bookmark-forum",{
     template: `
         <span class="bookmark-item">{{category}}</span>
     `,
+     
 });
-
