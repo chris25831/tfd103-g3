@@ -89,6 +89,25 @@
   }
 }
 
+.yellowbutton {
+  border: 0.3px solid $yellow;
+  width: 262px;
+  height: 56px;
+  border-radius: 30px;
+  background-color: $white;
+  color: $yellow;
+  box-shadow: 2px 2px 3px 4px white inset, 2px 2px 1px $yellow;
+  transition: letter-spacing 1s;
+
+  &:active {
+    cursor: pointer;
+    background-color: $white;
+    box-shadow: 0.3px 0.3px 3px 4px rgb(255, 255, 255) inset,
+      2px 2px 5px 3px rgb(131, 128, 128) inset, 1px 1px $yellow;
+    letter-spacing: 1.5px;
+  }
+}
+
 //圓形小按鈕，主要用於前台討論區
 $places: "frontend", "manage";
 @each $place in $places {
