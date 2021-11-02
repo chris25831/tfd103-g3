@@ -55,7 +55,7 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
-                position: relative;
+                
                 div.like {
                     height: auto;
                     width: auto;
@@ -76,33 +76,41 @@
                     margin: 0 0px 0 22px;
                     display: flex;
                     align-items: center;
+                    position: relative;
                     img {
                         width: 6px;
                         height: 24px;
                         cursor: pointer;
                     }
-                }
-                div.drop-down {
-                    position: absolute;
-                    top: 85%;
-                    right: -20%;
-                    background-color: lightgray;
-                    width: 100px;
-                    height: 30px;
-                    line-height: 30px;
-                    text-align: center;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    &::before {
-                        content: "";
+                    div.drop-down {
                         position: absolute;
-                        top: -10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        border-top: 0;
-                        border-bottom: solid lightgray 10px ;
-                        border-left: solid transparent 10px;
-                        border-right: solid transparent 10px;
+                        top: 150%;
+                        right: -47px;
+                        background-color: lightgray;
+                        width: 100px;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: center;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        @include table() {
+                            // width: 459px;
+                        }
+                        @include mobile(){
+                            width: 50px;
+                            right: -22px;
+                        }
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: -10px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            border-top: 0;
+                            border-bottom: solid lightgray 10px ;
+                            border-left: solid transparent 10px;
+                            border-right: solid transparent 10px;
+                        }
                     }
                 }
             }
@@ -139,6 +147,7 @@
 
                 p.text {
                     margin: 0;
+                    line-height: 1.5rem;
                 }
             }
         }
@@ -146,7 +155,7 @@
 
     .new-comment {
         width: 788px; 
-        min-height: 172px;
+        min-height: 250px;
         margin: 24px auto 0;
         border: solid #00429D 1px;
         border-radius: 30px;
@@ -162,6 +171,22 @@
             border-radius: 50%;
             top: 18px;
             left: 28px;
+        }
+        textarea.input-comment {
+            border: none;
+            padding: 10px;
+            resize: none;
+            position: absolute;
+            width: 85%;
+            min-height: 150px;
+            left: 90px;
+            top: 20px;
+            @include table() {
+                width:75%;
+            }
+            @include mobile(){
+                width:65%;
+            }
         }
         button.submit-comment {
             position: absolute;
@@ -206,6 +231,7 @@
             p.comment-content {
                 padding: 72px 28px 16px;
                 margin: 0;
+                line-height: 1.5rem;
             }
             div.report {
                 position: absolute;
@@ -218,30 +244,38 @@
                     height: 100%;
                     cursor: pointer;
                 }
-            }
-            div.drop-down-comment {
-                position: absolute;
-                top: 30%;
-                right: -2.5%;
-                background-color: lightgray;
-                width: 100px;
-                height: 30px;
-                line-height: 30px;
-                text-align: center;
-                border-radius: 5px;
-                cursor: pointer;
-                &::before {
-                    content: "";
+                div.drop-down-comment {
                     position: absolute;
-                    top: -10px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    border-top: 0;
-                    border-bottom: solid lightgray 10px ;
-                    border-left: solid transparent 10px;
-                    border-right: solid transparent 10px;
+                    top: 150%;
+                    right: -47px;
+                    background-color: lightgray;
+                    width: 100px;
+                    height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    @include table() {
+                        // width: 459px;
+                    }
+                    @include mobile(){
+                        width: 50px;
+                        right: -22px;
+                    }
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border-top: 0;
+                        border-bottom: solid lightgray 10px ;
+                        border-left: solid transparent 10px;
+                        border-right: solid transparent 10px;
+                    }
                 }
             }
+           
         }
     }
 }

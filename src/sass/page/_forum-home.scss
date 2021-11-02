@@ -13,5 +13,10 @@ body {
         .article-list {
             @extend %article-list;
         }
+        div.pagination {
+            nav {
+                margin: 20px auto 0;
+            }
+        }
     }
 }
