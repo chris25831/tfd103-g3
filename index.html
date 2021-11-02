@@ -27,7 +27,7 @@
 
 
    <!-- 如何為人生第一場三鐵安排訓練？ -->
-   <section class="slider__warpper">
+   <section class="slider__wrapper">
 
       <div class="flex__container flex--one flex--active" data-slide="1">
          <div class="flex__content">
@@ -133,7 +133,50 @@
 
    
    <!-- 讓TriClub 帶你更專業 -->
-   <section class="pro__training" style="border: 1px solid red; height: 935px;">
+   <section class="pro__training" style="border: 2px solid green; height: 1000px;">
+
+      <div class="pro__training__title">
+         <p class="text--sub">Pro Triathlon Training</p>
+         <h1 class="text--big">讓TriClub帶你更專業</h1>
+         <h2 class="text--small">成為更強的鐵人 從現在開始</h2>
+         <p class="text--normal">從新手到菁英、從游泳到功率，Triclub打造專業鐵人基地，提供專屬您的客製訓練計畫！跟著Triclub的腳步，解決你的鐵人三項訓練困境。想變強？跟著我們就對了！</p>
+      </div>
+
+
+
+      <!-- 三張照片 -->
+      <div class="background-box" style="height: 340px; width: 85%; background-color: #E75F49;">
+      
+         <div class="sports">
+
+            <div class="item">
+              <div class="pic-container">
+                <img class="pic1" src="./src/images/img/index/bike_255x255.jpg">
+                <img class="pic2" src="./src/images/img/index/run_255x255.jpg">
+              </div>
+              <h2 style="color: #fff;">SWIM strong</h2>
+            </div>
+
+            <div class="item">
+              <div class="pic-container">
+               <img class="pic1" src="./src/images/img/index/bike_255x255.jpg">
+               <img class="pic2" src="./src/images/img/index/run_255x255.jpg">
+              </div>
+              <h2 style="color: #fff;">CYCLE fast</h2>
+            </div>
+            
+            <div class="item">
+              <div class="pic-container">
+               <img class="pic1" src="./src/images/img/index/bike_255x255.jpg">
+               <img class="pic2" src="./src/images/img/index/run_255x255.jpg">
+              </div>
+              <h2 style="color: #fff;">RUN to win</h2>
+            </div>
+
+         </div>
+
+      </div>
+
 
       <div class="banner">
          <div class="marquee-container">
@@ -153,6 +196,7 @@
 
       <!-- 開始製作我的個人計畫 -->
       <section class="training__plan" style="background-color: #00429D; height: 1470px;">
+         
          <div class="training__plan__svg">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="451.874" viewBox="0 0 1730.91 451.874">
                <g id="Group_487" data-name="Group 487" transform="translate(0.082 0.352)">
@@ -188,7 +232,9 @@
          <!-- 這裡是放計畫表的黃色塊 -->
          <div class="training__plan__container" style="background-color: #FFEF36; height: 600px; width: 965px;">
          </div>
-          
+      
+         
+
       </section>
    
    
@@ -246,7 +292,7 @@
          <!-- 網站FAQ -->
          <div class="FAQ__container">
             
-            <h1 style="line-height:3;">FAQ</h1>
+            <h1 style="line-height:3;">Triclub FAQs</h1>
             
             <div class="faq-drawer">
                <input class="faq-drawer__trigger" id="faq-drawer" type="checkbox"/><label class="faq-drawer__title" for="faq-drawer">FAQ 1 </label>
@@ -339,7 +385,7 @@
       if (current === next) {
       return false;
       } else {
-      $('.slider__warpper').find('.flex__container[data-slide=' + next + ']').addClass('flex--preStart');
+      $('.slider__wrapper').find('.flex__container[data-slide=' + next + ']').addClass('flex--preStart');
       $('.flex--active').addClass('animate--end');
       setTimeout(function() {
             $('.flex--preStart').removeClass('animate--start flex--preStart').addClass('flex--active');

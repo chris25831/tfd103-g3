@@ -4,7 +4,7 @@
     padding: 0;
     /* outline: 1px solid black; */
 }
-.slider__warpper{
+.slider__wrapper{
 	display: block;
 	height: 750px;
 }
@@ -66,7 +66,7 @@
 	font-weight: bold;
 	/* letter-spacing: ; */
 	text-transform: uppercase;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .text--big {
@@ -74,7 +74,12 @@
 	font-size: 80px;
 	font-weight: bold;
 	line-height: 80px;
-    margin-left: -8px;
+    margin:0 0 0 -4px;
+}
+
+.text--small {
+	font-size: 40px;
+	margin-top: 20px;
 }
 
 .text--normal {
@@ -112,11 +117,11 @@
 
 /* 第二張slide */
 .flex--two .flex__item--left {
-	background: #FFA10A;
+	background: #707070;
 }
 
 .flex--two .flex__item--right {
-	background: #00429D;
+	background: #E75F49;
 }
 
 /* 第三張slide */
@@ -125,7 +130,7 @@
 }
 
 .flex--three .flex__item--right {
-	background: #FFA10A;
+	background: linear-gradient(180deg, rgba(255,161,10,1) 50%, rgba(255,239,54,1) 100%);
 }
 
 .slider__img {
@@ -199,6 +204,75 @@
 	display: block;
 	position: relative;
   }
+
+  .pro__training__title{
+	position: absolute;
+	top: 80px;
+	left: 250px;
+
+  }
+
+  .pro__training__title .text--normal {
+	color: #000;
+	margin-top: 20px;
+}
+
+  .background-box{
+	position:absolute;
+	bottom: 200px;
+	right: 0px; 
+  }
+
+  .sports {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 50px ;
+    margin: 0 6%;
+    text-align: center;
+}
+
+.sports img {
+    width: 300px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .sports {
+        grid-row-gap: 20px ;
+    }
+	.sports img {
+		width: 200px;
+	}
+}
+
+
+.sports .item{
+    text-align: center;
+    width: 100%;
+}
+
+.pic-container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    font-size: 0;
+}
+
+.pic-container .pic2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.pic-container:hover .pic2{
+    opacity:1;
+}
+
+
+
+
   
   .banner{
 	text-align: left;
@@ -291,7 +365,6 @@
   }
   
   td:first-child {
-	font-weight: bold;
 	text-align: left;
   }
   
@@ -366,7 +439,7 @@
 	 border-style: solid;
 	 border-width: 1px 1px 0 0;
 	 content: " ";
-	 display: inline-block;
+	 display: block;
 	 float: right;
 	 height: 10px;
 	 left: 2px;
@@ -375,7 +448,7 @@
 	 top: 2px;
 	 transform: rotate(135deg);
 	 transition: 0.35s ease-in-out;
-	 vertical-align: top;
+	//  vertical-align: top;
 	 width: 10px;
    }
    
