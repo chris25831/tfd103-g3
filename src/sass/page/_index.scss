@@ -4,7 +4,7 @@
     padding: 0;
     /* outline: 1px solid black; */
 }
-.slider__warpper{
+.slider__wrapper{
 	display: block;
 	height: 750px;
 }
@@ -66,7 +66,7 @@
 	font-weight: bold;
 	/* letter-spacing: ; */
 	text-transform: uppercase;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .text--big {
@@ -74,7 +74,12 @@
 	font-size: 80px;
 	font-weight: bold;
 	line-height: 80px;
-    margin-left: -8px;
+    margin:0 0 0 -4px;
+}
+
+.text--small {
+	font-size: 40px;
+	margin-top: 20px;
 }
 
 .text--normal {
@@ -112,11 +117,11 @@
 
 /* 第二張slide */
 .flex--two .flex__item--left {
-	background: #FFA10A;
+	background: #707070;
 }
 
 .flex--two .flex__item--right {
-	background: #00429D;
+	background: #E75F49;
 }
 
 /* 第三張slide */
@@ -125,7 +130,7 @@
 }
 
 .flex--three .flex__item--right {
-	background: #FFA10A;
+	background: linear-gradient(180deg, rgba(255,161,10,1) 50%, rgba(255,239,54,1) 100%);
 }
 
 .slider__img {
@@ -163,253 +168,312 @@
 }
 
 
-/* Animate-START point */
-
+/* animate start point */
 .flex__container.animate--start .flex__content {
 	transform: translate3d(0,-200%,0);
 	opacity: 0;
-}
-
-.flex__container.animate--start .slider__img {
+  }
+  
+  .flex__container.animate--start .slider__img {
 	transform: translate3d(-200px,0,0);
 	opacity: 0;
-}
-
-/* Animate-END point */
-
-.flex__container.animate--end .flex__item--left {
+  }
+  
+  /* animate end point */
+  .flex__container.animate--end .flex__item--left {
 	transform: scaleY(0);
-}
-
-.flex__container.animate--end .flex__item--right {
+  }
+  
+  .flex__container.animate--end .flex__item--right {
 	transform: scaleX(0);
-}
-
-.flex__container.animate--end .flex__content {
+  }
+  
+  .flex__container.animate--end .flex__content {
 	transform: translate3d(0,200%,0);
 	opacity: 0;
-}
-
-.flex__container.animate--end .slider__img {
+  }
+  
+  .flex__container.animate--end .slider__img {
 	transform: translate3d(200px,0,0);
 	opacity: 0;
-}
-
-
-.pro__training{
+  }
+  
+  
+  /* 讓TriClub 帶你更專業scss */
+  .pro__training{
 	display: block;
 	position: relative;
+  }
+
+  .pro__training__title{
+	position: absolute;
+	top: 80px;
+	left: 250px;
+
+  }
+
+  .pro__training__title .text--normal {
+	color: #000;
+	margin-top: 20px;
 }
 
-.banner{
+  .background-box{
+	position:absolute;
+	bottom: 200px;
+	right: 0px; 
+  }
+
+  .sports {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 50px ;
+    margin: 0 6%;
+    text-align: center;
+}
+
+.sports img {
+    width: 300px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .sports {
+        grid-row-gap: 20px ;
+    }
+	.sports img {
+		width: 200px;
+	}
+}
+
+
+.sports .item{
+    text-align: center;
+    width: 100%;
+}
+
+.pic-container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    font-size: 0;
+}
+
+.pic-container .pic2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.pic-container:hover .pic2{
+    opacity:1;
+}
+
+
+
+
+  
+  .banner{
 	text-align: left;
 	max-width: 100%;
 	background-color: #FFEF36;
-	// padding: 1rem,0;
-	// margin: 0 0 3rem;
+	/* padding: 1rem,0;
+	margin: 0 0 3rem; */
 	max-height: 68px;
 	position: absolute;
 	bottom: 100px;
   }
   
-  marquee{
-	padding: 10px;
-	color: #000000;
-	text-transform: uppercase;
-	font-size: 30px;
-	font-weight: 800;
+	marquee{
+		padding: 10px;
+		color: #000000;
+		text-transform: uppercase;
+		font-size: 30px;
+		font-weight: 800;
+	}
+	
+	span{
+		color: #000000;
+	}
+  
+  
+  /* 開始製作我的個人計畫 */
+  .training__plan{
+	display: block;
+	position: relative;
   }
   
-  span{
-	color: #000000;
+  .training__plan__container{
+	position: absolute;  
+	bottom: 6%;           
+	left: 0;        
+	right: 0;
+	margin: auto; 
+  
   }
-
-
-
-.training__plan{
+  
+  .training__plan__svg{
+	position: absolute;  
+	top: 20%;   
+  }
+  
+  
+  
+  /* TriClub會員專屬回饋 */
+  .member__FAQ{
 	display: block;
-}
-
-
-
-@keyframes scroll1 {
-	0% {
-		transform: translate(100%);
+	position: relative;
+	border: 1px solid greenyellow;
+  }
+  
+  .member__title {
+	position: absolute;
+	top: 80px;
+	left: 170px;
+	color: #fff;
+	width: 600px;
 	}
-	100% {
-		transform: translate(-100%);
+  
+  
+  /* 會員權益表格  */
+  .member-table {
+	border-collapse: separate;
+	border-radius: 10px;
+	border-spacing: 0;
+	margin: 4rem 0;
+	width: 37%;
+	position: absolute;
+	top: 280px;
+	left: 170px;
+  }
+  
+  th {
+	background-color: #00429D;
+	color: #fff;
+	border-bottom: 1px solid #d1d1d1;
+  }
+  
+  th,
+  td {
+	padding: 0.75em;
+	text-align: center;
+  }
+  
+  td {
+	background-color: white;
+  }
+  
+  td:first-child {
+	text-align: left;
+  }
+  
+  tbody tr:nth-child(odd) td {
+	background-color: #f6f6f6;
+  }
+  
+  thead th:first-child {
+	  border-top-left-radius: 10px;
+	  text-align: left;
+  }
+  
+  thead th:last-child {
+	  border-top-right-radius: 10px;
+  }
+  
+  tbody tr:last-child td:first-child {
+	border-bottom-left-radius: 10px;
+  }
+  
+  tbody tr:last-child td:last-child {
+	border-bottom-right-radius: 10px;
+  }
+  
+  @media only screen and (max-width: 768px) {
+	.member-table {
+	 width: 90%;
 	}
-}
-@keyframes scroll2 {
-	0% {
-		transform: translate(0);
-	}
-	100% {
-		transform: translate(-200%);
-	}
-}
-
-
-// section {
-// 	position: relative;
-// 	width: 100%;
-// 	height: 100vh;
-// 	overflow: hidden;
-// 	.scroll {
-// 		width: 100%;
-// 		display: flex;
-// 		div {
-// 			color: #000000;
-// 			font-size: 4.5em;
-// 			background: #eeeeeeee;
-// 			white-space: nowrap;
-// 			font-weight: 700;
-// 			text-transform: uppercase;
-// 			letter-spacing: -2px;
-// 			animation: scroll1 30s linear infinite;
-// 			animation-delay: -40s;
-// 			&:nth-child(2) {
-// 				animation: scroll2 30s linear infinite;
-// 				animation-delay: -25s;
-// 			}
-// 			span {
-// 				font-weight: 100;
-// 			}
-// 		}
-// 		&:nth-child(even) {
-// 			div {
-// 				animation-direction: reverse;
-// 				&:nth-child(2) {
-// 					animation-direction: reverse;
-// 				}
-// 			}
-// 		}
-// 	}
-// 	.scroll.text-1 {
-// 		transform: rotate(15deg) translateY(100px);
-// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-// 	}
-// 	.scroll.text-2 {
-// 		transform: rotate(-10deg) translateY(480px) translateX(-100px);
-// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-// 	}
-// 	.scroll.text-3 {
-// 		transform: rotate(-15deg) translateY(-100px);
-// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-// 	}
-// 	.scroll.text-4 {
-// 		transform: rotate(10deg) translateY(-250px);
-// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-// 	}
-// 	.scroll.text-5 {
-// 		transform: rotate(10deg) translateY(320px);
-// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-// 	}
-// 	.scroll.text-6 {
-// 		transform: rotate(5deg) translateY(100px);
-// 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-// 	}
-// }
-
-
-
-
-
-// .container {
-//   margin: 0 auto;
-//   padding: 4rem;
-//   width: 48rem;
-//   background: #fff;
-//   color: #4d5974;
-//   display: flex;
-// }
-
-// .accordion {
-//   .accordion-item {
-//     border-bottom: 1px solid $yellow;
-//     button[aria-expanded='true'] {
-//       border-bottom: 1px solid $blue;
-//     }
-//   }
-//   button {
-//     position: relative;
-//     display: block;
-//     text-align: left;
-//     width: 100%;
-//     padding: 1em 0;
-//     color: $text;
-//     font-size: 1.15rem;
-//     font-weight: 400;
-//     border: none;
-//     background: none;
-//     outline: none;
-//     &:hover, &:focus {
-//       cursor: pointer;
-//       color: $blue;
-//       &::after {
-//         cursor: pointer;
-//         color: $blue;
-//         border: 1px solid $blue;
-//       }
-//     }
-//     .accordion-title {
-//       padding: 1em 1.5em 1em 0;
-//     }
-//     .icon {
-//       display: inline-block;
-//       position: absolute;
-//       top: 18px;
-//       right: 0;
-//       width: 22px;
-//       height: 22px;
-//       border: 1px solid;
-//       border-radius: 22px;
-//       &::before {
-//         display: block;
-//         position: absolute;
-//         content: '';
-//         top: 9px;
-//         left: 5px;
-//         width: 10px;
-//         height: 2px;
-//         background: currentColor;
-//       }
-//       &::after {
-//         display: block;
-//         position: absolute;
-//         content: '';
-//         top: 5px;
-//         left: 9px;
-//         width: 2px;
-//         height: 10px;
-//         background: currentColor;
-//       }
-//     }
-//   }
-//   button[aria-expanded='true'] {
-//     color: $blue;
-//     .icon {
-//       &::after {
-//         width: 0;
-//       }
-//     }
-//     + .accordion-content {
-//       opacity: 1;
-//       max-height: 9em;
-//       transition: all 200ms linear;
-//       will-change: opacity, max-height;
-//     }
-//   }
-//   .accordion-content {
-//     opacity: 0;
-//     max-height: 0;
-//     overflow: hidden;
-//     transition: opacity 200ms linear, max-height 200ms linear;
-//     will-change: opacity, max-height;
-//     p {
-//       font-size: 1rem;
-//       font-weight: 300;
-//       margin: 2em 0;
-//     }
-//   }
-// }
+  }  
+	
+  
+  
+  /* FAQ區塊 */
+  .FAQ__container {
+	display: block;
+	padding: 100px;
+	background-color: #fff;
+	width: 80%;
+	border-radius:10px;
+	position: absolute;  
+	bottom: 6%;           
+	left: 0;        
+	right: 0;
+	margin: auto; 
+   }
+   
+   .faq-drawer {
+	 margin-bottom: 30px;
+   }
+   
+   .faq-drawer__content-wrapper {
+	 font-size: 1.25em;
+	 line-height: 1.4em;
+	 max-height: 0px;
+	 overflow: hidden;
+	 transition: 0.25s ease-in-out;
+   }
+   
+   .faq-drawer__title {
+	 border-top: #000 1px solid;
+	 cursor: pointer;
+	 display: block;
+	 font-size: 1.25em;
+	 font-weight: 700;
+	 padding: 30px 0 0 0;
+	 position: relative;
+	 margin-bottom: 0;
+	 transition: all 0.25s ease-out;
+   }
+   
+   .faq-drawer__title::after {
+	 border-style: solid;
+	 border-width: 1px 1px 0 0;
+	 content: " ";
+	 display: block;
+	 float: right;
+	 height: 10px;
+	 left: 2px;
+	 position: relative;
+	 right: 20px;
+	 top: 2px;
+	 transform: rotate(135deg);
+	 transition: 0.35s ease-in-out;
+	//  vertical-align: top;
+	 width: 10px;
+   }
+   
+   .faq-drawer__title:hover { 
+	 color: #4E4B52  ;
+   }
+   
+   .faq-drawer__trigger:checked
+	 + .faq-drawer__title
+	 + .faq-drawer__content-wrapper {
+	 max-height: 350px;
+   }
+   
+   .faq-drawer__trigger:checked + .faq-drawer__title::after {
+	 transform: rotate(-45deg);
+	 transition: 0.25s ease-in-out;
+   }
+   
+   input[type="checkbox"] {
+	 display: none;
+   }
+   
+   @media only screen and (max-width: 768px) {
+	 .FAQ__container {
+	  width: 90%;
+	  padding: 50px;
+	 }
+   }
