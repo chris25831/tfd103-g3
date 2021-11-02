@@ -274,7 +274,7 @@
 
 
   
-  .banner{
+.banner{
 	text-align: left;
 	max-width: 100%;
 	background-color: #FFEF36;
@@ -283,8 +283,8 @@
 	max-height: 68px;
 	position: absolute;
 	bottom: 100px;
-  }
-  
+}
+
 	marquee{
 		padding: 10px;
 		color: #000000;
@@ -292,7 +292,7 @@
 		font-size: 30px;
 		font-weight: 800;
 	}
-	
+
 	span{
 		color: #000000;
 	}
@@ -302,6 +302,11 @@
   .training__plan{
 	display: block;
 	position: relative;
+  }
+
+  .training__plan__svg{
+	position: absolute;  
+	top: 20%;   
   }
   
   .training__plan__container{
@@ -313,14 +318,9 @@
   
   }
   
-  .training__plan__svg{
-	position: absolute;  
-	top: 20%;   
-  }
   
   
-  
-  /* TriClub會員專屬回饋 */
+  /* TriClub會員專屬 */
   .member__FAQ{
 	display: block;
 	position: relative;
@@ -395,7 +395,6 @@
 	}
   }  
 	
-  
   
   /* FAQ區塊 */
   .FAQ__container {
@@ -477,3 +476,107 @@
 	  padding: 50px;
 	 }
    }
+
+
+// 三鐵賽事訓練班   
+.training__course{
+	display: block;
+	position: relative;
+}	
+
+.training__course__title{
+	position: absolute;
+	top: 80px;
+	left: 170px;
+	color: #000;
+}
+
+.training__course__title .text--normal {
+	color: #000;
+	margin-top: 20px;
+}
+
+.training__course__svg{
+	position: absolute;  
+	bottom: 5%;
+	z-index:-100; 
+}
+
+
+.course__flex-container{
+	display: flex;
+	margin: 20% 10% 0 10%;
+}
+
+.course__item {
+	color: #fff;
+	font-weight: 800;
+	min-height:450px;
+	width:350px;
+	max-width:80%;
+	margin:0 auto;
+	position:relative;
+  }
+
+// Group Training 團體訓練  
+#course__item_1 {
+	background: url('../src/images/img/index/grouptraning_400x600.jpg');
+	width: 100%;
+	height: 100%;    
+	position: absolute;
+	max-width: 95%;
+	text-align: center;
+  }
+#course__item_2 {
+	width: 100%;
+	height: 100%;
+	background: #FFEF36;
+	position: absolute;
+	max-width: 95%;
+	left: 5%;
+	top: 5%;
+	z-index:-1;
+  }
+
+// Personal Coach 個人教練
+#course__item_3 {
+	background: url('../src/images/img/index/personalcoach_400x600.jpg');
+	width: 100%;
+	height: 100%;    
+	position: absolute;
+	max-width: 95%;
+	text-align: center;
+  }
+#course__item_4 {
+	width: 100%;
+	height: 100%;
+	background: #00429D;
+	position: absolute;
+	max-width: 95%;
+	left: 5%;
+	top: 5%;
+	z-index:-1;
+  }
+
+// Fitness營養規劃
+#course__item_5 {
+	background: url('../src/images/img/index/fitness_400x600.jpg');
+	width: 100%;
+	height: 100%;    
+	position: absolute;
+	max-width: 95%;
+	text-align: center;
+  }
+#course__item_6 {
+	width: 100%;
+	height: 100%;
+	background: #E75F49;
+	position: absolute;
+	max-width: 95%;
+	left: 5%;
+	top: 5%;
+	z-index:-1;
+  }
+
+  
+
