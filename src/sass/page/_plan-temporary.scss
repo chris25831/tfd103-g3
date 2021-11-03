@@ -278,12 +278,10 @@ section.plan_tem_wrapper {
 
 //訓練表主要內容//
 #plan_main_content{
-    border: 3px solid white;
     display: flex;
     flex-direction: row;
     max-width: 1200px;
-    margin-bottom:50px;
-    margin-top:20px;
+    margin: 50px auto;
     @include table(){
         margin-bottom:50px;
         margin-top:0px;
