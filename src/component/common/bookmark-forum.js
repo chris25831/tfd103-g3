@@ -6,7 +6,6 @@ Vue.component("bookmark-forum",{
     methods: {
         bookmarkClicked(e){
             document.querySelectorAll("span.bookmark-item").forEach((text, index) => {
-                console.log("object");
                 if(e.target === text) {
                     text.style.color = "#ffa10a";
                 } else {
@@ -14,5 +13,13 @@ Vue.component("bookmark-forum",{
                 }
             })
         },
+    },
+    mounted() { 
+        document.querySelectorAll("span.bookmark-item").forEach((text, index) => {
+            console.log(text.innerText)
+            if(text.innerText.toString() === "全部") {
+                text.style.color = "#ffa10a";
+            }
+        });
     },
 });
