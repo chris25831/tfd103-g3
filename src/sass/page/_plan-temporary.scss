@@ -10,70 +10,121 @@
     flex-direction: column;
     background-size: contain;
     background-position: center;
-    // border: 2px solid white;
     height: 400px;
     width: 800px;
     .plan_question_content {
-      // border:2px solid rgb(64, 125, 224);
       height: 90%;
       .plan_question_content_article {
         @include flexcenter;
         flex-direction: column;
-
         background-size:contain ;
         background-position: center;
         border: 2px solid white;
-
         justify-content: space-around;
-        // border:2px solid turquoise;
+        border:2px solid turquoise;
         height: 100%;
       }
     }
         background-size:contain ;
         background-position: center;
-        // border: 2px solid white;
-
         height: 400px;
         width: 800px;
         .plan_question_content{
-            // border:2px solid rgb(64, 125, 224);
             height: 90%;
             .plan_question_content_article{
                 @include flexcenter;
                 flex-direction: column;
                 justify-content:space-around;
-                // border:2px solid turquoise;
                 height: 100%;
             }
         }
 
     .previouspage {
-      // border: 1px solid white;
-    }
+        .plan_question_content{
+            height: 90%;
+            .plan_question_content_article{
+                @include flexcenter;
+                flex-direction: column;
+                justify-content:space-around;
+                border:2px solid turquoise;
+                height: 100%;
+                
+                .select{
+                    // border:2px solid turquoise;
+                    width: 70%;
+                    white-space: pre-line;
+                    div{
+                        align-items: flex-start;
+                        flex-wrap: wrap;
+                        label{
+                            width: 90%;
+                            margin-bottom: 10px;
+                        }
+                        input{
+                            height: 20px;
+                            width: 18px;
+                        }
+                    }
+                    
+                }
+            }
+        }
+     }
   }
 }
 
-.plan_question_content_article {
-  div {
-    display: flex;
-    flex-direction: column;
-    //   border: 2px solid deepskyblue;
-    width: 80%;
 
-    h1 {
-      // border: 1px solid $orange;
-      text-align: center;
+
+.plan_question_content_article{
+    hr{
+        width: 80%;
+        border: 1px solid $orange;
     }
-    hr {
-      width: 100%;
-      border: 1px solid $orange;
+    h1{
+        border: 1px solid $orange;
+        text-align: left;
+        width: 70%;
+        font-weight: 500;  
     }
-    p {
-      // border: 1px solid $orange;
-      width: 100%;
-      height: 100%;
-      line-height: 1.5;
-      white-space: wrap;
+    div{
+      display: flex;
+      flex-direction: column;
+      width: 70%;  
+    //   border: 1px solid $orange;
+    
+
+       
+        hr{
+            width: 100%;
+            border: 1px solid $orange;
+        }
+        p{
+            // border: 1px solid $orange;
+            width: 100%;
+            height: 100%;
+            line-height: 1.5;
+            white-space:wrap;
+        }
+        
+    }
+    div.select{
+        // border: 2px solid deepskyblue;
+        height: 50%;
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            flex-direction: row;
+            width: 100%;  
+        }
+        select{
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(-30deg,#e75e49c9,#ffa10aa1,#f8e72b);
+            padding: 2px 10px;
+            width: 400px;
+            box-shadow: 2px 2px $orange;
+        }
     }
   }
   div.select {
@@ -88,7 +139,7 @@
       box-shadow: 2px 2px $orange;
     }
   }
-}
+
 
 #lightboxbtn {
   display: flex;
@@ -109,67 +160,10 @@
   #plan_head {
     width: 100%;
     @include flexcenter;
-    //    border: 1px solid red;
   }
-}
-@mixin animationline {
-  @keyframes bevelmove {
-    5% {
-      left: 50px;
-    }
-    15% {
-      left: 100px;
-    }
-    20% {
-      left: 130px;
-    }
-    25% {
-      left: 100px;
-    }
-    50% {
-      left: 80px;
-    }
-    80% {
-      left: 100px;
-    }
-    50% {
-      left: 60px;
-    }
-  }
-  animation-name: bevelmove;
-  animation-duration: 5s;
-  animation-direction: alternate-reverse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
 }
 
-@mixin animationbevel {
-  @keyframes bevelrepeat {
-    0% {
-      left: -20px;
-    }
-    15% {
-      left: -15px;
-    }
-    25% {
-      left: 5px;
-    }
-    50% {
-      left: 10px;
-    }
-    80% {
-      left: 5px;
-    }
-    100% {
-      left: 0px;
-    }
-  }
-  animation-name: bevelrepeat;
-  animation-duration: 2s;
-  animation-direction: alternate-reverse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
+
 
 .plan_bg {
   position: relative;
@@ -183,11 +177,6 @@
     filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
     height: 100%;
   }
-
-  #bevelyellow {
-    @include animationbevel();
-  }
-
   .plan_info {
     z-index: 3;
     color: #282828;
@@ -222,91 +211,182 @@ section.plan_tem_wrapper {
       li {
         @include fontfamily(500);
       }
+    //天數head 
+    #plan_week{
+        max-width:1200px ;
+        border: 1px solid red;
+        margin: 0 auto;
+        margin-top: 50px;
+        @include table(){
+            display: none;
+        }
+        
+        ul{
+            // border: 3px solid white;
+            background-color: rgba(247, 247, 247, .8);
+            margin: 0 auto;
+            width: 95%;
+            margin-left: 5%;
+            padding: 10px;
+            color: black;
+            list-style: none;
+            @include flexcenter;
+            justify-content: space-around;
+            border-radius: 10px;
+            
+            li{
+                @include fontfamily(500);
+              
+            }
+        }
     }
   }
   .plan_scroll {
     max-width: 1200px;
-    // border: 3px solid white;
     margin: 0 auto;
-  }
-  //訓練表主要內容//
-  #plan_main_content {
+    
+   }
+}
+
+//訓練表主要內容//
+#plan_main_content{
+    border: 3px solid white;
     display: flex;
     flex-direction: row;
     max-width: 1200px;
-    margin-bottom: 50px;
-    margin-top: 20px;
+    margin-bottom:50px;
+    margin-top:20px;
+    @include table(){
+        margin-bottom:50px;
+        margin-top:0px;
+    }
 
-    .week_mark {
-      // border: 3px solid white;
-      filter: drop-shadow(0px 3px $orange);
-      background-color: $white;
-      font-size: 20px;
-      width: 5%;
-      display: flex;
-      color: $orange;
-      border-radius: 30% 0 0 30%;
-      height: 100px;
-      justify-content: center;
-      align-items: center;
-      align-self: center;
-      @include bgnorepeat();
-      font-weight: 600;
+    .week_mark{
+        // border: 3px solid white;
+        filter: drop-shadow(0px 3px  $orange);
+        background-color: $white ;
+        font-size: 20px;
+        width: 5%;
+        display: flex;
+        color: $orange;
+        border-radius: 30% 0 0 30%;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        @include bgnorepeat();
+        font-weight: 600;
+        @include table(){
+            background-color: $white ;
+            align-self:flex-start;
+            height: 50px;
+            top: 90px;
+            position: sticky;
+        }
     }
-    ul {
-      width: 95%;
-      background-color: $white;
-      border-radius: 10px;
-      box-shadow: 3px 2px 2px 2px rgba(175, 84, 10, 0.2);
-      display: grid;
-      list-style: none;
-      padding-left: 0;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-auto-flow: row;
+    ul.plan_main_content_row{
+        
+        width: 95%;
+        border-radius: 10px;
+        box-shadow: 3px 2px 2px 2px rgba(175, 84, 10, 0.2);
+        display: grid;
+        list-style: none;
+        padding-left: 0;
+        grid-template-columns:repeat(7,1fr);
+        background-color: rgba(255,255,255,0.8);
+        @include table(){
+            grid-template-columns: 1fr ;
+            grid-template-rows: auto;
+            background-color: transparent;
+            gap: 10px;
+            
+           li{
+            background-color: rgba(255,255,255,0.8);
+            list-style: none;
+           }
+        }
     }
-  }
+  
 }
 
 //每天的運動icon
 
-.plan_eachday {
-  border-right: 2px dashed $orange;
-  display: flex;
-  flex-direction: column;
-  &:last-child() {
-    border-right: none;
-  }
-  div:first-child {
-    // border: 1px solid blue;
-    height: 30%;
-    background-color: $orange;
-    @include flexcenter;
-    justify-content: center;
-
-    span {
-      transform: translate(0%, -50%);
-      // border: 2px solid $orange;
-      border-radius: 50%;
-      background-color: $white;
-      padding: 10px;
-      box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
-
-      i {
-        width: 20px;
-        height: auto;
+.plan_eachday{
+    border-right: 2px dashed $orange;
+    display: flex;
+    flex-direction: column;
+    @include table(){
+        border-radius: 10px;
+        border-right: none;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    &:last-child(){
+        border-right: none;
+    }
+    #plan_week_table{
+        display: none;
+        @include table(){
+            display: block;
+            height: 100%;
+            width: 20%;
+        }
+        ul{
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            li{
+                background-color: transparent;
+            }
+        }
+    }
+    .orangetitle{
+        height: 30%;
+        background-color: $orange;
+        justify-content:center;
+        
         @include flexcenter;
-      }
+        @include table(){
+            background-color:transparent;
+            height: 100%;
+            border: 1px solid $orange;
+            width: 40%;
+        }
+        span{
+            transform: translate(0%, -50%);
+            border: 2px solid $orange;
+            border-radius: 50%;
+            background-color: $white;
+            padding: 10px;
+            box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
+           @include table(){
+            transform: translate(0%, 0%);
+            
+           }
+            i{
+                width: 20px;
+                height: auto;
+                @include flexcenter;
+            }
+        }
     }
   }
 }
 
 //內文字
-.plan_exe {
-  height: 120px;
-  display: block;
-  text-align: center;
-  line-height: 2;
-  @include fontfamily(400);
+.plan_exe{
+    height: 120px;
+    display: block;
+    text-align: center;
+    line-height: 2;
+    @include fontfamily(400);
+    @include table(){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 40%;
+        border: 1px solid $orange;
+    }
 }
 
 //button
@@ -319,3 +399,25 @@ section.plan_tem_wrapper {
     margin: 10px 20px;
   }
 }
+
+
+//loading頁面
+.loading { 
+    position: absolute; 
+    z-index: 19999;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    display: none;
+    background: linear-gradient(-30deg,#E75F49,#FFA10A,#FFEF36);
+    .animation {
+        /* border: 1px solid white; */
+        transform: rotate(-20deg);
+        width: 30%; 
+        margin: 20px 20px;
+        
+        &:nth-child(2n){
+            transform: rotate(-20deg),translateX(10px);
+        }
+    } 
+}
+

@@ -152,7 +152,7 @@ section.plan_member_content{
             grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-auto-flow: row;
             border: 3px solid $orange;
-              
+            height: 150px;
            }
       
         }
@@ -172,7 +172,7 @@ li.plan_member_eachday{
     }
     div:first-child{
         // border: 1px solid blue;
-        height: 100%;
+        height: 20%;
         background-color: $orange;
         @include flexcenter;
         justify-content:center;
@@ -197,7 +197,7 @@ li.plan_member_eachday{
 
 //內文字
 .plan_member_exe{
-    height: 100px;
+    height: 70%;
     display: block;
     text-align: center;
     line-height: 2;
@@ -210,21 +210,19 @@ li.plan_member_eachday{
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: rgba(39, 38, 38, 0.8);
             left: 0;
             top: 0;
         }
         
         &::after{
-            padding: 3px 10px;
-            border-radius: 3px;
-            content: "done!";
-            border: 1px double white;
+            border-radius: 50%;
+            width: 10%;
+            height: 10%;
+            content: "";
+            border: 1px double rgb(241, 81, 7);
             transform: translate(-50%, -50%);
-            transform: scale (0);
-            transition: all 2s;
-            left: 50%;
-            top: 50%;
+            left: 90%;
+            top: 90%;
             color: white;
             letter-spacing: 2px;
             position: absolute;
@@ -258,3 +256,4 @@ li.plan_member_eachday{
         position: absolute;
     }
 }
+

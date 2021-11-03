@@ -32,7 +32,7 @@
                 <!--會員側欄位頭貼暱稱-->
                 <header style="border:1px solid red">
                     <div class="plan_member_photo">
-                        <img v-model="memberinfo" id="" :src="memberinfo.photo" alt="">
+                        <img  id="" :src="memberinfo.photo" alt="">
                     </div>
                     <div>
                         <p class="title3">maggie</p>
@@ -41,9 +41,9 @@
                 <main class="plan_member_main_content">
                     <div>
                         <p>我的比賽日期</p>
-                        <p v-model="memberinfo">{{memberinfo.membername}}</p>
-                        <p v-model="memberinfo">{{memberinfo.racedate}}</p>
-                        <p v-model="memberinfo">{{memberinfo.week}}<br>week</p>
+                        <p >{{memberinfo.membername}}</p>
+                        <p >{{memberinfo.racedate}}</p>
+                        <p >{{memberinfo.week}}<br>week</p>
                     </div>
                     <div id="plan_chart">
                         <i class="fa-solid fa-person-swimming"></i>
@@ -71,20 +71,19 @@
                     <section  v-for="week in 8" id="plan_member_table">
                       <span class="week_mark title2">W{{week}}</span>
                         <ul>
-                            <li  v-for="week in 7" class="plan_member_eachday">
-                                    <div>
-                                        <span v-show="planicon"><i class="fa-solid fa-person-swimming"></i></span>
-                                        <span v-show="planicon"><i class="fa-solid fa-person-biking"></i></span>
-                                        <span v-show="planicon"><i class="fa-solid fa-person-running"></i></span>
-                                    </div>
-                                    <div @click="checkoneday" class="plan_member_exe" :class="{ done: checkdone}" >
-                                        <p v-show="swimtime">Swim <span>1hr</span></p>
-                                        <p v-show="biketime">Bike <span>.5hr</span></p>
-                                        <p v-show="runtime"> Run  <span>.3hr</span></p>
-                                    </div>
+                            <li v-for="(perday,index) in plandata" class="plan_member_eachday">
+                                <div>
+                                    <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
+                                    <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
+                                    <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
+                                </div>
+                                <div @click="checkoneday" class="plan_member_exe" :class="{ done: checkdone}" >
+                                    <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
+                                    <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
+                                    <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
+                                </div>
                             </li>
-                            
-                        </ul>         <!--***計畫表本體component***-->
+                        </ul>         
                     </section>
                 </div>
               
@@ -101,6 +100,76 @@
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script>
+
+
+new Vue({
+  el: '#plan_wrapper',
+  data(){
+    return{
+        checkdone:false,
+        memberinfo:
+            {
+                photo:"./src/images/img/plan/memberphoto.png",
+                membername:"maggie",
+                racedate:20221127,
+                week:12
+            },
+        plandata:[
+            //day1
+            {
+            "swim":1,
+            "bike":null,
+            "run":.5
+            },
+            //day2
+            {
+            "swim":1,
+            "bike":0.5,
+            "run":null
+            },
+            //day3
+            {
+            "swim":null,
+            "bike":null,
+            "run":null
+            },
+            {
+            "swim":1,
+            "bike":null,
+            "run":.5
+            },
+            {
+            "swim":1,
+            "bike":null,
+            "run":.5
+            },
+            {
+            "swim":1,
+            "bike":null,
+            "run":1
+            },
+            {
+            "swim":null,
+            "bike":null,
+            "run":.5
+            },
+        ]
+      }
+    },
+
+    methods: {
+        checkoneday(){
+                alert("恭喜你獲得一點");
+                
+                this.checkdone = true;
+        }
+    },
+
+//    computed:{
+//        if (this.plandata.swim && Object.keys(perday)[0])
+//    }
+});  
+
 
     var chart = c3.generate({
       bindto: "#plan_chart",
@@ -150,36 +219,7 @@
       
     });
     
-    new Vue({
-  el: '#plan_wrapper',
-  data(){
-    return{
-        checkdone:false,
-        memberinfo:
-            {
-                photo:"./src/images/img/plan/memberphoto.png",
-                membername:"maggie",
-                racedate:20221127,
-                week:12
-            },
-            planicon: true,
-            swimtime: true,
-            runtime: true,
-            biketime: true,
-      
-     }
-    },
-    methods: {
-        checkoneday(){
-            this.checkdone = !this.checkdone
-            
-        }
-    },
-
-   computed:{
-       
-   }
-});  
 </script>
 </body>
 </html>
+

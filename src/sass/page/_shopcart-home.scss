@@ -1,0 +1,11 @@
+main.shopcart-home {
+  @include bgnormal(100%);
+  > div {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: $bottomspacing;
+    // 麵包屑上面高度
+    padding-top: $bottomspacing;
+    background-color: rgba($color: $white, $alpha: 0.8);
+  }
+}
