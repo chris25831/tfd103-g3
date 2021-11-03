@@ -12,6 +12,7 @@
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
 </head>
 
 <body>
@@ -31,7 +32,7 @@
         </div>
 
         <div class="article-list">
-            <div class="article-item">
+            <!-- <div class="article-item">
                 <a class="enter-article" href="./forum-content.html">
                     <div class="left">
                         <div class="author">
@@ -61,30 +62,30 @@
                         <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
                     </div>
                 </a>
-            </div>
+            </div> -->
 
-            <div class="article-item">
+            <div class="article-item" v-for="articleDatum in tidedData" :data-id="articleDatum.ArticleNumber">
                 <a class="enter-article" href="./forum-content.html">
                     <div class="left">
                         <div class="author">
-                            <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
-                            <span class="name">Maggie Wang</span>
-                            <span class="time">5 hours ago</span>
+                            <img class="avatar" :src=articleDatum.AuthorAvatar alt="">
+                            <span class="name">{{articleDatum.AuthorName}}</span>
+                            <span class="time">{{articleDatum.PostTime}}</span>
                         </div>
-                        <h3 class="article-title">關於卡鞋</h3>
-                        <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
+                        <h3 class="article-title">{{articleDatum.ArticleTitle}}</h3>
+                        <p class="preview-content">{{articleDatum.ArticleContent}}</p>
                         <div class="counts">
                             <div class="views">
                                 <img src="./src/images/img/forum/views.png" alt="">
-                                <span>100</span>
+                                <span>{{articleDatum.ViewsCount}}</span>
                             </div>
                             <div class="likes">
                                 <img src="./src/images/img/forum/likes-count.png" alt="">
-                                <span>100</span>
+                                <span>{{articleDatum.LikesCount}}</span>
                             </div>
                             <div class="comments">
                                 <img src="./src/images/img/forum/comments-count.png" alt="">
-                                <span>100</span>
+                                <span>{{articleDatum.CommentsCount}}</span>
                             </div>
                         </div>
                         
@@ -99,23 +100,23 @@
                 <!--分頁器放置區-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                      <li class="page-item">
+                    <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                          <span class="sr-only">Previous</span>
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
                         </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
+                    </li>
+
+                    <li class="page-item" v-for="page in totalPage"><a class="page-link"  @click.prevent="changePage" href="#">{{page}}</a></li>
+                    
+                    <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                          <span class="sr-only">Next</span>
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
                         </a>
-                      </li>
+                    </li>
                     </ul>
-                  </nav>
+                </nav>
             </div>
         </div>
 
@@ -139,6 +140,8 @@
 <script src="./src/component/common/bookmark-forum.js"></script>
 <script src="./src/component/common/forum-new-post-modal.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+<script src="./src/js/eventBus.js"></script>
 
 
 <script>
@@ -147,6 +150,74 @@
         data: {
             categories: ["全部","閒聊","裝備","心得","問題"],
             showModal: false,
+            dataId: "",
+            articleData: [],   //放撈回來的資料
+            tidedData: [],
+            currentPage: 2,
+            itemsPerPage: 2,  //每頁幾個項目
+            // startIndex: 0,
+            dummyData: [   //假資料庫
+                {
+                    "ArticleNumber": "1",
+                    "AuthorName": "Maggie Wang1",
+                    "AuthorAvatar": "./src/images/img/forum/smile.jpg",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "問題跑鞋標題",
+                    "Category": "問題",
+                    "ArticleContent": "問題跑鞋內容",
+                    "ViewsCount": "100",
+                    "LikesCount": "100",
+                    "CommentsCount": "100"
+                },
+                {
+                    "ArticleNumber": "2",
+                    "AuthorName": "Johnny Hsieh2",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "閒聊跑鞋標題",
+                    "ArticleCategory": "閒聊",
+                    "ArticleContent": "閒聊跑鞋內容",
+                    "ViewsCount": "200",
+                    "LikesCount": "200",
+                    "CommentsCount": "200"
+                },
+                {
+                    "ArticleNumber": "3",
+                    "AuthorName": "Johnny Hsieh3",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "裝備跑鞋標題",
+                    "ArticleCategory": "裝備",
+                    "ArticleContent": "裝備跑鞋內容",
+                    "ViewsCount": "300",
+                    "LikesCount": "300",
+                    "CommentsCount": "300"
+                },
+                {
+                    "ArticleNumber": "4",
+                    "AuthorName": "Johnny Hsieh4",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "心得跑鞋標題",
+                    "ArticleCategory": "心得",
+                    "ArticleContent": "心得跑鞋內容",
+                    "ViewsCount": "400",
+                    "LikesCount": "400",
+                    "CommentsCount": "400"
+                },
+                {
+                    "ArticleNumber": "5",
+                    "AuthorName": "Johnny Hsieh5",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "心得跑鞋標題",
+                    "ArticleCategory": "心得",
+                    "ArticleContent": "心得跑鞋內容",
+                    "ViewsCount": "500",
+                    "LikesCount": "500",
+                    "CommentsCount": "500"
+                },
+            ]
         },
         methods: {
             openModal(){
@@ -155,8 +226,92 @@
             closeModal(){        
                 this.showModal = false;
             },
-        }
-        
+            changePage(e) {
+                console.log(e.target)
+                this.currentPage = parseInt(e.target.innerText);
+                console.log(this.currentPage);
+            },
+            // toContent(e){
+            //     let wrapper = e.target.closest("div.article-item");
+            //     this.dataId = wrapper.getAttribute("data-id");
+            //     console.log(this.dataId);
+            //     bus.$emit("loadAssignedContent", this.dataId);
+                // console.log(typeof this.dataId);
+            // },
+        },
+        computed: {
+            totalPage() {  //總頁數
+                return Math.ceil(this.articleData.length / this.itemsPerPage); 
+            },
+            startIndex(newValue) {   //計算起始 index 
+                return (this.currentPage - 1) * this.itemsPerPage
+            }        
+            
+        },
+        watch: {
+            currentPage(newValue, oldValue) {
+                console.log(`currentPage: ${oldValue} => ${newValue}`);
+                this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+            },    
+            
+        },
+        created() {         
+            //取得資料
+            this.articleData = this.dummyData;
+            this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
+            // //回傳切割後的新陣列
+            this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+            // //分頁器
+            // let itemsPerPage = 2;
+            // let totalPage = this.articleData.length / itemsPerPage;
+            // let currentPage = 1;
+            // let paginator = document.querySelector("ul.pagination"); 
+            // let pageItem = document.querySelector("li.page-item"); 
+            // renderPaginator(totalPage);
+            // getArticlesByPage(currentPage);
+
+            // // if(this.articleData.length % itemsPerPage !== 0) {
+            // //     totalPage += 1;
+            // // } 
+            
+            // function getArticlesByPage(page) {
+            //     //計算起始 index 
+            //     const startIndex = (page - 1) * itemsPerPage;
+            //     //回傳切割後的新陣列
+            //     return this.articleData.slice(startIndex, startIndex + itemsPerPage);
+            // }
+
+            // function renderPaginator(amount) {
+            //     //計算總頁數
+            //     const numberOfPages = Math.ceil(amount / itemsPerPage)
+            //     //製作 template 
+            //     let rawHTML = ''
+                
+            //     for (let page = 1; page <= numberOfPages; page++) {
+            //         rawHTML += `<li class="page-item" data-page="${page}" ><a class="page-link" href="#" data-page="${page}">${page}</a></li>`
+            //     }
+            //     //放回 HTML
+            //     paginator.innerHTML = rawHTML
+            // }
+
+            // // document.addEventListener("click", function(e){
+            // //     console.log(e.target)
+            // //     if(e.target.classList === "page-item") {
+            // //         console.log(e.target.dataset.page);
+            // //     }
+            // // })
+
+            // paginator.addEventListener("click", function(e) {
+            //     console.log(e.target, "test");
+            //     //如果被點擊的不是 a 標籤，結束
+            //     if (event.target.tagName !== "A") return
+            //     console.log(e.target);
+            //     //透過 dataset 取得被點擊的頁數
+            //     const page = Number(e.target.dataset.page)
+            //     //更新畫面
+            //     console.log(page);
+            // })
+        },
     })
 </script>
 
