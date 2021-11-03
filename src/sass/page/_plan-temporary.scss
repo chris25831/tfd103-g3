@@ -10,50 +10,36 @@
     flex-direction: column;
     background-size: contain;
     background-position: center;
-    // border: 2px solid white;
     height: 400px;
     width: 800px;
     .plan_question_content {
-      // border:2px solid rgb(64, 125, 224);
       height: 90%;
       .plan_question_content_article {
         @include flexcenter;
         flex-direction: column;
-
         background-size:contain ;
         background-position: center;
         border: 2px solid white;
-
         justify-content: space-around;
-        // border:2px solid turquoise;
+        border:2px solid turquoise;
         height: 100%;
       }
     }
         background-size:contain ;
         background-position: center;
-        // border: 2px solid white;
-
         height: 400px;
         width: 800px;
         .plan_question_content{
-            // border:2px solid rgb(64, 125, 224);
             height: 90%;
             .plan_question_content_article{
                 @include flexcenter;
                 flex-direction: column;
                 justify-content:space-around;
-                // border:2px solid turquoise;
                 height: 100%;
             }
         }
 
     .previouspage {
-      // border: 1px solid white;
-        background-size:contain ;
-        background-position: center;
-        // border: 2px solid white;
-        height: 400px;
-        width: 800px;
         .plan_question_content{
             height: 90%;
             .plan_question_content_article{
@@ -83,7 +69,7 @@
                 }
             }
         }
-    }
+     }
   }
 }
 
@@ -174,145 +160,10 @@
   #plan_head {
     width: 100%;
     @include flexcenter;
-    //    border: 1px solid red;
   }
 }
-@mixin animationline {
-  @keyframes bevelmove {
-    5% {
-      left: 50px;
-    }
-    15% {
-      left: 100px;
-    }
-    20% {
-      left: 130px;
-    }
-    25% {
-      left: 100px;
-    }
-    50% {
-      left: 80px;
-    }
-    80% {
-      left: 100px;
-    }
-    50% {
-      left: 60px;
-    }
-  }
-  animation-name: bevelmove;
-  animation-duration: 5s;
-  animation-direction: alternate-reverse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@mixin animationbevel {
-  @keyframes bevelrepeat {
-    0% {
-      left: -20px;
-    }
-    15% {
-      left: -15px;
-    }
-    25% {
-      left: 5px;
-    }
-    50% {
-      left: 10px;
-    }
-    80% {
-      left: 5px;
-    }
-    100% {
-      left: 0px;
-//進度條
-div.progress_bar{
-    border: 1px solid $blue;
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    height: 30%;
-    align-items: center;
-    div.progress_bar{
-        display: flex;
-        justify-content:flex-start;
-        width: 60%;
-        height: 20px;
-        border: 1px solid $blue;
-        background-color: #e9ecef;
-        border-radius: 8px;
-        margin-left: 10px;
-        overflow: hidden;
-        span.progress{
-          margin: 3px;
-          height: 80%;
-          background-color: $blue;
-          border-radius: 8px;
-        }
-      }
-}
 
 
-#lightboxbtn{
-        display: flex;
-        @include flexcenter();
-        width: 40%;
-        @include mobile(){
-            height: 30%;
-        }
-}  
-
-// ***計畫表*** //
-
-#plan_wrapper {
-    @include bgplan(100%);
-    background-size: cover;
-    background-position: center;
-    padding-bottom: $bottomspacing;
-    #plan_head{
-       width: 100%;
-       @include flexcenter;
-   }
-    
-}
-
-
-.plan_bg{
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-    margin-top: 5%;
-    width: 20%;
-    height: 180px;
-    svg{
-        position: absolute;
-        filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
-        height: 100%;
-    }
-   
-    
-    
-    .plan_info{
-        
-        z-index: 3;
-        color: #282828;
-        margin: auto 0;
-        line-height: 2;
-        display: flex;
-        align-items: left;
-        flex-direction: column;
-        @include fontfamily(500);
-    }
-  }
-  animation-name: bevelrepeat;
-  animation-duration: 2s;
-  animation-direction: alternate-reverse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
- }
-}
 
 .plan_bg {
   position: relative;
@@ -326,11 +177,6 @@ div.progress_bar{
     filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
     height: 100%;
   }
-
-  #bevelyellow {
-    @include animationbevel();
-  }
-
   .plan_info {
     z-index: 3;
     color: #282828;
@@ -368,6 +214,7 @@ section.plan_tem_wrapper {
     //天數head 
     #plan_week{
         max-width:1200px ;
+        border: 1px solid red;
         margin: 0 auto;
         margin-top: 50px;
         @include table(){
@@ -396,7 +243,6 @@ section.plan_tem_wrapper {
   }
   .plan_scroll {
     max-width: 1200px;
-    // border: 3px solid white;
     margin: 0 auto;
     
    }
@@ -404,7 +250,7 @@ section.plan_tem_wrapper {
 
 //訓練表主要內容//
 #plan_main_content{
-    // border: 3px solid white;
+    border: 3px solid white;
     display: flex;
     flex-direction: row;
     max-width: 1200px;
@@ -558,7 +404,6 @@ section.plan_tem_wrapper {
 //loading頁面
 .loading { 
     position: absolute; 
-    display: block;
     z-index: 19999;
     top: 0; left: 0;
     width: 100%; height: 100vh;
@@ -571,9 +416,8 @@ section.plan_tem_wrapper {
         margin: 20px 20px;
         
         &:nth-child(2n){
-            
             transform: rotate(-20deg),translateX(10px);
         }
     } 
 }
-}
+
