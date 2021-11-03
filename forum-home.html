@@ -120,10 +120,10 @@
             showModal: false,
             dataId: "",
             articleData: [],   //放撈回來的資料
-            tidedData: [],
-            currentPage: 1,
+            tidedData: [],  //整理過的資料
+            currentPage: 1,     //現在的頁碼
             itemsPerPage: 4,  //每頁幾個項目
-            dummyData: [   //假資料庫
+            dummyData: [   //假資料
                 {
                     "ArticleNumber": "1",
                     "AuthorName": "Maggie Wang1",
@@ -220,7 +220,6 @@
                     this.currentPage = this.currentPage + 1;
                 }
             },
-
             // toContent(e){
             //     let wrapper = e.target.closest("div.article-item");
             //     this.dataId = wrapper.getAttribute("data-id");
@@ -258,9 +257,17 @@
             this.articleData = this.dummyData;
             this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
             // //回傳切割後的新陣列
-            this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+            this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);            
+        },
+        mounted() {
+            document.querySelectorAll("a.page-link").forEach((text, index) => {
+                
+                if(parseInt(text.innerText) === parseInt(this.currentPage)) {
+                    text.style.backgroundColor = "lightgray";
+                }
+            })
 
-            
+
         },
     })
 </script>

@@ -6,6 +6,7 @@
   height: 50px;
   box-shadow: 2px 2px 3px #6e6d6d;
   cursor: pointer;
+  position: relative;
   .arrow {
     border: 1px solid #ffffff;
     border-width: 0px 5px 5px 0;
@@ -13,8 +14,11 @@
     height: 10px;
     display: inline-block;
     padding: 3px;
-    transform: rotate(135deg);
-    position: relative;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%, -50%) rotate(135deg);
     a {
       display: inline-block;
       width: 100%;
