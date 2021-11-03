@@ -50,6 +50,7 @@
                         border-radius: 50%;
                         margin: 13px 0 0 25px;
                         vertical-align: center;
+                        object-fit: cover;
                     }
                     span.name, span.time {
                         display: inline-block;
@@ -74,6 +75,10 @@
                         @include mobile() {
                             max-width: 40%;
                         }
+                    }
+
+                    span.time {
+                        color: rgb(104, 103, 103);
                     }
                 }
                 h3.article-title {
@@ -159,7 +164,7 @@
                 font-size: 0;
                 display: inline-block;
                 width: 30%;
-                height: 197px;
+                height: 203.81px;
                 margin: 0;
                 vertical-align: top;
                 @include table() {
@@ -173,7 +178,7 @@
                     display: block;
                     width: 167px;
                     height: 167px;
-                    margin: calc((197px - 167px) / 2) 25px calc((197px - 167px) / 2) auto ;
+                    margin: calc((203.81px - 167px) / 2) 25px calc((203.81px - 167px) / 2) auto ;
                 }
             }
         }

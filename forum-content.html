@@ -32,7 +32,7 @@
         <div class="back">
             <!-- 回上一頁按鈕放置處 -->
             <div class="button-block-frontend back-post">
-                <a href="./forum-home.html">
+                <a href="./forum-home.html/">
                     <div class="previouspage change-display">
                         <div class="arrow"></div>
                     </div>
@@ -123,7 +123,9 @@
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/common/bookmark-forum.js"></script>
 <script src="./src/component/common/forum-new-post-modal.js"></script>
+<script src="./src/js/eventBus.js"></script>
 <script>
+    
     new Vue({
         el: "#forum-content",
         data: {
@@ -132,6 +134,58 @@
             likeSwitch: true,
             likeSwitchForRed: false,
             showReport: false,
+            dataNumber: "",
+            singleArticleData: [],
+            dummyData: [
+                {
+                    "ArticleNumber": "1",
+                    "AuthorName": "Maggie Wang1",
+                    "AuthorAvatar": "./src/images/img/forum/smile.jpg",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "問題跑鞋標題",
+                    "Category": "問題",
+                    "ArticleContent": "問題跑鞋內容",
+                    "ViewsCount": "100",
+                    "LikesCount": "100",
+                    "CommentsCount": "100"
+                },
+                {
+                    "ArticleNumber": "2",
+                    "AuthorName": "Johnny Hsieh2",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "閒聊跑鞋標題",
+                    "ArticleCategory": "閒聊",
+                    "ArticleContent": "閒聊跑鞋內容",
+                    "ViewsCount": "200",
+                    "LikesCount": "200",
+                    "CommentsCount": "200"
+                },
+                {
+                    "ArticleNumber": "3",
+                    "AuthorName": "Johnny Hsieh3",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "裝備跑鞋標題",
+                    "ArticleCategory": "裝備",
+                    "ArticleContent": "裝備跑鞋內容",
+                    "ViewsCount": "300",
+                    "LikesCount": "300",
+                    "CommentsCount": "300"
+                },
+                {
+                    "ArticleNumber": "4",
+                    "AuthorName": "Johnny Hsieh4",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "心得跑鞋標題",
+                    "ArticleCategory": "心得",
+                    "ArticleContent": "心得跑鞋內容",
+                    "ViewsCount": "400",
+                    "LikesCount": "400",
+                    "CommentsCount": "400"
+                },
+            ]
         },
         methods: {
             openModal(){
@@ -147,7 +201,17 @@
             dropDownSwitch() {
                 this.showReport = !this.showReport;
             },
-        }
+        },
+        mounted() {
+            let dataStore;
+            bus.$on("loadAssignedContent", function(dataId){
+                dataStore = dataId;
+                console.log(dataStore);
+            });
+
+            this.singleArticleData = this.dummyData.filter(dummyDatum => dummyDatum.ArticleNumber === dataStore);
+            console.log(dataStore);
+        },
     })
 </script>
 
