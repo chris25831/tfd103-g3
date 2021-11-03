@@ -23,16 +23,22 @@
        <div id="race_list">
            <nav>這裡是頁籤</nav>
            <main class="race_wrapper"> 
-                <div class="race_title">日期 地點 賽事 項目 活動狀態</div>
+                <div class="race_title">
+                    <p>日期</p>
+                    <p>地點</p>
+                    <p>賽事</p>
+                    <p>項目</p>
+                    <p>活動狀態</p>
+                </div>
                 <template v-for="game in games">
                    <div class="raceinfo"> 
                         <a class="artical" href="./race-content.html">{{game.date}}</a>
                         <a class="artical" href="./race-content.html">{{game.place}}</a> 
                         <a class="artical" href="./race-content.html">{{game.title}}</a>
                         <div>
-                             <a  v-for="distence in game.distences" :style="{backgroundColor:distence.color}" class="artical" href="./race-content.html">{{distence.dis}}</a>  
+                             <a  v-for="distence in game.distences" :style="{backgroundColor:distence.color}" class="artical race_distence" href="./race-content.html">{{distence.dis}}</a>  
                         </div>
-                        <a class="artical" href="./race-content.html">{{game.state}}</a>
+                        <a class="artical" href="./race-content.html">{{game.state}}截止</a>
                    </div>
                 </template>
             </main>
