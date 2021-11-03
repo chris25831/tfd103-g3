@@ -32,38 +32,7 @@
         </div>
 
         <div class="article-list">
-            <!-- <div class="article-item">
-                <a class="enter-article" href="./forum-content.html">
-                    <div class="left">
-                        <div class="author">
-                            <img class="avatar" src="https://via.placeholder.com/44x44" alt="">
-                            <span class="name">Maggie Wang</span>
-                            <span class="time">5 hours ago</span>
-                        </div>
-                        <h3 class="article-title">關於卡鞋</h3>
-                        <p class="preview-content">因為在轉換區想更節省時間,所以想直接安裝卡鞋，想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問想請問</p>
-                        <div class="counts">
-                            <div class="views">
-                                <img src="./src/images/img/forum/views.png" alt="">
-                                <span>100</span>
-                            </div>
-                            <div class="likes">
-                                <img src="./src/images/img/forum/likes-count.png" alt="">
-                                <span>100</span>
-                            </div>
-                            <div class="comments">
-                                <img src="./src/images/img/forum/comments-count.png" alt="">
-                                <span>100</span>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="right">
-                        <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
-                    </div>
-                </a>
-            </div> -->
-
+           
             <div class="article-item" v-for="articleDatum in tidedData" :data-id="articleDatum.ArticleNumber">
                 <a class="enter-article" href="./forum-content.html">
                     <div class="left">
@@ -88,7 +57,6 @@
                                 <span>{{articleDatum.CommentsCount}}</span>
                             </div>
                         </div>
-                        
                     </div>
                     <div class="right">
                         <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
@@ -101,16 +69,16 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
+                        <a class="page-link" href="#" aria-label="Previous" @click.prevent="minusOnePage">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
                         </a>
                     </li>
 
-                    <li class="page-item" v-for="page in totalPage"><a class="page-link"  @click.prevent="changePage" href="#">{{page}}</a></li>
+                    <li class="page-item" v-for="page in totalPage"><a class="page-link" @click.prevent="changePage" href="#">{{page}}</a></li>
                     
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
+                        <a class="page-link" href="#" aria-label="Next" @click.prevent="plusOnePage" >
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                         </a>
@@ -141,7 +109,7 @@
 <script src="./src/component/common/forum-new-post-modal.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
-<script src="./src/js/eventBus.js"></script>
+
 
 
 <script>
@@ -153,9 +121,8 @@
             dataId: "",
             articleData: [],   //放撈回來的資料
             tidedData: [],
-            currentPage: 2,
-            itemsPerPage: 2,  //每頁幾個項目
-            // startIndex: 0,
+            currentPage: 1,
+            itemsPerPage: 4,  //每頁幾個項目
             dummyData: [   //假資料庫
                 {
                     "ArticleNumber": "1",
@@ -217,6 +184,18 @@
                     "LikesCount": "500",
                     "CommentsCount": "500"
                 },
+                {
+                    "ArticleNumber": "6",
+                    "AuthorName": "Johnny Walker6",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "心得跑鞋標題",
+                    "ArticleCategory": "心得",
+                    "ArticleContent": "心得跑鞋內容",
+                    "ViewsCount": "600",
+                    "LikesCount": "600",
+                    "CommentsCount": "600"
+                },
             ]
         },
         methods: {
@@ -231,6 +210,17 @@
                 this.currentPage = parseInt(e.target.innerText);
                 console.log(this.currentPage);
             },
+            minusOnePage() {
+                if(this.currentPage > 1) {
+                    this.currentPage = this.currentPage - 1;
+                }
+            },
+            plusOnePage() {
+                if(this.currentPage < this.totalPage) {
+                    this.currentPage = this.currentPage + 1;
+                }
+            },
+
             // toContent(e){
             //     let wrapper = e.target.closest("div.article-item");
             //     this.dataId = wrapper.getAttribute("data-id");
@@ -243,17 +233,25 @@
             totalPage() {  //總頁數
                 return Math.ceil(this.articleData.length / this.itemsPerPage); 
             },
-            startIndex(newValue) {   //計算起始 index 
-                return (this.currentPage - 1) * this.itemsPerPage
-            }        
             
+            startIndex() {    
+                return (this.currentPage - 1) * this.itemsPerPage;
+            },
         },
         watch: {
             currentPage(newValue, oldValue) {
-                console.log(`currentPage: ${oldValue} => ${newValue}`);
+                // console.log(`currentPage: ${oldValue} => ${newValue}`);
                 this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+                
+                document.querySelectorAll("a.page-link").forEach((text, index) => {
+                    if(parseInt(text.innerText) === parseInt(newValue)) {
+                        text.style.backgroundColor = "lightgray";
+                    } else {
+                        text.style.backgroundColor = "";
+                    }
+                })
+                
             },    
-            
         },
         created() {         
             //取得資料
@@ -261,56 +259,8 @@
             this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
             // //回傳切割後的新陣列
             this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
-            // //分頁器
-            // let itemsPerPage = 2;
-            // let totalPage = this.articleData.length / itemsPerPage;
-            // let currentPage = 1;
-            // let paginator = document.querySelector("ul.pagination"); 
-            // let pageItem = document.querySelector("li.page-item"); 
-            // renderPaginator(totalPage);
-            // getArticlesByPage(currentPage);
 
-            // // if(this.articleData.length % itemsPerPage !== 0) {
-            // //     totalPage += 1;
-            // // } 
             
-            // function getArticlesByPage(page) {
-            //     //計算起始 index 
-            //     const startIndex = (page - 1) * itemsPerPage;
-            //     //回傳切割後的新陣列
-            //     return this.articleData.slice(startIndex, startIndex + itemsPerPage);
-            // }
-
-            // function renderPaginator(amount) {
-            //     //計算總頁數
-            //     const numberOfPages = Math.ceil(amount / itemsPerPage)
-            //     //製作 template 
-            //     let rawHTML = ''
-                
-            //     for (let page = 1; page <= numberOfPages; page++) {
-            //         rawHTML += `<li class="page-item" data-page="${page}" ><a class="page-link" href="#" data-page="${page}">${page}</a></li>`
-            //     }
-            //     //放回 HTML
-            //     paginator.innerHTML = rawHTML
-            // }
-
-            // // document.addEventListener("click", function(e){
-            // //     console.log(e.target)
-            // //     if(e.target.classList === "page-item") {
-            // //         console.log(e.target.dataset.page);
-            // //     }
-            // // })
-
-            // paginator.addEventListener("click", function(e) {
-            //     console.log(e.target, "test");
-            //     //如果被點擊的不是 a 標籤，結束
-            //     if (event.target.tagName !== "A") return
-            //     console.log(e.target);
-            //     //透過 dataset 取得被點擊的頁數
-            //     const page = Number(e.target.dataset.page)
-            //     //更新畫面
-            //     console.log(page);
-            // })
         },
     })
 </script>
