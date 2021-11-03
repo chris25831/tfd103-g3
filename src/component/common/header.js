@@ -14,7 +14,7 @@ template: `
           </div>
         </main>
 
-        <a class="logo" href="" ><img src="./src/images/icons/logo.svg"/></a>
+        <a class="logo" href="../../index.html" ><img src="./src/images/icons/logo.svg"/></a>
         
 
         <ul class="header_menu" :class="{slidedown:slide}">
@@ -60,8 +60,9 @@ template: `
             </ul>
           
         </ul>
-        
-        <a class="header_icon "href=""><i class="fas fa-user fa-xl"></i></a>
+        <!--會員-->
+        <a class="header_icon "href="../../member-login.html"><i class="fas fa-user fa-xl"></i></a>
+        <!--購物車-->
         <a class="header_icon href=""><i class="fas fa-shopping-basket fa-xl"></i></a>
     </div>  
 `,
