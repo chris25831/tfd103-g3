@@ -50,6 +50,8 @@ Vue.component("contentdetail-1",{
     methods:{
         // 加入購物車
         addCart(){
+            
+            doFirst();
             // 創立物件
             let item = {
                 comclassTitle : this.classTitle,
@@ -62,6 +64,8 @@ Vue.component("contentdetail-1",{
             let comcheck = this.check;
             if(comcheck == "G"){
                 item.comclassLocation = this.classLocation;
+            }else{
+                item.comclassLocation ="";
             }
             // console.log(item.comclassLocation);
 
@@ -69,15 +73,15 @@ Vue.component("contentdetail-1",{
             if(storage[this.classid]){
                 alert('商品已下單');
             }else{
-                storage[this.classid] = JSON.stringify(item);
-
+                
                 // 刪除一開始的undefined
                 if(storage['addCartList'] == ""){
                     storage['addCartList'] = `${this.classid}`;
                 }else{
                     storage['addCartList'] += `,${this.classid}`;
-                }  
+                }
 
+                storage[this.classid] = JSON.stringify(item);
                 alert('已加入購物車!');
             }
 
@@ -89,11 +93,9 @@ Vue.component("contentdetail-1",{
             this.addCart();
             // console.log("456");
             
-            // TODO: 跳轉結帳頁面
-            // 如果已經有了 就不跳轉
-            if(storage[this.classid]){
-                alert('有偵測到');
-            }
+            // 跳轉結帳頁面
+            window.location.href="../../../shopcart-home.html";
+           
         },
         
     },
