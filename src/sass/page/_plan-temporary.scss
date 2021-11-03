@@ -40,6 +40,9 @@
         }
 
     .previouspage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
         .plan_question_content{
             height: 90%;
             .plan_question_content_article{
@@ -73,6 +76,31 @@
   }
 }
 
+//進度條
+div.progress_bar{
+  border: 1px solid $blue;
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 30%;
+  div.progress_bar{
+      display: flex;
+      justify-content:flex-start;
+      width: 60%;
+      height: 20px;
+      border: 1px solid $blue;
+      background-color: #e9ecef;
+      border-radius: 8px;
+      margin-left: 10px;
+      overflow: hidden;
+      span.progress{
+        margin: 3px;
+        height: 80%;
+        background-color: $blue;
+        border-radius: 8px;
+      }
+    }
+}
 
 
 .plan_question_content_article{
