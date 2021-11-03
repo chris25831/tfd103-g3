@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+
 </head>
 
 <body>
@@ -18,78 +19,162 @@
    <header id="header" :class="{sticky: active}" >
         <my-header></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
-  
+   <!--loading遮罩-->
+    <div class="loading">
+        <div class="mask"></div>
+        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+        <img src="./src/images/icons/icon-line-org.svg" class="animation">
+        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+        <img src="./src/images/icons/icon-line-org.svg" class="animation">
+        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+        <img src="./src/images/icons/icon-line-org.svg" class="animation">
+        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+        <img src="./src/images/icons/icon-line-org.svg" class="animation">
+        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+        <img src="./src/images/icons/icon-line-org.svg" class="animation">
+        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+    </div>
    <!--這是計畫表lightbox-->
    <section id="plan_question" class="plan_question_wrapper">
 
-       <div class="plan_ques_wrapper">
-           <!--上一步-->
-           <button @click="last" class="previouspage">
-               <span class="arrow">
-                   <a href=""></a>
-               </span>
-            </button>
+    <div class="plan_ques_wrapper">
+        <!--上一步-->
+        <a href="#" @click="last" class="previouspage">
+            <div class="arrow"></div>
+        </a>
 
-            <div  class="plan_question_content">
-                
-                <!--1計畫表說明-->
-                <div class="plan_question_content_article" v-if="current_tab === 0">
-                        <div> 
-                            <h1 class="title2">計畫表使用說明</h1>
-                            <hr>
-                        </div>
-                        <div class="select">
-                            <p>
-                                *此運動計畫表適用於最少八週以上之訓練時程
-                                <br>
-                                *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷可自行調整當天運動時長
-                            </p>
-                        </div>
-                    <button id="lightboxbtn"  @click="current_tab ++" class="orangebutton title3 ">開始</button>
-                </div>
+        <div  class="plan_question_content">
             
-                <!--2問題-->
-                <template  v-for="(question,index) in questions" >        
-                    <!--index[0]是說明 那當我點擊button的時候current_tab就會+1 當button_tab=1的時候顯示以下問題-->
-                    <div  v-if="(index+1) === current_tab" class="plan_question_content_article">
-                            <div>
-                                <h1 class="title2">Q-{{index + 1}}{{question.title}}</h1>
-                                <hr>
-                                <span class="title2">{{index+1}}/{{questions.length}}</span>
-                            </div>
-                             <!--Q-234-->
-                            <div class="select">
-                                <div v-if="question.type === 'radio'">
-                                    <template v-for="choice in question.choices">
-                                        <label for="choice.value">{{choice.title}}</label>
-                                        <input :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
-                                    </template>    
-                                </div>
-                             <!--Q-1-->
-                                <div v-else>
-                                    <select>
-                                        <template v-for="choice in question.choices">
-                                                <option  :name="question.name" :value="choice.value" >{{choice.title}}</option>
-                                        </template>    
-                                    </select>
-                                </div>
-                            </div>
-                        <!--下一步-->
-                        <button v-model="tab" id="lightboxbtn"  @click="currenttab" class="orangebutton title3 ">{{tab}}</button>
+            <!--1計畫表說明-->
+            <div class="plan_question_content_article" v-if="current_tab === 0">
+                    <div> 
+                        <h1 class="title2">計畫表使用說明</h1>
+                        <hr>
                     </div>
-                </template> 
-
+                    <div class="select">
+                        <p>
+                            *此運動計畫表適用於最少八週以上之訓練時程
+                            <br>
+                            *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷
+                            可自行調整當天運動時長
+                        </p>
+                    </div>
+                <button id="lightboxbtn"  @click="current_tab ++" class="orangebutton title3 ">開始</button>
             </div>
+        
+            <!--2問題-->
+            <template  v-for="(question,index) in questions" >        
+                <!--index[0]是說明 那當我點擊button的時候current_tab就會+1 當button_tab=1的時候顯示以下問題-->
+                <div  v-if="(index+1) === current_tab" class="plan_question_content_article"> 
+                        <!--進度條-->
+                        <div class="progress_bar">
+                            <span class="title2">{{index+1}}/{{questions.length}}</span>
+                            <div class="progress_bar">
+                                <span class="progress" :style="progressWidth"></span>
+                            </div>
+                        </div>
+                        <hr> 
+                        <h1 class="title2">0{{index+1}}.{{question.title}}</h1>
+                            <!--Q-234-->
+                        <div class="select">
+                            <div v-if="question.type === 'radio'">
+                                <template v-for="choice in question.choices">
+                                    <input style="margin:0 10px;" :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
+                                    <label :for="choice.value">{{choice.title}}</label>
+                                </template>    
+                            </div>
+                            <!--Q-1-->
+                            <div v-else>
+                                <select>
+                                    <template v-for="choice in question.choices">
+                                            <option  :name="question.name" :value="choice.value" >{{choice.title}}</option>
+                                    </template>    
+                                </select>
+                            </div>
+                        </div>
+                        <!--下一步-->
+                        <button  id="lightboxbtn"  @click="changetab()" class="orangebutton title3 ">{{tab}}</button>
+                </div>
+            </template> 
+
         </div>
+
+    </div>
 
    </section>
 
    <!--這是計畫表主體-->
-   <main id="plan_wrapper">
-       <plan-head></plan-head>
-       <plan-section></plan-section>
+   <main id="plan_wrapper" ><!--style="display: none"-->
+    <div id="plan_head">
+        <div class="plan_bg">
+            
+            <div class="plan_info">
+                <p >比賽日期:2021/11/12</p>
+                <p>訓練週數: 12 Week</p>
+            </div>
+            
+            <svg id="bevelyellow" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
+                <defs>
+                    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#ffa10a"/>
+                        <stop offset="1" stop-color="#ffef36"/>
+                    </linearGradient>
+                </defs>
+                <path  data-name="Path 201" d="M56,0H308.81L257,107H0Z" fill="url(#linear-gradient)"/>
+                </svg>
+                <svg id="bevelwhite" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
+                  <path id="bevelwhite" data-name="Path 200" d="M56,0H308.81L257,107H0Z" fill="transparent" stroke="orange" />
+            </svg>
+
+        </div>
+    </div>
+       <section class="plan_tem_wrapper">
+        <!--天數head-->
+            <div id="plan_week">
+                <ul>
+                    <li v-for="day in 7" class="title2">D{{day}}</li>
+                </ul>
+            </div>
+      
+        <!--訓練表主要內容-->
+        <div class="plan_scroll">
+            <section  v-for="week in 8" id="plan_main_content">
+              <span class="week_mark title2">W{{week}}</span>
+                <ul class="plan_main_content_row">
+                    <li v-for="(perday,index) in plandata" class="plan_eachday">
+                        <div id="plan_week_table">
+                            <ul>
+                                <li class="title2">D{{index+1}}</li>
+                            </ul>
+                        </div>
+                        <div class="orangetitle">
+                            <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
+                            <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
+                            <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
+                        </div>
+                        <div class="plan_exe" >
+                            <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
+                            <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
+                            <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
+                            <p v-show="perday.rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);fontSize: 24px;">{{perday.rest}}</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+          <div class="plan_button">
+              <button onclick="window.open('./plan-temporary.html', '_self')" class="bluebutton title3">重新製作</button>
+              <button onclick="window.open('./plan-member.html', '_self')" class="orangebutton title3">儲存</button>
+                
+            </div>
+      </section>
    </main>
-   
+
+
    <!--這是footer-->
    <footer id="footer">
       <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
@@ -98,115 +183,233 @@
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
-<script src="./src/component/plan/plan.js"></script>
+<script src="../../node_modules/jquery/dist/jquery.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
+
 <script>
-// // ***lightbox*** //
-// const question = new Vue({
-//     el: '#plan_question',
-//     data(){
+// ***lightbox*** //
+const question = new Vue({
+    el: '#plan_question',
+    data(){
 
-//         return{
-//             tab:"下一步",
-//             current_tab:0,
-//             max:4,
-//             questions:[
-//                 //第一題
-//                 {
-//                     title:'你的參賽日期',
-//                     choices:
-//                     [{
-//                         title:'2021普悠瑪鐵人三項競賽',
-//                         value:'20211101'
-//                     },{
-//                         title:'2021梅花湖三鐵',
-//                         value:'20211203'
-//                     },{
-//                         title:'2021台東活水湖三鐵',
-//                         value:'20211203'
-//                     }],
-//                     name:'racedate',
-//                     type:'select',
-//                     answer: null //前面要塞值的話就判斷是question[0](哪一題)結果立一個變數 === {{question.answer}}
-//                 },
-//                 //第二題
-//                 {
-//                     title:'想挑戰的競賽距離',
-//                     choices:
-//                     [{
-//                         title:'226K全程距離',
-//                         value:'226'
-//                     },{
-//                         title:'113K半程距離',
-//                         value:'113'
-//                     },{
-//                         title:'51.5K標準距離',
-//                         value:'51.5'
-//                     }],
-//                     name:'distance',
-//                     type:'radio',
-//                     answer: null
-//                 },
-//                 //第三題
-//                 {
-//                     title:'想制定幾週的訓練計畫呢',
-//                     choices:
-//                     [{
-//                         title:'16',
-//                         value:'16'
-//                     },{
-//                         title:'12',
-//                         value:'12'
-//                     },{
-//                         title:'8',
-//                         value:'8'
-//                     }],
-//                     name:'week',
-//                     type:'radio',
-//                     answer: null
-//                 },
-//                 {
-//                     title:'選擇訓練強度',
-//                     choices:
-//                     [{
-//                         title:'強',
-//                         value:'hard'
-//                     },{
-//                         title:'中',
-//                         value:'normal'
-//                     },{
-//                         title:'弱',
-//                         value:'eazy'
-//                     }],
-//                     name:'level',
-//                     type:'radio',
-//                     answer: null
-//                 },
+        return{
+            tab:"下一步",
+            current_tab:0,
+            max:4,
+            questions:[
+                //第一題
+                {
+                    title:'你的參賽日期',
+                    choices:
+                    [{
+                        title:'2021普悠瑪鐵人三項競賽',
+                        value:'20211101'
+                    },{
+                        title:'2021梅花湖三鐵',
+                        value:'20211203'
+                    },{
+                        title:'2021台東活水湖三鐵',
+                        value:'20211203'
+                    }],
+                    name:'racedate',
+                    type:'select',
+                    answer: null //前面要塞值的話就判斷是question[0](哪一題)結果立一個變數 === {{question.answer}}
+                },
+                //第二題
+                {
+                    title:'想挑戰的競賽距離',
+                    choices:
+                    [{
+                        title:'226K全程距離',
+                        value:'226'
+                    },{
+                        title:'113K半程距離',
+                        value:'113'
+                    },{
+                        title:'51.5K標準距離',
+                        value:'51.5'
+                    }],
+                    name:'distance',
+                    type:'radio',
+                    answer: null
+                },
+                //第三題
+                {
+                    title:'想制定幾週的訓練計畫呢',
+                    choices:
+                    [{
+                        title:'16週',
+                        value:'16'
+                    },{
+                        title:'12週',
+                        value:'12'
+                    },{
+                        title:'8週',
+                        value:'8'
+                    }],
+                    name:'week',
+                    type:'radio',
+                    answer: null
+                },
+                {
+                    title:'選擇訓練強度',
+                    choices:
+                    [{
+                        title:'強',
+                        value:'hard'
+                    },{
+                        title:'中',
+                        value:'normal'
+                    },{
+                        title:'弱',
+                        value:'eazy'
+                    }],
+                    name:'level',
+                    type:'radio',
+                    answer: null
+                },
                 
-//             ]
+            ]
 
-//         }
-//     },
+        }
+    },
 
-//     methods: {
-//         last(){
-//             if(this.current_tab <= this.max  && this.current_tab > 0){
-//                 this.current_tab --     
-//             }
-//         },
-//         currenttab(){
-//                 if(this.current_tab < this.max && this.current_tab > 0){
-//                     this.current_tab ++
-//                 }
-//                 if(this.current_tab == 4){
-//                     return this.tab ="完成"  //有傳回值就要return
-//                 }else{
-//                     return this.tab ="下一步"
-//                 }
-//             }
-//       }, 
-// });
+    methods: {
+        createplan(){
+            if(this.tab == "完成"){
+                $(".loading").fadeIn(1500);
+                $("#plan_question").fadeOut(1500);
+                $.ajax({   
+                    method: "POST",
+                    url: "plan.php",
+                    data:{ //要丟的欄位
+                    },       
+                    dataType: "text", 
+                    success: function (response) { //得到回應更新資料
+                        if(response === "y"){
+                            $(".loading").fadeOut(1000);
+                            $("#plan_wrapper").fadeIn(1500);
+                            // display();   //找到資料後執行這function
+                        }else{
+                            alert(response);//流程控制
+                        }
+                    },
+                    error: function(exception) {
+                        alert("發生錯誤: " + exception.status);
+                    }
+                });
+            }
+        },
+        last(){
+            if(this.current_tab <= this.max  && this.current_tab > 0){
+                this.current_tab --     
+            }
+            if(this.current_tab != 4){
+                this.tab ="下一步"
+            }
+        },
+        changetab(){
+            this.createplan()
+                if(this.current_tab < 4 ){
+                     this.current_tab ++
+                }
+                if(this.current_tab == 4){
+                    this.tab = "完成"
+                }
+            
+        },
+       
+         
+    }, 
+     computed: {
+        progressWidth(){
+                // return{
+                switch (this.current_tab) {
+                            case 1:
+                                return 'width:10%';
+                                break;
+                            case 2:
+                                return 'width:30%';
+                                break;
+                            case 3:
+                                return 'width:60%';
+                                break;
+                            case 4:
+                                return 'width:100%';
+                                break;
+                           default:
+                                return("");
+                                break;
+                    
+            }
+        }
+     }
+});
+
+
+new Vue({
+  el: '#plan_wrapper',
+  data(){
+    return{
+        memberinfo:
+            {
+                photo:"./src/images/img/plan/memberphoto.png",
+                membername:"maggie",
+                racedate:20221127,
+                week:12
+            },
+            plandata:[
+            //day1
+            {
+            "swim":1,
+            "bike":null,
+            "run":.5,
+            "rest":false
+            },
+            //day2
+            {
+            "swim":1,
+            "bike":0.5,
+            "run":null,
+            "rest":false
+            },
+            //day3
+            {
+            "swim":null,
+            "bike":null,
+            "run":null,
+            "rest":"rest"
+            },
+            {
+            "swim":1,
+            "bike":null,
+            "run":.5,
+            "rest":false
+            },
+            {
+            "swim":1,
+            "bike":null,
+            "run":.5,
+            "rest":false
+            },
+            {
+            "swim":1,
+            "bike":null,
+            "run":1,
+            "rest":false
+            },
+            {
+            "swim":null,
+            "bike":null,
+            "run":.5,
+            "rest":false
+            },
+        ]
+     }
+   },
+});
+
 </script>
 </body>
 </html>
