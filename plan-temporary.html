@@ -43,11 +43,9 @@
 
     <div class="plan_ques_wrapper">
         <!--上一步-->
-        <button @click="last" class="previouspage">
-            <span class="arrow">
-                <a href=""></a>
-            </span>
-        </button>
+        <a href="#" @click="last" class="previouspage">
+            <div class="arrow"></div>
+        </a>
 
         <div  class="plan_question_content">
             
@@ -61,7 +59,8 @@
                         <p>
                             *此運動計畫表適用於最少八週以上之訓練時程
                             <br>
-                            *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷可自行調整當天運動時長
+                            *在訓練過程中務必關切自身健康狀況，如過程中感到無法負荷
+                            可自行調整當天運動時長
                         </p>
                     </div>
                 <button id="lightboxbtn"  @click="current_tab ++" class="orangebutton title3 ">開始</button>
@@ -70,18 +69,22 @@
             <!--2問題-->
             <template  v-for="(question,index) in questions" >        
                 <!--index[0]是說明 那當我點擊button的時候current_tab就會+1 當button_tab=1的時候顯示以下問題-->
-                <div  v-if="(index+1) === current_tab" class="plan_question_content_article">
-                        <div>
-                            <h1 class="title2">Q-{{index + 1}}{{question.title}}</h1>
-                            <hr>
+                <div  v-if="(index+1) === current_tab" class="plan_question_content_article"> 
+                        <!--進度條-->
+                        <div class="progress_bar">
                             <span class="title2">{{index+1}}/{{questions.length}}</span>
+                            <div class="progress_bar">
+                                <span class="progress" :style="progressWidth"></span>
+                            </div>
                         </div>
+                        <hr> 
+                        <h1 class="title2">0{{index+1}}.{{question.title}}</h1>
                             <!--Q-234-->
                         <div class="select">
                             <div v-if="question.type === 'radio'">
                                 <template v-for="choice in question.choices">
-                                    <label for="choice.value">{{choice.title}}</label>
-                                    <input :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
+                                    <input style="margin:0 10px;" :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
+                                    <label :for="choice.value">{{choice.title}}</label>
                                 </template>    
                             </div>
                             <!--Q-1-->
@@ -93,8 +96,8 @@
                                 </select>
                             </div>
                         </div>
-                    <!--下一步-->
-                    <button  id="lightboxbtn"  @click="changetab();creatplan()" class="orangebutton title3 ">{{tab}}</button>
+                        <!--下一步-->
+                        <button  id="lightboxbtn"  @click="changetab()" class="orangebutton title3 ">{{tab}}</button>
                 </div>
             </template> 
 
@@ -105,7 +108,7 @@
    </section>
 
    <!--這是計畫表主體-->
-   <main id="plan_wrapper" style="display: none" >
+   <main id="plan_wrapper" ><!--style="display: none"-->
     <div id="plan_head">
         <div class="plan_bg">
             
@@ -124,8 +127,8 @@
                 <path  data-name="Path 201" d="M56,0H308.81L257,107H0Z" fill="url(#linear-gradient)"/>
                 </svg>
                 <svg id="bevelwhite" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
-                <path id="bevelwhite" data-name="Path 200" d="M56,0H308.81L257,107H0Z" fill="white" stroke="url(#linear-gradient)"/>
-                </svg>
+                  <path id="bevelwhite" data-name="Path 200" d="M56,0H308.81L257,107H0Z" fill="transparent" stroke="orange" />
+            </svg>
 
         </div>
     </div>
@@ -141,29 +144,37 @@
         <div class="plan_scroll">
             <section  v-for="week in 8" id="plan_main_content">
               <span class="week_mark title2">W{{week}}</span>
-              <ul>
-                <li v-for="(perday,index) in plandata" class="plan_eachday">
-                    <div>
-                        <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
-                        <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
-                        <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
-                    </div>
-                    <div class="plan_exe" >
-                        <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
-                        <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
-                        <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
-                    </div>
-                </li>
-            </ul>
+                <ul class="plan_main_content_row">
+                    <li v-for="(perday,index) in plandata" class="plan_eachday">
+                        <div id="plan_week_table">
+                            <ul>
+                                <li class="title2">D{{index+1}}</li>
+                            </ul>
+                        </div>
+                        <div class="orangetitle">
+                            <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
+                            <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
+                            <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
+                        </div>
+                        <div class="plan_exe" >
+                            <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
+                            <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
+                            <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
+                            <p v-show="perday.rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);fontSize: 24px;">{{perday.rest}}</span></p>
+                        </div>
+                    </li>
+                </ul>
             </section>
         </div>
           <div class="plan_button">
-              <button  class="bluebutton title3">重新製作</button>
-              <button href="./../../plan-member.html" class="orangebutton title3">儲存</button>
-          </div>
+              <button onclick="window.open('./plan-temporary.html', '_self')" class="bluebutton title3">重新製作</button>
+              <button onclick="window.open('./plan-member.html', '_self')" class="orangebutton title3">儲存</button>
+                
+            </div>
       </section>
    </main>
-   
+
+
    <!--這是footer-->
    <footer id="footer">
       <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
@@ -228,13 +239,13 @@ const question = new Vue({
                     title:'想制定幾週的訓練計畫呢',
                     choices:
                     [{
-                        title:'16',
+                        title:'16週',
                         value:'16'
                     },{
-                        title:'12',
+                        title:'12週',
                         value:'12'
                     },{
-                        title:'8',
+                        title:'8週',
                         value:'8'
                     }],
                     name:'week',
@@ -265,7 +276,7 @@ const question = new Vue({
     },
 
     methods: {
-        creatplan(){
+        createplan(){
             if(this.tab == "完成"){
                 $(".loading").fadeIn(1500);
                 $("#plan_question").fadeOut(1500);
@@ -299,21 +310,41 @@ const question = new Vue({
             }
         },
         changetab(){
-                if(this.current_tab < this.max && this.current_tab > 0){
-                    return this.current_tab ++
+            this.createplan()
+                if(this.current_tab < 4 ){
+                     this.current_tab ++
                 }
                 if(this.current_tab == 4){
-                    return this.tab ="完成" 
-                    }else{
-                        return this.tab ="下一步"
-                        }
+                    this.tab = "完成"
+                }
+            
         },
-        display(){
-
-        }
-         
+       
          
     }, 
+     computed: {
+        progressWidth(){
+                // return{
+                switch (this.current_tab) {
+                            case 1:
+                                return 'width:10%';
+                                break;
+                            case 2:
+                                return 'width:30%';
+                                break;
+                            case 3:
+                                return 'width:60%';
+                                break;
+                            case 4:
+                                return 'width:100%';
+                                break;
+                           default:
+                                return("");
+                                break;
+                    
+            }
+        }
+     }
 });
 
 
@@ -333,39 +364,46 @@ new Vue({
             {
             "swim":1,
             "bike":null,
-            "run":.5
+            "run":.5,
+            "rest":false
             },
             //day2
             {
             "swim":1,
             "bike":0.5,
-            "run":null
+            "run":null,
+            "rest":false
             },
             //day3
             {
             "swim":null,
             "bike":null,
-            "run":null
+            "run":null,
+            "rest":"rest"
             },
             {
             "swim":1,
             "bike":null,
-            "run":.5
+            "run":.5,
+            "rest":false
             },
             {
             "swim":1,
             "bike":null,
-            "run":.5
+            "run":.5,
+            "rest":false
             },
             {
             "swim":1,
             "bike":null,
-            "run":1
+            "run":1,
+            "rest":false
             },
             {
             "swim":null,
             "bike":null,
-            "run":.5
+            "run":.5,
+            "rest":false
             },
         ]
      }
