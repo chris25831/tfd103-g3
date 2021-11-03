@@ -19,11 +19,30 @@
       .plan_question_content_article {
         @include flexcenter;
         flex-direction: column;
+<<<<<<< HEAD
         justify-content: space-around;
         // border:2px solid turquoise;
         height: 100%;
       }
     }
+=======
+        background-size:contain ;
+        background-position: center;
+        // border: 2px solid white;
+        height: 400px;
+        width: 800px;
+        .plan_question_content{
+            // border:2px solid rgb(64, 125, 224);
+            height: 90%;
+            .plan_question_content_article{
+                @include flexcenter;
+                flex-direction: column;
+                justify-content:space-around;
+                // border:2px solid turquoise;
+                height: 100%;
+            }
+        }
+>>>>>>> April
 
     .previouspage {
       // border: 1px solid white;
