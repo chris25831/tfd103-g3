@@ -1,16 +1,13 @@
 #member-login{
-    @include bgplan(100vh);
+    @include bgplan(100%);
     display: flex;
     justify-content: center;
     padding: $bottomspacing;
-    align-items: center;
     .login-bg{
         @include questionbox();
         width: 720px;
-        height: 400px;
-        // border: 1px solid red;
+        height: 500px;
         .login-content{
-            // border: 1px solid blue;
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
@@ -19,13 +16,11 @@
             img{
                 width: 220px;
                 height: 30px;
-                // border: 1px solid red;
                 margin-bottom: 20px;
                 display: flex;
                 align-self: center;
             }
             h2{
-                // border: 1px solid blue;
                 text-align: center;
                 margin-bottom: 20px;
                 position: relative;
@@ -41,14 +36,14 @@
                 }
             }
             .input-wrapper{
-                // border: 1px solid green;
                 text-align: center;
+                margin-top: 25px;
                 .login-input{
                     border: none;
                     border-bottom: 3px solid $blue;
                     background-color: transparent;
                     padding: 5px;
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
                     width: 300px;
                     outline: none;
                 }
@@ -70,7 +65,7 @@
             .register-btn{
                 text-align: center;
                 color: black;
-                margin: 5px auto;
+                margin: 8px auto;
                 text-decoration: none;
             }
             .forgotpw{
@@ -79,8 +74,8 @@
                 margin: 5px auto;
             }
             .btn-wrapper{
-                // border: 1px solid red;
                 text-align: center;
+                margin-top: 20px;
                 .orangebutton{
                     width: 250px;
                     height: 40px;
