@@ -1,29 +1,23 @@
-.previouspage {
-  border: none;
+.previouspage{ //a標籤
   border-radius: 10px 0 10px 0;
-  background-color: #e75f49;
+  background-color: $orange;
+  display: block;
   width: 50px;
   height: 50px;
   box-shadow: 2px 2px 3px #6e6d6d;
-  cursor: pointer;
+
   position: relative;
-  .arrow {
-    border: 1px solid #ffffff;
-    border-width: 0px 5px 5px 0;
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    padding: 3px;
-    
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform:  translate(-50%, -50%) rotate(135deg);
-    a {
+  .arrow{ //div
+      border: 5px solid $white;
+      border-width: 0px 5px 5px 0;
+      width: 20px;
+      height: 20px;
+
       display: inline-block;
-      width: 100%;
-      height: 100%;
-    }
+      transform: rotate(135deg);
+      position: absolute;
+      top: 35%;
+      left: 43%;
   }
 }
 
@@ -39,18 +33,6 @@
     background-color: #e75f49;
     width: 120%;
     height: 3px;
-  }
-  .titlelinearrow {
-    border: solid #e75f49;
-    border-width: 0px 3px 0 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(-45deg);
-    position: absolute;
-    left: 137%;
-    top: 80%;
-    width: 10px;
-    height: 10px;
   }
 }
 

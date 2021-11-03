@@ -2,7 +2,6 @@
     @include bgnormal(1000px);
     
     #race_list{
-        border:2px solid red ;
         margin: 0 83px;
         
     }
@@ -16,9 +15,9 @@
             box-shadow: none;
         }
         display: grid;
-        grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
-        border: 1px solid aquamarine;
+        grid-template-rows: 1fr 1fr 2fr 0.5fr 1fr;
         padding: 15px;
+        height: 20px;
         background-color: $orange;
         
     }
@@ -36,7 +35,6 @@
         a{
             text-decoration: none;
             color: black;
-            border: 1px solid red;
             @include flexcenter();
             &:nth-child(1){
                 flex-grow: 0;
@@ -46,7 +44,6 @@
             }
             label{
                 width: 100%;
-                border: 1px solid rgb(0, 110, 255);
             }
             &:hover{
                 color: $blue;
