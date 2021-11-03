@@ -1,479 +1,606 @@
 *{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    /* outline: 1px solid black; */
-}
-.slider__wrapper{
-	display: block;
-	height: 750px;
-}
-
-.flex__container {
-	position: absolute;
-	/* top: 0;
-	left: 0; */
-	display: flex;
-	flex-flow: row wrap; 
-	justify-content: flex-start;
-	height: 750px;
-	width: 100%;
-	z-index: 1;
-}
-
-.flex__container.flex--active {
-	z-index: 2;
-}
-
-.flex__content {
-	position: absolute;
-	top: 80px;
-	left: 80px;
-	/* margin-right: 80px; */
-	color: #fff;
-	width: 640px;
-	opacity: 1;
-	transform: translate3d(0,0,0);
-	transition: transform 0.2s linear 0.2s, opacity 0.1s linear 0.2s;
-	z-index: 3;
-}
-
-.flex__item {
-	color: #fff;
-	transition: transform 0.1s linear;
-}
-
-.flex__item--left {
-	display: flex;
-	align-items: center;
-	width: 30%;
-	transform-origin: left bottom;
-	transition: transform 0.1s linear 0.4s;
-	opacity: 0;
-	position: relative;
-	overflow: hidden;
-}
-
-.flex__item--right {
-	width: 70%;
-	transform-origin: right center;
-	transition: transform 0.1s linear 0s;
-	opacity: 0;
-}
-
-.text--sub {
-	font-size: 50px;
-	font-weight: bold;
-	/* letter-spacing: ; */
-	text-transform: uppercase;
-	margin-bottom: 10px;
-}
-
-.text--big {
-	/* font-family: ; */
-	font-size: 80px;
-	font-weight: bold;
-	line-height: 80px;
-    margin:0 0 0 -4px;
-}
-
-.text--small {
-	font-size: 40px;
-	margin-top: 20px;
-}
-
-.text--normal {
-	font-size: 13px;
-	color: rgba(255, 255, 255, 0.8);
-	line-height: 22px;
-	margin-top: 25px;
-}
-
-.text__background {
-	font-family: 'Poppins', sans-serif;
-	position: absolute;
-	left: 72px;
-	bottom: -60px;
-	color: rgba(0,0,0,0.05);
-	font-size: 170px;
-	font-weight: 700;
-}
-
-.flex--preStart .flex__item--left,
-.flex--preStart .flex__item--right,
-.flex--active .flex__item--left,
-.flex--active .flex__item--right {
-	opacity: 1;
-}
-
-/* 第一張slide */
-.flex--one .flex__item--left {
-	background: #E75F49;
-}
-
-.flex--one .flex__item--right {
-	background: #00429D;
-}
-
-/* 第二張slide */
-.flex--two .flex__item--left {
-	background: #707070;
-}
-
-.flex--two .flex__item--right {
-	background: #E75F49;
-}
-
-/* 第三張slide */
-.flex--three .flex__item--left {
-	background: #00429D;
-}
-
-.flex--three .flex__item--right {
-	background: linear-gradient(180deg, rgba(255,161,10,1) 50%, rgba(255,239,54,1) 100%);
-}
-
-.slider__img {
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-	max-height: 40vw;
-	opacity: 1;
-	transform: translate3d(0,0,0);
-	transition: opacity 0.43s 0.6s, transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
-}
-
-
-.slider__navi {
-	position: absolute;
-	top: 400px;
-	right: 20px;
-	transform: translateY(-50%);
-	z-index: 999;
-}
-
-.slider__navi a {
-	display: block;
-	height: 6px;
-	width: 20px;
-	margin: 20px 0;
-	text-indent: -9999px;
-	box-shadow: none;
-	border: none;
-	background: rgba(0,0,0,0.2);
-}
-
-.slider__navi a.active {
-	background: #FFEF36;
-}
-
-
-/* animate start point */
-.flex__container.animate--start .flex__content {
-	transform: translate3d(0,-200%,0);
-	opacity: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	/* outline: 1px solid black; */
+  }
+  .slider__wrapper{
+  display: block;
+  height: 750px;
+  }
+  
+  .flex__container {
+  position: absolute;
+  /* top: 0;
+  left: 0; */
+  display: flex;
+  flex-flow: row wrap; 
+  justify-content: flex-start;
+  height: 750px;
+  width: 100%;
+  z-index: 1;
+  }
+  
+  .flex__container.flex--active {
+  z-index: 2;
+  }
+  
+  .flex__content {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  /* margin-right: 80px; */
+  color: #fff;
+  width: 640px;
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  transition: transform 0.2s linear 0.2s, opacity 0.1s linear 0.2s;
+  z-index: 3;
+  }
+  
+  .flex__item {
+  color: #fff;
+  transition: transform 0.1s linear;
+  }
+  
+  .flex__item--left {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  transform-origin: left bottom;
+  transition: transform 0.1s linear 0.4s;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+  }
+  
+  .flex__item--right {
+  width: 70%;
+  transform-origin: right center;
+  transition: transform 0.1s linear 0s;
+  opacity: 0;
+  }
+  
+  .text--sub {
+  font-size: 50px;
+  font-weight: bold;
+  /* letter-spacing: ; */
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  }
+  
+  .text--big {
+  /* font-family: ; */
+  font-size: 80px;
+  font-weight: bold;
+  line-height: 80px;
+	margin:0 0 0 -4px;
+  }
+  
+  .text--small {
+  font-size: 40px;
+  margin-top: 20px;
+  }
+  
+  .text--normal {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 22px;
+  margin-top: 25px;
+  }
+  
+  .text__background {
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  left: 72px;
+  bottom: -60px;
+  color: rgba(0,0,0,0.05);
+  font-size: 170px;
+  font-weight: 700;
+  }
+  
+  .flex--preStart .flex__item--left,
+  .flex--preStart .flex__item--right,
+  .flex--active .flex__item--left,
+  .flex--active .flex__item--right {
+  opacity: 1;
+  }
+  
+  /* 第一張slide */
+  .flex--one .flex__item--left {
+  background: #E75F49;
+  }
+  
+  .flex--one .flex__item--right {
+  background: #00429D;
+  }
+  
+  /* 第二張slide */
+  .flex--two .flex__item--left {
+  background: #707070;
+  }
+  
+  .flex--two .flex__item--right {
+  background: #E75F49;
+  }
+  
+  /* 第三張slide */
+  .flex--three .flex__item--left {
+  background: #00429D;
+  }
+  
+  .flex--three .flex__item--right {
+  background: linear-gradient(180deg, rgba(255,161,10,1) 50%, rgba(255,239,54,1) 100%);
+  }
+  
+  .slider__img {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  max-height: 40vw;
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  transition: opacity 0.43s 0.6s, transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
+  }
+  
+  
+  .slider__navi {
+  position: absolute;
+  top: 400px;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 999;
+  }
+  
+  .slider__navi a {
+  display: block;
+  height: 6px;
+  width: 20px;
+  margin: 20px 0;
+  text-indent: -9999px;
+  box-shadow: none;
+  border: none;
+  background: rgba(0,0,0,0.2);
+  }
+  
+  .slider__navi a.active {
+  background: #FFEF36;
+  }
+  
+  
+  .flex__container.animate--start .flex__content {
+  transform: translate3d(0,-200%,0);
+  opacity: 0;
   }
   
   .flex__container.animate--start .slider__img {
-	transform: translate3d(-200px,0,0);
-	opacity: 0;
+  transform: translate3d(-200px,0,0);
+  opacity: 0;
   }
   
-  /* animate end point */
   .flex__container.animate--end .flex__item--left {
-	transform: scaleY(0);
+  transform: scaleY(0);
   }
   
   .flex__container.animate--end .flex__item--right {
-	transform: scaleX(0);
+  transform: scaleX(0);
   }
   
   .flex__container.animate--end .flex__content {
-	transform: translate3d(0,200%,0);
-	opacity: 0;
+  transform: translate3d(0,200%,0);
+  opacity: 0;
   }
   
   .flex__container.animate--end .slider__img {
-	transform: translate3d(200px,0,0);
-	opacity: 0;
+  transform: translate3d(200px,0,0);
+  opacity: 0;
   }
   
   
   /* 讓TriClub 帶你更專業scss */
   .pro__training{
-	display: block;
-	position: relative;
+  display: block;
+  position: relative;
   }
-
+  
   .pro__training__title{
-	position: absolute;
-	top: 80px;
-	left: 250px;
-
+  position: absolute;
+  top: 80px;
+  left: 250px;
   }
-
+  
   .pro__training__title .text--normal {
-	color: #000;
-	margin-top: 20px;
-}
-
+  color: #000;
+  margin-top: 20px;
+  }
+  
   .background-box{
-	position:absolute;
-	bottom: 200px;
-	right: 0px; 
+  position:absolute;
+  bottom: 200px;
+  right: 0px; 
   }
-
+  
   .sports {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-row-gap: 50px ;
-    margin: 0 6%;
-    text-align: center;
-}
-
-.sports img {
-    width: 300px;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    .sports {
-        grid-row-gap: 20px ;
-    }
-	.sports img {
-		width: 200px;
-	}
-}
-
-
-.sports .item{
-    text-align: center;
-    width: 100%;
-}
-
-.pic-container {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    font-size: 0;
-}
-
-.pic-container .pic2 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.pic-container:hover .pic2{
-    opacity:1;
-}
-
-
-
-
-  
-  .banner{
-	text-align: left;
-	max-width: 100%;
-	background-color: #FFEF36;
-	/* padding: 1rem,0;
-	margin: 0 0 3rem; */
-	max-height: 68px;
-	position: absolute;
-	bottom: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 50px ;
+  margin: 0 6%;
+  text-align: center;
   }
   
-	marquee{
-		padding: 10px;
-		color: #000000;
-		text-transform: uppercase;
-		font-size: 30px;
-		font-weight: 800;
-	}
-	
-	span{
-		color: #000000;
-	}
+  .sports img {
+  width: 300px;
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+  .sports {
+	grid-row-gap: 20px ;
+  }
+  .sports img {
+	width: 200px;
+  }
+  }
+  
+  
+  .sports .item {
+	text-align: center;
+	width: 100%;
+  }
+  
+  .pic-container {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	font-size: 0;
+  }
+  
+  .pic-container .pic2 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+  }
+  
+  .pic-container:hover .pic2 {
+	opacity:1;
+  }
+  
+  /* 跑馬燈 */
+  .banner{
+  text-align: left;
+  max-width: 100%;
+  background-color: #FFEF36;
+/* padding: 1rem,0;
+margin: 0 0 3rem; */
+  max-height: 68px;
+  position: absolute;
+  bottom: 100px;
+  }
+  
+  .marquee-container{
+  padding: 10px;
+  color: #000000;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 800;
+  }
+  
+  
   
   
   /* 開始製作我的個人計畫 */
   .training__plan{
-	display: block;
-	position: relative;
-  }
-  
-  .training__plan__container{
-	position: absolute;  
-	bottom: 6%;           
-	left: 0;        
-	right: 0;
-	margin: auto; 
-  
+  display: block;
+  position: relative;
   }
   
   .training__plan__svg{
-	position: absolute;  
-	top: 20%;   
+  position: absolute;  
+  top: 20%;   
   }
+
+.training__plan__title{
+	color: #fff;
+	position: absolute;
+	top: 60px; 
+	right: 180px;
+	width: 570px;
+}
+
+.training__plan__photo{
+	position: absolute;
+	top:-100px;
+	left: 190px;
+}
+  
+ /* 這裡是放計畫表的黃色塊 */	
+  .training__plan__container{
+  position: absolute;  
+  bottom: 6%;           
+  left: 0;        
+  right: 0;
+  margin: auto; 
+  }
+
   
   
   
-  /* TriClub會員專屬回饋 */
+  /* TriClub會員專屬 */
   .member__FAQ{
-	display: block;
-	position: relative;
-	border: 1px solid greenyellow;
+  display: block;
+  position: relative;
   }
   
   .member__title {
-	position: absolute;
-	top: 80px;
-	left: 170px;
-	color: #fff;
-	width: 600px;
-	}
+  position: absolute;
+  top: 80px;
+  left: 170px;
+  color: #fff;
+  width: 600px;
+  }
+
+  .member__photo{
+    position: absolute;
+    top:-60px;
+    right: 300px;
+  }
   
   
   /* 會員權益表格  */
   .member-table {
-	border-collapse: separate;
-	border-radius: 10px;
-	border-spacing: 0;
-	margin: 4rem 0;
-	width: 37%;
-	position: absolute;
-	top: 280px;
-	left: 170px;
+  border-collapse: separate;
+  border-radius: 10px;
+  border-spacing: 0;
+  margin: 4rem 0;
+  width: 37%;
+  position: absolute;
+  top: 280px;
+  left: 170px;
   }
   
   th {
-	background-color: #00429D;
-	color: #fff;
-	border-bottom: 1px solid #d1d1d1;
+  background-color: #00429D;
+  color: #fff;
+  border-bottom: 1px solid #d1d1d1;
   }
   
   th,
   td {
-	padding: 0.75em;
-	text-align: center;
+  padding: 0.75em;
+  text-align: center;
   }
   
   td {
-	background-color: white;
+  background-color: white;
   }
   
   td:first-child {
-	text-align: left;
+  text-align: left;
   }
   
   tbody tr:nth-child(odd) td {
-	background-color: #f6f6f6;
+  background-color: #f6f6f6;
   }
   
   thead th:first-child {
-	  border-top-left-radius: 10px;
-	  text-align: left;
+  border-top-left-radius: 10px;
+  text-align: left;
   }
   
   thead th:last-child {
-	  border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
   }
   
   tbody tr:last-child td:first-child {
-	border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   }
   
   tbody tr:last-child td:last-child {
-	border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   }
   
   @media only screen and (max-width: 768px) {
-	.member-table {
-	 width: 90%;
-	}
+  .member-table {
+	width: 90%;
+  }
   }  
-	
   
   
   /* FAQ區塊 */
   .FAQ__container {
-	display: block;
-	padding: 100px;
-	background-color: #fff;
-	width: 80%;
-	border-radius:10px;
-	position: absolute;  
-	bottom: 6%;           
-	left: 0;        
-	right: 0;
-	margin: auto; 
-   }
-   
-   .faq-drawer {
-	 margin-bottom: 30px;
-   }
-   
-   .faq-drawer__content-wrapper {
-	 font-size: 1.25em;
-	 line-height: 1.4em;
-	 max-height: 0px;
-	 overflow: hidden;
-	 transition: 0.25s ease-in-out;
-   }
-   
-   .faq-drawer__title {
-	 border-top: #000 1px solid;
-	 cursor: pointer;
-	 display: block;
-	 font-size: 1.25em;
-	 font-weight: 700;
-	 padding: 30px 0 0 0;
-	 position: relative;
-	 margin-bottom: 0;
-	 transition: all 0.25s ease-out;
-   }
-   
-   .faq-drawer__title::after {
-	 border-style: solid;
-	 border-width: 1px 1px 0 0;
-	 content: " ";
-	 display: block;
-	 float: right;
-	 height: 10px;
-	 left: 2px;
-	 position: relative;
-	 right: 20px;
-	 top: 2px;
-	 transform: rotate(135deg);
-	 transition: 0.35s ease-in-out;
-	//  vertical-align: top;
-	 width: 10px;
-   }
-   
-   .faq-drawer__title:hover { 
-	 color: #4E4B52  ;
-   }
-   
-   .faq-drawer__trigger:checked
-	 + .faq-drawer__title
-	 + .faq-drawer__content-wrapper {
-	 max-height: 350px;
-   }
-   
-   .faq-drawer__trigger:checked + .faq-drawer__title::after {
-	 transform: rotate(-45deg);
-	 transition: 0.25s ease-in-out;
-   }
-   
-   input[type="checkbox"] {
-	 display: none;
-   }
-   
-   @media only screen and (max-width: 768px) {
-	 .FAQ__container {
-	  width: 90%;
-	  padding: 50px;
-	 }
-   }
+  display: block;
+  padding: 100px;
+  background-color: #fff;
+  width: 80%;
+  border-radius:10px;
+  position: absolute;  
+  bottom: 6%;           
+  left: 0;        
+  right: 0;
+  margin: auto; 
+  }
+  
+  .faq-drawer {
+  margin-bottom: 30px;
+  }
+  
+  .faq-drawer__content-wrapper {
+  font-size: 1.25em;
+  line-height: 1.4em;
+  max-height: 0px;
+  overflow: hidden;
+  transition: 0.25s ease-in-out;
+  }
+  
+  .faq-drawer__title {
+  border-top: #000 1px solid;
+  cursor: pointer;
+  display: block;
+  font-size: 1.25em;
+  font-weight: 700;
+  padding: 30px 0 0 0;
+  position: relative;
+  margin-bottom: 0;
+  transition: all 0.25s ease-out;
+  }
+  
+  .faq-drawer__title::after {
+  border-style: solid;
+  border-width: 1px 1px 0 0;
+  content: " ";
+  display: block;
+  float: right;
+  height: 10px;
+  left: 2px;
+  position: relative;
+  right: 20px;
+  top: 2px;
+  transform: rotate(135deg);
+  transition: 0.35s ease-in-out;
+  width: 10px;
+  }
+  
+  .faq-drawer__title:hover { 
+  color: #4E4B52;
+  }
+  
+  .faq-drawer__trigger:checked
+  + .faq-drawer__title
+  + .faq-drawer__content-wrapper {
+  max-height: 350px;
+  }
+  
+  .faq-drawer__trigger:checked + .faq-drawer__title::after {
+  transform: rotate(-45deg);
+  transition: 0.25s ease-in-out;
+  }
+  
+  input[type="checkbox"] {
+  display: none;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .FAQ__container {
+    width: 90%;
+    padding: 50px;
+    }
+  }
+  
+  
+  
+  
+  /* 三鐵賽事訓練班 */
+  .training__course{
+  position: relative;
+  }	
+  
+  .training__course__title{
+	position: absolute;
+	top: 80px;
+	left: 170px;
+	color: #000;
+  }
+  
+  .training__course__title .text--normal {
+  color: #000;
+  margin-top: 20px;
+  }
+  
+  .training__course__svg{
+  position: absolute;  
+  bottom: 5%;
+  z-index:-100; 
+  }
+  
+  
+  .course__flex-container{
+  display: flex;
+  margin: 20% 10% 0 10%;
+  }
+  
+  .course__item {
+  color: #fff;
+  font-weight: 800;
+  min-height:450px;
+  width:350px;
+  max-width:80%;
+  margin:0 auto;
+  position:relative;
+  }
+  
+  /* Group Training 團體訓練   */
+  #course__item_1 {
+  background: url('../src/images/img/index/grouptraning_400x600.jpg');
+  width: 100%;
+  height: 100%;    
+  position: absolute;
+  max-width: 95%;
+  text-align: center;
+  }
+  #course__item_2 {
+  width: 100%;
+  height: 100%;
+  background: #FFEF36;
+  position: absolute;
+  max-width: 95%;
+  left: 5%;
+  top: 5%;
+  z-index:-1;
+  }
+  
+  /* Personal Coach 個人教練 */
+  #course__item_3 {
+  background: url('../src/images/img/index/personalcoach_400x600.jpg');
+  width: 100%;
+  height: 100%;    
+  position: absolute;
+  max-width: 95%;
+  text-align: center;
+  }
+  #course__item_4 {
+  width: 100%;
+  height: 100%;
+  background: #00429D;
+  position: absolute;
+  max-width: 95%;
+  left: 5%;
+  top: 5%;
+  z-index:-1;
+  }
+  
+  /* Fitness營養規劃 */
+  #course__item_5 {
+  background: url('../src/images/img/index/fitness_400x600.jpg');
+  width: 100%;
+  height: 100%;    
+  position: absolute;
+  max-width: 95%;
+  text-align: center;
+  }
+  #course__item_6 {
+  width: 100%;
+  height: 100%;
+  background: #E75F49;
+  position: absolute;
+  max-width: 95%;
+  left: 5%;
+  top: 5%;
+  z-index:-1;
+  }
+  
+  
+  
+  /* 鐵人三項賽事時間表 */
+  .triathlon__events{
+  display: block;
+  position: relative;
+  }	
+  
+ .events__title {
+  position: absolute;
+  top: 80px;
+  left: 170px;
+  color: #fff;
+  }
