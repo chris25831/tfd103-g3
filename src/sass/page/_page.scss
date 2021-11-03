@@ -1,7 +1,5 @@
 //**記得在這邊import你的scss**
 
-//首頁
-@import "./index";
 
 // 討論區
 @import "./forum-home";
@@ -35,3 +33,6 @@
 @import "./member-login";
 @import "./member-register";
 @import "./member-forgot";
+
+//首頁  //首頁放最下面
+@import "./index";

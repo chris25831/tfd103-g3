@@ -1,7 +1,6 @@
 main.classes-content {
-  // 宣告圖片左側空間
   @include bgnormal(100%);
-  color: $black;
+  // 宣告圖片左側空間
   .imgleftspace {
     margin-left: 40px;
   }
@@ -60,9 +59,6 @@ main.classes-content {
           }
           > p {
             margin: 0px 0px 65px 70px;
-            span {
-              color: $black;
-            }
             span.title3 {
               display: inline-block;
               margin-top: 15px;
@@ -79,7 +75,6 @@ main.classes-content {
           margin: 0 auto;
           > p:first-child {
             margin-bottom: 40px;
-            color: $black;
           }
           p.nutrients {
             width: 100%;
@@ -89,7 +84,6 @@ main.classes-content {
             justify-content: space-evenly;
             span {
               display: block;
-              color: $black;
               width: 68px;
               height: 68px;
               border: 1px solid $black;
@@ -101,9 +95,6 @@ main.classes-content {
                 color: $white;
               }
             }
-          }
-          > span {
-            color: $black;
           }
         }
       }
@@ -125,7 +116,6 @@ main.classes-content {
             gap: 15px 15px;
             margin-bottom: 20px;
             span {
-              color: $black;
               display: inline-block;
               border: 1px solid $white;
               border-radius: 10px;
@@ -167,7 +157,6 @@ main.classes-content {
             line-height: 2;
           }
           span {
-            color: $black;
             margin: 0px 5px;
           }
         }
@@ -205,9 +194,6 @@ main.classes-content {
         p:nth-child(2) {
           // border: 1px solid red;
           width: 100%;
-          span {
-            color: $black;
-          }
           a {
             // border: 1px solid orange;
             display: inline-block;
