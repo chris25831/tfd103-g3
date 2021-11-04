@@ -52,14 +52,14 @@ Vue.component("contentdetail-1",{
         addCart(){
             
             doFirst();
-            console.log(this.img[0]);
             // 創立物件
             let item = {
                 comclassTitle : this.classTitle,
                 comclassid : this.classid,
                 comtrainer : this.trainer,
                 comprice : this.price,
-                comimg: this.img[0], 
+                comdate :"", 
+                comimg: this.img[0],
             }
             
             // 判斷地點是否傳入
@@ -94,7 +94,7 @@ Vue.component("contentdetail-1",{
             this.addCart();
 
             // 跳轉結帳頁面
-            window.location.href="../../../shopcart-home.html";  
+            window.location.href="../../shopcart-home.html";  
         },
         
     },
@@ -103,7 +103,7 @@ Vue.component("contentdetail-1",{
 
 // contentdetail-2 ==> 個人教練
 Vue.component("contentdetail-2",{
-    props:["classTitle", "trainer", "en_trainer", "expertise", "tclass","license"],
+    props:["trainerid", "trainer", "en_trainer", "expertise", "tclass","license","img"],
     template:`
         <div class="classcontentword2">
                 <div>
@@ -128,11 +128,55 @@ Vue.component("contentdetail-2",{
                 </div>
                 <br>
                 <div>
-                    <button  v-if="tclass.name !==''" class="title3 yellowbutton">加入購物車</button>
-                    <button  v-if="tclass.name !==''" class="title3 orangebutton">立即報名</button>
+                    <button  v-if="tclass.name !==''" class="title3 yellowbutton" @click="addCart">加入購物車</button>
+                    <button  v-if="tclass.name !==''" class="title3 orangebutton" @click="payNow">立即報名</button>
                 </div>
         </div>
     `,
+
+    methods:{
+        // 加入購物車
+        addCart(){
+            
+            doFirst();
+            // 創立物件
+            let item = {
+                comclassTitle : this.tclass.name,
+                comclassid : this.trainerid,
+                comtrainer : this.trainer,
+                comprice :  this.tclass.price,
+                comdate : this.tclass.date,
+                comimg : this.img[0], 
+                comclassLocation : "",
+            }
+            
+
+            // 存入localstorage
+            if(storage[this.classid]){
+                alert('商品已下單');
+            }else{
+                
+                // 刪除一開始的undefined
+                if(storage['addCartList'] == ""){
+                    storage['addCartList'] = `${this.trainerid}`;
+                }else{
+                    storage['addCartList'] += `,${this.trainerid}`;
+                }
+
+                storage[this.trainerid] = JSON.stringify(item);
+                alert('已加入購物車!');
+            }
+
+        },
+
+        // 直接結帳
+        payNow(){
+            this.addCart();
+
+            // 跳轉結帳頁面
+            window.location.href="../../shopcart-home.html";  
+        },
+    },
 });
 
 
