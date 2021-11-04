@@ -77,7 +77,8 @@
                                     <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
                                     <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
                                 </div>
-                                <div @click="checkoneday" class="plan_member_exe" :class="{ done: checkdone}" >
+                                <!-- <div @click="perday.finish_week.push(week) " class="plan_member_exe" :class="{ done: perday.finish_week.indexOf(week) }" > -->
+                                <div @click="perday.check = true" class="plan_member_exe" :class="{ done: checkdone}" >
                                     <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
                                     <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
                                     <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
