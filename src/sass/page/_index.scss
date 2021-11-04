@@ -677,12 +677,19 @@ margin: 0 0 3rem; */
   /* 鐵人三項賽事時間表 */
   .triathlon__events{
   display: block;
-  position: relative;
+  background-color: $blue;
+    div{  
+      position: relative;
+    }
+    main{ //近期賽事
+      background-color: $blue;
+      background-image: none;
+    }
   }	
   
  .events__title {
   position: absolute;
-  top: 80px;
+  top: 40px;
   left: 170px;
   color: #fff;
   }
