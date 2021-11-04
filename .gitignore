@@ -1,4 +1,5 @@
 node_modules
 css
 package-lock.json
+.vscode
 # 還有最後打包的資料夾名稱

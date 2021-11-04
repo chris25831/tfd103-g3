@@ -121,9 +121,9 @@
             articleData: [],   //放撈回來的資料
             tidedData: [],  //整理過的資料
             currentPage: 1,     //現在的頁碼
-            itemsPerPage: 4,  //每頁幾個項目
+            itemsPerPage: 2,  //每頁幾個項目
             startIndex: 0,    //起始項目index，供分頁器使用
-            totalPage: 1,    //總頁面數
+            totalPage: -1,    //總頁面數
             dummyData: [   //假資料
                 {
                     "ArticleNumber": "1",
@@ -216,18 +216,24 @@
             },
             plusOnePage() {  //分頁器
                 if(this.currentPage < this.totalPage) {
-                    this.currentPage = this.currentPage + 1;
+                    this.currentPage += 1;
                 }
             },
             changeCategory(e) {     //頁籤
+                this.tidedData = this.articleData; 
+                this.totalPage = Math.ceil(this.articleData.length / this.itemsPerPage);
+                
                 if(e.target.innerText === "全部") {
-                    this.tidedData = this.articleData;         
+                    this.tidedData = this.articleData;
+                    this.currentPage = 1;         
                 } else {
                     this.currentPage = 1;
-                    this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
+                    
                     this.tidedData = this.tidedData.filter(sorted => sorted.ArticleCategory === e.target.innerText);
+                    this.tidedData = this.tidedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
                 }
-            }
+            },
+            
             
             // toContent(e){
             //     let wrapper = e.target.closest("div.article-item");
@@ -238,6 +244,7 @@
             // },
         },
         computed: {
+            
             // totalPage() {  //總頁數    
             //     return Math.ceil(this.articleData.length / this.itemsPerPage); 
             // },
@@ -248,13 +255,17 @@
         },
         watch: {
             tidedData(newValue, oldValue){
-                this.totalPage = Math.ceil(newValue.length / this.itemsPerPage);
+                // this.totalPage = Math.ceil(newValue.length / this.itemsPerPage);   //監視頁數的改變
+
+                // console.log("newValue", newValue.length)
+                // console.log("this.itemsPerPage", this.itemsPerPage)
+                // console.log("this.totalPage",this.totalPage)
             },
 
             currentPage(newValue, oldValue) {   //分頁器偵測所處頁面    
                 this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
                 this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
-                
+                console.log("in watch:: ", document.querySelectorAll("a.page-link"))
                 document.querySelectorAll("a.page-link").forEach((text, index) => {
                     if(parseInt(text.innerText) === parseInt(newValue)) {
                         text.style.backgroundColor = "lightgray";
@@ -265,34 +276,19 @@
             },         
                            
         },
-        created() {         
-            
-
-        },
         mounted() {
             //取得資料
             this.articleData = this.dummyData;
-            console.log("1", this.articleData);
+
+            //計算總頁數
+            this.totalPage = Math.ceil(this.articleData.length / this.itemsPerPage);   
+            
             //計算起始index number 
             this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
-            console.log("2", this.startIndex)
+
             //資料暫存區
             this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
-            console.log("3", this.tidedData)    
-            //計算總頁數
-            console.log("4", this.totalPage)
-            console.log("5", this.itemsPerPage);
-
-            this.totalPage = Math.ceil(this.tidedData.length / this.itemsPerPage);     
-          
-            console.log("6",Math.ceil(this.tidedData.length / this.itemsPerPage));
-            
-            document.querySelectorAll("a.page-link").forEach((text, index) => {   //分頁器自動將所在頁面之頁碼加背景色
-                
-                if(parseInt(text.innerText) === parseInt(this.currentPage)) {
-                    text.style.backgroundColor = "lightgray";
-                }
-            })
+           
         },
     })
 </script>
