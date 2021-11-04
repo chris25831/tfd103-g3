@@ -1,0 +1,56 @@
+main.info {
+    @include bgnormal(100%);
+    > div {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: $bottomspacing;
+        background-color: rgba($color: $white, $alpha: 0.8);
+    }
+}
+
+.panel-control {
+    position:absolute;
+    opacity:0;
+  }
+  .tab-group label {
+    display:inline-block;
+    padding: 10px 50px;
+    border:1px solid #ccc;
+    border-bottom:none;
+    background-color: #ccc;
+    bottom:-1px;
+    position:relative;
+  }
+  .content-group {
+    border:1px solid #ccc;
+    padding: 20px;
+  }
+  .content {
+      display:none;
+      padding: 20px
+    }
+  /*.content1{display:block;} */
+
+  /* .tab-group .active {
+    position:relative;
+    background-color: #fff;
+  } */
+
+  .photo{
+      float: right;
+  }
+
+
+
+
+  
+  #radio1:checked ~ .tab-group [for="radio1"],
+  #radio2:checked ~ .tab-group [for="radio2"],
+  #radio3:checked ~ .tab-group [for="radio3"]{background-color: #fff;}
+  
+  /* #radio2:checked~ .content-group .content1{display:none}
+  #radio3:checked~ .content-group .content1{display:none} */
+  
+  #radio1:checked ~ .content-group .content1,
+  #radio2:checked ~ .content-group .content2,
+  #radio3:checked ~ .content-group .content3 {display:block}

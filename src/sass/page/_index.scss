@@ -4,9 +4,87 @@
 	padding: 0;
 	/* outline: 1px solid black; */
   }
+
+
+  .outter{
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    
+  }
+  
+  .video-container {
+    height: 100vh;
+    width:100%;
+    // max-width:1000px;
+    position: relative;
+    overflow: hidden;
+   
+  }
+  
+  video {
+    object-fit: cover; // Set the magic
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .video-container:after {
+    content: '';
+    display: block;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(black, .2);
+    z-index: 1;
+  }
+  
+
+  
+  .viedo-textoverlay {
+    position: relative;
+    display: flex;
+    justify-content:left;
+    align-items: left;
+    flex-direction: column;
+    height: 100%;
+    text-align: left;
+    position: relative;
+    z-index: 10;
+    width: 70%;
+    margin: 10%;
+    align-self:flex-start;
+  }
+
+  .video-quote{
+    font-weight:800;
+    font-size:100px;
+    color: #fff;
+  }
+  
+  .index-button {
+    background-color:#E75F49;
+    border-radius:40px;
+    padding:15px 30px;
+    margin-top:20px;
+    color: #fff;
+    font-weight: bold;
+    width: 300px;
+    text-align: center;
+    
+  }
+  
+
+
   .slider__wrapper{
   display: block;
-  height: 750px;
+  height: 100vh;
   }
   
   .flex__container {
@@ -16,7 +94,7 @@
   display: flex;
   flex-flow: row wrap; 
   justify-content: flex-start;
-  height: 750px;
+  height: 100vh;
   width: 100%;
   z-index: 1;
   }
@@ -31,7 +109,7 @@
   left: 80px;
   /* margin-right: 80px; */
   color: #fff;
-  width: 640px;
+  width: 600px;
   opacity: 1;
   transform: translate3d(0,0,0);
   transition: transform 0.2s linear 0.2s, opacity 0.1s linear 0.2s;
@@ -71,15 +149,14 @@
   
   .text--big {
   /* font-family: ; */
-  font-size: 80px;
+  font-size: 60px;
   font-weight: bold;
-  line-height: 80px;
 	margin:0 0 0 -4px;
   }
   
   .text--small {
   font-size: 40px;
-  margin-top: 20px;
+  margin-top: 10px;
   }
   
   .text--normal {
@@ -137,7 +214,7 @@
   position: absolute;
   bottom: 0px;
   right: 0px;
-  max-height: 40vw;
+  max-height: 45vw;
   opacity: 1;
   transform: translate3d(0,0,0);
   transition: opacity 0.43s 0.6s, transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
@@ -146,7 +223,7 @@
   
   .slider__navi {
   position: absolute;
-  top: 400px;
+  top: 1000px;
   right: 20px;
   transform: translateY(-50%);
   z-index: 999;
@@ -205,8 +282,9 @@
   
   .pro__training__title{
   position: absolute;
-  top: 80px;
+  top: 50px;
   left: 250px;
+  width: 600px;
   }
   
   .pro__training__title .text--normal {
@@ -216,7 +294,7 @@
   
   .background-box{
   position:absolute;
-  bottom: 200px;
+  bottom: 145px;
   right: 0px; 
   }
   
@@ -276,7 +354,7 @@
 margin: 0 0 3rem; */
   max-height: 68px;
   position: absolute;
-  bottom: 100px;
+  bottom: 55px;
   }
   
   .marquee-container{
@@ -298,21 +376,21 @@ margin: 0 0 3rem; */
   
   .training__plan__svg{
   position: absolute;  
-  top: 20%;   
+  top: 23%;   
   }
 
 .training__plan__title{
 	color: #fff;
 	position: absolute;
 	top: 60px; 
-	right: 180px;
-	width: 570px;
+	right: 50px;
+	width: 550px;
 }
 
 .training__plan__photo{
 	position: absolute;
-	top:-100px;
-	left: 190px;
+	top:-45px;
+	left: 15px;
 }
   
  /* 這裡是放計畫表的黃色塊 */	
@@ -344,8 +422,9 @@ margin: 0 0 3rem; */
   .member__photo{
     position: absolute;
     top:-60px;
-    right: 300px;
+    right: 150px;
   }
+
   
   
   /* 會員權益表格  */
@@ -445,6 +524,10 @@ margin: 0 0 3rem; */
   margin-bottom: 0;
   transition: all 0.25s ease-out;
   }
+
+  .faq-drawer__content{
+    margin: 20px;
+  }
   
   .faq-drawer__title::after {
   border-style: solid;
@@ -493,14 +576,13 @@ margin: 0 0 3rem; */
   
   /* 三鐵賽事訓練班 */
   .training__course{
-  position: relative;
+    display: block;
+    position: relative;
   }	
   
   .training__course__title{
-	position: absolute;
-	top: 80px;
-	left: 170px;
-	color: #000;
+    color: #000;
+    margin: 55px 0 50px 85px;
   }
   
   .training__course__title .text--normal {
@@ -514,17 +596,17 @@ margin: 0 0 3rem; */
   z-index:-100; 
   }
   
-  
+
   .course__flex-container{
   display: flex;
-  margin: 20% 10% 0 10%;
+  margin: 0 7%;
   }
   
   .course__item {
   color: #fff;
   font-weight: 800;
-  min-height:450px;
-  width:350px;
+  min-height:400px;
+  width:300px;
   max-width:80%;
   margin:0 auto;
   position:relative;
@@ -532,7 +614,7 @@ margin: 0 0 3rem; */
   
   /* Group Training 團體訓練   */
   #course__item_1 {
-  background: url('../src/images/img/index/grouptraning_400x600.jpg');
+  background: url('../src/images/img/index/grouptraning_300x450.jpg');
   width: 100%;
   height: 100%;    
   position: absolute;
@@ -552,7 +634,7 @@ margin: 0 0 3rem; */
   
   /* Personal Coach 個人教練 */
   #course__item_3 {
-  background: url('../src/images/img/index/personalcoach_400x600.jpg');
+  background: url('../src/images/img/index/personalcoach_300x450.jpg');
   width: 100%;
   height: 100%;    
   position: absolute;
@@ -572,7 +654,7 @@ margin: 0 0 3rem; */
   
   /* Fitness營養規劃 */
   #course__item_5 {
-  background: url('../src/images/img/index/fitness_400x600.jpg');
+  background: url('../src/images/img/index/fitness_300x450.jpg');
   width: 100%;
   height: 100%;    
   position: absolute;

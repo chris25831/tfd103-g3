@@ -90,14 +90,14 @@ const question = new Vue({
     methods: {
         createplan(){
             if(this.tab == "完成"){
-                console.log(this.plandata);
-                this.plandata += this.plandata.concat(this.question.answer)
+                // console.log(this.plandata);
+                // this.plandata += this.plandata.concat(this.question.answer)
 
                
-                // $("#plan_question").fadeOut(1500);
-                // $(".loading").fadeIn(1500);
-                // $(".loading").fadeOut(1500);
-                // $("#plan_wrapper").fadeIn(1400);
+                $("#plan_question").fadeOut(1500);
+                $(".loading").fadeIn(1500);
+                $(".loading").fadeOut(1500);
+                $("#plan_wrapper").fadeIn(1000);
                 // $.ajax({   
                 //     method: "POST",
                 //     url: "plan.php",
@@ -130,11 +130,14 @@ const question = new Vue({
         changetab(){ //切換按鈕index
             this.createplan()
                 if(this.current_tab < 4 ){
-                     this.current_tab ++
+                     this.current_tab ++ //執行三步
+                     this.plandata.push(this.questions.question);
+                     console.log(this.plandata);
                 }
 
                 if(this.current_tab == 4){
-                    this.tab = "完成"
+                    this.tab = "完成" //執行第四步
+                    
                 }
             
         },

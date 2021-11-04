@@ -8,6 +8,7 @@ Vue.component("bookmark-forum",{
             document.querySelectorAll("span.bookmark-item").forEach((text, index) => {
                 if(e.target === text) {
                     text.style.color = "#ffa10a";
+                    
                 } else {
                     text.style.color = "";
                 }
@@ -16,7 +17,6 @@ Vue.component("bookmark-forum",{
     },
     mounted() { 
         document.querySelectorAll("span.bookmark-item").forEach((text, index) => {
-            console.log(text.innerText)
             if(text.innerText.toString() === "全部") {
                 text.style.color = "#ffa10a";
             }
