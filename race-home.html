@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -21,22 +23,51 @@
    <!--內容所有都放在這div裡面-->
    <main class="race_list_wrapper">
        <div id="race_list">
-           <nav>這裡是頁籤</nav>
+           <!-- <nav>這裡是頁籤</nav> -->
            <main class="race_wrapper"> 
-                <div class="race_title">日期 地點 賽事 項目 活動狀態</div>
-                <template v-for="game in games">
+                <div class="race_title">
+                    <p>日期</p>
+                    <p>地點</p>
+                    <p>賽事</p>
+                    <p>項目</p>
+                    <p>活動狀態</p>
+                </div>
+                <template v-for="game in tidedData">
                    <div class="raceinfo"> 
                         <a class="artical" href="./race-content.html">{{game.date}}</a>
                         <a class="artical" href="./race-content.html">{{game.place}}</a> 
                         <a class="artical" href="./race-content.html">{{game.title}}</a>
-                        <div>
-                             <a  v-for="distence in game.distences" :style="{backgroundColor:distence.color}" class="artical" href="./race-content.html">{{distence.dis}}</a>  
+                        <div class="distences">
+                             <a   v-for="distence in game.distences" v-show="distence.event != false" :style="{backgroundColor:distence.color}" class="artical race_distence" href="./race-content.html">{{distence.dis}}</a>  
                         </div>
-                        <a class="artical" href="./race-content.html">{{game.state}}</a>
+                        <a class="artical" href="./race-content.html">{{game.state}}截止</a>
                    </div>
                 </template>
             </main>
-           <nav>這裡是nav</nav>
+           
+                <div class="pagination">
+                    <!--分頁器-->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous" @click.prevent="minusOnePage">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+
+                            <li class="page-item" v-for="page in totalPage"><a class="page-link" @click.prevent="changeRacePage" href="#">{{page}}</a></li>
+                            
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next" @click.prevent="plusOnePage" >
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+           
        </div>
    </main>
    <!--這是footer-->
@@ -54,180 +85,451 @@
         el: '#race_list',
         data(){
          return{
-            
-                // date:"日期",
-                // place:"地點",
-                // title:"賽事",
-                // distences :["項目","項目","項目"],
-                // state:"活動狀態"
-    
-           
+            itemsPerPage: 5,//一頁顯示筆數
+            tidedData:[],
+            currentPage: 1,
+            //模擬資料(11筆) 11/5 無條件進位 = 3頁
             games :[
+                
             
-            {   //王映婷要記得丟資料從[1]開始!!!!
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+          
+            {
+                "date":20210927,
+                "place":"基隆市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":true
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
             {
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+                "date":20210927,
+                "place":"新北市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
             {
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+                "date":20210927,
+                "place":"宜蘭縣",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":true
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
             {
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+                "date":20210927,
+                "place":"新北市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":true
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":false
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
             {
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+                "date":20210927,
+                "place":"高雄市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
             {
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+                "date":20210927,
+                "place":"新北市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":false
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
             {
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+                "date":20210927,
+                "place":"宜蘭縣",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
             {
-                date:20210927,
-                place:"新北市",
-                title:"2021 Let's Run At Home 空英1919陪讀鐵人三項",
-                distences :[
+                "date":20210927,
+                "place":"新北市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
                     {
-                    dis:"51.5k",
-                    color:"yellow"
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
                     }, 
                     {
-                    dis:"113k",
-                    color:"orange"
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":false
                     }, 
                     {
-                    dis:"51.5k",
-                    color:"blue"}
-                    ],
-                state:20210927
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
     
             },
-            
-        ]
-         }   
-      }
+            {
+                "date":20210927,
+                "place":"宜蘭縣",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            },
+            {
+                "date":20210927,
+                "place":"新北市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            },
+            {
+                "date":20210927,
+                "place":"宜蘭縣",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            },
+            {
+                "date":20211227,
+                "place":"花蓮縣",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            },
+            {
+                "date":20210927,
+                "place":"桃園市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            },
+            {
+                "date":20210927,
+                "place":"新北市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            },
+            {
+                "date":20210927,
+                "place":"桃園市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":true
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            },
+            {
+                "date":20210927,
+                "place":"新北市",
+                "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
+                "distences" :[
+                    {
+                    "dis":"51.5k",
+                    "color":"yellow",
+                    "event":true
+                    }, 
+                    {
+                    "dis":"113k",
+                    "color":"orange",
+                    "event":false
+                    }, 
+                    {
+                    "dis":"51.5k",
+                    "color":"blue",
+                    "event":true
+                    }
+                  ],
+                "state":20210927
+    
+            }
+          ]
+        }   
+       },
+        computed: {
+                totalPage() {  //總頁數
+                    return Math.ceil(this.games.length / this.itemsPerPage); 
+                },
+                
+                startIndex() {    
+                    return (this.currentPage - 1) * this.itemsPerPage;
+                },
+            },
+        methods: {
+            changeRacePage(e) {
+                console.log(e.target)
+                this.currentPage = parseInt(e.target.innerText);
+                console.log(this.currentPage);
+            },
+            minusOnePage() {
+                if(this.currentPage > 1) {
+                    this.currentPage = this.currentPage - 1;
+                }
+            },
+            plusOnePage() {
+                if(this.currentPage < this.totalPage) {
+                    this.currentPage = this.currentPage + 1;
+                }
+            },
+        },
+        watch: {
+            currentPage(newValue, oldValue) {
+                console.log(`currentPage: ${oldValue} => ${newValue}`);
+                this.tidedData = this.raceData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+                
+                document.querySelectorAll("a.page-link").forEach((text, index) => {
+                    if(parseInt(text.innerText) === parseInt(newValue)) {
+                        text.style.backgroundColor = "orange";
+                    } else {
+                        text.style.backgroundColor = "";
+                    }
+                })
+                
+            },    
+        },
+        created() {
+            //指定哪個data
+            this.raceData = this.games; 
+            //從哪個index起始
+            this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
+            //回傳切割後的新陣列
+            this.tidedData = this.raceData.slice(this.startIndex, this.startIndex + this.itemsPerPage);            
+
+        },
     });
     
  </script>

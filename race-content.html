@@ -21,18 +21,35 @@
         <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
    <!--內容所有都放在這div裡面-->
-   <main>
-       <div id="informationrace">
-           <header>這裡是頁籤</header>
-           <main> 
-               
-               <template v-for="game in games">
-                   <div class="raceinfo"> <!--第一排記得scss取消a預設屬性！！！-->
-                       
+   <main class="race_wrapper_info">
+       <div class="race_container" id="race_information">
+           <!-- <header class="nav">這裡是頁籤</header> -->
+           <main class="race_contents"> 
+                   <header>
+                       <h1>2021 Let's Run At Home 空英1919陪讀鐵人三項</h1>
+                   </header>
+                   <div class="race_raceinfo"> <!--第一排記得scss取消a預設屬性！！！-->
+                       <div><h2>活動日期</h2> <p class="race_title title3">2021/10/25 ~ 2021/10/30</p></div>
+                       <hr>
+                       <div><h2>主辦單位</h2> <p class="race_title title3">中華基督教救助協會 、 空中英語教室 、 TRAVELER</p></div>
+                       <hr>
+                       <div><h2>活動狀態</h2> <p class="race_title title3">2021/10/15截止</p></div>
+                       <hr>
+                       <div><h2>相關連結</h2> <p class="race_title title3">活動簡章</p></div>
+                       <hr>
+                       <div>
+                           <p>
+                               每年四月底約定好一起到 Challenge Taiwan 相聚,一起比賽、分享、及進步。而這個約定,不只是你與 Challenge Taiwan,是你與隊友、與家人、與自己，甚至是與過去跟未來的約定。我們持續堅持將 Challenge Family 的精神帶到未來每一年，選手、志工、夥伴、親友，都屬於 Challenge Family 的一家人。期待能繼續將賽事帶向更高品質，延續賽事的最佳體驗。提升終點嘉年華的美好回憶，完美結合三鐵賽事的汗水與努力、親朋好友的熱情支持、以及台東的好山好水人情味。「 Welcome Home, Athletes! 」每一年四月，約定好，我們一起回家比賽。
+                               至是與過去跟未來的約定。我們持續堅持將 Challenge Family 的精神帶到未來每一年，選手、志工、夥伴、親友，都屬於 Challenge Family 的一家人。期待能繼續將賽事帶向更高品質，延續賽事的最佳體驗。提升終點嘉年華的美好回憶，完美結合三鐵賽事的汗水與努力、親朋好友的熱情支持、以及台東的好山好水人情味。「 Welcome Home, Athletes! 」每一年四月，約定好，我們一起回家比賽。
+                           </p>
+                        </div>
                    </div>
-               </template>
+                   <div class="race_photo">
+                       <img src="./src/images/img/race/photo.png" alt="圖片讀取錯誤">
+                   </div>
+                   <button class="race_button orangebutton">立即報名</button>
            </main>
-           <nav>這裡是navid</nav>
+           <nav></nav>
        </div>
    </main>
    <!--這是footer-->
@@ -51,7 +68,7 @@
         data(){
          return{
             
-            games :[
+            race :[
             {
                 date:"日期",
                 place:"地點",

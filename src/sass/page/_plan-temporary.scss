@@ -19,9 +19,9 @@
         flex-direction: column;
         background-size:contain ;
         background-position: center;
-        border: 2px solid white;
+        // border: 2px solid white;
         justify-content: space-around;
-        border:2px solid turquoise;
+        // border:2px solid turquoise;
         height: 100%;
       }
     }
@@ -49,7 +49,7 @@
                 @include flexcenter;
                 flex-direction: column;
                 justify-content:space-around;
-                border:2px solid turquoise;
+                // border:2px solid turquoise;
                 height: 100%;
                 
                 .select{
@@ -78,7 +78,7 @@
 
 //進度條
 div.progress_bar{
-  border: 1px solid $blue;
+  // border: 1px solid $blue;
   display: flex;
   flex-direction: row;
   width: 70%;
@@ -109,7 +109,7 @@ div.progress_bar{
         border: 1px solid $orange;
     }
     h1{
-        border: 1px solid $orange;
+        // border: 1px solid $orange;
         text-align: left;
         width: 70%;
         font-weight: 500;  

@@ -20,7 +20,7 @@ template: `
         <ul class="header_menu" :class="{slidedown:slide}">
           <li class="head_title">
               <a class="info title3" href="">三鐵資訊</a>
-              <ul class="head_subtitle">
+              <ul class="head_subtitle head_activity">
               <a href="../../race-home.html"><li>近期賽事</li></a>
               </ul>
           </li>
