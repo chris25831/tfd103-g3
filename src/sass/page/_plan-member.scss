@@ -1,5 +1,5 @@
 main.plan_member_wrapper{
-    border: 2px solid rgb(255, 0, 0);
+   
     display: grid;
     grid-template-columns: 1fr 5fr;
     
@@ -24,7 +24,7 @@ header.plan_member_aside{
         position: sticky;
         top: 80px;
         height: 100vh;
-        border:2px solid blue;
+        // border:2px solid blue;
             header{
                 width: 50%;
                 @include flexcenter();
@@ -56,7 +56,7 @@ header.plan_member_aside{
             }
 
             div.plan_member_button{
-                border: 2px solid red;
+                // border: 2px solid red;
                 display: flex;
                 width: 90%;
                 height: 150px;
@@ -74,10 +74,10 @@ header.plan_member_aside{
 main.plan_member_main_content{
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
+    // border: 2px solid red;
     width: 100%;
     div{
-        border: 2px solid rgb(0, 255, 200);
+        // border: 2px solid rgb(0, 255, 200);
         display: flex;
         flex-direction: column;
         
@@ -88,7 +88,7 @@ main.plan_member_main_content{
 
 //計畫表
 section.plan_member_content{
-    border: 2px solid rgb(0, 255, 106);
+    // border: 2px solid rgb(0, 255, 106);
     width: 100%;
     margin-left: 0;
     gap: 0;
@@ -116,7 +116,7 @@ section.plan_member_content{
     }
     //計畫表TABLE
     .plan_scroll{
-        border: 2px solid rgb(15, 6, 139);
+        // border: 2px solid rgb(15, 6, 139);
         display: flex;
         flex-direction: column;
         #plan_member_table{

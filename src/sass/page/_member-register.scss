@@ -1,12 +1,12 @@
 #member-register{
-    @include bgplan(100);
+    @include bgplan(100%);
     display: flex;
     justify-content: center;
     padding: $bottomspacing;
     .register-bg{
         @include questionbox();
         width: 720px;
-        height: 400px;
+        height: 550px;
         // border: 1px solid red;
         .register-content{
             // border: 1px solid blue;
@@ -42,6 +42,7 @@
             .input-wrapper{
                 // border: 1px solid green;
                 text-align: center;
+                margin-top: 25px;
                 .register-input{
                     border: none;
                     border-bottom: 3px solid $blue;
@@ -53,6 +54,12 @@
                 }
                 .notice{
                     font-size: 12px;
+                    margin-top: 10px;
+                    display: inline-block;
+                    cursor: pointer;
+                    input[type='radio']{
+                        vertical-align: text-bottom;
+                    }
                 }
                 .required{
                     color: red;
@@ -68,13 +75,16 @@
                 align-self: center;
                 border: none;
                 cursor: pointer;
+                margin-top: 20px;
             }
             p{
                 text-align: center;
+                margin-top: 10px;
             }
             .btn-wrapper{
                 // border: 1px solid red;
                 text-align: center;
+                margin-top: 20px;
                 .orangebutton{
                     width: 250px;
                     height: 40px;
