@@ -1,42 +1,193 @@
+
+//賽事內頁//
+main.race_wrapper_info{
+    @include bgnormal(100%);
+    .race_container{
+        max-width: 900px;
+        margin: 0 auto;
+        // border: 1px solid white;
+        padding: $bottomspacing 0;
+        header.nav{
+            margin-bottom: $bottomspacing;
+            // border: 1px solid red;
+            height: 50px;
+        }
+        main.race_contents{
+            display: flex;
+            flex-direction: column;
+            background-color: $white;
+            margin-bottom:50px;
+            box-shadow: 10px 10px $orange;
+            padding: 20px;
+            gap: 10px;
+            justify-items: center;
+            align-items: center;
+        }
+    }
+}
+
+
+main.race_contents{
+    
+    // header{
+    //     // border: 1px solid red;
+    // }
+    div.race_raceinfo{
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:10px;
+        gap: 10px;
+        hr{
+            width: 100%;
+        }
+        div{
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            // border: 1px solid grey;
+            
+           h2{
+               width: 15%;
+               margin-right: 50px;
+               @include table(){
+                font-size: 20px;
+                width: 40%;
+             }
+           }
+           p.race_title{
+            width: 80%;
+            
+            @include table(){
+                
+                width: 60%;
+             }
+           }
+           //文章
+           &:last-child{
+            line-height: 1.5;
+            // border: 1px solid grey;
+            margin-top: 30px;
+            width: 80%;
+            @include table(){
+                width: 100%;
+            }
+           }
+        }
+    }
+    div.race_photo{
+        display: flex;
+        justify-content: center;
+        // border: 1px solid red;
+        width: 80%;
+        img{
+            width: 100%;
+        }
+       
+    }
+    // button .race_button{
+    //     // border: 1px solid red;
+    // }
+}
+
+
+
+
+
+//賽事主頁//
 .race_list_wrapper{
-    @include bgnormal(1000px);
+    @include bgnormal(100%);
     
     #race_list{
-        border:2px solid red ;
         margin: 0 83px;
-        
+        padding: $bottomspacing 0;
+        @include table(){
+            margin: 0 ;
+            width: 100%;
+        }
+        @include mobile(){
+            margin: 0 ;
+            width: 100%;
+        }
+        div.pagination{
+            margin-top: 20px;
+            margin-bottom: $bottomspacing;
+            justify-content: center;
+            li a{
+                color: $blue;
+            }
+            span{
+                color: $blue;
+            }
+        }
     }
 }
 .race_wrapper{
+    
     display: grid;
     grid-template-rows: auto;
     gap: 10px;
+    //賽事標題
     div.race_title{
         &:hover{
             box-shadow: none;
         }
         display: grid;
-        grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
-        border: 1px solid aquamarine;
-        padding: 15px;
+        justify-items: center;
+        align-content: center;
+        border-radius: 10px;
+        grid-template-columns: 0.5fr 1fr 2fr 90px 1.5fr;
+        color: $white;
+        align-items: center;
         background-color: $orange;
+        padding: 10px;
         
+        p{
+            margin-bottom: 0;
+        }
     }
     .raceinfo{
         display: grid;
-        grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
+        grid-template-columns: 0.5fr 1fr 2fr 90px 1.5fr;
         border-radius: 10px;
+        padding: 10px;
+        border: 1.3px solid $orange;
         background-color: $white;
-        
-       
+        @include table(){
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            
+        }
         &:hover{
-            // background: $yellowgradient;
             box-shadow: 5px 5px 0 $orange;
+        }
+        //里程
+        div.distences{
+           display: flex;
+           align-items: center;
+            @include table(){
+                flex-direction: column;
+                align-items: center;
+            }
+            a{
+                border-radius: 5px;
+                padding: 5px;
+                
+                margin-left: 5px;
+                &:last-child{
+                    color: white;
+                    
+                }
+            @include table(){
+                width: 10%;
+              }  
+            }
         }
         a{
             text-decoration: none;
             color: black;
-            border: 1px solid red;
             @include flexcenter();
             &:nth-child(1){
                 flex-grow: 0;
@@ -46,12 +197,14 @@
             }
             label{
                 width: 100%;
-                border: 1px solid rgb(0, 110, 255);
             }
             &:hover{
                 color: $blue;
                 font-weight: 500;
                 letter-spacing: 0.8px;
+            }
+            .race_distence{
+                border-radius: 10px;
             }
         }
         

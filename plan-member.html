@@ -52,7 +52,7 @@
                     </div>
                 </main>
                 <div class="plan_member_button">
-                    <button class="bluebutton">我的基本資料</button>
+                    <button onclick="window.open('./member-main.html', '_self')" class="bluebutton">我的基本資料</button>
                     <button class="orangebutton">取消計畫</button>
                 </div>
             </section>
@@ -81,6 +81,7 @@
                                     <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
                                     <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
                                     <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
+                                    <p v-show="perday.rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.rest}}</span></p>
                                 </div>
                             </li>
                         </ul>         
@@ -97,129 +98,10 @@
    </footer>
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
+<script src="./src/component/plan/plan.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
-<script>
 
-
-new Vue({
-  el: '#plan_wrapper',
-  data(){
-    return{
-        checkdone:false,
-        memberinfo:
-            {
-                photo:"./src/images/img/plan/memberphoto.png",
-                membername:"maggie",
-                racedate:20221127,
-                week:12
-            },
-        plandata:[
-            //day1
-            {
-            "swim":1,
-            "bike":null,
-            "run":.5
-            },
-            //day2
-            {
-            "swim":1,
-            "bike":0.5,
-            "run":null
-            },
-            //day3
-            {
-            "swim":null,
-            "bike":null,
-            "run":null
-            },
-            {
-            "swim":1,
-            "bike":null,
-            "run":.5
-            },
-            {
-            "swim":1,
-            "bike":null,
-            "run":.5
-            },
-            {
-            "swim":1,
-            "bike":null,
-            "run":1
-            },
-            {
-            "swim":null,
-            "bike":null,
-            "run":.5
-            },
-        ]
-      }
-    },
-
-    methods: {
-        checkoneday(){
-                alert("恭喜你獲得一點");
-                
-                this.checkdone = true;
-        }
-    },
-
-//    computed:{
-//        if (this.plandata.swim && Object.keys(perday)[0])
-//    }
-});  
-
-
-    var chart = c3.generate({
-      bindto: "#plan_chart",
-      size: {
-            height: 140,
-            width: 190
-        },
-      data: {  //針對圖表的樣式資料屬性寫在data內
-        columns: [
-          ["Swim", 30],
-          ["Bike", 60],
-          ["Run", 50],
-        ],
-        type: "bar",
-        colors: {
-            Swim: "#FFA10A",
-            Bike: "#00429D",
-            Run: "#E75F49"
-            
-        },
-        // onmouseover:function(){ //滑鼠滑進圖的效果  
-        //     // console.log(grad1);
-        //     var svg = d3.select("svg");
-        //     var allpath = svg.selectAll(".c3-bar-0");
-        //     return allpath.style("fill","#FFEF36");
-        // },
-        // onmouseout:function(){
-        //     return allpath.style("fill","red");
-    
-        // }
-      },
-      bar:{
-        ratio: 0.8 ,
-        space: 0.25
-      },
-      legend: {
-        show: true, //是否顯示下排項目表
-      },
-      axis: {
-          x:{
-            show: false,
-          },
-          y:{
-            show: false,
-          }
-      }
-      
-    });
-    
-</script>
 </body>
 </html>
 

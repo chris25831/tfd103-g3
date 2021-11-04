@@ -24,7 +24,7 @@
     <!--內容所有都放在這div裡面-->
     <main class="main forum-home" id="forum-home">
         <div class="bookmark-frontend">
-            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category" @click.native="changeCategory">
         </div>
 
         <div class="button-block-frontend">
@@ -103,14 +103,13 @@
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
+<script src="./src/js/vuex.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/common/bookmark-forum.js"></script>
 <script src="./src/component/common/forum-new-post-modal.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
-
-
 
 <script>
     new Vue({
@@ -120,17 +119,19 @@
             showModal: false,
             dataId: "",
             articleData: [],   //放撈回來的資料
-            tidedData: [],
-            currentPage: 1,
+            tidedData: [],  //整理過的資料
+            currentPage: 1,     //現在的頁碼
             itemsPerPage: 4,  //每頁幾個項目
-            dummyData: [   //假資料庫
+            startIndex: 0,    //起始項目index，供分頁器使用
+            totalPage: 1,    //總頁面數
+            dummyData: [   //假資料
                 {
                     "ArticleNumber": "1",
                     "AuthorName": "Maggie Wang1",
                     "AuthorAvatar": "./src/images/img/forum/smile.jpg",
                     "PostTime": "2021/09/21",
                     "ArticleTitle": "問題跑鞋標題",
-                    "Category": "問題",
+                    "ArticleCategory": "問題",
                     "ArticleContent": "問題跑鞋內容",
                     "ViewsCount": "100",
                     "LikesCount": "100",
@@ -206,21 +207,28 @@
                 this.showModal = false;
             },
             changePage(e) {
-                console.log(e.target)
                 this.currentPage = parseInt(e.target.innerText);
-                console.log(this.currentPage);
             },
-            minusOnePage() {
+            minusOnePage() {  //分頁器
                 if(this.currentPage > 1) {
-                    this.currentPage = this.currentPage - 1;
+                    this.currentPage = this.currentPage - 1;  
                 }
             },
-            plusOnePage() {
+            plusOnePage() {  //分頁器
                 if(this.currentPage < this.totalPage) {
                     this.currentPage = this.currentPage + 1;
                 }
             },
-
+            changeCategory(e) {     //頁籤
+                if(e.target.innerText === "全部") {
+                    this.tidedData = this.articleData;         
+                } else {
+                    this.currentPage = 1;
+                    this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
+                    this.tidedData = this.tidedData.filter(sorted => sorted.ArticleCategory === e.target.innerText);
+                }
+            }
+            
             // toContent(e){
             //     let wrapper = e.target.closest("div.article-item");
             //     this.dataId = wrapper.getAttribute("data-id");
@@ -230,17 +238,21 @@
             // },
         },
         computed: {
-            totalPage() {  //總頁數
-                return Math.ceil(this.articleData.length / this.itemsPerPage); 
-            },
+            // totalPage() {  //總頁數    
+            //     return Math.ceil(this.articleData.length / this.itemsPerPage); 
+            // },
             
-            startIndex() {    
-                return (this.currentPage - 1) * this.itemsPerPage;
-            },
+            // startIndex() {    
+            //     return (this.currentPage - 1) * this.itemsPerPage;
+            // },
         },
         watch: {
-            currentPage(newValue, oldValue) {
-                // console.log(`currentPage: ${oldValue} => ${newValue}`);
+            tidedData(newValue, oldValue){
+                this.totalPage = Math.ceil(newValue.length / this.itemsPerPage);
+            },
+
+            currentPage(newValue, oldValue) {   //分頁器偵測所處頁面    
+                this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
                 this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
                 
                 document.querySelectorAll("a.page-link").forEach((text, index) => {
@@ -249,18 +261,38 @@
                     } else {
                         text.style.backgroundColor = "";
                     }
-                })
-                
-            },    
+                });
+            },         
+                           
         },
         created() {         
+            
+
+        },
+        mounted() {
             //取得資料
             this.articleData = this.dummyData;
+            console.log("1", this.articleData);
+            //計算起始index number 
             this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
-            // //回傳切割後的新陣列
+            console.log("2", this.startIndex)
+            //資料暫存區
             this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+            console.log("3", this.tidedData)    
+            //計算總頁數
+            console.log("4", this.totalPage)
+            console.log("5", this.itemsPerPage);
 
+            this.totalPage = Math.ceil(this.tidedData.length / this.itemsPerPage);     
+          
+            console.log("6",Math.ceil(this.tidedData.length / this.itemsPerPage));
             
+            document.querySelectorAll("a.page-link").forEach((text, index) => {   //分頁器自動將所在頁面之頁碼加背景色
+                
+                if(parseInt(text.innerText) === parseInt(this.currentPage)) {
+                    text.style.backgroundColor = "lightgray";
+                }
+            })
         },
     })
 </script>

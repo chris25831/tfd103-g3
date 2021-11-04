@@ -14,13 +14,13 @@ template: `
           </div>
         </main>
 
-        <a class="logo" href="" ><img src="./src/images/icons/logo.svg"/></a>
+        <a class="logo" href="../../index.html" ><img src="./src/images/icons/logo.svg"/></a>
         
 
         <ul class="header_menu" :class="{slidedown:slide}">
           <li class="head_title">
               <a class="info title3" href="">三鐵資訊</a>
-              <ul class="head_subtitle">
+              <ul class="head_subtitle head_activity">
               <a href="../../race-home.html"><li>近期賽事</li></a>
               </ul>
           </li>
@@ -60,9 +60,10 @@ template: `
             </ul>
           
         </ul>
-        
-        <a class="header_icon "href=""><i class="fas fa-user fa-xl"></i></a>
-        <a class="header_icon href=""><i class="fas fa-shopping-basket fa-xl"></i></a>
+        <!--會員-->
+        <a class="header_icon" href="../../member-login.html"><i class="fas fa-user fa-xl"></i></a>
+        <!--購物車-->
+        <a class="header_icon" href="../../shopcart-home.html"><i class="fas fa-shopping-basket fa-xl"></i></a>
     </div>  
 `,
 
