@@ -48,30 +48,38 @@
                     outline: none;
                 }
             }
-            .fb-btn{
-                font-size: 30px;
-                color: #3B5998;
-                background-color: transparent;
-                width: 30px;
-                height: 30px;
+            .fb-btn{                
                 display: flex;
                 align-self: center;
                 border: none;
                 cursor: pointer;
+                background-color: transparent;
+                margin-top: 10px;
+                i{
+                    font-size: 30px;
+                    color: #3B5998;
+                    span{
+                        font-size: 1rem;
+                        color: black;
+                        margin-left: 5px;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
             }
-            p{
+            .member-a-btn{
                 text-align: center;
-            }
-            .register-btn{
-                text-align: center;
-                color: black;
-                margin: 8px auto;
-                text-decoration: none;
-            }
-            .forgotpw{
-                color: black;
-                text-align: center;
-                margin: 5px auto;
+                margin-top: 20px;
+                .register-btn{
+                    text-align: center;
+                    color: black;
+                    margin: 5px 5px;
+                }
+                .forgotpw{
+                    color: black;
+                    text-align: center;
+                    margin: 5px 5px;
+                }
             }
             .btn-wrapper{
                 text-align: center;

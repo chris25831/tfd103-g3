@@ -66,16 +66,23 @@
                 }
             }
             .fb-btn{
-                font-size: 30px;
-                color: #3B5998;
-                background-color: transparent;
-                width: 30px;
-                height: 30px;
+                margin-top: 30px;
                 display: flex;
                 align-self: center;
                 border: none;
                 cursor: pointer;
-                margin-top: 20px;
+                background-color: transparent;
+                i{
+                    font-size: 30px;
+                    color: #3B5998;
+                    span{
+                        font-size: 1rem;
+                        color: black;
+                        margin-left: 5px;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
             }
             p{
                 text-align: center;
