@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <script src="./src/component/plan/plan.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    
 </head>
 
 <body>
@@ -30,7 +31,7 @@
         <div class="viedo-textoverlay">
           <div class="video-quote">swim cycle run<br>tri it on</div>
           <!-- button -->
-          <a href="#" style="text-decoration:none;">
+          <a href="./plan-temporary.html" style="text-decoration:none;">
             <div class="index-button">計劃我的第一場鐵人三項</div>
           </a>
         </div>
@@ -234,6 +235,8 @@
 
       <!-- 這裡是放計畫表的黃色塊 -->
       <div class="training__plan__container" style="background-color: #FFEF36; height: 600px; width: 1100px;">
+         <!--暫時放png之後改成gif操作影片 RWD就讓父元素container變化-->
+        <img src="./src/images/img/index/traningexample.png" style="width:100%;border: 3px solid #FFEF36;" alt="">
       </div>
 
    </section>
@@ -421,26 +424,68 @@
 
 
    <!-- 鐵人三項賽事時間表 -->
-   <section class="triathlon__events" style="background-color: #00429D; height: 800px;">
 
-      <div class="events__title">
-         <p class="text--sub">Triathlon Events & Races</p>
-         <h1 class="text--big">鐵人三項賽事時間表</h1>
-         <p class="text--normal">從新手到菁英、從游泳到功率，Triclub打造專業鐵人基地，提供專屬您的客製訓練計畫！跟著Triclub的腳步，解決你的鐵人三項訓練困境。想變強？跟著我們就對了！</p>
+   <section class="triathlon__events" >
+      <div><!--relative-->
+            <div class="events__title">
+               <p class="text--sub">Triathlon Events & Races</p>
+               <h1 class="text--big">鐵人三項賽事時間表</h1>
+               <p class="text--normal">從新手到菁英、從游泳到功率，Triclub打造專業鐵人基地，提供專屬您的客製訓練計畫！跟著Triclub的腳步，解決你的鐵人三項訓練困境。想變強？跟著我們就對了！</p>
+            </div>
       </div>
+      <!--近期賽事-->
+      <main class="race_list_wrapper">
+            <div id="race_list">
+               <!-- <nav>這裡是頁籤</nav> -->
+               <main class="race_wrapper"> 
+                     <div class="race_title">
+                        <p>日期</p>
+                        <p>地點</p>
+                        <p>賽事</p>
+                        <p>項目</p>
+                        <p>活動狀態</p>
+                     </div>
+                     <template v-for="game in tidedData">
+                        <div class="raceinfo"> 
+                           <a class="artical" href="./race-content.html">{{game.date}}</a>
+                           <a class="artical" href="./race-content.html">{{game.place}}</a> 
+                           <a class="artical" href="./race-content.html">{{game.title}}</a>
+                           <div class="distences">
+                                 <a   v-for="distence in game.distences" v-show="distence.event != false" :style="{backgroundColor:distence.color}" class="artical race_distence" href="./race-content.html">{{distence.dis}}</a>  
+                           </div>
+                           <a class="artical" href="./race-content.html">{{game.state}}截止</a>
+                        </div>
+                     </template>
+               </main>
+               
+                     <div class="pagination">
+                        <!--分頁器-->
+                        <nav aria-label="Page navigation example">
+                           <ul class="pagination">
+                                 <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous" @click.prevent="minusOnePage">
+                                       <span aria-hidden="true">&laquo;</span>
+                                       <span class="sr-only">Previous</span>
+                                    </a>
+                                 </li>
 
-
+                                 <li class="page-item" v-for="page in totalPage"><a class="page-link" @click.prevent="changeRacePage" href="#">{{page}}</a></li>
+                                 
+                                 <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next" @click.prevent="plusOnePage" >
+                                       <span aria-hidden="true">&raquo;</span>
+                                       <span class="sr-only">Next</span>
+                                    </a>
+                                 </li>
+                           </ul>
+                        </nav>
+                     </div>
+               
+            </div>
+      </main>
    </section>
-   
-   
-   
-   
-   
 
    
-   
-
-
    
    <!--這是footer-->
    <footer id="footer">
@@ -453,6 +498,7 @@
    <script src="./src/js/vue.js"></script>
    <script src="./src/component/common/header.js"></script>
    <script src="./src/component/common/footer.js"></script>
+   <script src="./src/component/race/race.js"></script>
    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
 
 
