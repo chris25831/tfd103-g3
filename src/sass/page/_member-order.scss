@@ -52,6 +52,9 @@
                 left: 43%;
             }
         }
+        .title{
+            margin: 0 0 20px 0;
+        }
         .order-bottom{
             margin: 20px 50px 0;
             display: flex;
@@ -85,6 +88,7 @@
                     }
                 }
                 .bottom-part{
+                    border: 1px solid red;
                     width: 454px;
                     margin-bottom: $bottomspacing;
                     li{
@@ -109,10 +113,13 @@
                             height: 175px;
                         }
                         p{
-                            margin-left: 15px;
+                            margin-left: 10px;
+                            margin-top: 20px;
                             color: black;
                             span{
                                 color: red;
+                                display: inline-block;
+                                margin-top: 10px;
                             }
                         }
                     }

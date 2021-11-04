@@ -25,7 +25,9 @@
     <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
     <main id="manage-forum-report" class="manage-main manage-forum-report">  
         <h1 class="manage-title title1">討論區管理</h1>
-        
+        <div class="bookmark-manage">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
+        </div>
         
         <form action="">
             <div class="button-block-manage">

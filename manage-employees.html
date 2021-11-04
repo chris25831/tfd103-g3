@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 此為後台頁面樣板 -->
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>這是後台頁面 | Triclub</title> 
+    <title>後台人員管理 | Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
@@ -23,14 +23,30 @@
 
     <!--內容所有都放在此，manage-main為引入通用的scss之用。-->
     <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
-    <main class="manage-main manage-employees">  
+    <main id="manage-employees" class="manage-main manage-employees">  
         <h1 class="manage-title title1">後台人員管理</h1>
         <form class="managers-list" action="">
 
-            <div class="button-block-manage">
+            <!-- <div class="button-block-manage">
                 <button type="submit" class="small-blue manage-save">儲存</button>
-            </div>
+            </div> -->
             
+            <div class="employees-list">
+                <span class="action-notice">請選擇後台管理人員：</span>
+                <select class="employee-selector" name="" id="">
+                    <option value="">Lawrence Chen</option>
+                    <option value="">Chris Chen</option>
+                    <option value="">April Lin</option>
+                    <option value="">May</option>
+                    <option value="">Maggie Wang</option>
+                    <option value="">Johnny Walker</option>
+                    <option value="">Johnny Runner</option>
+                    <option value="">Johnny Swimmer</option>
+                    <option value="">Johnny Cyclist</option>
+                </select>
+            </div>
+
+
             <div class="managers-item">
                 <div class="left-block">
                     <div class="manager-authority">
@@ -169,7 +185,12 @@
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/common/manage-header.js"></script>
 <script src="./src/component/common/manage-footer.js"></script>
+<script>
+    new Vue({
+        el: "#manage-employees",
+    })
 
+</script>
 
 
 </body>
