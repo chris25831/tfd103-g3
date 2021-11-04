@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
     <title>購物車 | Triclub</title> 
-    <!--從scss轉譯過來的-->
-    <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <!-- slick-carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
 
     
 </head>
@@ -32,10 +34,11 @@
            </div>
 
            <div>
-               <!-- TODO:組件 -->
-                <!-- <shopcart-content></shopcart-content> -->
+                <!-- list組件 -->
+                <shopcart-content></shopcart-content>
+               
                 <!-- 推薦課程 -->
-                <div>
+                <div class="recomclass">
                     <p>推薦課程</p>
                     <div v-for="(re,index) in recomClass" @click="goToContent(re)">
                         <img :src="re.img" alt="#">
@@ -59,9 +62,13 @@
     <script src="./src/component/common/footer.js"></script>
     <script src="./src/component/shopcart/shopcart-content.js"></script>
     <script>
+        // 引入slick-carousel
+    //    import slick from "slick-carousel";
+
         new Vue({
             el:'#shopcart-home',
             data:{
+
             
             
                 recomClass:[
@@ -99,6 +106,7 @@
                 ],
 
             },
+           
 
             methods: {
                 goToContent(re){
