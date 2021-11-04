@@ -9,7 +9,7 @@ function doFirst(){
 
 // contentdetail-1 ==> 團體課程&營養菜單
 Vue.component("contentdetail-1",{
-    props:["classTitle", "classid", "check", "trainer","classLocation", "price", "nutrients", "intro"],
+    props:["classTitle", "classid", "check", "trainer","classLocation", "price", "nutrients", "intro","img"],
     template:`
         <div class="classcontentword1">
             <div class="contentdetail">
@@ -52,12 +52,14 @@ Vue.component("contentdetail-1",{
         addCart(){
             
             doFirst();
+            console.log(this.img[0]);
             // 創立物件
             let item = {
                 comclassTitle : this.classTitle,
                 comclassid : this.classid,
                 comtrainer : this.trainer,
-                comprice : this.price, 
+                comprice : this.price,
+                comimg: this.img[0], 
             }
             
             // 判斷地點是否傳入
@@ -89,13 +91,10 @@ Vue.component("contentdetail-1",{
 
         // 直接結帳
         payNow(){
-
             this.addCart();
-            // console.log("456");
-            
+
             // 跳轉結帳頁面
-            window.location.href="../../../shopcart-home.html";
-           
+            window.location.href="../../../shopcart-home.html";  
         },
         
     },

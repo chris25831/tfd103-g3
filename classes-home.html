@@ -33,7 +33,7 @@
 
             <!-- gird -->
             <div class="classesgrid" id="classes-grid">
-                <triclasses  v-for="subdata in this[classdata[currentcategory]]" :img-src="subdata.imgSrc" :class-url="subdata.classUrl" :class-title="subdata.classTitle" :class-subtitle="subdata.classSubtitle"></triclasses>  
+                <triclasses  v-for="subdata in this[classdata[currentcategory]]" :img-src="subdata.imgSrc" :class-url="subdata.classUrl" :class-title="subdata.classTitle" :class-subtitle="subdata.classSubtitle" :class-id="subdata.classID"></triclasses>  
             </div>
         </div>
    </main>
@@ -67,9 +67,9 @@
                 // 訓練課程
                 triclasses:[
                     // 1
-                    {
+                    {       
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -77,7 +77,7 @@
                     // 2
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -85,7 +85,7 @@
                     // 3
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -93,7 +93,7 @@
                     // 4
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -101,7 +101,7 @@
                     // 5
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -109,7 +109,7 @@
                     // 6
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -117,7 +117,7 @@
                     // 7
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -125,7 +125,7 @@
                     // 8
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -133,7 +133,7 @@
                     // 9
                     {
                         classID:'G12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/class/class01.jpg',
                         classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
                         classSubtitle:"", 
@@ -147,7 +147,7 @@
                     // 1
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -155,7 +155,7 @@
                     // 2
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -163,7 +163,7 @@
                     // 3
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -171,7 +171,7 @@
                     // 4
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -179,7 +179,7 @@
                     // 5
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -187,7 +187,7 @@
                     // 6
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -195,7 +195,7 @@
                     // 7
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -203,7 +203,7 @@
                     // 8
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -211,7 +211,7 @@
                     // 9
                     {
                         classID:'T12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
                         classTitle:"黃雨欣",
                         classSubtitle:"游泳四段調整" 
@@ -224,7 +224,7 @@
                     // 1
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -232,7 +232,7 @@
                     // 2
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -240,7 +240,7 @@
                     // 3
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -248,7 +248,7 @@
                     // 4
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -256,7 +256,7 @@
                     // 5
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -264,7 +264,7 @@
                     // 6
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -273,7 +273,7 @@
                     // 7
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -281,7 +281,7 @@
                     // 8
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
@@ -289,7 +289,7 @@
                     // 9
                     {
                         classID:'M12345',
-                        classUrl:'#',
+                        classUrl:'./classes-content.html',
                         imgSrc:'./src/images/img/classes/menu/menu01.jpg',
                         classTitle:"檸香鮭魚蘆筍藍莓沙拉",
                         classSubtitle:"", 
