@@ -26,7 +26,7 @@ const question = new Vue({
                     }],
                     name:'racedate',
                     type:'select',
-                    answer: null 
+                    answer: '20211101', 
                 },
                 //第二題
                 {
@@ -44,7 +44,7 @@ const question = new Vue({
                     }],
                     name:'distance',
                     type:'radio',
-                    answer: null
+                    answer: '226'
                 },
                 //第三題
                 {
@@ -62,7 +62,7 @@ const question = new Vue({
                     }],
                     name:'week',
                     type:'radio',
-                    answer: null
+                    answer: '16'
                 },
                 {
                     title:'選擇訓練強度',
@@ -79,7 +79,7 @@ const question = new Vue({
                     }],
                     name:'level',
                     type:'radio',
-                    answer: null
+                    answer: 'hard'
                 },
                 
             ]
@@ -90,37 +90,36 @@ const question = new Vue({
     methods: {
         createplan(){
             if(this.tab == "完成"){
-               
-                for(var i = 0;i<=this.questions.length;i++) {
-                    
-                    this.plandata.push (this.question.answer);
-                    console.log(plandata);
-                }
+                console.log(this.plandata);
+                this.plandata += this.plandata.concat(this.question.answer)
 
-                $(".loading").fadeIn(1500);
-                $("#plan_question").fadeOut(1500);
-                $.ajax({   
-                    method: "POST",
-                    url: "plan.php",
-                    data:{ //要丟的欄位
-                    },       
-                    dataType: "text", 
-                    success: function (response) { //得到回應更新資料
-                        if(response === "y"){
-                            $(".loading").fadeOut(1000);
-                            $("#plan_wrapper").fadeIn(1500);
-                            // display();   //找到資料後執行這function
-                        }else{
-                            alert(response);//流程控制
-                        }
-                    },
-                    error: function(exception) {
-                        alert("發生錯誤: " + exception.status);
-                    }
-                });
+               
+                // $("#plan_question").fadeOut(1500);
+                // $(".loading").fadeIn(1500);
+                // $(".loading").fadeOut(1500);
+                // $("#plan_wrapper").fadeIn(1400);
+                // $.ajax({   
+                //     method: "POST",
+                //     url: "plan.php",
+                //     data:{ //要丟的欄位
+                //     },       
+                //     dataType: "text", 
+                //     success: function (response) { //得到回應更新資料
+                //         if(response === "y"){
+                //             $(".loading").fadeOut(1000);
+                //             $("#plan_wrapper").fadeIn(1500);
+                //             // display();   //找到資料後執行這function
+                //         }else{
+                //             alert(response);//流程控制
+                //         }
+                //     },
+                //     error: function(exception) {
+                //         alert("發生錯誤: " + exception.status);
+                //     }
+                // });
             }
         },
-        last(){
+        last(){      //切換按鈕index
             if(this.current_tab <= this.max  && this.current_tab > 0){
                 this.current_tab --     
             }
@@ -128,12 +127,12 @@ const question = new Vue({
                 this.tab ="下一步"
             }
         },
-        changetab(){
+        changetab(){ //切換按鈕index
             this.createplan()
                 if(this.current_tab < 4 ){
                      this.current_tab ++
-                     console.log(this.answer);
                 }
+
                 if(this.current_tab == 4){
                     this.tab = "完成"
                 }
@@ -144,7 +143,7 @@ const question = new Vue({
     }, 
      computed: {
         progressWidth(){
-                // return{
+               //進度條
                 switch (this.current_tab) {
                             case 1:
                                 return 'width:10%';
@@ -241,53 +240,54 @@ new Vue({
   
   });  
   
-  //圖表C3.js
-  var chart = c3.generate({
-        bindto: "#plan_chart",
-        size: {
-              height: 140,
-              width: 190
-          },
-        data: {  //針對圖表的樣式資料屬性寫在data內
-          columns: [
-            ["Swim", 30],
-            ["Bike", 60],
-            ["Run", 50],
-          ],
-          type: "bar",
-          colors: {
-              Swim: "#FFA10A",
-              Bike: "#00429D",
-              Run: "#E75F49"
-              
-          },
-          // onmouseover:function(){ //滑鼠滑進圖的效果  
-          //     // console.log(grad1);
-          //     var svg = d3.select("svg");
-          //     var allpath = svg.selectAll(".c3-bar-0");
-          //     return allpath.style("fill","#FFEF36");
-          // },
-          // onmouseout:function(){
-          //     return allpath.style("fill","red");
-      
-          // }
+
+//圖表C3.js
+var chart = c3.generate({
+    bindto: "#plan_chart",
+    size: {
+            height: 140,
+            width: 190
         },
-        bar:{
-          ratio: 0.8 ,
-          space: 0.25
+    data: {  //針對圖表的樣式資料屬性寫在data內
+        columns: [
+        ["Swim", 30],
+        ["Bike", 60],
+        ["Run", 50],
+        ],
+        type: "bar",
+        colors: {
+            Swim: "#FFA10A",
+            Bike: "#00429D",
+            Run: "#E75F49"
+            
         },
-        legend: {
-          show: true, //是否顯示下排項目表
+        // onmouseover:function(){ //滑鼠滑進圖的效果  
+        //     // console.log(grad1);
+        //     var svg = d3.select("svg");
+        //     var allpath = svg.selectAll(".c3-bar-0");
+        //     return allpath.style("fill","#FFEF36");
+        // },
+        // onmouseout:function(){
+        //     return allpath.style("fill","red");
+    
+        // }
+    },
+    bar:{
+        ratio: 0.8 ,
+        space: 0.25
+    },
+    legend: {
+        show: true, //是否顯示下排項目表
+    },
+    axis: {
+        x:{
+            show: false,
         },
-        axis: {
-            x:{
-              show: false,
-            },
-            y:{
-              show: false,
-            }
+        y:{
+            show: false,
         }
-        
-      });
+    }
+    
+    });
       
   

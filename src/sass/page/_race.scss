@@ -5,11 +5,11 @@ main.race_wrapper_info{
     .race_container{
         max-width: 900px;
         margin: 0 auto;
-        border: 1px solid white;
-        
+        // border: 1px solid white;
+        padding: $bottomspacing 0;
         header.nav{
-            margin-top: $bottomspacing;
-            border: 1px solid red;
+            margin-bottom: $bottomspacing;
+            // border: 1px solid red;
             height: 50px;
         }
         main.race_contents{
@@ -18,7 +18,7 @@ main.race_wrapper_info{
             background-color: $white;
             margin-bottom:50px;
             box-shadow: 10px 10px $orange;
-            padding: 30px;
+            padding: 20px;
             gap: 10px;
             justify-items: center;
             align-items: center;
@@ -29,11 +29,11 @@ main.race_wrapper_info{
 
 main.race_contents{
     
-    header{
-        border: 1px solid red;
-    }
+    // header{
+    //     // border: 1px solid red;
+    // }
     div.race_raceinfo{
-        border: 1px solid red;
+        // border: 1px solid red;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -68,7 +68,7 @@ main.race_contents{
            //文章
            &:last-child{
             line-height: 1.5;
-            border: 1px solid grey;
+            // border: 1px solid grey;
             margin-top: 30px;
             width: 80%;
             @include table(){
@@ -80,16 +80,16 @@ main.race_contents{
     div.race_photo{
         display: flex;
         justify-content: center;
-        border: 1px solid red;
+        // border: 1px solid red;
         width: 80%;
         img{
             width: 100%;
         }
        
     }
-    button.race_button{
-        border: 1px solid red;
-    }
+    // button .race_button{
+    //     // border: 1px solid red;
+    // }
 }
 
 
@@ -103,6 +103,25 @@ main.race_contents{
     #race_list{
         margin: 0 83px;
         padding: $bottomspacing 0;
+        @include table(){
+            margin: 0 ;
+            width: 100%;
+        }
+        @include mobile(){
+            margin: 0 ;
+            width: 100%;
+        }
+        div.pagination{
+            margin-top: 20px;
+            margin-bottom: $bottomspacing;
+            justify-content: center;
+            li a{
+                color: $blue;
+            }
+            span{
+                color: $blue;
+            }
+        }
     }
 }
 .race_wrapper{
@@ -117,22 +136,54 @@ main.race_contents{
         }
         display: grid;
         justify-items: center;
+        align-content: center;
         border-radius: 10px;
-        grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
+        grid-template-columns: 0.5fr 1fr 2fr 90px 1.5fr;
         color: $white;
-        padding: 15px;
         align-items: center;
         background-color: $orange;
+        padding: 10px;
         
+        p{
+            margin-bottom: 0;
+        }
     }
     .raceinfo{
         display: grid;
-        grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
+        grid-template-columns: 0.5fr 1fr 2fr 90px 1.5fr;
         border-radius: 10px;
+        padding: 10px;
         border: 1.3px solid $orange;
         background-color: $white;
+        @include table(){
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            
+        }
         &:hover{
             box-shadow: 5px 5px 0 $orange;
+        }
+        //里程
+        div.distences{
+           display: flex;
+           align-items: center;
+            @include table(){
+                flex-direction: column;
+                align-items: center;
+            }
+            a{
+                border-radius: 5px;
+                padding: 5px;
+                
+                margin-left: 5px;
+                &:last-child{
+                    color: white;
+                    
+                }
+            @include table(){
+                width: 10%;
+              }  
+            }
         }
         a{
             text-decoration: none;
