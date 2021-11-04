@@ -558,10 +558,10 @@ margin: 0 0 3rem; */
   transform: rotate(-45deg);
   transition: 0.25s ease-in-out;
   }
-  
   input[type="checkbox"].faq-drawer__trigger {
   display: none;
   }
+  
   
   @media only screen and (max-width: 768px) {
     .FAQ__container {
@@ -680,7 +680,7 @@ margin: 0 0 3rem; */
     div{  
       position: relative;
     }
-    main{ //近期賽事
+    main{
       background-color: $blue;
       background-image: none;
     }
