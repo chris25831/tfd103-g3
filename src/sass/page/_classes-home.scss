@@ -49,6 +49,7 @@ main.classes-home {
           overflow: hidden;
           text-overflow: ellipsis;
           span {
+            text-align: center;
             overflow: hidden;
             color: $white;
             &:nth-child(1) {

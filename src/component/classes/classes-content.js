@@ -1,10 +1,12 @@
 // 購物車localStorage宣告
 var storage = localStorage;
+var itemList= [];
 window.addEventListener('load', doFirst);
 function doFirst(){
     if(storage['addCartList'] == null){
-        storage['addCartList'] = '';    //storage.setItem('addCartList','');
+        storage['addCartList'] = "";    //storage.setItem('addCartList',"");
     }
+
 }
 
 // contentdetail-1 ==> 團體課程&營養菜單
@@ -78,9 +80,16 @@ Vue.component("contentdetail-1",{
                 
                 // 刪除一開始的undefined
                 if(storage['addCartList'] == ""){
-                    storage['addCartList'] = `${this.classid}`;
+
+                    itemList.push(item);
+                    storage['addCartList'] = JSON.stringify(itemList);
+
                 }else{
-                    storage['addCartList'] += `,${this.classid}`;
+                    let get_itemList = JSON.parse(storage['addCartList']);
+
+                    get_itemList.push(item);
+                    storage['addCartList'] = JSON.stringify(get_itemList);
+                
                 }
 
                 storage[this.classid] = JSON.stringify(item);
@@ -152,15 +161,21 @@ Vue.component("contentdetail-2",{
             
 
             // 存入localstorage
-            if(storage[this.classid]){
+            if(storage[this.trainerid]){
                 alert('商品已下單');
             }else{
                 
                 // 刪除一開始的undefined
                 if(storage['addCartList'] == ""){
-                    storage['addCartList'] = `${this.trainerid}`;
+                    
+                    itemList.push(item);
+                    storage['addCartList'] = JSON.stringify(itemList);
+
                 }else{
-                    storage['addCartList'] += `,${this.trainerid}`;
+                    let get_itemList = JSON.parse(storage['addCartList']);
+
+                    get_itemList.push(item);
+                    storage['addCartList'] = JSON.stringify(get_itemList);
                 }
 
                 storage[this.trainerid] = JSON.stringify(item);

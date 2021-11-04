@@ -138,52 +138,6 @@ main.shopcart-home {
           }
         }
       }
-      // 推薦課程
-      .recomclass {
-        // border: 1px solid green;
-        > p {
-          margin: 55px 0px 25px 18px;
-        }
-        .swiper {
-          // border: 1px solid brown;
-          width: 95%;
-          height: 100%;
-          padding-right: 7px;
-          .swiper-slide {
-            border: 1px solid $black;
-            box-shadow: 8px 0px 0px 0px $orange;
-            width: 250px;
-            height: 258px;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            .imgframe {
-              // border: 1px solid green;
-              width: 100%;
-              height: 152px;
-              overflow: hidden;
-              img {
-                width: 100%;
-              }
-            }
-            > div:last-child {
-              // border: 1px solid red;
-              background-color: $white;
-              flex-grow: 1;
-              position: relative;
-              p {
-                // border: 1px solid red;
-                display: block;
-                position: absolute;
-                width: 100%;
-                text-align: center;
-                top: calc(50% - 17px);
-                left: 0;
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

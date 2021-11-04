@@ -9,8 +9,8 @@
     <title>購物車 | Triclub</title> 
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
-    <!-- slick-carousel -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
 
@@ -29,21 +29,34 @@
    <main class="shopcart-home" id="shopcart-home">
         <div>
            <div class="shopcart-title">
-               <p>您的購物車</p>
+               <p class="title3">您的購物車</p>
                <img src="./src/images/img/shopcart/SOP1.png" alt="">
            </div>
 
            <div>
                 <!-- list組件 -->
-                <shopcart-content></shopcart-content>
+                <shopcart-content :check="check"></shopcart-content>
                
                 <!-- 推薦課程 -->
                 <div class="recomclass">
-                    <p>推薦課程</p>
-                    <div v-for="(re,index) in recomClass" @click="goToContent(re)">
-                        <img :src="re.img" alt="#">
-                        <p>{{re.title}}</p>
+                    <p class="title3">推薦課程</p>
+
+                    <div class="swiper classSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="(re,index) in recomClass" @click="goToContent(re)">
+                                <div class="imgframe">
+                                    <img :src="re.img" alt="#">
+                                </div>
+                                <div>
+                                    <p>
+                                        <span>{{re.title}}</span><br>
+                                        <span>{{re.trainer}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                  
                 </div>
            </div>            
         </div>
@@ -56,58 +69,90 @@
    </footer>
 
 
-    <!--component-->
-    <script src="./src/js/vue.js"></script>
+   <script src="./src/js/vue.js"></script>
+   <!-- swiper -->
+   <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+   <!--component-->
     <script src="./src/component/common/header.js"></script>
     <script src="./src/component/common/footer.js"></script>
     <script src="./src/component/shopcart/shopcart-content.js"></script>
     <script>
-        // 引入slick-carousel
-    //    import slick from "slick-carousel";
-
+      
         new Vue({
             el:'#shopcart-home',
             data:{
-
-            
-            
+                // 判斷頁面
+                check:"1",
                 recomClass:[
                     // 1
                     {
                         title:"轉換區訓練課程1",
                         id:"G12345",
+                        trainer:"Johnny",
                         img:"./src/images/img/classes/class/class01-d1.jpg",
                     },
                     // 2
                     {
                         title:"轉換區訓練課程2",
                         id:"G12345",
+                        trainer:"Johnny",
                         img:"./src/images/img/classes/class/class01-d1.jpg",
                     },
                     // 3
                     {
                         title:"轉換區訓練課程3",
                         id:"G12345",
+                        trainer:"Johnny",
                         img:"./src/images/img/classes/class/class01-d1.jpg",
                     },
                     // 4
                     {
                         title:"轉換區訓練課程4",
                         id:"G12345",
+                        trainer:"Johnny",
                         img:"./src/images/img/classes/class/class01-d1.jpg",
                     },
                     // 5
                     {
                         title:"轉換區訓練課程5",
                         id:"G12345",
+                        trainer:"Johnny",
                         img:"./src/images/img/classes/class/class01-d1.jpg",
                     },
 
                 ],
-
+            
             },
-           
-
+    
+            mounted(){
+            
+                // this.$nextTick(function () {}),
+                           
+                    var swiper = new Swiper('.classSwiper', {   
+                        breakpoints: {
+                            1: {
+                                slidesPerView: 2,
+                                centeredSlides: false,
+                                spaceBetween: 10,
+                                freeMode: true,
+                            },
+                            768:{
+                                slidesPerView: 3,
+                                centeredSlides: false,
+                                spaceBetween: 20,
+                                freeMode: true,
+                            },
+                            1100: {
+                                slidesPerView: 4,
+                                centeredSlides: false,
+                                spaceBetween: 20,
+                                freeMode: true,
+                            },
+                        },
+                    });
+                  
+            },
+                
             methods: {
                 goToContent(re){
                     // console.log(re);
@@ -115,6 +160,8 @@
                     window.location.href=`./classes-content.html?classid=${id}`;
                 },
             },
+
+         
         });
 
     </script>
