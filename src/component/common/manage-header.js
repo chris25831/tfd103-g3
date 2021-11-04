@@ -21,7 +21,7 @@ Vue.component("manage-header", {
                         <a href="../../../manage-forum-home.html" class="manage-link">討論區管理</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="manage-link">會員管理</a>
+                        <a href="../../../manage-member-personal-info.html" class="manage-link">會員管理</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="manage-link">登出</a>

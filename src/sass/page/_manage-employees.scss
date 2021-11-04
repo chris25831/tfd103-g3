@@ -11,6 +11,13 @@ main.manage-main.manage-employees {
             }
         }
 
+        .employees-list {
+            width: 914px;
+            margin: 30px auto 0;
+            line-height: 50px;
+
+        }
+
         div.managers-item {
             display: flex;
             flex-direction: row;
@@ -94,8 +101,8 @@ main.manage-main.manage-employees {
 
             
         
-        }
-
-         
+        } 
     }
 }
+
+

@@ -1,4 +1,7 @@
 main#manage-black-list {
+    div.button-block-manage {
+        // justify-content: flex-start;
+    }
     div.black-list {
         width: 915px;
         margin: 0 auto;
@@ -11,6 +14,10 @@ main#manage-black-list {
                     td {
                         width: calc(100% / 5);
                         padding: 0px 10px;
+                    }
+                    td.check-box {
+                        display: flex;
+                        @include flexcenter();
                         
                     }
                 }
@@ -21,12 +28,19 @@ main#manage-black-list {
                         border-top: solid black 1px;
                         border-bottom: solid black 1px;
                         padding: 15px 10px;
-                        &:first-child {
-                            border-left: solid black 1px;
-                        }
                         &:last-child {
-                            width: 100px;
                             border-right: solid black 1px;
+                        }
+                    }
+                    td.check-box {
+                        border-left: solid black 1px;
+                        display: flex;
+                        align-items: center;
+                        
+                        input {
+                            width: 20px;
+                            height: 20px;
+                            margin-left: 10px;
                         }
                     }
                 }
