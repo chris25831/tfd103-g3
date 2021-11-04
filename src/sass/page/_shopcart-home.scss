@@ -7,5 +7,14 @@ main.shopcart-home {
     // 麵包屑上面高度
     padding-top: $bottomspacing;
     background-color: rgba($color: $white, $alpha: 0.8);
+    > div:last-child {
+      border: 1px solid red;
+      .orderclass {
+        border: 1px solid green;
+      }
+      .recomclass {
+        border: 1px solid green;
+      }
+    }
   }
 }
