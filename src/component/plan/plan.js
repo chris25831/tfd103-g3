@@ -7,7 +7,7 @@ const question = new Vue({
         return{
             tab:"下一步",
             current_tab:0,
-            plandata : [],
+            plandata : [],//存入答案的陣列
             max:4,
             questions:[
                 //第一題
@@ -89,15 +89,11 @@ const question = new Vue({
     
     methods: {
         createplan(){
-            if(this.tab == "完成"){
-                // console.log(this.plandata);
-                // this.plandata += this.plandata.concat(this.question.answer)
-
-               
                 $("#plan_question").fadeOut(1500);
                 $(".loading").fadeIn(1500);
                 $(".loading").fadeOut(1500);
                 $("#plan_wrapper").fadeIn(1000);
+                console.log(this.plandata);
                 // $.ajax({   
                 //     method: "POST",
                 //     url: "plan.php",
@@ -117,10 +113,10 @@ const question = new Vue({
                 //         alert("發生錯誤: " + exception.status);
                 //     }
                 // });
-            }
         },
         last(){      //切換按鈕index
             if(this.current_tab <= this.max  && this.current_tab > 0){
+                this.plandata.pop(this.questions[this.current_tab - 1].answer);
                 this.current_tab --     
             }
             if(this.current_tab != 4){
@@ -128,21 +124,21 @@ const question = new Vue({
             }
         },
         changetab(){ //切換按鈕index
-            this.createplan()
-                if(this.current_tab < 4 ){
-                     this.current_tab ++ //執行三步
-                     this.plandata.push(this.questions.question);
-                     console.log(this.plandata);
+                if(this.current_tab < 5 ){
+                    this.plandata.push(this.questions[this.current_tab - 1].answer);
+                    this.current_tab ++ 
+                    //  console.log(this.plandata);
+                }
+                // console.log(this.current_tab === 5);
+                if(this.current_tab === 5){
+                    this.createplan()
+                }else if(this.current_tab ===4){
+                    this.tab = "完成"
                 }
 
-                if(this.current_tab == 4){
-                    this.tab = "完成" //執行第四步
-                    
-                }
             
         },
        
-         
     }, 
      computed: {
         progressWidth(){
@@ -168,6 +164,8 @@ const question = new Vue({
         }
      }
 });
+
+
  
 
 //計畫表
@@ -182,14 +180,18 @@ new Vue({
             racedate:20221127,
             week:12
             },
-           
+
+         
             plandata:[
             //day1
             {
             "swim":1,
             "bike":null,
             "run":.5,
-            "rest":false
+            "rest":false,
+            "check":false
+       
+       
             },
             //day2
             {

@@ -77,8 +77,18 @@ main.plan_member_main_content{
     // border: 2px solid red;
     width: 100%;
     div{
-        // border: 2px solid rgb(0, 255, 200);
-        display: flex;
+
+        &:first-child{
+            border: 2px solid red;
+            height:60%;
+            display: flex;
+            align-items: center;
+        }
+    }
+    div.plan_chart{
+        border: 2px solid rgb(0, 255, 200);
+        height:60%;
+       
         flex-direction: column;
         
     }
