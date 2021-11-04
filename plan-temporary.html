@@ -21,22 +21,23 @@
    </header>
    <!--loading遮罩-->
     <div class="loading">
-        <div class="mask"></div>
-        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
-        <img src="./src/images/icons/icon-line-org.svg" class="animation">
-        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
-        <img src="./src/images/icons/icon-line-org.svg" class="animation">
-        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
-        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
-        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
-        <img src="./src/images/icons/icon-line-org.svg" class="animation">
-        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
-        <img src="./src/images/icons/icon-line-org.svg" class="animation">
-        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
-        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
-        <img src="./src/images/icons/icon-line-blue.svg" class="animation">
-        <img src="./src/images/icons/icon-line-org.svg" class="animation">
-        <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+        <div class="mask">
+            <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+            <img src="./src/images/icons/icon-line-org.svg" class="animation">
+            <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+            <img src="./src/images/icons/icon-line-org.svg" class="animation">
+            <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+            <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+            <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+            <img src="./src/images/icons/icon-line-org.svg" class="animation">
+            <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+            <img src="./src/images/icons/icon-line-org.svg" class="animation">
+            <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+            <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+            <img src="./src/images/icons/icon-line-blue.svg" class="animation">
+            <img src="./src/images/icons/icon-line-org.svg" class="animation">
+            <img src="./src/images/icons/icon-line-yellow.svg" class="animation">
+        </div>
     </div>
    <!--這是計畫表lightbox-->
    <section id="plan_question" class="plan_question_wrapper">
@@ -157,7 +158,7 @@
                             <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
                             <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
                         </div>
-                        <div class="plan_exe" >
+                        <div class="plan_exe">
                             <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
                             <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
                             <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
