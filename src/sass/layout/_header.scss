@@ -93,6 +93,7 @@ body{
         &:nth-child(1){
             position: relative;
             &:hover .head_activity {
+                padding: 0;
                background-color: $blue;
                z-index: 10000;
                display: block;
@@ -180,7 +181,6 @@ a.header_icon{
         width: 50%;
         height: 20px;
         cursor: pointer;
-        
         @include table() {
             width: 80%;
         }
@@ -206,10 +206,9 @@ a.header_icon{
         }
      }
     
-    @include pc{
-        color: $white;
-        display: none;
-      }
+   
+    color: $white;
+    display: none;
     @include table{
         display: flex;
         

@@ -43,6 +43,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      
         .plan_question_content{
             height: 90%;
             .plan_question_content_article{
@@ -288,7 +289,7 @@ section.plan_tem_wrapper {
         margin-top:0px;
     }
 
-    .week_mark{
+    span.week_mark{
         // border: 3px solid white;
         filter: drop-shadow(0px 3px  $orange);
         background-color: $white ;
@@ -400,7 +401,7 @@ section.plan_tem_wrapper {
 
 //內文字
 .plan_exe{
-    height: 120px;
+    height: 100px;
     display: block;
     text-align: center;
     line-height: 2;
@@ -411,6 +412,10 @@ section.plan_tem_wrapper {
         justify-content: center;
         width: 40%;
         border: 1px solid $orange;
+      
+    }
+    p{
+      margin: 0;
     }
 }
 

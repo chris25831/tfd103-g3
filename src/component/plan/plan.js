@@ -20,8 +20,8 @@ new Vue({
           plandata:[
             //day1
             {
-            "swim":null,
-            "bike":null,
+            "swim":1,
+            "bike":1,
             "run":.5,
             "rest":false,
             check:false,
@@ -97,8 +97,10 @@ new Vue({
       }
     },
       methods: {
+          
           checkoneday(){
             alert("恭喜你獲得一點");
+            
             this.plandata.sperday.check = true;
           },
         //   checkdone(){
