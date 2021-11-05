@@ -26,6 +26,7 @@
   
    <!--這是計畫表主體-->
    <main class="plan_member_wrapper" id="plan_wrapper">
+       <!-- <light-box></light-box> -->
        <!--這是計畫表會員側欄位-->
         <header id="plan_member_info" class="plan_member_aside">
             <section class="plan_member_aside_container">
@@ -53,7 +54,7 @@
                 </main>
                 <div class="plan_member_button">
                     <button onclick="window.open('./member-main.html', '_self')" class="bluebutton">我的基本資料</button>
-                    <button class="orangebutton">取消計畫</button>
+                    <button class="orangebutton" @click="plancancel">取消計畫</button>
                 </div>
             </section>
         </header>
@@ -71,14 +72,14 @@
                     <section  v-for="week in 8" id="plan_member_table">
                       <span class="week_mark title2">W{{week}}</span>
                         <ul>
-                            <li v-for="(perday,index) in plandata" class="plan_member_eachday">
+                            <li v-if="cancel" v-for="(perday,index) in plandata" class="plan_member_eachday">
                                 <div>
                                     <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
                                     <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
                                     <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
                                 </div>
-                                <!-- <div @click="perday.finish_week.push(week) " class="plan_member_exe" :class="{ done: perday.finish_week.indexOf(week) }" > -->
-                                <div @click="perday.check = true" class="plan_member_exe" :class="{ done: checkdone}" >
+                                <!-- <div  @click="perday.check.push(week)" class="plan_member_exe" :class="{ done: perday.check.indexOf(week)}" > -->
+                                <div v-if="cancel" @click="checkoneday" class="plan_member_exe" :class="{done: perday.check}" >
                                     <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
                                     <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
                                     <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>

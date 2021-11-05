@@ -1,169 +1,4 @@
-// ***lightbox測驗彈窗*** //
 
-const question = new Vue({
-    el: '#plan_question',
-    data(){
-
-        return{
-            tab:"下一步",
-            current_tab:0,
-            plandata : [],//存入答案的陣列
-            max:4,
-            questions:[
-                //第一題
-                {
-                    title:'你的參賽日期',
-                    choices:
-                    [{
-                        title:'2021普悠瑪鐵人三項競賽',
-                        value:'20211101'
-                    },{
-                        title:'2021梅花湖三鐵',
-                        value:'20211203'
-                    },{
-                        title:'2021台東活水湖三鐵',
-                        value:'20211223'
-                    }],
-                    name:'racedate',
-                    type:'select',
-                    answer: '20211101', 
-                },
-                //第二題
-                {
-                    title:'想挑戰的競賽距離',
-                    choices:
-                    [{
-                        title:'226K全程距離',
-                        value:'226'
-                    },{
-                        title:'113K半程距離',
-                        value:'113'
-                    },{
-                        title:'51.5K標準距離',
-                        value:'51.5'
-                    }],
-                    name:'distance',
-                    type:'radio',
-                    answer: '226'
-                },
-                //第三題
-                {
-                    title:'想制定幾週的訓練計畫呢',
-                    choices:
-                    [{
-                        title:'16週',
-                        value:'16'
-                    },{
-                        title:'12週',
-                        value:'12'
-                    },{
-                        title:'8週',
-                        value:'8'
-                    }],
-                    name:'week',
-                    type:'radio',
-                    answer: '16'
-                },
-                {
-                    title:'選擇訓練強度',
-                    choices:
-                    [{
-                        title:'強',
-                        value:'hard'
-                    },{
-                        title:'中',
-                        value:'normal'
-                    },{
-                        title:'弱',
-                        value:'eazy'
-                    }],
-                    name:'level',
-                    type:'radio',
-                    answer: 'hard'
-                },
-                
-            ]
-
-        }
-    },
-    
-    methods: {
-        createplan(){
-                $("#plan_question").fadeOut(1500);
-                $(".loading").fadeIn(1500);
-                $(".loading").fadeOut(1500);
-                $("#plan_wrapper").fadeIn(1000);
-                console.log(this.plandata);
-                // $.ajax({   
-                //     method: "POST",
-                //     url: "plan.php",
-                //     data:{ //要丟的欄位
-                //     },       
-                //     dataType: "text", 
-                //     success: function (response) { //得到回應更新資料
-                //         if(response === "y"){
-                //             $(".loading").fadeOut(1000);
-                //             $("#plan_wrapper").fadeIn(1500);
-                //             // display();   //找到資料後執行這function
-                //         }else{
-                //             alert(response);//流程控制
-                //         }
-                //     },
-                //     error: function(exception) {
-                //         alert("發生錯誤: " + exception.status);
-                //     }
-                // });
-        },
-        last(){      //切換按鈕index
-            if(this.current_tab <= this.max  && this.current_tab > 0){
-                this.plandata.pop(this.questions[this.current_tab - 1].answer);
-                this.current_tab --     
-            }
-            if(this.current_tab != 4){
-                this.tab ="下一步"
-            }
-        },
-        changetab(){ //切換按鈕index
-                if(this.current_tab < 5 ){
-                    this.plandata.push(this.questions[this.current_tab - 1].answer);
-                    this.current_tab ++ 
-                    //  console.log(this.plandata);
-                }
-                // console.log(this.current_tab === 5);
-                if(this.current_tab === 5){
-                    this.createplan()
-                }else if(this.current_tab ===4){
-                    this.tab = "完成"
-                }
-
-            
-        },
-       
-    }, 
-     computed: {
-        progressWidth(){
-               //進度條
-                switch (this.current_tab) {
-                            case 1:
-                                return 'width:10%';
-                                break;
-                            case 2:
-                                return 'width:30%';
-                                break;
-                            case 3:
-                                return 'width:60%';
-                                break;
-                            case 4:
-                                return 'width:100%';
-                                break;
-                           default:
-                                return("");
-                                break;
-                    
-            }
-        }
-     }
-});
 
 
  
@@ -173,76 +8,127 @@ new Vue({
     el: '#plan_wrapper',
     data(){
       return{
-          checkdone:false,
+        //   plancancel:false,
+          checkdone: false,
+          cancel: true,
           memberinfo:{
             photo:"./src/images/img/plan/memberphoto.png",
             membername:"maggie",
             racedate:20221127,
             week:12
             },
-
-         
-            plandata:[
+          plandata:[
             //day1
             {
-            "swim":1,
+            "swim":null,
             "bike":null,
             "run":.5,
             "rest":false,
-            "check":false
-       
-       
+            check:false,
+            // check:[]
             },
             //day2
             {
             "swim":1,
             "bike":0.5,
             "run":null,
-            "rest":false
+            "rest":false,
+            check:false,
+            // check:[]
             },
             //day3
             {
             "swim":null,
             "bike":null,
             "run":null,
-            "rest":"rest"
+            "rest":"rest",
+            check:false,
+            // check:[]
             },
             {
             "swim":1,
             "bike":null,
             "run":.5,
-            "rest":false
+            "rest":false,
+            check:false,
+            // check:[]
+
             },
             {
             "swim":1,
             "bike":null,
             "run":.5,
-            "rest":false
+            "rest":false,
+            check:false,
+            // check:[]
+
             },
             {
             "swim":1,
             "bike":null,
             "run":1,
-            "rest":false
+            "rest":false,
+            check:false,
+            // check:[]
+
             },
             {
             "swim":null,
             "bike":null,
             "run":.5,
-            "rest":false
+            "rest":false,
+            check:false,
+            // check:[]
+
             },
           ]
          }
       },
-  
+      components:{'light-box':{
+        template:`
+            <div class="lightbox-bg">
+                <div class="lightbox-mask" :style="modelStyle">
+                    <div @click.self=""toggleModel>
+
+                    </div>
+                </div>
+            </div>
+        `,
+      }
+    },
       methods: {
           checkoneday(){
-                  alert("恭喜你獲得一點");
-                  
-                  this.checkdone = true;
+            alert("恭喜你獲得一點");
+            this.plandata.sperday.check = true;
+          },
+        //   checkdone(){
+        //     alert("恭喜你獲得一點");
+        //     console.log(this.plandata.perday.check.indexOf(week));
+        //     if(plandata.perday.check.indexOf(week)){
+        //         return true
+        //     }
+        //   },
+          plancancel(){
+                var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
+
+                if (yes) {
+                    this.cancel = false
+                    let resetplan = confirm('需要重新訂製計畫表嗎？');
+                    if(resetplan){
+                        window.location="./plan-temporary.html"
+                    }
+                } else {
+                    alert('您已取消');
+                }
           }
       },
-  
+      computed:{
+        modelStyle(){
+            return {
+                'display':this.plancancel ? '':'none'
+            }
+        }
+      }
   });  
   
 
