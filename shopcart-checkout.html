@@ -26,6 +26,15 @@
    <!--內容所有都放在這div裡面-->
    <main class="shopcart-checkout" id="shopcart-checkout">
         <div>
+            <div class="shopcart-title">
+                <p class="title3">結帳方式</p>
+                <img src="./src/images/img/shopcart/SOP2.png" alt="">
+            </div>
+            <div>
+                  <!-- list組件 -->
+                  <shopcart-content :check="check"></shopcart-content>
+                  <!-- TODO:信用卡 -->
+            </div>
         </div>
    </main>
 
@@ -40,6 +49,15 @@
     <script src="./src/js/vue.js"></script>
     <script src="./src/component/common/header.js"></script>
     <script src="./src/component/common/footer.js"></script>
-    
+    <script src="./src/component/shopcart/shopcart-content.js"></script>
+    <script>
+          new Vue({
+            el:'#shopcart-checkout',
+            data:{
+                check:"2",
+            },
+        })
+    </script>
+       
 </body>
 </html>

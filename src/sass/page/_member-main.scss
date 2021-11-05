@@ -67,12 +67,13 @@
                 margin-bottom: $bottomspacing;
                 .member-info-right-top{
                     display: flex;
-                    justify-content: space-evenly;
-                    padding-top: 20px;
+                    justify-content: space-around;
+                    padding: 20px 10px 0 30px;
                     .firstpartleft{
                         display: inline-block;
                         input{
-                            margin: 15px 0;
+                            margin: 15px auto;
+                            width: 250px;
                         }
                     }
                     .firstpartright{
@@ -82,16 +83,22 @@
                         flex-direction: column;
                         justify-content: space-around;
                     }
+                    .edit-btn{
+                        border: none;
+                        width: 30px;
+                        height: 30px;
+                        cursor: pointer;
+                    }
                 }
-                #savebutton{
-                    position: absolute;
-                    right: 10px;
-                    bottom: 10px;
-                }
-                input[type="button"]{
-                    position: absolute;
-                    right: $buttonwidth+$buttonspacing+10px;
-                    bottom: 10px;
+                .firstpart-btn{
+                    text-align: end;
+                    margin-top: 15px;
+                    padding-right: 10px;
+                    display: none;
+                    .orangebutton{
+                        margin-left: $buttonspacing;
+                        width: 200px;
+                    }
                 }
                 .changepw{
                     color: black;

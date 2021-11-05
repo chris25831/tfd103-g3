@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -109,6 +109,8 @@
    </section>
 
    <!--這是計畫表主體-->
+  
+
    <main id="plan_wrapper" style="display: none">
     <!-- style="display: none" -->
     <div id="plan_head">
@@ -185,7 +187,173 @@
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
-<script src="../../node_modules/jquery/dist/jquery.js"></script>
+<script>
+    // ***lightbox測驗彈窗*** //
+
+const question = new Vue({
+    el: '#plan_question',
+    data(){
+
+        return{
+            tab:"下一步",
+            current_tab:0,
+            questionanswer : [],//存入答案的陣列
+            max:4,
+            questions:[
+                //第一題
+                {
+                    title:'你的參賽日期',
+                    choices:
+                    [{
+                        title:'2021普悠瑪鐵人三項競賽',
+                        value:'20211101'
+                    },{
+                        title:'2021梅花湖三鐵',
+                        value:'20211203'
+                    },{
+                        title:'2021台東活水湖三鐵',
+                        value:'20211223'
+                    }],
+                    name:'racedate',
+                    type:'select',
+                    answer: '20211101', 
+                },
+                //第二題
+                {
+                    title:'想挑戰的競賽距離',
+                    choices:
+                    [{
+                        title:'226K全程距離',
+                        value:'226'
+                    },{
+                        title:'113K半程距離',
+                        value:'113'
+                    },{
+                        title:'51.5K標準距離',
+                        value:'51.5'
+                    }],
+                    name:'distance',
+                    type:'radio',
+                    answer: '226'
+                },
+                //第三題
+                {
+                    title:'想制定幾週的訓練計畫呢',
+                    choices:
+                    [{
+                        title:'16週',
+                        value:'16'
+                    },{
+                        title:'12週',
+                        value:'12'
+                    },{
+                        title:'8週',
+                        value:'8'
+                    }],
+                    name:'week',
+                    type:'radio',
+                    answer: '16'
+                },
+                {
+                    title:'選擇訓練強度',
+                    choices:
+                    [{
+                        title:'強',
+                        value:'hard'
+                    },{
+                        title:'中',
+                        value:'normal'
+                    },{
+                        title:'弱',
+                        value:'eazy'
+                    }],
+                    name:'level',
+                    type:'radio',
+                    answer: 'hard'
+                },
+                
+            ]
+
+        }
+    },
+    
+    methods: {
+        createplan(){
+                $("#plan_question").fadeOut(1500);
+                $(".loading").fadeIn(1500);
+                $(".loading").fadeOut(1500);
+                $("#plan_wrapper").fadeIn(1000);
+                // $.ajax({   
+                //     method: "POST",
+                //     url: "plan.php",
+                //     data:{ //要丟的欄位
+                //     },       
+                //     dataType: "text", 
+                //     success: function (response) { //得到回應更新資料
+                //         if(response === "y"){
+                //             $(".loading").fadeOut(1000);
+                //             $("#plan_wrapper").fadeIn(1500);
+                //             // display();   //找到資料後執行這function
+                //         }else{
+                //             alert(response);//流程控制
+                //         }
+                //     },
+                //     error: function(exception) {
+                //         alert("發生錯誤: " + exception.status);
+                //     }
+                // });
+        },
+        last(){      //切換按鈕index
+            if(this.current_tab <= this.max  && this.current_tab > 0){
+                this.questionanswer.pop(this.questions[this.current_tab - 1].answer);
+                this.current_tab --     
+            }
+            if(this.current_tab != 4){
+                this.tab ="下一步"
+            }
+        },
+        changetab(){ //切換按鈕index
+                if(this.current_tab < 5 ){
+                    this.questionanswer.push(this.questions[this.current_tab - 1].answer);
+                    this.current_tab ++ 
+                    //  console.log(this.plandata);
+                }
+                // console.log(this.current_tab === 5);
+                if(this.current_tab === 5){
+                    this.createplan()
+                }else if(this.current_tab ===4){
+                    this.tab = "完成"
+                }
+
+            
+        },
+       
+    }, 
+     computed: {
+        progressWidth(){
+               //進度條
+                switch (this.current_tab) {
+                            case 1:
+                                return 'width:10%';
+                                break;
+                            case 2:
+                                return 'width:30%';
+                                break;
+                            case 3:
+                                return 'width:60%';
+                                break;
+                            case 4:
+                                return 'width:100%';
+                                break;
+                           default:
+                                return("");
+                                break;
+                    
+            }
+        }
+     }
+});
+</script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/plan/plan.js"></script>
