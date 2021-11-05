@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 * {
   box-sizing: border-box;
   /* outline: 1px solid black; */
+=======
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	/* outline: 1px solid black; */
+>>>>>>> April
 }
 
 .outter {
@@ -11,6 +19,7 @@
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .video-container {
   height: 100vh;
   width: 100%;
@@ -60,6 +69,114 @@ video {
   font-size: 100px;
   color: #fff;
 }
+=======
+.outter{
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+}
+
+.video-container {
+  height: 100vh;
+  width:100%;
+  position: relative;
+  overflow: hidden;
+
+}
+  
+video {
+  object-fit: cover; 
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+  
+.video-container:after {
+  content: '';
+  display: block;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(black, .2);
+  z-index: 1;
+}
+    
+.viedo-textoverlay {
+  position: relative;
+  display: flex;
+  justify-content:left;
+  align-items: left;
+  flex-direction: column;
+  height: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+  width: 70%;
+  margin: 10%;
+  align-self:flex-start;
+}
+
+.video-quote{
+  font-weight:800;
+  font-size:100px;
+  color: #fff;
+  text-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
+}
+  
+  // .index-button {
+  //   background-color:#E75F49;
+  //   border-radius:40px;
+  //   padding:15px 30px;
+  //   margin-top:20px;
+  //   color: #fff;
+  //   font-weight: bold;
+  //   width: 300px;
+  //   text-align: center;
+  //   transition: all 0.3s ease;
+  // }
+
+  // .index-button:hover{
+  //   width: 310px;
+  //   box-shadow: -1px 6px 10px 0 rgba(255, 255, 255, 0.2);
+  // }
+
+
+.btn-hover {
+  width: 300px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color {
+  background-image: linear-gradient(to right, #E75F49, #E75F49, #FFEF36, #FFA10A, );
+  box-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
+}
+  
+>>>>>>> April
 
 .index-button {
   background-color: #e75f49;
@@ -72,15 +189,17 @@ video {
   text-align: center;
 }
 
+<<<<<<< HEAD
 .slider__wrapper {
+=======
+.slider__wrapper{
+>>>>>>> April
   display: block;
   height: 100vh;
 }
 
 .flex__container {
   position: absolute;
-  /* top: 0;
-  left: 0; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -97,13 +216,16 @@ video {
   position: absolute;
   top: 80px;
   left: 80px;
-  /* margin-right: 80px; */
   color: #fff;
   width: 600px;
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s linear 0.2s, opacity 0.1s linear 0.2s;
   z-index: 3;
+<<<<<<< HEAD
+=======
+  text-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
+>>>>>>> April
 }
 
 .flex__item {
@@ -132,16 +254,21 @@ video {
 .text--sub {
   font-size: 50px;
   font-weight: bold;
-  /* letter-spacing: ; */
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 
 .text--big {
+<<<<<<< HEAD
   /* font-family: ; */
   font-size: 60px;
   font-weight: bold;
   margin: 0 0 0 -4px;
+=======
+  font-size: 60px;
+  font-weight: bold;
+  margin:0 0 0 -4px;
+>>>>>>> April
 }
 
 .text--small {
@@ -157,7 +284,10 @@ video {
 }
 
 .text__background {
+<<<<<<< HEAD
   font-family: "Poppins", sans-serif;
+=======
+>>>>>>> April
   position: absolute;
   left: 72px;
   bottom: -60px;
@@ -173,6 +303,7 @@ video {
   opacity: 1;
 }
 
+<<<<<<< HEAD
 /* 第一張slide */
 .flex--one .flex__item--left {
   background: #e75f49;
@@ -202,6 +333,30 @@ video {
     rgba(255, 161, 10, 1) 50%,
     rgba(255, 239, 54, 1) 100%
   );
+=======
+/* slider 1 */
+.flex--one .flex__item--left {
+  background: #E75F49;
+}
+.flex--one .flex__item--right {
+  background: #00429D;
+}
+
+/* slider 2*/
+.flex--two .flex__item--left {
+  background: #707070;
+}
+.flex--two .flex__item--right {
+  background: #E75F49;
+}
+
+/* slider 3*/
+.flex--three .flex__item--left {
+  background: #00429D;
+}
+.flex--three .flex__item--right {
+  background: linear-gradient(180deg, rgba(255,161,10,1) 50%, rgba(255,239,54,1) 100%);
+>>>>>>> April
 }
 
 .slider__img {
@@ -210,9 +365,14 @@ video {
   right: 0px;
   max-height: 45vw;
   opacity: 1;
+<<<<<<< HEAD
   transform: translate3d(0, 0, 0);
   transition: opacity 0.43s 0.6s,
     transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
+=======
+  transform: translate3d(0,0,0);
+  transition: opacity 0.43s 0.6s, transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
+>>>>>>> April
 }
 
 .slider__navi {
@@ -231,6 +391,7 @@ video {
   text-indent: -9999px;
   box-shadow: none;
   border: none;
+<<<<<<< HEAD
   background: rgba(0, 0, 0, 0.2);
 }
 
@@ -240,11 +401,26 @@ video {
 
 .flex__container.animate--start .flex__content {
   transform: translate3d(0, -200%, 0);
+=======
+  background: rgba(0,0,0,0.2);
+}
+
+.slider__navi a.active {
+  background: #FFEF36;
+}
+
+.flex__container.animate--start .flex__content {
+  transform: translate3d(0,-200%,0);
+>>>>>>> April
   opacity: 0;
 }
 
 .flex__container.animate--start .slider__img {
+<<<<<<< HEAD
   transform: translate3d(-200px, 0, 0);
+=======
+  transform: translate3d(-200px,0,0);
+>>>>>>> April
   opacity: 0;
 }
 
@@ -257,17 +433,31 @@ video {
 }
 
 .flex__container.animate--end .flex__content {
+<<<<<<< HEAD
   transform: translate3d(0, 200%, 0);
+=======
+  transform: translate3d(0,200%,0);
+>>>>>>> April
   opacity: 0;
 }
 
 .flex__container.animate--end .slider__img {
+<<<<<<< HEAD
   transform: translate3d(200px, 0, 0);
   opacity: 0;
 }
 
 /* 讓TriClub 帶你更專業scss */
 .pro__training {
+=======
+  transform: translate3d(200px,0,0);
+  opacity: 0;
+}
+  
+  
+  /* 讓TriClub 帶你更專業scss */
+  .pro__training{
+>>>>>>> April
   display: block;
   position: relative;
 }
@@ -276,10 +466,17 @@ video {
   position: absolute;
   top: 50px;
   left: 250px;
+<<<<<<< HEAD
   width: 600px;
 }
 
 .pro__training__title .text--normal {
+=======
+  width: 700px;
+  }
+  
+  .pro__training__title .text--normal {
+>>>>>>> April
   color: #000;
   margin-top: 20px;
 }
@@ -309,6 +506,7 @@ video {
   .sports img {
     width: 200px;
   }
+<<<<<<< HEAD
 }
 
 .sports .item {
@@ -343,6 +541,40 @@ video {
   background-color: #ffef36;
   /* padding: 1rem,0;
 margin: 0 0 3rem; */
+=======
+  
+  
+  .sports .item {
+	text-align: center;
+	width: 100%;
+  }
+  
+  .pic-container {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	font-size: 0;
+  }
+  
+  .pic-container .pic2 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+  }
+  
+  .pic-container:hover .pic2 {
+	opacity:1;
+  }
+  
+  /* marquee banner*/
+  .banner{
+  text-align: left;
+  max-width: 100%;
+  background-color: #FFEF36;
+>>>>>>> April
   max-height: 68px;
   position: absolute;
   bottom: 55px;
@@ -354,6 +586,7 @@ margin: 0 0 3rem; */
   text-transform: uppercase;
   font-size: 30px;
   font-weight: 800;
+<<<<<<< HEAD
 }
 
 /* 開始製作我的個人計畫 */
@@ -386,6 +619,42 @@ margin: 0 0 3rem; */
   position: absolute;
   bottom: 6%;
   left: 0;
+=======
+  }
+  
+  
+  /* 開始製作我的個人計畫 */
+  .training__plan{
+  display: block;
+  position: relative;
+  }
+  
+  .training__plan__svg{
+  position: absolute;  
+  top: 30%;   
+  }
+
+.training__plan__title{
+	color: #fff;
+	position: absolute;
+	top: 60px; 
+	right: 50px;
+	width: 550px;
+}
+
+.training__plan__photo{
+	position: absolute;
+	top:-45px;
+	left: 15px;
+}
+
+
+ /* 這裡是放計畫表的黃色塊 */	
+  .training__plan__container{
+  position: absolute;  
+  bottom: 6%;           
+  left: 0;        
+>>>>>>> April
   right: 0;
   margin: auto;
 }
@@ -418,8 +687,9 @@ margin: 0 0 3rem; */
   margin: 4rem 0;
   width: 37%;
   position: absolute;
-  top: 280px;
+  top: 300px;
   left: 170px;
+<<<<<<< HEAD
 }
 
 th {
@@ -471,6 +741,61 @@ tbody tr:last-child td:last-child {
 
 /* FAQ區塊 */
 .FAQ__container {
+=======
+  
+    thead {
+    background-color: #00429D;
+    color: #fff;
+    border-bottom: 1px solid #d1d1d1;
+    }
+        th,td {
+        padding: 0.75em;
+        text-align: center;
+        }
+        td {
+          background-color: white;
+          }
+          
+          td:first-child {
+            text-align: left;
+          }
+          
+          tbody tr:nth-child(odd) td {
+            background-color: #f6f6f6;
+          }
+          
+          thead th:first-child {
+            border-top-left-radius: 10px;
+            text-align: left;
+          }
+          
+          thead th:last-child {
+            border-top-right-radius: 10px;
+          }
+          
+          tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+          }
+          
+          tbody tr:last-child td:last-child {
+          border-bottom-right-radius: 10px;
+          }
+          
+          @media only screen and (max-width: 768px) {
+          .member-table {
+              width: 90%;
+            }
+          }  
+
+  }
+  
+  
+
+  
+  
+  /* FAQ區塊 */
+  .FAQ__container {
+>>>>>>> April
   display: block;
   padding: 100px;
   background-color: #fff;
@@ -540,8 +865,14 @@ tbody tr:last-child td:last-child {
 .faq-drawer__trigger:checked + .faq-drawer__title::after {
   transform: rotate(-45deg);
   transition: 0.25s ease-in-out;
+<<<<<<< HEAD
 }
 input[type="checkbox"].faq-drawer__trigger {
+=======
+  }
+  
+  .faq-drawer input[type="checkbox"] {
+>>>>>>> April
   display: none;
 }
 
@@ -576,6 +907,7 @@ input[type="checkbox"].faq-drawer__trigger {
 
 .course__flex-container {
   display: flex;
+<<<<<<< HEAD
   margin: 0 7%;
 }
 
@@ -592,6 +924,87 @@ input[type="checkbox"].faq-drawer__trigger {
 /* Group Training 團體訓練   */
 #course__item_1 {
   background: url("../src/images/img/index/grouptraning_300x450.jpg");
+=======
+  margin: 0 7% 6%;
+  justify-content: center;
+  align-items: center; 
+  }
+
+  .course__container {
+    position: relative;
+    margin: 20px;
+    width: 300px;
+    height: 400px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
+  }
+  
+  .course__container:hover .overlay {
+    display: block;
+    background: rgba(0, 0, 0, .3);
+  }
+  
+  
+  .course__title {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 150px;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    z-index: 1;
+    transition: top .5s ease;
+  }
+  
+  .course__container:hover .course__title {
+    top: 90px;
+  }
+  
+  .course__button {
+    color: white;
+    position: absolute;
+    width: 100%;
+    left:0;
+    top: 220px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+    z-index: 600;
+  }
+  
+  .course__button a {
+    width: 200px;
+    padding: 12px 48px;
+    text-align: center;
+    color: #fff;
+    // border: solid 2px white;
+    border-radius:40px;
+    background-image: linear-gradient(to right, #FFEF36, #FFA10A,#E75F49);
+    z-index: 650;
+    text-decoration:none;
+  }
+  
+  .course__container:hover .course__button {
+    opacity: 1;
+    color: #fff;
+  }
+  
+  
+  /* Group Training 團體訓練   */
+  #course__item_1 {
+  background: url('../src/images/img/index/grouptraning_300x450.jpg');
+>>>>>>> April
   width: 100%;
   height: 100%;
   position: absolute;
@@ -606,12 +1019,22 @@ input[type="checkbox"].faq-drawer__trigger {
   max-width: 95%;
   left: 5%;
   top: 5%;
+<<<<<<< HEAD
   z-index: -1;
 }
 
 /* Personal Coach 個人教練 */
 #course__item_3 {
   background: url("../src/images/img/index/personalcoach_300x450.jpg");
+=======
+  z-index:-1;
+  }
+  
+
+  /* Personal Coach 個人教練 */
+  #course__item_3 {
+  background: url('../src/images/img/index/personalcoach_300x450.jpg');
+>>>>>>> April
   width: 100%;
   height: 100%;
   position: absolute;
@@ -646,6 +1069,7 @@ input[type="checkbox"].faq-drawer__trigger {
   max-width: 95%;
   left: 5%;
   top: 5%;
+<<<<<<< HEAD
   z-index: -1;
 }
 
@@ -668,3 +1092,25 @@ input[type="checkbox"].faq-drawer__trigger {
   left: 170px;
   color: #fff;
 }
+=======
+  z-index:-1;
+  }
+  
+  
+  
+  /* 鐵人三項賽事時間表 */
+  .triathlon__events{
+  border: 1px solid $blue;  
+  display: block;
+  background-color: $blue;
+    div.events__title{
+      margin: 50px 80px 0;
+      color: #fff;
+    }
+    main{ //近期賽事
+      background-color: $blue;
+      background-image: none;
+    }
+  }	
+  
+>>>>>>> April
