@@ -142,11 +142,11 @@
                 margin: 25px 0 0;
                 font-size: 24px;
             }
-            .content {
+            div.content {
                 margin: 24px 0;
                 width: 100%;
                 height: 100%;
-                p.text {
+                p.manage-forum-content {
                     margin: 0;
                     line-height: 1.5rem;
                 }
@@ -218,19 +218,37 @@
         }
         .single-comment {
             border: solid #00429d 1px;
-            position: absolute;
+            position: relative;
             border-radius: 30px;
             margin-bottom: 20px;
-            position: relative;
-            
-            img.avatar-comment {
-                position: absolute;
-                border-radius: 50%;
-                left: 28px;
-                top: 18px;
+            .comment-author {
+                width: 40%;
+                height: 70px;
+                // border: solid red 1px;
+                display: inline-block;
+                img.avatar-comment {
+                    
+                    border-radius: 50%;
+                    // left: 28px;
+                    // top: 18px;
+                    // left: 90px;
+                    // top: 20px;
+                    margin-left: 28px;
+                    margin-top: 15px;
+                    margin-right: 18px;
+                }  
+                span.name, span.time {
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: top;
+                    line-height: 70px;
+                    // margin-top: 10px;
+                    // border: solid red 1px;
+                }
+                
             }
             p.comment-content {
-                padding: 72px 28px 16px;
+                padding: 16px 28px 16px;
                 margin: 0;
                 line-height: 1.5rem;
             }
@@ -240,6 +258,7 @@
                 height: 24px;
                 top: 18px;
                 right: 28px;
+      
                 img {
                     width: 100%;
                     height: 100%;
