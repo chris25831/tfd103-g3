@@ -37,14 +37,15 @@
                     </div>
                     <div>
                         <p class="title3">maggie</p>
+                        <hr style="border: 1px dashed orange;width: 100%;">
                     </div>
                 </header>
                 <main class="plan_member_main_content">
                     <div>
-                        <p>我的比賽日期</p>
-                        <p >{{memberinfo.membername}}</p>
-                        <p >{{memberinfo.racedate}}</p>
-                        <p >{{memberinfo.week}}<br>week</p>
+                        <p>我的比賽日期<br>
+                        {{memberinfo.racedate}}
+                        <hr style="border: 1px dashed orange;width: 100%;">
+                        <p class="title3" style="margin: 0;" >{{memberinfo.week}}<br>week</p>
                     </div>
                     <div id="plan_chart">
                         <i class="fa-solid fa-person-swimming"></i>
@@ -71,7 +72,7 @@
                 <div class="plan_scroll">
                     <section  v-for="week in 8" id="plan_member_table">
                       <span class="week_mark title2">W{{week}}</span>
-                        <ul>
+                       <ul>
                             <li v-if="cancel" v-for="(perday,index) in plandata" class="plan_member_eachday">
                                 <div>
                                     <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
@@ -79,11 +80,14 @@
                                     <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
                                 </div>
                                 <!-- <div  @click="perday.check.push(week)" class="plan_member_exe" :class="{ done: perday.check.indexOf(week)}" > -->
-                                <div v-if="cancel" @click="checkoneday" class="plan_member_exe" :class="{done: perday.check}" >
+                                <div v-if="cancel"  class="plan_member_exe" :class="{done: perday.check}" >
                                     <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
                                     <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
                                     <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
-                                    <p v-show="perday.rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.rest}}</span></p>
+                                    <input @click="checkoneday" v-show="perday.rest == false" class="complete" type="button" >
+                                    <p v-show="perday.rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;">
+                                        <span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.rest}}</span>
+                                    </p>
                                 </div>
                             </li>
                         </ul>         
