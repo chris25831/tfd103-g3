@@ -3,125 +3,155 @@
 	margin: 0;
 	padding: 0;
 	/* outline: 1px solid black; */
-  }
+}
 
 
-  .outter{
-    width:100%;
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    
-  }
-  
-  .video-container {
-    height: 100vh;
-    width:100%;
-    // max-width:1000px;
-    position: relative;
-    overflow: hidden;
-   
-  }
-  
-  video {
-    object-fit: cover; // Set the magic
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-  
-  .video-container:after {
-    content: '';
-    display: block;
-    height: 100vh;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(black, .2);
-    z-index: 1;
-  }
-  
+.outter{
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 
-  
-  .viedo-textoverlay {
-    position: relative;
-    display: flex;
-    justify-content:left;
-    align-items: left;
-    flex-direction: column;
-    height: 100%;
-    text-align: left;
-    position: relative;
-    z-index: 10;
-    width: 70%;
-    margin: 10%;
-    align-self:flex-start;
-  }
+}
 
-  .video-quote{
-    font-weight:800;
-    font-size:100px;
-    color: #fff;
-  }
-  
-  .index-button {
-    background-color:#E75F49;
-    border-radius:40px;
-    padding:15px 30px;
-    margin-top:20px;
-    color: #fff;
-    font-weight: bold;
-    width: 300px;
-    text-align: center;
-    
-  }
-  
+.video-container {
+  height: 100vh;
+  width:100%;
+  position: relative;
+  overflow: hidden;
 
-
-  .slider__wrapper{
+}
+  
+video {
+  object-fit: cover; 
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+  
+.video-container:after {
+  content: '';
   display: block;
   height: 100vh;
-  }
-  
-  .flex__container {
+  width: 100%;
   position: absolute;
-  /* top: 0;
-  left: 0; */
+  top: 0;
+  left: 0;
+  background: rgba(black, .2);
+  z-index: 1;
+}
+    
+.viedo-textoverlay {
+  position: relative;
+  display: flex;
+  justify-content:left;
+  align-items: left;
+  flex-direction: column;
+  height: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+  width: 70%;
+  margin: 10%;
+  align-self:flex-start;
+}
+
+.video-quote{
+  font-weight:800;
+  font-size:100px;
+  color: #fff;
+  text-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
+}
+  
+  // .index-button {
+  //   background-color:#E75F49;
+  //   border-radius:40px;
+  //   padding:15px 30px;
+  //   margin-top:20px;
+  //   color: #fff;
+  //   font-weight: bold;
+  //   width: 300px;
+  //   text-align: center;
+  //   transition: all 0.3s ease;
+  // }
+
+  // .index-button:hover{
+  //   width: 310px;
+  //   box-shadow: -1px 6px 10px 0 rgba(255, 255, 255, 0.2);
+  // }
+
+
+.btn-hover {
+  width: 300px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color {
+  background-image: linear-gradient(to right, #E75F49, #E75F49, #FFEF36, #FFA10A, );
+  box-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
+}
+  
+
+
+.slider__wrapper{
+  display: block;
+  height: 100vh;
+}
+
+.flex__container {
+  position: absolute;
   display: flex;
   flex-flow: row wrap; 
   justify-content: flex-start;
   height: 100vh;
   width: 100%;
   z-index: 1;
-  }
-  
-  .flex__container.flex--active {
+}
+
+.flex__container.flex--active {
   z-index: 2;
-  }
-  
-  .flex__content {
+}
+
+.flex__content {
   position: absolute;
   top: 80px;
   left: 80px;
-  /* margin-right: 80px; */
   color: #fff;
   width: 600px;
   opacity: 1;
   transform: translate3d(0,0,0);
   transition: transform 0.2s linear 0.2s, opacity 0.1s linear 0.2s;
   z-index: 3;
-  }
-  
-  .flex__item {
+  text-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
+}
+
+.flex__item {
   color: #fff;
   transition: transform 0.1s linear;
-  }
-  
-  .flex__item--left {
+}
+
+.flex__item--left {
   display: flex;
   align-items: center;
   width: 30%;
@@ -130,87 +160,81 @@
   opacity: 0;
   position: relative;
   overflow: hidden;
-  }
-  
-  .flex__item--right {
+}
+
+.flex__item--right {
   width: 70%;
   transform-origin: right center;
   transition: transform 0.1s linear 0s;
   opacity: 0;
-  }
-  
-  .text--sub {
+}
+
+.text--sub {
   font-size: 50px;
   font-weight: bold;
-  /* letter-spacing: ; */
   text-transform: uppercase;
   margin-bottom: 10px;
-  }
-  
-  .text--big {
-  /* font-family: ; */
+}
+
+.text--big {
   font-size: 60px;
   font-weight: bold;
-	margin:0 0 0 -4px;
-  }
-  
-  .text--small {
+  margin:0 0 0 -4px;
+}
+
+.text--small {
   font-size: 40px;
   margin-top: 10px;
-  }
-  
-  .text--normal {
+}
+
+.text--normal {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.8);
   line-height: 22px;
   margin-top: 25px;
-  }
-  
-  .text__background {
-  font-family: 'Poppins', sans-serif;
+}
+
+.text__background {
   position: absolute;
   left: 72px;
   bottom: -60px;
   color: rgba(0,0,0,0.05);
   font-size: 170px;
   font-weight: 700;
-  }
-  
-  .flex--preStart .flex__item--left,
-  .flex--preStart .flex__item--right,
-  .flex--active .flex__item--left,
-  .flex--active .flex__item--right {
+}
+
+.flex--preStart .flex__item--left,
+.flex--preStart .flex__item--right,
+.flex--active .flex__item--left,
+.flex--active .flex__item--right {
   opacity: 1;
-  }
-  
-  /* 第一張slide */
-  .flex--one .flex__item--left {
+}
+
+/* slider 1 */
+.flex--one .flex__item--left {
   background: #E75F49;
-  }
-  
-  .flex--one .flex__item--right {
+}
+.flex--one .flex__item--right {
   background: #00429D;
-  }
-  
-  /* 第二張slide */
-  .flex--two .flex__item--left {
+}
+
+/* slider 2*/
+.flex--two .flex__item--left {
   background: #707070;
-  }
-  
-  .flex--two .flex__item--right {
+}
+.flex--two .flex__item--right {
   background: #E75F49;
-  }
-  
-  /* 第三張slide */
-  .flex--three .flex__item--left {
+}
+
+/* slider 3*/
+.flex--three .flex__item--left {
   background: #00429D;
-  }
-  
-  .flex--three .flex__item--right {
+}
+.flex--three .flex__item--right {
   background: linear-gradient(180deg, rgba(255,161,10,1) 50%, rgba(255,239,54,1) 100%);
-  }
-  
-  .slider__img {
+}
+
+.slider__img {
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -218,18 +242,17 @@
   opacity: 1;
   transform: translate3d(0,0,0);
   transition: opacity 0.43s 0.6s, transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
-  }
-  
-  
-  .slider__navi {
+}
+
+.slider__navi {
   position: absolute;
   top: 1000px;
   right: 20px;
   transform: translateY(-50%);
   z-index: 999;
-  }
-  
-  .slider__navi a {
+}
+
+.slider__navi a {
   display: block;
   height: 6px;
   width: 20px;
@@ -238,40 +261,39 @@
   box-shadow: none;
   border: none;
   background: rgba(0,0,0,0.2);
-  }
-  
-  .slider__navi a.active {
+}
+
+.slider__navi a.active {
   background: #FFEF36;
-  }
-  
-  
-  .flex__container.animate--start .flex__content {
+}
+
+.flex__container.animate--start .flex__content {
   transform: translate3d(0,-200%,0);
   opacity: 0;
-  }
-  
-  .flex__container.animate--start .slider__img {
+}
+
+.flex__container.animate--start .slider__img {
   transform: translate3d(-200px,0,0);
   opacity: 0;
-  }
-  
-  .flex__container.animate--end .flex__item--left {
+}
+
+.flex__container.animate--end .flex__item--left {
   transform: scaleY(0);
-  }
-  
-  .flex__container.animate--end .flex__item--right {
+}
+
+.flex__container.animate--end .flex__item--right {
   transform: scaleX(0);
-  }
-  
-  .flex__container.animate--end .flex__content {
+}
+
+.flex__container.animate--end .flex__content {
   transform: translate3d(0,200%,0);
   opacity: 0;
-  }
-  
-  .flex__container.animate--end .slider__img {
+}
+
+.flex__container.animate--end .slider__img {
   transform: translate3d(200px,0,0);
   opacity: 0;
-  }
+}
   
   
   /* 讓TriClub 帶你更專業scss */
@@ -284,7 +306,7 @@
   position: absolute;
   top: 50px;
   left: 250px;
-  width: 600px;
+  width: 700px;
   }
   
   .pro__training__title .text--normal {
@@ -345,13 +367,11 @@
 	opacity:1;
   }
   
-  /* 跑馬燈 */
+  /* marquee banner*/
   .banner{
   text-align: left;
   max-width: 100%;
   background-color: #FFEF36;
-/* padding: 1rem,0;
-margin: 0 0 3rem; */
   max-height: 68px;
   position: absolute;
   bottom: 55px;
@@ -366,8 +386,6 @@ margin: 0 0 3rem; */
   }
   
   
-  
-  
   /* 開始製作我的個人計畫 */
   .training__plan{
   display: block;
@@ -376,7 +394,7 @@ margin: 0 0 3rem; */
   
   .training__plan__svg{
   position: absolute;  
-  top: 23%;   
+  top: 30%;   
   }
 
 .training__plan__title{
@@ -392,7 +410,8 @@ margin: 0 0 3rem; */
 	top:-45px;
 	left: 15px;
 }
-  
+
+
  /* 這裡是放計畫表的黃色塊 */	
   .training__plan__container{
   position: absolute;  
@@ -435,56 +454,57 @@ margin: 0 0 3rem; */
   margin: 4rem 0;
   width: 37%;
   position: absolute;
-  top: 280px;
+  top: 300px;
   left: 170px;
+  
+    thead {
+    background-color: #00429D;
+    color: #fff;
+    border-bottom: 1px solid #d1d1d1;
+    }
+        th,td {
+        padding: 0.75em;
+        text-align: center;
+        }
+        td {
+          background-color: white;
+          }
+          
+          td:first-child {
+            text-align: left;
+          }
+          
+          tbody tr:nth-child(odd) td {
+            background-color: #f6f6f6;
+          }
+          
+          thead th:first-child {
+            border-top-left-radius: 10px;
+            text-align: left;
+          }
+          
+          thead th:last-child {
+            border-top-right-radius: 10px;
+          }
+          
+          tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+          }
+          
+          tbody tr:last-child td:last-child {
+          border-bottom-right-radius: 10px;
+          }
+          
+          @media only screen and (max-width: 768px) {
+          .member-table {
+              width: 90%;
+            }
+          }  
+
   }
   
-  th {
-  background-color: #00429D;
-  color: #fff;
-  border-bottom: 1px solid #d1d1d1;
-  }
   
-  th,
-  td {
-  padding: 0.75em;
-  text-align: center;
-  }
-  
-  td {
-  background-color: white;
-  }
-  
-  td:first-child {
-  text-align: left;
-  }
-  
-  tbody tr:nth-child(odd) td {
-  background-color: #f6f6f6;
-  }
-  
-  thead th:first-child {
-  border-top-left-radius: 10px;
-  text-align: left;
-  }
-  
-  thead th:last-child {
-  border-top-right-radius: 10px;
-  }
-  
-  tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 10px;
-  }
-  
-  tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 10px;
-  }
-  
-  @media only screen and (max-width: 768px) {
-  .member-table {
-	width: 90%;
-  }
-  }  
+
   
   
   /* FAQ區塊 */
@@ -560,7 +580,7 @@ margin: 0 0 3rem; */
   transition: 0.25s ease-in-out;
   }
   
-  input[type="checkbox"] {
+  .faq-drawer input[type="checkbox"] {
   display: none;
   }
   
@@ -599,18 +619,81 @@ margin: 0 0 3rem; */
 
   .course__flex-container{
   display: flex;
-  margin: 0 7%;
+  margin: 0 7% 6%;
+  justify-content: center;
+  align-items: center; 
+  }
+
+  .course__container {
+    position: relative;
+    margin: 20px;
+    width: 300px;
+    height: 400px;
   }
   
-  .course__item {
-  color: #fff;
-  font-weight: 800;
-  min-height:400px;
-  width:300px;
-  max-width:80%;
-  margin:0 auto;
-  position:relative;
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
   }
+  
+  .course__container:hover .overlay {
+    display: block;
+    background: rgba(0, 0, 0, .3);
+  }
+  
+  
+  .course__title {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 150px;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    z-index: 1;
+    transition: top .5s ease;
+  }
+  
+  .course__container:hover .course__title {
+    top: 90px;
+  }
+  
+  .course__button {
+    color: white;
+    position: absolute;
+    width: 100%;
+    left:0;
+    top: 220px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+    z-index: 600;
+  }
+  
+  .course__button a {
+    width: 200px;
+    padding: 12px 48px;
+    text-align: center;
+    color: #fff;
+    // border: solid 2px white;
+    border-radius:40px;
+    background-image: linear-gradient(to right, #FFEF36, #FFA10A,#E75F49);
+    z-index: 650;
+    text-decoration:none;
+  }
+  
+  .course__container:hover .course__button {
+    opacity: 1;
+    color: #fff;
+  }
+  
   
   /* Group Training 團體訓練   */
   #course__item_1 {
@@ -632,6 +715,7 @@ margin: 0 0 3rem; */
   z-index:-1;
   }
   
+
   /* Personal Coach 個人教練 */
   #course__item_3 {
   background: url('../src/images/img/index/personalcoach_300x450.jpg');
@@ -676,10 +760,12 @@ margin: 0 0 3rem; */
   
   /* 鐵人三項賽事時間表 */
   .triathlon__events{
+  border: 1px solid $blue;  
   display: block;
   background-color: $blue;
-    div{  
-      position: relative;
+    div.events__title{
+      margin: 50px 80px 0;
+      color: #fff;
     }
     main{ //近期賽事
       background-color: $blue;
@@ -687,9 +773,3 @@ margin: 0 0 3rem; */
     }
   }	
   
- .events__title {
-  position: absolute;
-  top: 40px;
-  left: 170px;
-  color: #fff;
-  }
