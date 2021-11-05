@@ -90,7 +90,8 @@ Vue.component("shopcart-content",{
 
             // TODO:判斷會員
 
-            window.location.href="../../shopcart-checkout.html";  
+            // window.location.href="../../shopcart-checkout.html"; 
+            window.open("../../shopcart-checkout.html","_self");   
         }
     },
   
