@@ -14,7 +14,7 @@ template: `
           </div>
         </main>
 
-        <a class="logo" href="index.html" ><img src="./src/images/icons/logo.svg"/></a>
+        <a class="logo" onclick="window.open('./index.html', '_self')" href="index.html" ><img src="./src/images/icons/logo.svg"/></a>
         
 
         <ul class="header_menu" :class="{slidedown:slide}">
@@ -24,14 +24,14 @@ template: `
               <a href="race-home.html"><li>近期賽事</li></a>
               </ul>
           </li>
-          <li class="head_title"><a href="classes-home.html" class="title3">訓練課程</a>
+          <li class="head_title"><a onclick="window.open('./classes-home.html', '_self')" href="classes-home.html" class="title3">訓練課程</a>
             <ul class="head_subtitle">
               <a><li>團練課程</li></a>
               <a><li>個人教練</li></a>
               <a><li>營養菜單</li></a>
             </ul>
           </li>
-          <li class="head_title"><a href="forum-home.html" class="title3">討論區</a>
+          <li class="head_title"><a onclick="window.open('./forum-home.html', '_self')" href="forum-home.html" class="title3">討論區</a>
             <ul class="head_subtitle">
               <a><li>閒聊</li></a>
               <a><li>心得</li></a>
@@ -39,7 +39,7 @@ template: `
               <a><li>問題</li></a>
             </ul>
           </li>
-          <li class="head_title"><a href="plan-temporary.html" class="title3">訂製計畫表</a></li>
+          <li class="head_title"><a onclick="window.open('./plan-temporary.html', '_self')" href="plan-temporary.html" class="title3">訂製計畫表</a></li>
           
          
             <ul class="head_subtitle head_contactus">
@@ -61,9 +61,9 @@ template: `
           
         </ul>
         <!--會員-->
-        <a class="header_icon" href="member-login.html"><i class="fas fa-user fa-xl"></i></a>
+        <a class="header_icon" onclick="window.open('./member-login.html', '_self')" href="#"><i class="fas fa-user fa-xl"></i></a>
         <!--購物車-->
-        <a class="header_icon" href="shopcart-home.html"><i class="fas fa-shopping-basket fa-xl"></i></a>
+        <a class="header_icon" onclick="window.open('./shopcart-home.html', '_self')" href="#"><i class="fas fa-shopping-basket fa-xl"></i></a>
     </div>  
 `,
 
