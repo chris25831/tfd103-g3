@@ -741,7 +741,8 @@ video {
     
     /* 鐵人三項賽事時間表 */
     .triathlon__events{
-    border: 1px solid $blue;
+    border: 1px solid $blue;  
+    padding-top: 50px;  
     display: block;
     background-color: $blue;
       div{  
