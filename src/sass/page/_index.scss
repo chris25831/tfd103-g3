@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-* {
-  box-sizing: border-box;
-  /* outline: 1px solid black; */
-=======
 *{
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 	/* outline: 1px solid black; */
->>>>>>> April
 }
 
 .outter {
@@ -19,57 +13,6 @@
   justify-content: center;
 }
 
-<<<<<<< HEAD
-.video-container {
-  height: 100vh;
-  width: 100%;
-  // max-width:1000px;
-  position: relative;
-  overflow: hidden;
-}
-
-video {
-  object-fit: cover; // Set the magic
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
-.video-container:after {
-  content: "";
-  display: block;
-  height: 100vh;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(black, 0.2);
-  z-index: 1;
-}
-
-.viedo-textoverlay {
-  position: relative;
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  flex-direction: column;
-  height: 100%;
-  text-align: left;
-  position: relative;
-  z-index: 10;
-  width: 70%;
-  margin: 10%;
-  align-self: flex-start;
-}
-
-.video-quote {
-  font-weight: 800;
-  font-size: 100px;
-  color: #fff;
-}
-=======
 .outter{
   width:100%;
   height:100vh;
@@ -176,7 +119,6 @@ video {
   box-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
 }
   
->>>>>>> April
 
 .index-button {
   background-color: #e75f49;
@@ -189,11 +131,7 @@ video {
   text-align: center;
 }
 
-<<<<<<< HEAD
 .slider__wrapper {
-=======
-.slider__wrapper{
->>>>>>> April
   display: block;
   height: 100vh;
 }
@@ -222,10 +160,7 @@ video {
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s linear 0.2s, opacity 0.1s linear 0.2s;
   z-index: 3;
-<<<<<<< HEAD
-=======
   text-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
->>>>>>> April
 }
 
 .flex__item {
@@ -259,16 +194,9 @@ video {
 }
 
 .text--big {
-<<<<<<< HEAD
-  /* font-family: ; */
-  font-size: 60px;
-  font-weight: bold;
-  margin: 0 0 0 -4px;
-=======
   font-size: 60px;
   font-weight: bold;
   margin:0 0 0 -4px;
->>>>>>> April
 }
 
 .text--small {
@@ -284,10 +212,6 @@ video {
 }
 
 .text__background {
-<<<<<<< HEAD
-  font-family: "Poppins", sans-serif;
-=======
->>>>>>> April
   position: absolute;
   left: 72px;
   bottom: -60px;
@@ -303,37 +227,6 @@ video {
   opacity: 1;
 }
 
-<<<<<<< HEAD
-/* 第一張slide */
-.flex--one .flex__item--left {
-  background: #e75f49;
-}
-
-.flex--one .flex__item--right {
-  background: #00429d;
-}
-
-/* 第二張slide */
-.flex--two .flex__item--left {
-  background: #707070;
-}
-
-.flex--two .flex__item--right {
-  background: #e75f49;
-}
-
-/* 第三張slide */
-.flex--three .flex__item--left {
-  background: #00429d;
-}
-
-.flex--three .flex__item--right {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 161, 10, 1) 50%,
-    rgba(255, 239, 54, 1) 100%
-  );
-=======
 /* slider 1 */
 .flex--one .flex__item--left {
   background: #E75F49;
@@ -356,7 +249,6 @@ video {
 }
 .flex--three .flex__item--right {
   background: linear-gradient(180deg, rgba(255,161,10,1) 50%, rgba(255,239,54,1) 100%);
->>>>>>> April
 }
 
 .slider__img {
@@ -365,14 +257,8 @@ video {
   right: 0px;
   max-height: 45vw;
   opacity: 1;
-<<<<<<< HEAD
-  transform: translate3d(0, 0, 0);
-  transition: opacity 0.43s 0.6s,
-    transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
-=======
   transform: translate3d(0,0,0);
   transition: opacity 0.43s 0.6s, transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
->>>>>>> April
 }
 
 .slider__navi {
@@ -391,7 +277,6 @@ video {
   text-indent: -9999px;
   box-shadow: none;
   border: none;
-<<<<<<< HEAD
   background: rgba(0, 0, 0, 0.2);
 }
 
@@ -401,26 +286,11 @@ video {
 
 .flex__container.animate--start .flex__content {
   transform: translate3d(0, -200%, 0);
-=======
-  background: rgba(0,0,0,0.2);
-}
-
-.slider__navi a.active {
-  background: #FFEF36;
-}
-
-.flex__container.animate--start .flex__content {
-  transform: translate3d(0,-200%,0);
->>>>>>> April
   opacity: 0;
 }
 
 .flex__container.animate--start .slider__img {
-<<<<<<< HEAD
   transform: translate3d(-200px, 0, 0);
-=======
-  transform: translate3d(-200px,0,0);
->>>>>>> April
   opacity: 0;
 }
 
@@ -433,31 +303,18 @@ video {
 }
 
 .flex__container.animate--end .flex__content {
-<<<<<<< HEAD
   transform: translate3d(0, 200%, 0);
-=======
-  transform: translate3d(0,200%,0);
->>>>>>> April
   opacity: 0;
 }
 
 .flex__container.animate--end .slider__img {
-<<<<<<< HEAD
-  transform: translate3d(200px, 0, 0);
-  opacity: 0;
-}
-
-/* 讓TriClub 帶你更專業scss */
-.pro__training {
-=======
   transform: translate3d(200px,0,0);
   opacity: 0;
 }
   
   
-  /* 讓TriClub 帶你更專業scss */
+/* 讓TriClub 帶你更專業scss */
   .pro__training{
->>>>>>> April
   display: block;
   position: relative;
 }
@@ -466,17 +323,10 @@ video {
   position: absolute;
   top: 50px;
   left: 250px;
-<<<<<<< HEAD
-  width: 600px;
-}
-
-.pro__training__title .text--normal {
-=======
   width: 700px;
   }
   
   .pro__training__title .text--normal {
->>>>>>> April
   color: #000;
   margin-top: 20px;
 }
@@ -506,42 +356,6 @@ video {
   .sports img {
     width: 200px;
   }
-<<<<<<< HEAD
-}
-
-.sports .item {
-  text-align: center;
-  width: 100%;
-}
-
-.pic-container {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  font-size: 0;
-}
-
-.pic-container .pic2 {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.pic-container:hover .pic2 {
-  opacity: 1;
-}
-
-/* 跑馬燈 */
-.banner {
-  text-align: left;
-  max-width: 100%;
-  background-color: #ffef36;
-  /* padding: 1rem,0;
-margin: 0 0 3rem; */
-=======
   
   
   .sports .item {
@@ -574,7 +388,6 @@ margin: 0 0 3rem; */
   text-align: left;
   max-width: 100%;
   background-color: #FFEF36;
->>>>>>> April
   max-height: 68px;
   position: absolute;
   bottom: 55px;
@@ -586,40 +399,6 @@ margin: 0 0 3rem; */
   text-transform: uppercase;
   font-size: 30px;
   font-weight: 800;
-<<<<<<< HEAD
-}
-
-/* 開始製作我的個人計畫 */
-.training__plan {
-  display: block;
-  position: relative;
-}
-
-.training__plan__svg {
-  position: absolute;
-  top: 23%;
-}
-
-.training__plan__title {
-  color: #fff;
-  position: absolute;
-  top: 60px;
-  right: 50px;
-  width: 550px;
-}
-
-.training__plan__photo {
-  position: absolute;
-  top: -45px;
-  left: 15px;
-}
-
-/* 這裡是放計畫表的黃色塊 */
-.training__plan__container {
-  position: absolute;
-  bottom: 6%;
-  left: 0;
-=======
   }
   
   
@@ -654,7 +433,6 @@ margin: 0 0 3rem; */
   position: absolute;  
   bottom: 6%;           
   left: 0;        
->>>>>>> April
   right: 0;
   margin: auto;
 }
@@ -689,59 +467,6 @@ margin: 0 0 3rem; */
   position: absolute;
   top: 300px;
   left: 170px;
-<<<<<<< HEAD
-}
-
-th {
-  background-color: #00429d;
-  color: #fff;
-  border-bottom: 1px solid #d1d1d1;
-}
-
-th,
-td {
-  padding: 0.75em;
-  text-align: center;
-}
-
-td {
-  background-color: white;
-}
-
-td:first-child {
-  text-align: left;
-}
-
-tbody tr:nth-child(odd) td {
-  background-color: #f6f6f6;
-}
-
-thead th:first-child {
-  border-top-left-radius: 10px;
-  text-align: left;
-}
-
-thead th:last-child {
-  border-top-right-radius: 10px;
-}
-
-tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 10px;
-}
-
-tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 10px;
-}
-
-@media only screen and (max-width: 768px) {
-  .member-table {
-    width: 90%;
-  }
-}
-
-/* FAQ區塊 */
-.FAQ__container {
-=======
   
     thead {
     background-color: #00429D;
@@ -795,7 +520,6 @@ tbody tr:last-child td:last-child {
   
   /* FAQ區塊 */
   .FAQ__container {
->>>>>>> April
   display: block;
   padding: 100px;
   background-color: #fff;
@@ -865,14 +589,8 @@ tbody tr:last-child td:last-child {
 .faq-drawer__trigger:checked + .faq-drawer__title::after {
   transform: rotate(-45deg);
   transition: 0.25s ease-in-out;
-<<<<<<< HEAD
 }
 input[type="checkbox"].faq-drawer__trigger {
-=======
-  }
-  
-  .faq-drawer input[type="checkbox"] {
->>>>>>> April
   display: none;
 }
 
@@ -907,24 +625,6 @@ input[type="checkbox"].faq-drawer__trigger {
 
 .course__flex-container {
   display: flex;
-<<<<<<< HEAD
-  margin: 0 7%;
-}
-
-.course__item {
-  color: #fff;
-  font-weight: 800;
-  min-height: 400px;
-  width: 300px;
-  max-width: 80%;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* Group Training 團體訓練   */
-#course__item_1 {
-  background: url("../src/images/img/index/grouptraning_300x450.jpg");
-=======
   margin: 0 7% 6%;
   justify-content: center;
   align-items: center; 
@@ -1004,7 +704,6 @@ input[type="checkbox"].faq-drawer__trigger {
   /* Group Training 團體訓練   */
   #course__item_1 {
   background: url('../src/images/img/index/grouptraning_300x450.jpg');
->>>>>>> April
   width: 100%;
   height: 100%;
   position: absolute;
@@ -1019,14 +718,6 @@ input[type="checkbox"].faq-drawer__trigger {
   max-width: 95%;
   left: 5%;
   top: 5%;
-<<<<<<< HEAD
-  z-index: -1;
-}
-
-/* Personal Coach 個人教練 */
-#course__item_3 {
-  background: url("../src/images/img/index/personalcoach_300x450.jpg");
-=======
   z-index:-1;
   }
   
@@ -1034,7 +725,6 @@ input[type="checkbox"].faq-drawer__trigger {
   /* Personal Coach 個人教練 */
   #course__item_3 {
   background: url('../src/images/img/index/personalcoach_300x450.jpg');
->>>>>>> April
   width: 100%;
   height: 100%;
   position: absolute;
@@ -1069,30 +759,6 @@ input[type="checkbox"].faq-drawer__trigger {
   max-width: 95%;
   left: 5%;
   top: 5%;
-<<<<<<< HEAD
-  z-index: -1;
-}
-
-/* 鐵人三項賽事時間表 */
-.triathlon__events {
-  display: block;
-  background-color: $blue;
-  div {
-    position: relative;
-  }
-  main {
-    background-color: $blue;
-    background-image: none;
-  }
-}
-
-.events__title {
-  position: absolute;
-  top: 40px;
-  left: 170px;
-  color: #fff;
-}
-=======
   z-index:-1;
   }
   
@@ -1113,4 +779,4 @@ input[type="checkbox"].faq-drawer__trigger {
     }
   }	
   
->>>>>>> April
+}
