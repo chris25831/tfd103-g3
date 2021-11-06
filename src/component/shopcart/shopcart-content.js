@@ -9,9 +9,8 @@ Vue.component("shopcart-content",{
                 <div>
                     <input type="checkbox" v-if="check == '1'" id="all-checked" value=""> 
                 </div>
-
-                <ul>
-                    <li v-for="item in itemList">
+                <ul class="itemlist">
+                    <li class="itemlist_li" v-for="item in itemList">
                         <input type="checkbox" v-if="check == '1'" name="" id="">
                         <div>
                             <img :src="item.comimg" alt="">
@@ -21,7 +20,8 @@ Vue.component("shopcart-content",{
                         <!-- 價錢 -->
                         <p  class="comprice">$ {{item.comprice}}TWD</p>
                         <!-- 刪除 -->
-                        <button><i class="fas fa-minus"></i></button>          
+                        <button><i class="fas fa-minus"></i></button>
+                        <hr>          
                     </li>
                 </ul>
             </div>
