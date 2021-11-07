@@ -1,5 +1,10 @@
+// body.plan{
+//     @include bgplan(100%)
+// }
 main.plan_member_wrapper{
     display: grid;
+    height: 100%;
+    @include bgplan(100%);
     grid-template-columns: 1fr 5fr;
     @include table(){
         grid-template-columns: 150px 5fr;
@@ -25,6 +30,11 @@ header.plan_member_aside{
         position: sticky;
         top: 100px;
         border:2px solid blue;
+        @include table(){
+            top: 0px;
+            height: 100vh;
+          
+        }
             header{
                 width: 100%;
               
@@ -112,10 +122,42 @@ main.plan_member_main_content{
     /////// *** 右邊 *** ///////
 
 //計畫表
+section.plan_empty{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include table(){
+
+        height: 900px;
+    }
+    div{
+        width: 60%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        h2{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .orangebutton{
+                margin-top: 10px;
+                @include mobile(){
+                    width: 130px;
+                    
+                }
+            }
+        }
+    }
+}
+
 section.plan_member_content{
     border: 2px solid rgb(0, 255, 106);
     margin-left: 0;
     gap: 0;
+   
     //天數TITLE
     #plan_week{
         border: 2px solid rgb(0, 255, 106);
@@ -126,10 +168,8 @@ section.plan_member_content{
             display: none;
         }
         ul{
-            // border: 3px solid white;
             margin: 0 auto;
             width: 90%;
-            
             margin-left: 8%;
             padding: 10px;
             color: black;
@@ -149,6 +189,7 @@ section.plan_member_content{
         display: flex;
         flex-direction: column;
         
+
         #plan_member_table{
             display: flex;
             justify-content: center;
@@ -166,7 +207,7 @@ section.plan_member_content{
             align-self: center;
             @include bgnorepeat();
             font-weight: 600;
-            @include table(){
+            @include planM(){
                 position: sticky;
                 align-self:flex-start;
                 margin-top: 50px;
@@ -174,6 +215,10 @@ section.plan_member_content{
                 bottom: 50px;
                 border-radius: 0;
                 width: 10%;
+            }
+            @include table(){
+                border-radius: 0;
+                width: 20%;
             }
         }//白色底
         ul{
@@ -187,7 +232,7 @@ section.plan_member_content{
             grid-template-columns:repeat(7, 1fr);
             grid-auto-flow: row;
             // height: 150px;
-            @include table(){
+            @include planM(){
                 grid-template-columns: 1fr;
                 grid-template-rows: auto;
                 background-color: transparent;
@@ -198,6 +243,9 @@ section.plan_member_content{
                 border-radius: 10px;
                 background-color: rgba(255,255,255,0.8);
                 list-style: none;
+                @include table(){
+                    width: 100%;
+                 }
                 }
               }
            }
@@ -205,8 +253,8 @@ section.plan_member_content{
         }
     }
 }
-//每天的運動icon
 
+//每天的運動icon
 li.plan_member_eachday{
     border-right: 2px dashed $orange;
     display: flex;
@@ -216,16 +264,27 @@ li.plan_member_eachday{
     &:last-child(){
         border-right: none;
     }
-    @include table(){
+    @include planM(){
         border-right: none;
+        flex-direction: row;
+        justify-content:left;
     }
     div:first-child{
-        // border: 1px solid blue;
+        border: 1px solid blue;
         height: 20%;
         background-color: $orange;
-        @include flexcenter;
         justify-content:center;
-       
+        @include flexcenter;
+        @include planM(){
+            background-color:transparent;
+            height: 100%;
+            border: 1px solid $orange;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 20%;
+            background-color: $orange;
+            border-radius: 10px 0 0 10px;
+        }
         span{
             transform: translate(0%, -50%);
             border: 2px solid $orange;
@@ -233,7 +292,9 @@ li.plan_member_eachday{
             background-color: $white;
             padding: 10px;
             box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
-           
+            @include planM(){
+                transform: translate(0%, 0%);
+               }
             i{
                 width: 20px;
                 height: auto;
@@ -253,24 +314,32 @@ div.plan_member_exe{
     height: 80%;
     border: 1px solid green;
     @include fontfamily(500);
-    @include table(){
+    @include planM(){
+        text-align: left;
         font-size: 18px;
+        height: 100%;
+        width: 80%;
+       
+    }
+    @include mobile(){
+        text-align: center;
     }
     p{
         margin: 0;
         border: 1px solid rgb(255, 231, 14);
-        
+        height: 34%;
     }
     //完成一天
     .complete{
         position: absolute;
-        // background: $yellowgradient ;
+        z-index: 10;
         border: 2px solid $orange;
         bottom: 0;
         right: 0;
         height: 20px;
         width: 20px;
         border-radius: 5px ;
+       
         &:active{
             
             background: $yellowgradient 
@@ -307,7 +376,9 @@ div.plan_member_exe{
 }
 
 .done{
+    
     &::before{
+        z-index: 80;
         content: "";
         position: absolute;
         width: 100%;
@@ -318,6 +389,7 @@ div.plan_member_exe{
     }
     &::after{
         padding: 3px 10px;
+        z-index: 90;
         border-radius: 3px;
         content: "done!";
         border: 1px double white;

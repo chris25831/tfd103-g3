@@ -6,7 +6,7 @@
     <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>TriclubSample|Triclub</title> 
+    <title>訂製計畫表|Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
+<body class="plan">
     <!--這是header-->
    <header id="header" :class="{sticky: active}" >
         <my-header></my-header><!--這是自定義標籤會被覆蓋-->
@@ -156,15 +156,15 @@
                             </ul>
                         </div>
                         <div class="orangetitle">
-                            <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
-                            <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
-                            <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
+                            <span v-show="perday.Swim"><i class="fa-solid fa-person-swimming"></i></span>
+                            <span v-show="perday.Bike"><i class="fa-solid fa-person-biking"></i></span>
+                            <span v-show="perday.Run"><i class="fa-solid fa-person-running"></i></span>
                         </div>
                         <div class="plan_exe">
-                            <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
-                            <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
-                            <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
-                            <p v-show="perday.rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.rest}}</span></p>
+                            <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}</span></p>
+                            <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}</span></p>
+                            <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}</span></p>
+                            <p v-show="perday.Rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.Rest}}</span></p>
                         </div>
                     </li>
                 </ul>
@@ -316,7 +316,7 @@ const question = new Vue({
                 if(this.current_tab < 5 ){
                     this.questionanswer.push(this.questions[this.current_tab - 1].answer);
                     this.current_tab ++ 
-                    //  console.log(this.plandata);
+                     console.log(this.questionanswer);
                 }
                 // console.log(this.current_tab === 5);
                 if(this.current_tab === 5){

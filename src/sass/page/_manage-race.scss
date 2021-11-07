@@ -1,0 +1,198 @@
+//賽程編輯內頁
+main.manage_race_wrapper_info{
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    background-color: $white;
+    div.manage_race_container{
+        border: 1px solid rgb(0, 26, 255);
+       width: 1000px;
+       display: flex;
+       justify-content: center;
+       main{
+        border: 1px solid rgb(0, 255, 55);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        form{
+            display: flex;
+            align-self: flex-start;
+            flex-direction: column;
+            margin: 0 auto;
+            width: 80%;
+            margin-top: 50px;
+            hr{
+                width: 100%;
+            }
+            label{
+                font-weight: 600;
+            }
+            textarea{
+                width: 80%;
+                height: 300px;
+                overflow: scroll;
+            }
+            input{
+                
+                width: 80%;
+            }
+        }
+       }
+    }
+}
+main.manage_race_contents{
+    div.manage_race_raceinfo{
+        border: 1px solid red;
+        width: 1000px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+        gap: 10px;
+       
+            
+    }
+    div.race_photo{
+        display: flex;
+        justify-content: center;
+        // border: 1px solid red;
+        width: 80%;
+        img{
+            width: 100%;
+        }
+       
+    }
+
+}
+.manage_race_button{
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    button{
+        margin-left: 30px;
+        cursor: pointer;
+        outline: none;
+        height: 40px;
+        width: 130px;
+    }
+}
+
+
+
+
+//賽事主頁//
+.manage_race_list_wrapper{
+    
+    
+    #race_list{
+        margin: 0 83px;
+        display: flex;
+        flex-direction: column;
+        padding: $bottomspacing 0;
+        @include table(){
+            margin: 0 ;
+            width: 100%;
+        }
+        @include mobile(){
+            margin: 0 ;
+            width: 100%;
+        }
+        button.race_add{
+            justify-content: center;
+            align-self: flex-end;
+            width: 100px;
+            height: 40px;
+            outline: none;
+        }
+        div.pagination{
+            margin-top: 20px;
+            margin-bottom: $bottomspacing;
+            justify-content: center;
+            li a{
+                color: $blue;
+            }
+            span{
+                color: $blue;
+            }
+        }
+        
+    }
+}
+
+
+.manage_race_wrapper{
+    display: grid;
+    grid-template-rows: auto;
+    gap: 10px;
+    //賽事標題
+    div.race_title{
+        &:hover{
+            box-shadow: none;
+        }
+        display: grid;
+        justify-items: center;
+        align-content: center;
+        border-radius: 10px;
+        grid-template-columns: 0.5fr 1fr 2fr 90px 1.5fr;
+        color: $black;
+        align-items: center;
+        
+        padding: 10px;
+        
+        p{
+            margin-bottom: 0;
+        }
+    }
+    .manage_raceinfo{
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 2fr 90px 1.5fr;
+        border-radius: 10px;
+        padding: 10px;
+        border: 1.3px solid $blue;
+        background-color: $white;
+       
+        //里程
+        div.distences{
+           display: flex;
+           align-items: center;
+            @include table(){
+                flex-direction: column;
+                align-items: center;
+            }
+            a{
+                border-radius: 5px;
+                padding: 5px;
+                margin-left: 5px;
+                &:last-child{
+                    color: white;
+                    
+                }
+            @include table(){
+                width: 10%;
+              }  
+            }
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            @include flexcenter();
+            &:nth-child(1){
+                flex-grow: 0;
+            }
+            &:nth-child(3){
+                flex-grow: 1;
+            }
+            label{
+                width: 100%;
+            }
+            
+            .race_distence{
+                border-radius: 10px;
+            }
+        }
+        
+    }
+}
+

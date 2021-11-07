@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 此為後台頁面樣板 -->
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>賽程管理 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!--這是header-->
+   <!--這是header-->
+   <header id="manage-header">
+    <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+   <!--內容所有都放在這div裡面-->
+   <main class="manage-main manage_race_wrapper_info">
+       <div class="manage_race_container" id="race_information">
+           <!-- <header class="nav">這裡是頁籤</header> -->
+           <main class=" manage_race_contents"> 
+                  
+                   <h1 class="manage-title title1">賽程管理</h1>
+                   
+                   <form class="manage_race_raceinfo"> 
+                       <label class="title3">賽事名稱-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">賽事編號-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">活動日期-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">活動地點-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">主辦單位-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">比賽項目-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">活動狀態-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">相關連結-</label> <input class="race_title "></input>
+                       <hr>
+                       <label class="title3">賽事簡介-</label> <textarea  class="race_title "></textarea>
+                       <hr>
+                       <label class="title3">活動圖片- </label><input type="file" name="file" /> <!--name是key值找那個陣列名稱-->
+                        
+                   </form>
+                   <div class="manage_race_button">
+                        <button class="yellowbutton ">下架</button>
+                        <button class="bluebutton ">回上一頁</button>
+                        <button class="bluebutton ">更新</button>
+                   </div>
+           </main>
+       </div>
+   </main>
+   <!-- 這是footer-->
+   <footer id="manage-footer">
+        <manage-footer></manage-footer>   
+   </footer>
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
+<script src="./src/component/common/manage-footer.js"></script>
+
+</body>
+</html>
