@@ -1,6 +1,6 @@
 // 購物車
 var storage = localStorage;
-//'../../../classes-content.html?classid='+ item.comclassid
+
 Vue.component("shopcart-content",{
     props:["checksop"],
     template:`
@@ -121,9 +121,7 @@ Vue.component("shopcart-content",{
     },
 
     
-
     methods: {
-
         // 詳細商品連結
         gotodetail(id){
             // console.log(id);
@@ -251,43 +249,39 @@ Vue.component("shopcart-content",{
 
         // 刪除 
         deleteItem(itemid){
-            // console.log(itemid);
+            console.log(itemid);
+            let id = itemid;
             let removeitem = document.getElementById(itemid);
-            
+            console.log(removeitem);
             removeitem.style.display = "none";
             removeitem.remove();
-
+            
             // 刪除localstorage
             let newallItem =  JSON.parse(storage['addCartList']);
             for(let i =0; i < newallItem.length; i++){
                 // console.log(allItem[i]);
-
-               if(newallItem[i].comclassid == itemid){
+                
+                if(newallItem[i].comclassid == id){
                     newallItem.splice(i,1);
-               }
+                }
+  
             }
-            // console.log(newallItem);
 
-            this.itemList = newallItem;
+            // 更新localstorage
+            storage.removeItem(id);
+            storage['addCartList'] = JSON.stringify(newallItem);
+            
 
             // 更新amount
             this.changeItemLength();
 
-     
-            // 更新localstorage
-            storage.removeItem(itemid);
 
-            storage['addCartList'] =  JSON.stringify(newallItem);
 
         },
 
 
     },
     
-    
-  
-
 });
 
 
-// TODO:  結帳再存localstorage,  
