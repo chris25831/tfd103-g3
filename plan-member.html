@@ -25,6 +25,7 @@
    </header>
   
    <!--這是計畫表主體-->
+   
    <main class="plan_member_wrapper" id="plan_wrapper" >
        <!-- <light-box></light-box> -->
        <!--這是計畫表會員側欄位-->
@@ -84,30 +85,40 @@
                     <section  v-for="week in memberinfo.week" id="plan_member_table">
                       <span class="week_mark title2">W{{week}}</span>
                        <ul>
-                            <li  v-for="(perday,index) in plandata" class="plan_member_eachday">
-                                <div class="orangetitle">
-                                    <span v-show="perday.Swim"><i class="fa-solid fa-person-swimming"></i></span>
-                                    <span v-show="perday.Bike"><i class="fa-solid fa-person-biking"></i></span>
-                                    <span v-show="perday.Run"><i class="fa-solid fa-person-running"></i></span>
-                                </div>   <!--[[],[],[],[],[],[],[],"122"] localstroge存陣列點數所在位置/總點數放最後面給陳組長-->
-                                <div class="plan_member_exe" :class="{ done: perday.check.includes(week)}" > <!--includes有這個week才執行done-->
-                                    <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}</span></p>
-                                    <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}</span></p>
-                                    <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}</span></p>
-                                    <!--完成一天--->
-                                    <input @click="checkoneday(); perday.check.push(week)" v-show="perday.Rest == false" class="complete" type="button" >
-                                    <p v-show="perday.Rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;">
-                                        <span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.Rest}}</span>
-                                    </p>
-                                </div>
-                            </li>
+                           
+                                <li  v-for="(perday,index) in plandata" class="plan_member_eachday">
+                                    <div id="plan_week_table">
+                                        <ul>
+                                            <li class="title2">D{{index+1}}</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="orangetitle">
+                                        <span v-show="perday.Swim"><i class="fa-solid fa-person-swimming"></i></span>
+                                        <span v-show="perday.Bike"><i class="fa-solid fa-person-biking"></i></span>
+                                        <span v-show="perday.Run"><i class="fa-solid fa-person-running"></i></span>
+                                    </div>   <!--[[],[],[],[],[],[],[],"122"] localstroge存陣列點數所在位置/總點數放最後面給陳組長-->
+                                    
+                                    <div class="plan_member_exe" :class="{ done: perday.check.includes(week)}" > <!--includes有這個week才執行done-->
+                                        <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}</span></p>
+                                        <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}</span></p>
+                                        <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}</span></p>
+                                        <!--完成一天--->
+                                        
+                                        <input @click="checkoneday(); perday.check.push(week)" v-show="perday.Rest == false" class="complete" type="button" >
+                                        <p v-show="perday.Rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;">
+                                            <span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.Rest}}</span>
+                                        </p>
+                                    </div>
+                                </li>
+                            
                         </ul>         
                     </section>
                 </div>
               
               </section>
         </section>
-   </main>
+    </main>
 
    <!--這是footer-->
    <footer id="footer">
