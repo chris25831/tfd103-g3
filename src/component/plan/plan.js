@@ -1,8 +1,4 @@
 
-
-
- 
-
 //計畫表
 new Vue({
     el: '#plan_wrapper',
@@ -25,7 +21,7 @@ new Vue({
             "Bike":1,
             "Run":.5,
             "Rest":false,
-            "check":[]
+            check:[]
             },
             //day2
             {
@@ -89,29 +85,23 @@ new Vue({
       methods: {
         checkoneday(){
         alert("恭喜你獲得一點");
+        var checkarr = this.plandata.map(item => Object.values(item)[4]);
+        
         if(localStorage.hasOwnProperty('Points')){
-            //1.取出plandata裡面的物件裡的第4個屬性值 塞入陣列
-            var checkarr = this.plandata.map(item => Object.values(item)[4] );
-            //2.取出points並+1後存入
             var points = JSON.parse(localStorage.getItem('Points'));
             localStorage.setItem('Points',points + 1);
-            checkarr.push(points);
-            console.log(checkarr);
-            // JSON.stringify(localStorage.setItem('Points',checkarr))
-            
+
         }
         else{
-          //如果沒有Points 就建立point並給一點
           localStorage.setItem('Points',1);
-         
+
         }
-      },
+
+       },
         plancancel(){
                 var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
-
                 if (yes) {
                     this.cancel = false
-                    
                 } else {
                     alert('您已取消');
               }
@@ -120,9 +110,32 @@ new Vue({
         window.location="./plan-temporary.html"
         }
       },
-    //   mounted() {
-    //     this.checkoneday()
-    //   },
+     
+      created() {
+        //在created的時候找localstorage有沒陣列
+        if(localStorage.hasOwnProperty('Donearr')){
+          JSON.parse(localStorage.getItem('Donearr'));
+          // for(let i = 0; i<this.plandata.length; i++){
+          //   for(let j = 0;j<this.Donearr.length; j++){
+          //     this.plandata[i].check.push(this.Donearr[j]);
+          //     console.log(plandata);
+          //   }
+          // }
+        }else{
+          console.log('沒有Donearr');
+        }
+        
+        // var checkarr = [];
+        // for(let i = 0; i<this.plandata.length; i++){
+        //   checkarr.push (this.plandata[i].check);
+        //   console.log(checkarr);
+        // }
+        // var checkarr = this.plandata.map(item => Object.values(item)[4]);
+        // localStorage.setItem('Donearr', JSON.stringify(checkarr));
+      },
+      watch:{
+       
+      },
   });  
   
 

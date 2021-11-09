@@ -83,7 +83,7 @@ body{
         transition:all .2s;
         @include table(){
             justify-content: left;
-            height: 60%;
+            height: 25%;
         }
         &:hover {
             letter-spacing: 3px;
