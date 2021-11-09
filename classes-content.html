@@ -30,12 +30,14 @@
             <!-- <p class="small" v-if="checkCatReG()">團練課程 > 課程介紹</p>
             <p class="small" v-else-if="checkCatReT()">個人教練 > 教練介紹</p>
             <p class="small" v-else-if="checkCatReM()">營養規劃 > 菜單介紹</p> -->
-            <p v-for="bc in categories" v-if=" checkCatRe() == bc.show" >{{bc.title}} > {{bc.subtitle}}</p>
+            <p v-for="bc in categories" v-if=" checkCatRe() == bc.show" >
+                <a onclick="window.open('./classes-home.html','_self')" href="#">{{bc.title}}</a> > {{bc.subtitle}}
+            </p>
 
 
 
             <!-- content -->
-            <div class="content" :class="[{content2only: checkCatRe() == 'T'}]">       
+            <div class="classcontent" :class="[{content2only: checkCatRe() == 'T'}]">       
                 <!-- img -->
                 <div class="classcontentimg" :class="[{imgleftspace: checkCatRe() == 'G' | checkCatRe() == 'M'}]" id="class-contentimg">
                     <img v-for="(img,index) in imgs" :src="imgs[index]" alt="無法讀取照片"/>

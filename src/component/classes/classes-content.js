@@ -103,7 +103,8 @@ Vue.component("contentdetail-1",{
             this.addCart();
 
             // 跳轉結帳頁面
-            window.location.href="../../shopcart-home.html";  
+            // window.location.href="../../shopcart-home.html";  
+            window.open("../../shopcart-home.html","_self");  
         },
         
     },

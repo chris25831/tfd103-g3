@@ -10,8 +10,9 @@
          //模擬資料(11筆) 11/5 無條件進位 = 3頁
          games :[
          {
-             "date":20210927,
-             "place":"基隆市",
+             "RaceId":"000001",
+             "RaceDate":"20210930",
+             "RaceLocation":"基隆市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -25,17 +26,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210727"
  
          },
          {
-             "date":20210927,
-             "place":"新北市",
+             "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"新北市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -49,17 +51,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210727"
  
          },
          {
-             "date":20210927,
-             "place":"宜蘭縣",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"宜蘭縣",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -73,17 +76,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927" //活動截止日
  
          },
          {
-             "date":20210927,
-             "place":"新北市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"新北市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -97,17 +101,18 @@
                  "event":false
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"高雄市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"高雄市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -121,17 +126,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"新北市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"新北市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -145,17 +151,18 @@
                  "event":false
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"宜蘭縣",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"宜蘭縣",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -169,17 +176,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"新北市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"新北市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -193,17 +201,18 @@
                  "event":false
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"宜蘭縣",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"宜蘭縣",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -217,17 +226,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"新北市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"新北市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -241,17 +251,18 @@
                  "event":false
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"宜蘭縣",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"宜蘭縣",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -265,17 +276,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20211227,
-             "place":"花蓮縣",
+            "RaceId":"000001",
+             "RaceDate":20211227,
+             "RaceLocation":"花蓮縣",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -289,17 +301,18 @@
                  "event":false
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"桃園市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"桃園市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -313,17 +326,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"新北市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"新北市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -337,17 +351,18 @@
                  "event":false
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"桃園市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"桃園市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -361,17 +376,18 @@
                  "event":true
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          },
          {
-             "date":20210927,
-             "place":"新北市",
+            "RaceId":"000001",
+             "RaceDate":"20210927",
+             "RaceLocation":"新北市",
              "title":"2021 Let's Run At Home 空英1919陪讀鐵人三項",
              "distences" :[
                  {
@@ -385,12 +401,12 @@
                  "event":false
                  }, 
                  {
-                 "dis":"51.5k",
+                 "dis":"226k",
                  "color":"blue",
                  "event":true
                  }
                ],
-             "state":20210927
+             "state":"20210927"
  
          }
        ]

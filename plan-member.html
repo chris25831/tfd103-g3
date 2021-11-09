@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="zh-tw" style="height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
     <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>TriclubSample|Triclub</title> 
+    <title>我的計畫表|Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
@@ -18,14 +18,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js"></script>
 </head>
 
-<body>
+<body class="plan">
     <!--這是header-->
    <header id="header" :class="{sticky: active}" >
         <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
   
    <!--這是計畫表主體-->
-   <main class="plan_member_wrapper" id="plan_wrapper">
+   <main class="plan_member_wrapper" id="plan_wrapper" >
        <!-- <light-box></light-box> -->
        <!--這是計畫表會員側欄位-->
         <header id="plan_member_info" class="plan_member_aside">
@@ -37,14 +37,15 @@
                     </div>
                     <div>
                         <p class="title3">maggie</p>
+                        <hr style="border: 1px dashed orange;width: 100%;">
                     </div>
                 </header>
                 <main class="plan_member_main_content">
                     <div>
-                        <p>我的比賽日期</p>
-                        <p >{{memberinfo.membername}}</p>
-                        <p >{{memberinfo.racedate}}</p>
-                        <p >{{memberinfo.week}}<br>week</p>
+                        <p>我的比賽日期<br>
+                        {{memberinfo.racedate}}
+                        <hr style="border: 1px dashed orange;width: 100%;">
+                        <p class="title3" style="margin: 0;" >{{memberinfo.week}}<br>week</p>
                     </div>
                     <div id="plan_chart">
                         <i class="fa-solid fa-person-swimming"></i>
@@ -58,7 +59,18 @@
                 </div>
             </section>
         </header>
-        <section class="plan_member_content">
+        <!--空空如也-->
+        <section v-if=" cancel == false" class="plan_empty">
+            <div>
+                <h2 class="article">計畫表空空如也~
+                    <br>
+                    快去訂製計畫表吧!
+                    <br>
+                    <button class="orangebutton" @click="resetplan">訂製計畫表</button>
+                </h2>
+            </div>
+        </section>
+        <section v-if="cancel"  class="plan_member_content">
             <section>
                 <!--天數head-->
                     <div id="plan_week">
@@ -68,22 +80,25 @@
                     </div>
               
                 <!--訓練表主要內容-->
-                <div class="plan_scroll">
-                    <section  v-for="week in 8" id="plan_member_table">
+                <div  class="plan_scroll">
+                    <section  v-for="week in memberinfo.week" id="plan_member_table">
                       <span class="week_mark title2">W{{week}}</span>
-                        <ul>
-                            <li v-if="cancel" v-for="(perday,index) in plandata" class="plan_member_eachday">
-                                <div>
-                                    <span v-show="perday.swim"><i class="fa-solid fa-person-swimming"></i></span>
-                                    <span v-show="perday.bike"><i class="fa-solid fa-person-biking"></i></span>
-                                    <span v-show="perday.run"><i class="fa-solid fa-person-running"></i></span>
-                                </div>
-                                <!-- <div  @click="perday.check.push(week)" class="plan_member_exe" :class="{ done: perday.check.indexOf(week)}" > -->
-                                <div v-if="cancel" @click="checkoneday" class="plan_member_exe" :class="{done: perday.check}" >
-                                    <p v-show="perday.swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.swim}}</span></p>
-                                    <p v-show="perday.bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.bike}}</span></p>
-                                    <p v-show="perday.run != null">{{Object.keys(perday)[2]}}-<span>{{perday.run}}</span></p>
-                                    <p v-show="perday.rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.rest}}</span></p>
+                       <ul>
+                            <li  v-for="(perday,index) in plandata" class="plan_member_eachday">
+                                <div class="orangetitle">
+                                    <span v-show="perday.Swim"><i class="fa-solid fa-person-swimming"></i></span>
+                                    <span v-show="perday.Bike"><i class="fa-solid fa-person-biking"></i></span>
+                                    <span v-show="perday.Run"><i class="fa-solid fa-person-running"></i></span>
+                                </div>   <!--[[],[],[],[],[],[],[],"122"] localstroge存陣列點數所在位置/總點數放最後面給陳組長-->
+                                <div class="plan_member_exe" :class="{ done: perday.check.includes(week)}" > <!--includes有這個week才執行done-->
+                                    <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}</span></p>
+                                    <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}</span></p>
+                                    <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}</span></p>
+                                    <!--完成一天--->
+                                    <input @click="checkoneday(); perday.check.push(week)" v-show="perday.Rest == false" class="complete" type="button" >
+                                    <p v-show="perday.Rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;">
+                                        <span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.Rest}}</span>
+                                    </p>
                                 </div>
                             </li>
                         </ul>         
