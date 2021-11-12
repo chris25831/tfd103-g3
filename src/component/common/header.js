@@ -25,19 +25,10 @@ template: `
               </ul>
           </li>
           <li class="head_title"><a onclick="window.open('./classes-home.html', '_self')" href="classes-home.html" class="title3">訓練課程</a>
-            <ul class="head_subtitle">
-              <a><li>團練課程</li></a>
-              <a><li>個人教練</li></a>
-              <a><li>營養菜單</li></a>
-            </ul>
+            
           </li>
           <li class="head_title"><a onclick="window.open('./forum-home.html', '_self')" href="forum-home.html" class="title3">討論區</a>
-            <ul class="head_subtitle">
-              <a><li>閒聊</li></a>
-              <a><li>心得</li></a>
-              <a><li>裝備</li></a>
-              <a><li>問題</li></a>
-            </ul>
+           
           </li>
           <li class="head_title"><a onclick="window.open('./plan-temporary.html', '_self')" href="plan-temporary.html" class="title3">訂製計畫表</a></li>
           

@@ -18,7 +18,6 @@ main.plan_member_wrapper{
 header.plan_member_aside{
     background-color: rgba(237, 237, 237, .9);
     border-radius: 10px;
-    border: 1px solid red;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -29,7 +28,6 @@ header.plan_member_aside{
         flex-direction: column;
         position: sticky;
         top: 100px;
-        border:2px solid blue;
         @include table(){
             top: 0px;
             height: 100vh;
@@ -66,7 +64,6 @@ header.plan_member_aside{
                 p{
                     
                     text-align: center;
-                    border:2px solid blue;
                     font-weight: 800;
                     width: 100%;
                    
@@ -93,12 +90,10 @@ header.plan_member_aside{
 main.plan_member_main_content{
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
     width: 100%;
     div{
 
         &:first-child{
-            border: 2px solid red;
             display: flex;
             height: 50%;
             font-weight: 500;
@@ -154,17 +149,15 @@ section.plan_empty{
 }
 
 section.plan_member_content{
-    border: 2px solid rgb(0, 255, 106);
     margin-left: 0;
     gap: 0;
    
     //天數TITLE
     #plan_week{
-        border: 2px solid rgb(0, 255, 106);
         display: flex;
         justify-content: center;
         margin-top: 10px;
-        @include table(){
+        @include planM(){
             display: none;
         }
         ul{
@@ -185,7 +178,6 @@ section.plan_member_content{
     }
     //計畫表TABLE
     .plan_scroll{
-        border: 2px solid rgb(15, 6, 139);
         display: flex;
         flex-direction: column;
         
@@ -193,7 +185,7 @@ section.plan_member_content{
         #plan_member_table{
             display: flex;
             justify-content: center;
-        span.week_mark{
+         span.week_mark{
             filter: drop-shadow(0px 3px  $orange);
             background-color: $white ;
             font-size: 20px;
@@ -237,13 +229,13 @@ section.plan_member_content{
                 grid-template-rows: auto;
                 background-color: transparent;
                 gap: 10px;
-                
+                box-shadow: none;
                 li{
                 height: 100%;
                 border-radius: 10px;
                 background-color: rgba(255,255,255,0.8);
                 list-style: none;
-                @include table(){
+                @include planM(){
                     width: 100%;
                  }
                 }
@@ -261,6 +253,7 @@ li.plan_member_eachday{
     flex-direction: column;
     position: relative;
     min-height: 130px;
+
     &:last-child(){
         border-right: none;
     }
@@ -268,9 +261,10 @@ li.plan_member_eachday{
         border-right: none;
         flex-direction: row;
         justify-content:left;
+        
     }
-    div:first-child{
-        border: 1px solid blue;
+   
+    .orangetitle{
         height: 20%;
         background-color: $orange;
         justify-content:center;
@@ -278,12 +272,9 @@ li.plan_member_eachday{
         @include planM(){
             background-color:transparent;
             height: 100%;
-            border: 1px solid $orange;
             flex-direction: column;
             justify-content: space-between;
-            width: 20%;
-            background-color: $orange;
-            border-radius: 10px 0 0 10px;
+            width: 20%;        
         }
         span{
             transform: translate(0%, -50%);
@@ -302,7 +293,33 @@ li.plan_member_eachday{
             }
         }
     }
+    
+}
 
+#plan_week_table{
+    display: none;
+    @include table(){
+        display: block;
+        height: 100%;
+        width: 20%;
+    }
+    ul{
+        justify-content: center;
+        align-items: center;
+        @include table(){
+          align-items: center;
+          
+          border-bottom: 1px solid $orange;
+        }
+        li{
+            border-radius: 0;
+            padding: 10px;
+            background-color: transparent;
+            box-shadow: none;
+            border-bottom: 1.3px solid $orange;
+            font-weight: 800;
+        }
+    }
 }
 
 //內文字
@@ -312,7 +329,6 @@ div.plan_member_exe{
     text-align: center;
     line-height: 2;
     height: 80%;
-    border: 1px solid green;
     @include fontfamily(500);
     @include planM(){
         text-align: left;
@@ -326,7 +342,6 @@ div.plan_member_exe{
     }
     p{
         margin: 0;
-        border: 1px solid rgb(255, 231, 14);
         height: 34%;
     }
     //完成一天

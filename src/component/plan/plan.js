@@ -1,23 +1,21 @@
 
-
-
- 
-
 //計畫表
 new Vue({
     el: '#plan_wrapper',
+   
     data(){
       return{
-        //   plancancel:false,
-          checkdone: false,
           cancel: true,
-          point:[],
+          //會員資料
+          userlogin: 'visitor',
           memberinfo:{
-            "photo":"./src/images/img/plan/memberphoto.png",
-            "membername":"maggie",
-            "racedate":"20221127",
-            "week":8,
-            },
+            photo:"./src/images/img/plan/memberphoto.png",
+            membername:"maggie",
+            racedate:"20221127",
+            week:8,
+            point:0,
+          },
+          //計畫表資料
           plandata:[
             //day1
             {
@@ -25,7 +23,7 @@ new Vue({
             "Bike":1,
             "Run":.5,
             "Rest":false,
-            "check":[]
+            check:[]
             },
             //day2
             {
@@ -43,6 +41,7 @@ new Vue({
             "Rest":"rest",
             check:[],
             },
+            //day4
             {
             "Swim":1,
             "Bike":null,
@@ -50,6 +49,7 @@ new Vue({
             "Rest":false,
             check:[]
             },
+            //day5
             {
             "Swim":1,
             "Bike":null,
@@ -57,6 +57,7 @@ new Vue({
             "Rest":false,
             check:[]
             },
+            //day6
             {
             "Swim":1,
             "Bike":null,
@@ -64,6 +65,7 @@ new Vue({
             "Rest":false,
             check:[]
             },
+            //day7
             {
             "Swim":null,
             "Bike":null,
@@ -74,55 +76,95 @@ new Vue({
           ]
          }
       },
-      components:{'light-box':{
-        template:`
-            <div class="lightbox-bg">
-                <div class="lightbox-mask" :style="modelStyle">
-                    <div @click.self=""toggleModel>
-
-                    </div>
-                </div>
-            </div>
-        `,
-      }
-    },
+     
       methods: {
         checkoneday(){
         alert("恭喜你獲得一點");
-        if(localStorage.hasOwnProperty('Points')){
-            //1.取出plandata裡面的物件裡的第4個屬性值 塞入陣列
-            var checkarr = this.plandata.map(item => Object.values(item)[4] );
-            //2.取出points並+1後存入
-            var points = JSON.parse(localStorage.getItem('Points'));
-            localStorage.setItem('Points',points + 1);
-            checkarr.push(points);
-            console.log(checkarr);
-            // JSON.stringify(localStorage.setItem('Points',checkarr))
-            
+        if(this.memberinfo.point){
+            this.memberinfo.point += 1
         }
         else{
-          //如果沒有Points 就建立point並給一點
-          localStorage.setItem('Points',1);
-         
+          this.memberinfo.point = 1
         }
+        localStorage.setItem('Points',this.memberinfo.point);
+        localStorage.setItem('plandata',JSON.stringify(this.plandata))
       },
-        plancancel(){
-                var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
-
-                if (yes) {
-                    this.cancel = false
-                    
-                } else {
-                    alert('您已取消');
-              }
-          },
+      plancancel(){
+              var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
+              if (yes) {
+                  this.cancel = false
+              } else {
+                  alert('您已取消');
+            }
+        },
         resetplan(){
         window.location="./plan-temporary.html"
-        }
+        },
+       
       },
-    //   mounted() {
-    //     this.checkoneday()
-    //   },
+      
+        created() { 
+        let theData = localStorage.getItem('plandata');
+        if(theData != null){
+          this.plandata = JSON.parse(theData);
+        }
+       
+        
+        // this.memberinfo.membername = theData.name;
+        // this.memberinfo.racedate = theData.raceDate;
+
+        // fetch("./plan.php",
+        // {
+        //  method: 'GET',
+        //  headers:{
+        //   'Content-Type': 'application/json',
+        //  },
+            
+        // })
+        // .then(response => {
+        //   if (!response.ok) {
+        //     throw new Error('Network response was not OK');
+        //   }
+        //   // return response.json();
+        //   return response.json([this.memberinfo,this.plandata]);
+          
+        // })
+        // .catch((error) => {
+        //   console.error('Error:', error);
+        // })
+      },
+  
+      // watch:{
+      //      memberinfo:{
+      //         handler:function(){
+                //request  更新會員資料
+                  // fetch("./plan.php",
+                  // {
+                  //  method: 'POST',
+                  //  headers:{
+                  //   'Content-Type': 'application/json',
+                  //  },
+                  //  body: JSON.stringify(this.memberinfo),
+                  // })
+                  // .catch((error) => {
+                  //   console.error('Error:', error);
+                  // })
+          //     },
+          //     deep:true,
+          //     immediate: true //create階段
+          // },
+
+      //     plandata:{
+      //         handler:function(){
+      //           //request  更新會員資料
+      //           update()
+      //         },
+      //         deep:true,
+      //         immediate: true 
+      //     }
+
+      // },
+     
   });  
   
 
@@ -166,4 +208,17 @@ var chart = c3.generate({
     
     });
       
-  
+
+
+    // ]
+    // [week][day]
+    // w1d1, w1d2, w1d4
+    // w2d2
+    // w3d3
+    // let arr = [123,456,234,678,345];
+    // arr[0], arr[1], arr[2], arr[3], arr[4]
+
+    // [week][day]  --> [0][0]~[7][6]
+    // key       value
+    // ----------------
+    // maggie    {"name":"maggie","plandata": [],"week": 8,"raceDate":"2021/11/27"}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>討論區 | Triclub</title> 
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+</head>
+
+<body>
+    <!--這是header-->
+    <header id="header" :class="{sticky: active}">
+        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
+    </header>
+
+    <!--內容所有都放在這div裡面-->
+    <main class="main info-new" id="info-new">
+        <div class="bookmark-frontend">
+            <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category" @click.native="changeCategory">
+        </div>
+        <div class="content-group" style="line-height: 1.5;">
+            <div class="content content1">
+                
+                <h1>什麼是鐵人三項？What Is Triathlon?</h1>
+                <img class="photo" src="./src/images/img/index/tri_450x300.jpg">
+                <p style="width:500px;">顧名思義，它結合了三種運動項目，而這樣的運動模式起源於 70 年代的加州。當時在加州的運動員為了訓練田徑，連續進行游泳、自行車和跑步等運動，之後大家便開始舉辦短距離的鐵人三項（800 m 游泳、8 km 自行車和 8 km 跑步），並在 1977 年在夏威夷舉辦了長距離的鐵人三項比賽，這場比賽的名字就是大家所熟知的「鐵人三項」。值得開心的是，它並不局限於長距離運動，而是有許多種形式，所以每位運動者都能找到適合自己的類別。<br>
+                  <br>
+                  鐵人三項的比賽類別從入門的超級衝刺到耐力運動迷所參加的超鐵都有（超級衝刺是400 m 游泳、10 km 自行車和 2.5 km 跑步；超鐵是 3800 m 游泳、180 km 自行車和 42,195 km 跑步）；而只要年滿 6 歲，就可以開始參加三鐵了！</p>
+            </div>
+
+            <div class="content content2">
+                <h1>三鐵比賽規則 Triathlon Rules You Should Know</h1>
+                <img class="photo" src="./src/images/img/index/tri_450x300.jpg">
+
+                <h3>基本比賽規則</h3>
+                <br>
+                <p style="width:500px">鐵人三項結合了三種運動：游泳、自行車及跑步；而且在這三項運動間穿插了轉換區。每位選手必須在不受外力協助下，遵循主辦單位的指定路線進行比賽，而第一個抵達終點的人便能獲勝。鐵人賽選手的所有物品都放在轉換區或自行車停放區。游泳的出發方式包括從沙灘起跑入水、從跳台跳水和在水中出發。水溫低於 16° 時，鐵人賽選手必須穿著氯丁橡膠（néoprène）防寒衣；水溫介於 16 至 24° 時，選手可自行決定是否穿著；而水溫超過 24° 時則禁止穿著防寒衣。自行車賽可騎公路車、普通自行車或登山車。</p>
+                <br>
+                <br>
+                <h3>有何好處？</h3>
+                <br>
+                <p style="width:500px">鐵人三項有多種好處，因為它結合了多種運動，並且能在各種場地進行比賽。鐵人賽的三項運動彼此相輔相成，而其中的游泳和自行車這兩項運動屬於有外力支撐的運動，因此較不傷關節。此外，因為鐵人三項要一直換做不同的運動，所以在進行訓練時不會感到厭煩！最後，由於鐵人賽是在自然環境中進行，因此可以欣賞到不同的景色及親近大自然，同時每一年都能接受新的挑戰。</p>
+                <br>
+                <br>
+                <h3>誰適合這項運動？</h3>
+                <br>
+                <p style="width:500px">鐵人三項適合所有想從事體能活動的人。它和其他所有耐力運動一樣，都需要經過一定的訓練，才能鍛練好身體，讓自己能在身體能負荷的情況下連續完成三項運動。不過在參加比賽前，我們還是建議先諮詢自己的醫師，以確保自己不會觸犯這三項運動的任何禁忌。</p>
+
+            </div>
+
+    </main>
+    
+    <!--這是footer-->
+    <footer id="footer">
+        <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+    </footer>
+ 
+    
+
+
+
+
+<!--header/footer component-->
+<script src="./src/js/vue.js"></script>
+<script src="./src/js/vuex.js"></script>
+<script src="./src/component/common/header.js"></script>
+<script src="./src/component/common/footer.js"></script>
+<script src="./src/component/common/bookmark-forum.js"></script>
+<script src="./src/component/common/forum-new-post-modal.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#info-new",
+        data: {
+            categories: ["三鐵介紹","比賽規則","三鐵裝備"],
+        },
+    })
+</script>    

@@ -1,3 +1,35 @@
+//var//
+@import "../base/reset"; // normalize.css v8.0.1
+@import "../base/font";
+@import "../base/color";
+@import "../base/spacing";
+
+//mixin//
+@import "../mixin/mixin";
+
+//components//
+@import "../components/buttons";
+
+//layout//
+@import "../layout/manage-main";
+@import "../layout/header";
+@import "../layout/footer";
+@import "../layout/bookmark";
+@import "../layout/manage-header";
+@import "../layout/manage-footer";
+@import "../layout/article-list";
+@import "../layout/article-single";
+
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+body {
+  color: #282828;
+}
+
+// TODO:****以下完成再複製到checkout*****
+
 main.shopcart-checkout {
   @include bgnormal(100%);
   > div {

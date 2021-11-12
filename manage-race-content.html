@@ -30,33 +30,35 @@
                   
                    <h1 class="manage-title title1">賽程管理</h1>
                    
-                   <form class="manage_race_raceinfo"> 
-                       <label class="title3">賽事名稱-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">賽事編號-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">活動日期-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">活動地點-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">主辦單位-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">比賽項目-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">活動狀態-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">相關連結-</label> <input class="race_title "></input>
-                       <hr>
-                       <label class="title3">賽事簡介-</label> <textarea  class="race_title "></textarea>
-                       <hr>
-                       <label class="title3">活動圖片- </label><input type="file" name="file" /> <!--name是key值找那個陣列名稱-->
-                        
+                    
+                    <form action="addrace.php" method="post" class="manage_race_raceinfo" enctype="multipart/form-data"> 
+
+                        <label class="title3">賽事編號-</label> <input class="race_title" name="RaceID"></input>
+                        <hr>
+                        <label class="title3">賽事名稱-</label> <input class="race_title" name="RaceName"></input>
+                        <hr>
+                        <label class="title3">活動日期-</label> <input class="race_title" name="RaceDate"></input>
+                        <hr>
+                        <label class="title3">活動地點-</label> <input class="race_title" name="RaceLocation"></input>
+                        <hr>
+                        <label class="title3">主辦單位-</label> <input class="race_title" name="RaceSponsor"></input>
+                        <hr>
+                        <label class="title3">比賽項目-</label> <input class="race_title" name="RaceDistance"></input>
+                        <hr>
+                        <label class="title3">活動狀態-</label> <input class="race_title" name="RaceUpdate"></input>
+                        <hr>
+                        <label class="title3">相關連結-</label> <input class="race_title" name="RaceLink"></input>
+                        <hr>
+                        <label class="title3">賽事簡介-</label> <textarea  class="race_title" name="RaceContent"></textarea>
+                        <hr>
+                        <label class="title3">活動圖片- </label><input type="file" name="RacePhoto" /> <!--name是key值找那個陣列名稱-->
+                     
+                       <div class="manage_race_button">
+                            <button class="yellowbutton ">下架</button>
+                            <button class="bluebutton ">回上一頁</button>
+                            <button type="submit" class="bluebutton ">更新</button>
+                       </div>
                    </form>
-                   <div class="manage_race_button">
-                        <button class="yellowbutton ">下架</button>
-                        <button class="bluebutton ">回上一頁</button>
-                        <button class="bluebutton ">更新</button>
-                   </div>
            </main>
        </div>
    </main>

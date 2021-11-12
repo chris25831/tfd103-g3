@@ -10,7 +10,7 @@
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <!--從scss轉譯過來的-->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shopcart-checkout-origin.css">
 
     
 </head>
@@ -32,7 +32,7 @@
             </div>
             <div>
                   <!-- list組件 -->
-                  <shopcart-content :check="check"></shopcart-content>
+                  <shopcart-content  :checksop="checksop"></shopcart-content>
                   <!-- TODO:信用卡 -->
             </div>
         </div>
@@ -54,7 +54,9 @@
           new Vue({
             el:'#shopcart-checkout',
             data:{
-                check:"2",
+                // 判斷頁面
+                checksop:1,
+                
             },
         })
     </script>

@@ -1,8 +1,17 @@
 // 購物車
 var storage = localStorage;
+// 清掉input快取
+window.addEventListener("load",function(){
+ let textpoint = document.getElementById("textpoint");
+
+    if(textpoint !== null){
+        textpoint.value = 0;
+        // console.log("重新加載");
+    }
+})
 
 Vue.component("shopcart-content",{
-    props:["checksop"],
+    props:["checksop","userid","point"],
     template:`
         <div class="orderclass">
             <div class="classlist">
@@ -21,11 +30,11 @@ Vue.component("shopcart-content",{
                         
                         </p>
                         <!-- 課程編號 -->
-                        <span v-if="checksop == 1">課程編號：</span>
+                        <span v-if="checksop == 1">課程編號：{{item.comclassid}}</span>
                         <!-- 教師 -->
-                        <span v-if="checksop == 1">授課教師：</span>
+                        <span v-if="checksop == 1">授課教師：{{item.comtrainer}}</span>
                         <!-- 上課地點 -->
-                        <span v-if="checksop == 1">上課地點：</span>
+                        <span v-if="checksop == 1">上課地點：{{item.comclassLocation}}</span>
                         <!-- 價錢 -->
                         <p  class="comprice">$ {{item.comprice}}TWD</p>
                         <!-- 刪除 -->
@@ -50,12 +59,12 @@ Vue.component("shopcart-content",{
                 <hr>
                 <div class="point">
                     <p>
-                        <span v-if="checksop == 0">點數</span><br><br>
+                        <span v-if="checksop == 0">使用點數</span><br><br>
                         <span>折抵金額</span>
                     </p>
                     <p>
-                        <input type="text" v-if="checksop == 0" id="textpoint"  @keyup="maxPoint()"><br>
-                        <span  v-if="checksop == 0" class="small">剩餘點數：{{point}}</span><br>
+                        <input type="text" v-if="checksop == 0 && userid == 'member'" id="textpoint"  @keyup="maxPoint()"><br>
+                        <span  v-if="checksop == 0 && userid == 'member'" class="small">剩餘點數：{{point}}</span><br>
                         <span>$&nbsp;{{count}}&nbsp;TWD</span>
                     </p>
                 </div>
@@ -66,7 +75,7 @@ Vue.component("shopcart-content",{
                         <span>$&nbsp;{{total}}&nbsp;TWD</span>
                     </p>
 
-                <button class="title3 orangebutton" @click="goToPay()">前往結帳</button>
+                <button v-if="checksop == 0" class="title3 orangebutton" @click="goToPay()">前往結帳</button>
                 </div>
             </div>
         </div>
@@ -75,17 +84,21 @@ Vue.component("shopcart-content",{
         return{
             itemList:"",
             amount:0,
-            count:0,
-            // point資料庫取得
-            point:100,
+            count:0,  
             total:0,
             checkitemlength:0,
+            // 確定結帳頁面
+            comclassid:"",
+            comtrainer:"",
+            comclassLocation:"",
+
         };
         
     },
 
     // 初始值
     created() {
+        // 判斷頁面
         if(this.checksop == 0){
 
             let allItem =  JSON.parse(storage['addCartList']);
@@ -116,11 +129,23 @@ Vue.component("shopcart-content",{
             }else{
                 storage['surePayAmount'] = "";    
             }
+
+        }else{
+            let allItem =  JSON.parse(storage['surePayList']);
+            console.log(allItem);
+    
+            this.itemList = allItem;
+            let allItem_amount =  JSON.parse(storage['surePayAmount']);
+            console.log(allItem_amount);
+
+            this.checkitemlength = allItem_amount.itemlength;
+            this.amount = allItem_amount.amount;
+            this.count = allItem_amount.count;
+            this.total = allItem_amount.total;
         }
 
     },
 
-    
     methods: {
         // 詳細商品連結
         gotodetail(id){
@@ -168,45 +193,54 @@ Vue.component("shopcart-content",{
 
         goToPay(){
 
-            // TODO:判斷會員
-            
+            // 判斷會員
+            if(this.userid == "visitor"){
+               
+                let checkin = confirm("請登入會員");
 
-            let itemList= [];
-            let amountdetail= {
-                itemlength:this.checkitemlength,
-                amount:this.amount,
-                count:this.count,
-                total:this.total,
-
-            };
-
-            let checkid = $("input[name ='itemcheck[]']:checked");
-
-            // 打包商品
-            for(let i=0; i < checkid.length; i++){
-                let  idnum = checkid[i].id.substring(10);
-                // console.log(idnum);
-                
-                if(storage['surePayList'] == ""){
-
-                    itemList.push(this.itemList[idnum]);
-                    storage['surePayList'] = JSON.stringify(itemList);
-
-                }else{
-                    let get_itemList = JSON.parse(storage['surePayList']);
-
-                    get_itemList.push(this.itemList[idnum]);
-                    storage['surePayList'] = JSON.stringify(get_itemList);
+                if(checkin){
+                    window.open("../../../member-login.html","_self");
                 }
+
+            }else{
+
+                let itemList= [];
+                let amountdetail= {
+                    itemlength:this.checkitemlength,
+                    amount:this.amount,
+                    count:this.count,
+                    total:this.total,
+    
+                };
+    
+                let checkid = $("input[name ='itemcheck[]']:checked");
+    
+                // 打包商品
+                for(let i=0; i < checkid.length; i++){
+                    let  idnum = checkid[i].id.substring(10);
+                    // console.log(idnum);
+                    
+                    if(storage['surePayList'] == ""){
+    
+                        itemList.push(this.itemList[idnum]);
+                        storage['surePayList'] = JSON.stringify(itemList);
+    
+                    }else{
+                        let get_itemList = JSON.parse(storage['surePayList']);
+    
+                        get_itemList.push(this.itemList[idnum]);
+                        storage['surePayList'] = JSON.stringify(get_itemList);
+                    }
+                }
+    
+                // 打包計算
+                storage['surePayAmount'] = JSON.stringify(amountdetail);
+    
+                
+                // window.location.href="../../shopcart-checkout.html"; 
+                window.open("../../shopcart-checkout.html","_self");   
             }
-
-            // 打包計算
-            storage['surePayAmount'] = JSON.stringify(amountdetail);
-
-            
-            // window.location.href="../../shopcart-checkout.html"; 
-            window.open("../../shopcart-checkout.html","_self");   
-            
+        
         },
 
         // ***itemlist***
@@ -249,10 +283,11 @@ Vue.component("shopcart-content",{
 
         // 刪除 
         deleteItem(itemid){
-            console.log(itemid);
+            // console.log(itemid);
             let id = itemid;
             let removeitem = document.getElementById(itemid);
-            console.log(removeitem);
+            // console.log(removeitem);
+
             removeitem.style.display = "none";
             removeitem.remove();
             
@@ -260,13 +295,14 @@ Vue.component("shopcart-content",{
             let newallItem =  JSON.parse(storage['addCartList']);
             for(let i =0; i < newallItem.length; i++){
                 // console.log(allItem[i]);
-                
+                 
                 if(newallItem[i].comclassid == id){
                     newallItem.splice(i,1);
                 }
   
             }
 
+            
             // 更新localstorage
             storage.removeItem(id);
             storage['addCartList'] = JSON.stringify(newallItem);
@@ -274,7 +310,6 @@ Vue.component("shopcart-content",{
 
             // 更新amount
             this.changeItemLength();
-
 
 
         },

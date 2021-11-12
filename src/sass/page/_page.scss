@@ -14,7 +14,8 @@
 
 // 購物車
 // *shopcart-home 分開獨立
-@import "./shopcart-checkout";
+// 測試中...
+// @import "./shopcart-checkout";
 
 //後台
 @import "./manage-employees"; //人員管理
@@ -27,10 +28,12 @@
 @import "./manage-order-single"; //訂單管理 - 單筆
 @import "./manage-black-list"; //黑名單管理
 @import "./manage-race";//賽程管理
+@import "./manage-classes-home";//課程管理
 
 //賽程資訊
 @import "./race";
 @import "./information";
+@import "./info-new";
 
 //會員中心
 @import "./member-main";

@@ -20,6 +20,15 @@
 @import "../layout/article-list";
 @import "../layout/article-single";
 
+// *****共同使用語法*****
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+body {
+  color: #282828;
+}
+
 main.shopcart-home {
   @include bgnormal(100%);
   > div {

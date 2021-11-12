@@ -1,0 +1,11 @@
+main.main.info-new {
+    @include bgnormal(100%);
+    div.content {
+        display: block;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: $bottomspacing;
+        background-color: rgba($color: $white, $alpha: 0.8);
+        }
+
+}
