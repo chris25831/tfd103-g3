@@ -229,6 +229,10 @@ const question = new Vue({
                     },{
                         title:'2021台東活水湖三鐵',
                         value:'20211223'
+                    },
+                    {
+                        title:'我想自主訓練',
+                        value:'selftraning'
                     }],
                     name:'racedate',
                     type:'select',
@@ -356,13 +360,13 @@ const question = new Vue({
                //進度條
                 switch (this.current_tab) {
                             case 1:
-                                return 'width:10%';
+                                return 'width:25%';
                                 break;
                             case 2:
-                                return 'width:30%';
+                                return 'width:50%';
                                 break;
                             case 3:
-                                return 'width:60%';
+                                return 'width:75%';
                                 break;
                             case 4:
                                 return 'width:100%';

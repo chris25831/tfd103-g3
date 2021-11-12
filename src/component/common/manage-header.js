@@ -15,7 +15,7 @@ Vue.component("manage-header", {
                         <a href="../../../manage-race.html" class="manage-link">賽程管理</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="manage-link">課程管理</a>
+                        <a href="../../../manage-class-home.html" class="manage-link">課程管理</a>
                     </li>
                     <li class="nav-item">
                         <a href="../../../manage-forum-home.html" class="manage-link">討論區管理</a>

@@ -4,6 +4,7 @@ Vue.component("triclasses",{
     template: `
     <div class="classesgrid_simple">
         <a @click="goToContent()"></a> 
+        <a @click="goToContent()"></a>  <!--判斷前後台點擊-->
         <p> 
             
             <span class="title3">{{classTitle}}</span><br>
@@ -18,6 +19,11 @@ Vue.component("triclasses",{
             let id = this.classId;
            
            window.location.href=`${url}?classid=${id}`;
+        },
+        manageGoToContent(){ //後台內頁
+            let id = this.classId;
+           
+           window.location.href=`(後台的網址)?classid=${id}`;
         }
 
     },
