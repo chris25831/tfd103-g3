@@ -25,9 +25,9 @@
     <!--內容所有都放在這div裡面-->
     
     <main class="forum-content main" id="forum-content">
-        <div class="bookmark-frontend">
+        <!-- <div class="bookmark-frontend">
             <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
-        </div>
+        </div> -->
         
         <div class="back">
             <!-- 回上一頁按鈕放置處 -->
@@ -38,7 +38,7 @@
                     </div>
                 </a>
 
-                <button class="new-post" @click="openModal">發表文章</button>
+                <!-- <button class="new-post" @click="openModal">發表文章</button> -->
             </div>
         </div>
 
@@ -206,14 +206,14 @@
             },
         },
         mounted() {
-            let dataStore;
-            bus.$on("loadAssignedContent", function(dataId){
-                dataStore = dataId;
-                console.log(dataStore);
-            });
+            // let dataStore;
+            // bus.$on("loadAssignedContent", function(dataId){
+            //     dataStore = dataId;
+            //     console.log(dataStore);
+            // });
 
-            this.singleArticleData = this.dummyData.filter(dummyDatum => dummyDatum.ArticleNumber === dataStore);
-            console.log(dataStore);
+            // this.singleArticleData = this.dummyData.filter(dummyDatum => dummyDatum.ArticleNumber === dataStore);
+            // console.log(dataStore);
         },
     })
 </script>
