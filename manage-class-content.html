@@ -29,21 +29,25 @@
 
         <form  enctype="multipart/form-data" > <!--多檔案格式-->
             <div class="classesWrapper">
-
                 <div v-for="newclass in newclasses" class="classesContent" >
                     <label class="title3" :for="newclass.id">{{newclass.title}}-</label>
                     <input :id="newclass.id" type="newclass.type" name="newclass.id">
                     <hr>
                 </div>
 
-                <div  v-if="newclass.type === 'select' " v-for="newclass in newclasses" class="classesContent" >
-                    <label class="title3" :for="newclass.id">{{newclass.title}}-</label>
-                    <select name="type" id="">
-                        <option v-for="chioce in newclass.choices" :id="newclass.id" type="newclass.type">{{chioce}}</option>
+                <div class="classesContent" >
+                    <label class="title3" >{{newclasses[2].title}}-</label>
+                    <select :name="newclasses[2].id" >
+                        <option v-for="choice in newclasses[2].choices" :id="newclasses[2].id" :type="newclasses[2].type">{{choice}}</option>
                     </select>
-                    <hr>
                 </div>
 
+                <div class="classesContent" >
+                    <label class="title3" >{{newclasses[6].title}}-</label>
+                    <textarea :id="newclasses[6].id"  :name="newclasses[6].id"></textarea>
+                </div>
+
+                
                 <div class="manage_race_button"> 
                     <button class="yellowbutton ">下架</button>
                     <button class="bluebutton ">回上一頁</button>
@@ -86,16 +90,7 @@
                  id:"classId",
                  type:"text"
                 },
-                {
-                 title:"分類",
-                 id:"classType",
-                 choices:[
-                    "團練課程",
-                    "營養教練",
-                    "課程規劃"
-                    ],
-                 type:"select"
-                },
+                
                 {
                  title:"授課教師",
                  id:"teacher",
@@ -114,7 +109,7 @@
                 {
                  title:"簡介",
                  id:"classInfo",
-                 type:"text"
+                 type:"textarea"
                 },
                 {
                  title:"插入圖片",

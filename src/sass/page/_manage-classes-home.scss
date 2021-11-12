@@ -100,26 +100,35 @@ div.classbtn{
   }
 }
 .classesWrapper{
-  border: 1px solid red;
+  // border: 1px solid red;
   width: 900px;
   padding-top: 50px;
   .classesContent{
-    
-    border: 1px solid rgb(0, 98, 255);
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid rgb(81, 255, 0);
     width: 800px;
     label{
       font-weight: 600;
-      border: 1px solid rgb(4, 36, 105);
+      // border: 1px solid rgb(4, 36, 105);
     }
-    input{
+    input,textarea{
       height: 30px;
-      border-radius: 10px;
+      border-radius: 5px;
       width: 80%;
+      margin-top: 10px;
       border: 1px solid rgb(15, 51, 151);
+    }
+    textarea{
+      height: 400px;
     }
     hr{
       width: 100%;
       margin-top: 10px;
+    }
+    select{
+      width: 150px;
+      
     }
   }
 }
