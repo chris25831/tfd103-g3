@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vuex</title>
+    <!-- <script src="./src/js/vuex.js"></script>
+    <script src="./src/js/vue.js"></script> -->
+    <script src="./help.js"></script>
+</head>
+
+<body>
+    <div id="app">`
+        <button @click="addCount"> Add </button>
+        <h1>{{count}}</h1>
+    </div>
+
+    <script  type="module">
+        import Vuex,{Store} from './node_modules/vuex' 
+        import Vue  from './node_modules/vue'
+        
+        new Vue({
+                el:'#app',
+                store,
+                methods: {
+                    addCount(){
+                        this.$store.commit('addCount', 20);
+                    }
+                },
+                computed:{
+                    count(){  //return結果到{{count}}
+                        return this.$store.state.count;  
+                    }
+                }
+            })
+    </script>
+</body>
+</html>
+

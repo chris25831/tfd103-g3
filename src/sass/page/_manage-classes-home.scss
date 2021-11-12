@@ -1,0 +1,126 @@
+main.manage-classes-home {
+  // border: 1px solid red;
+    div {
+    
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: $bottomspacing;
+    // border: 1px solid red;
+    // bookmark for classes only
+    .classesonly {
+      border: none;
+      background-color: transparent;
+    }
+    
+    // grid
+    .manage-classesgrid{
+      width: 785px;
+      overflow-y: auto;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 20px 20px;
+      justify-content: space-between;
+      .classesgrid_simple {
+        width: 245px;
+        height: 265px;
+        border: 1px solid $black;
+        font-size: 0px;
+        overflow: hidden;
+        position: relative;
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          z-index: 2;
+          cursor: pointer;
+        }
+        p {
+          width: 100%;
+          position: absolute;
+          bottom: 0%;
+          background-color: white;
+          border: 1px solid rgb(255, 255, 255);
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          span {
+            font-size: 16px;
+            text-align: center;
+            overflow: hidden;
+            color: $black;
+            &:nth-child(1) {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              margin-bottom: 5px;
+              font-weight: 500;
+            }
+          }
+        }
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+div.classbtn{
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  button.classesbtn{
+    justify-content: center;
+    // box-shadow: 5px 5px #00429d;
+    align-self: flex-end;
+    width: 100px;
+    height: 40px;
+    outline: none;
+  }
+}
+
+
+
+
+//後台課程內頁
+.manage-classes-content{
+  background-color: #ededed;
+  div {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    // border: 1px solid red;
+    // bookmark for classes only
+    .classesonly {
+      border: none;
+      background-color: transparent;
+    }
+  }
+}
+.classesWrapper{
+  border: 1px solid red;
+  width: 900px;
+  padding-top: 50px;
+  .classesContent{
+    
+    border: 1px solid rgb(0, 98, 255);
+    width: 800px;
+    label{
+      font-weight: 600;
+      border: 1px solid rgb(4, 36, 105);
+    }
+    input{
+      height: 30px;
+      border-radius: 10px;
+      width: 80%;
+      border: 1px solid rgb(15, 51, 151);
+    }
+    hr{
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+}
+
