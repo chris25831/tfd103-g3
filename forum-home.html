@@ -223,16 +223,17 @@
             changeCategory(e) {     //頁籤
                 // this.tidedData = this.articleData; 
                 // this.totalPage = Math.ceil(this.tidedData.length / this.itemsPerPage);
-                
                 if(e.target.innerText === "全部") {
                     this.categorizedData = this.articleData;
-                    this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
-                    this.totalPage = Math.ceil(categorizedData.length / this.itemsPerPage);
+                    this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+                    this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);
                     this.currentPage = 1;         
                 } else {                   
-                    this.categorizedData = this.articleData.filter(sorted => sorted.ArticleCategory === e.target.innerText);
+                    console.log(this.startIndex);
+                    this.categorizedData = this.articleData.filter(sorted => sorted.ArticleCategory.toString() === e.target.innerText.toString());
                     this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
-                    this.totalPage = Math.ceil(categorizedData.length / this.itemsPerPage);
+                    // console.log("this.categorizedData", this.categorizedData);
+                    this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);
                     this.currentPage = 1;
                 }
             },
@@ -240,22 +241,9 @@
         },
         computed: {},
         watch: {
-            // categorizedData(newValue) {
-            //     this.totalPage = Math.ceil(newValue.length / this.itemsPerPage); 
-            //     console.log(newValue)
-            // },
-
-            // tidedData(newValue, oldValue){
-            // this.totalPage = Math.ceil(newValue.length / this.itemsPerPage);   //監視頁數的改變
-
-            //     console.log("newValue", newValue)
-            //     console.log("this.totalPage",this.totalPage)
-            // },
-
-            currentPage(newValue, oldValue) {   //分頁器偵測所處頁面    
+            currentPage(newValue, oldValue) {   //分頁器偵測所處頁面  
                 this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
-                
-                this.tidedData = this.articleData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+                this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
                 
                 document.querySelectorAll("a.page-link").forEach((text, index) => {
                     if(parseInt(text.innerText) === parseInt(newValue)) {

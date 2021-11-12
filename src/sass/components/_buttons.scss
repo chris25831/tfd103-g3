@@ -123,7 +123,7 @@ $places: "frontend", "manage";
       border: solid #00429d 1px;
       box-shadow: 5px 5px #00429d;
       cursor: pointer;
-
+      outline: none;
       &:active {
         cursor: pointer;
         box-shadow: 2px 2px #00429d;

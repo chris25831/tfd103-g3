@@ -4,12 +4,13 @@
     height: 100%;
     background-color:rgba(0, 0, 0, .5);
     top: 0;
+    left: 0;
     z-index: 8000;
     // display: none;
     .forum-modal.new-article { 
         margin: 0 auto;
         max-width: 800px;
-        height: 600px;
+        max-height: 500px;
         margin-top: 10px;
         background-color: #ededed;
         position: relative;
@@ -54,7 +55,7 @@
             }
 
         }
-        input.title {
+        input.title.forum-title {
             width: 80%;
             height: 40px;
             margin-top: 15px;
@@ -62,14 +63,15 @@
             border: solid #00429d 2px;
             border-radius: 10px;
             padding: 10px;
+            outline: none;
         }
 
         select.category {
-            @extend input.title;
+            @extend input.title.forum-title;
         }
 
         textarea.new-article-content {
-            @extend input.title;
+            @extend input.title.forum-title;
             min-height: 100px;
             height: 200px;
             resize: none;
@@ -81,7 +83,7 @@
             justify-content: space-between;
             width: 80%;
             .single-image {
-                @extend input.title;
+                @extend input.title.forum-title;
                 width: 30%;
                 height: 100px;
                 background-color: white;
@@ -121,10 +123,19 @@
             }
         }
 
-        button.send {
-            @extend input.title;
+        button.send-forum-content {
+            @extend input.title.forum-title;
+
             cursor: pointer;
             margin-bottom: 15px;
-        }
+            &:active {
+                cursor: pointer;
+                box-shadow: 2px 2px #00429d;
+                background-color: $white;
+                box-shadow: 0.3px 0.3px 3px 4px rgb(255, 255, 255) inset,
+                2px 2px 5px 3px rgb(131, 128, 128) inset, 1px 1px #00429d;
+                
+            }
+        } 
     }
 }
