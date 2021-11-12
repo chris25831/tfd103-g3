@@ -12,7 +12,8 @@
     <!-- swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <!--從scss轉譯過來的-->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- shopcart-home 獨立 -->
+    <link rel="stylesheet" href="css/shopcart-home.css">
 
     
 </head>
@@ -32,10 +33,9 @@
                <p class="title3">您的購物車</p>
                <img src="./src/images/img/shopcart/SOP1.png" alt="">
            </div>
-
            <div>
                 <!-- list組件 -->
-                <shopcart-content :check="check"></shopcart-content>
+                <shopcart-content :checksop="checksop" :userid="userid" :point="userpoint"></shopcart-content>
                
                 <!-- 推薦課程 -->
                 <div class="recomclass">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                  
+                 
                 </div>
            </div>            
         </div>
@@ -70,6 +70,9 @@
 
 
    <script src="./src/js/vue.js"></script>
+   <!-- jQuery -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script> -->
    <!-- swiper -->
    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
    <!--component-->
@@ -82,7 +85,13 @@
             el:'#shopcart-home',
             data:{
                 // 判斷頁面
-                check:"1",
+                checksop:0,
+
+                // 判斷身份
+                userid:"visitor",
+                userpoint:0,
+
+
                 recomClass:[
                     // 1
                     {
@@ -123,6 +132,22 @@
                 ],
             
             },
+
+            created() {
+                            
+                //TODO:使用者身分確認 
+                // if(userid != ""){
+                //     this.userid = userid
+                // }
+                this.userid = "member"; 
+
+                // TODO:點數確認
+                this.userpoint = 100;
+                
+               
+            },
+
+
     
             mounted(){
             
@@ -157,7 +182,7 @@
                 goToContent(re){
                     // console.log(re);
                     let id = re.id;   
-                    window.location.href=`./classes-content.html?classid=${id}`;
+                    window.open(`./classes-content.html?classid=${id}`,"_self")
                 },
             },
 

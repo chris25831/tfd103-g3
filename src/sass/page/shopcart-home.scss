@@ -1,3 +1,34 @@
+//var//
+@import "../base/reset"; // normalize.css v8.0.1
+@import "../base/font";
+@import "../base/color";
+@import "../base/spacing";
+
+//mixin//
+@import "../mixin/mixin";
+
+//components//
+@import "../components/buttons";
+
+//layout//
+@import "../layout/manage-main";
+@import "../layout/header";
+@import "../layout/footer";
+@import "../layout/bookmark";
+@import "../layout/manage-header";
+@import "../layout/manage-footer";
+@import "../layout/article-list";
+@import "../layout/article-single";
+
+// *****共同使用語法*****
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+body {
+  color: #282828;
+}
+
 main.shopcart-home {
   @include bgnormal(100%);
   > div {
@@ -29,55 +60,62 @@ main.shopcart-home {
           border: 1px solid $orange;
           border-radius: 10px;
           background-color: $white;
-          overflow-x: hidden;
-
+          overflow: hidden;
+          padding-bottom: 44px;
           width: 820px;
           height: 514px;
           // 共同checkedbox設定
           input {
             margin-left: 20px;
+            width: 15px;
+            height: 15px;
           }
           > div:first-child {
             border: 1px solid $orange;
             background-color: $orange;
             height: 35px;
+            display: flex;
+            align-items: center;
           }
-          ul {
+          > ul.itemlist {
             list-style: none;
+            margin: 0;
             padding: 0;
-            > li {
+            padding-top: 5px;
+            height: 100%;
+            overflow-y: auto;
+            > .itemlist_li {
               width: 100%;
               height: 128px;
               // border: 1px solid black;
-              display: flex;
+              display: grid;
+              grid-template-columns: 1fr 20% 40% 20% 75px;
               align-items: center;
-              padding-right: 40px;
-              position: relative;
-              // TODO:
-              &::after {
-                content: "";
-                width: 95%;
-                border-bottom: 1px solid $orange;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                margin: 0 20px;
-              }
+              padding-right: 0px;
               > div {
                 display: inline-block;
                 width: 158px;
                 height: 92px;
                 overflow: hidden;
                 border: 1px solid $orange;
-                margin-left: 68px;
+                margin-left: 0px;
                 img {
                   width: 100%;
                 }
               }
-              p.comclasstitle {
-                // border: 1px solid green;
-                margin: 0px 100px 0px 53px;
-                width: 230px;
+              > p.comclasstitle {
+                padding: 0px 40px;
+                a {
+                  display: inline-block;
+                  max-width: 100%;
+                  height: 100%;
+                  // border: 1px solid pink;
+                  text-decoration: none;
+                  cursor: pointer;
+                  &:visited {
+                    color: $black;
+                  }
+                }
               }
               p.comprice {
                 // border: 1px solid red;
@@ -88,7 +126,12 @@ main.shopcart-home {
                 border: none;
                 align-self: flex-start;
                 color: $orange;
-                // margin-left: 5px;
+                cursor: pointer;
+              }
+              > hr {
+                width: 95%;
+                border-top: 1px solid $orange;
+                grid-column: 1 / span 5;
               }
             }
           }
@@ -109,19 +152,27 @@ main.shopcart-home {
             background-color: $orange;
           }
           > div {
-            border: 1px solid $black;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0px 40px;
+            // border: 1px solid $black;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            padding: 0px 30px;
             align-items: center;
+            p:nth-child(2) span {
+              margin-left: 20px;
+            }
+            // 前兩項固定高
+            &:nth-child(-n + 3) {
+              height: 132px;
+            }
           }
-          > div:nth-child(-n + 3) {
-            height: 132px;
-          }
+          // 點數
           .point {
+            height: 132px;
             p:nth-child(2) {
               input {
+                margin-left: 20px;
                 width: 65px;
               }
             }
@@ -130,11 +181,25 @@ main.shopcart-home {
             max-height: 100%;
             flex-direction: column;
             p {
+              grid-column: 1 / span 2;
               width: 100%;
-              display: flex;
-              justify-content: space-between;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
               margin-bottom: 60px;
+              span:nth-child(2) {
+                margin-left: 20px;
+              }
             }
+            button {
+              cursor: pointer;
+              &:hover {
+                background-color: $lightyellow;
+              }
+            }
+          }
+          > hr {
+            width: 95%;
+            border-top: 1px solid $orange;
           }
         }
       }

@@ -14,7 +14,7 @@ main.classes-home {
     }
     // grid
     .classesgrid {
-      border: 1px solid green;
+      // border: 1px solid green;
       width: 785px;
       // height: 1120px;
       overflow-y: auto;
@@ -26,7 +26,7 @@ main.classes-home {
       .classesgrid_simple {
         width: 245px;
         height: 358px;
-        border: 1px solid orange;
+        border: 1px solid $black;
         font-size: 0px;
         overflow: hidden;
         position: relative;
@@ -44,7 +44,7 @@ main.classes-home {
           bottom: 5px;
           left: calc(50% - 100px);
           z-index: 1;
-          border: 1px solid green;
+          // border: 1px solid green;
           text-align: center;
           overflow: hidden;
           text-overflow: ellipsis;

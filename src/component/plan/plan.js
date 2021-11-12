@@ -1,8 +1,4 @@
 
-
-
- 
-
 //計畫表
 new Vue({
     el: '#plan_wrapper',
@@ -11,75 +7,65 @@ new Vue({
         //   plancancel:false,
           checkdone: false,
           cancel: true,
+          point:[],
           memberinfo:{
-            photo:"./src/images/img/plan/memberphoto.png",
-            membername:"maggie",
-            racedate:20221127,
-            week:12
+            "photo":"./src/images/img/plan/memberphoto.png",
+            "membername":"maggie",
+            "racedate":"20221127",
+            "week":8,
             },
           plandata:[
             //day1
             {
-            "swim":null,
-            "bike":null,
-            "run":.5,
-            "rest":false,
-            check:false,
-            // check:[]
+            "Swim":1,
+            "Bike":1,
+            "Run":.5,
+            "Rest":false,
+            check:[]
             },
             //day2
             {
-            "swim":1,
-            "bike":0.5,
-            "run":null,
-            "rest":false,
-            check:false,
-            // check:[]
+            "Swim":1,
+            "Bike":0.5,
+            "Run":null,
+            "Rest":false,
+            check:[]
             },
             //day3
             {
-            "swim":null,
-            "bike":null,
-            "run":null,
-            "rest":"rest",
-            check:false,
-            // check:[]
+            "Swim":null,
+            "Bike":null,
+            "Run":null,
+            "Rest":"rest",
+            check:[],
             },
             {
-            "swim":1,
-            "bike":null,
-            "run":.5,
-            "rest":false,
-            check:false,
-            // check:[]
-
+            "Swim":1,
+            "Bike":null,
+            "Run":.5,
+            "Rest":false,
+            check:[]
             },
             {
-            "swim":1,
-            "bike":null,
-            "run":.5,
-            "rest":false,
-            check:false,
-            // check:[]
-
+            "Swim":1,
+            "Bike":null,
+            "Run":.5,
+            "Rest":false,
+            check:[]
             },
             {
-            "swim":1,
-            "bike":null,
-            "run":1,
-            "rest":false,
-            check:false,
-            // check:[]
-
+            "Swim":1,
+            "Bike":null,
+            "Run":1,
+            "Rest":false,
+            check:[]
             },
             {
-            "swim":null,
-            "bike":null,
-            "run":.5,
-            "rest":false,
-            check:false,
-            // check:[]
-
+            "Swim":null,
+            "Bike":null,
+            "Run":.5,
+            "Rest":false,
+            check:[]
             },
           ]
          }
@@ -97,38 +83,59 @@ new Vue({
       }
     },
       methods: {
-          checkoneday(){
-            alert("恭喜你獲得一點");
-            this.plandata.sperday.check = true;
-          },
-        //   checkdone(){
-        //     alert("恭喜你獲得一點");
-        //     console.log(this.plandata.perday.check.indexOf(week));
-        //     if(plandata.perday.check.indexOf(week)){
-        //         return true
-        //     }
-        //   },
-          plancancel(){
-                var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
+        checkoneday(){
+        alert("恭喜你獲得一點");
+        var checkarr = this.plandata.map(item => Object.values(item)[4]);
+        
+        if(localStorage.hasOwnProperty('Points')){
+            var points = JSON.parse(localStorage.getItem('Points'));
+            localStorage.setItem('Points',points + 1);
 
+        }
+        else{
+          localStorage.setItem('Points',1);
+
+        }
+
+       },
+        plancancel(){
+                var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
                 if (yes) {
                     this.cancel = false
-                    let resetplan = confirm('需要重新訂製計畫表嗎？');
-                    if(resetplan){
-                        window.location="./plan-temporary.html"
-                    }
                 } else {
                     alert('您已取消');
-                }
-          }
-      },
-      computed:{
-        modelStyle(){
-            return {
-                'display':this.plancancel ? '':'none'
-            }
+              }
+          },
+        resetplan(){
+        window.location="./plan-temporary.html"
         }
-      }
+      },
+     
+      created() {
+        //在created的時候找localstorage有沒陣列
+        if(localStorage.hasOwnProperty('Donearr')){
+          JSON.parse(localStorage.getItem('Donearr'));
+          // for(let i = 0; i<this.plandata.length; i++){
+          //   for(let j = 0;j<this.Donearr.length; j++){
+          //     this.plandata[i].check.push(this.Donearr[j]);
+          //     console.log(plandata);
+          //   }
+          // }
+        }else{
+          console.log('沒有Donearr');
+        }
+        
+        // var checkarr = [];
+        // for(let i = 0; i<this.plandata.length; i++){
+        //   checkarr.push (this.plandata[i].check);
+        //   console.log(checkarr);
+        // }
+        // var checkarr = this.plandata.map(item => Object.values(item)[4]);
+        // localStorage.setItem('Donearr', JSON.stringify(checkarr));
+      },
+      watch:{
+       
+      },
   });  
   
 
@@ -152,16 +159,7 @@ var chart = c3.generate({
             Run: "#E75F49"
             
         },
-        // onmouseover:function(){ //滑鼠滑進圖的效果  
-        //     // console.log(grad1);
-        //     var svg = d3.select("svg");
-        //     var allpath = svg.selectAll(".c3-bar-0");
-        //     return allpath.style("fill","#FFEF36");
-        // },
-        // onmouseout:function(){
-        //     return allpath.style("fill","red");
-    
-        // }
+       
     },
     bar:{
         ratio: 0.8 ,

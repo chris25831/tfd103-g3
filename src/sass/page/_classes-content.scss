@@ -16,9 +16,16 @@ main.classes-content {
     // 麵包屑
     > p {
       margin: 0px 0px 50px 40px;
+      > a {
+        text-decoration: none;
+        color: $black;
+        &:visited {
+          color: $black;
+        }
+      }
     }
     // 內容
-    .content {
+    .classcontent {
       width: 100%;
       // border: 1px solid blue;
       display: flex;
@@ -106,15 +113,15 @@ main.classes-content {
         flex-wrap: wrap;
         > div:nth-child(1) {
           margin-right: 32px;
-          > p:nth-child(2) {
-            margin-bottom: 10px;
+          > p.title2 {
+            margin: 0px;
           }
           // 專長
           .expertise {
             display: grid;
             grid-template-columns: auto auto;
             gap: 15px 15px;
-            margin-bottom: 20px;
+            margin: 0px 0px 20px 0px;
             span {
               display: inline-block;
               border: 1px solid $white;
@@ -135,6 +142,7 @@ main.classes-content {
             padding: 10px 5px;
             color: $white;
             p {
+              margin-top: 0;
               text-align: center;
               text-decoration: underline;
               text-underline-offset: 2px;
@@ -149,8 +157,9 @@ main.classes-content {
           border-radius: 10px;
           padding-bottom: 15px;
           overflow: hidden;
+          background-color: $white;
           > p {
-            margin-bottom: 15px;
+            margin: 0px 0px 15px 0px;
             background-color: $yellow;
             color: $white;
             text-align: center;
@@ -206,6 +215,9 @@ main.classes-content {
             text-align: center;
             &:visited {
               color: $black;
+            }
+            &:hover {
+              color: $orange;
             }
           }
         }

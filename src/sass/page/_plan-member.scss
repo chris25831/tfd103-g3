@@ -1,8 +1,14 @@
+// body.plan{
+//     @include bgplan(100%)
+// }
 main.plan_member_wrapper{
-   
     display: grid;
+    height: 100%;
+    @include bgplan(100%);
     grid-template-columns: 1fr 5fr;
-    
+    @include table(){
+        grid-template-columns: 150px 5fr;
+    }
 }
 
     ////// *** 左邊 *** //////
@@ -17,20 +23,23 @@ header.plan_member_aside{
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    
     .plan_member_aside_container{
         @include flexcenter();
         flex-direction: column;
         position: sticky;
-        top: 80px;
-        // border:2px solid blue;
+        top: 100px;
+        @include table(){
+            top: 0px;
+            height: 100vh;
+          
+        }
             header{
-                width: 50%;
-                @include flexcenter();
-                flex-direction: column;
+                width: 100%;
+              
                 .plan_member_photo{
                     width: 100px;
                     border-radius: 50%;
+                    margin: 0 auto;
                     font-size: 0;
                     position:relative;
                     &::after{
@@ -51,6 +60,13 @@ header.plan_member_aside{
                         width: 100%;
                         
                     }
+                }
+                p{
+                    
+                    text-align: center;
+                    font-weight: 800;
+                    width: 100%;
+                   
                 }
             }
 
@@ -74,51 +90,80 @@ header.plan_member_aside{
 main.plan_member_main_content{
     display: flex;
     flex-direction: column;
-    // border: 2px solid red;
     width: 100%;
     div{
 
         &:first-child{
-            // border: 2px solid red;
-            margin: 20px 0;
             display: flex;
-            align-items: flex-end;
-            // height: 80%;
-            align-items: center;
+            height: 50%;
             font-weight: 500;
             flex-direction: column;
             p{
-                margin-bottom: 10px;
+                font-weight:500;
+                text-align: center;
+                margin-bottom: 3px;
             }
         }
     }
-    div.plan_chart{
-        border: 2px solid rgb(0, 255, 200);
-        // height:50%;
-       
+    #plan_chart{
+        @include flexcenter;
+        height:50%;
         flex-direction: column;
         
     }
+   
 }
 
     /////// *** 右邊 *** ///////
 
 //計畫表
-section.plan_member_content{
-    // border: 2px solid rgb(0, 255, 106);
+section.plan_empty{
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include table(){
+
+        height: 900px;
+    }
+    div{
+        width: 60%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        h2{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .orangebutton{
+                margin-top: 10px;
+                @include mobile(){
+                    width: 130px;
+                    
+                }
+            }
+        }
+    }
+}
+
+section.plan_member_content{
     margin-left: 0;
     gap: 0;
+   
     //天數TITLE
     #plan_week{
-        max-width:1000px ;
-        margin: 0 auto;
-        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        @include planM(){
+            display: none;
+        }
         ul{
-            // border: 3px solid white;
             margin: 0 auto;
-            width: 100%;
-            margin-left: 3%;
+            width: 90%;
+            margin-left: 8%;
             padding: 10px;
             color: black;
             list-style: none;
@@ -133,16 +178,14 @@ section.plan_member_content{
     }
     //計畫表TABLE
     .plan_scroll{
-        // border: 2px solid rgb(15, 6, 139);
         display: flex;
         flex-direction: column;
-        #plan_member_table{
-        display: flex;
-        // max-width: 1000px;
-        margin-bottom:50px;
-        margin-top:10px;
+        
 
-        .week_mark{
+        #plan_member_table{
+            display: flex;
+            justify-content: center;
+         span.week_mark{
             filter: drop-shadow(0px 3px  $orange);
             background-color: $white ;
             font-size: 20px;
@@ -156,44 +199,83 @@ section.plan_member_content{
             align-self: center;
             @include bgnorepeat();
             font-weight: 600;
-            
-        }
+            @include planM(){
+                position: sticky;
+                align-self:flex-start;
+                margin-top: 50px;
+                top: 80px;
+                bottom: 50px;
+                border-radius: 0;
+                width: 10%;
+            }
+            @include table(){
+                border-radius: 0;
+                width: 20%;
+            }
+        }//白色底
         ul{
-            width: 100%;
+            width: 90%;
             background-color: $white;
             border-radius: 10px;
             box-shadow: 3px 2px 2px 2px rgba(175, 84, 10, 0.2);
             display: grid;
             list-style: none;
             padding-left: 0;
-            grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns:repeat(7, 1fr);
             grid-auto-flow: row;
-            border: 3px solid $orange;
-            height: 150px;
+            // height: 150px;
+            @include planM(){
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                background-color: transparent;
+                gap: 10px;
+                box-shadow: none;
+                li{
+                height: 100%;
+                border-radius: 10px;
+                background-color: rgba(255,255,255,0.8);
+                list-style: none;
+                @include planM(){
+                    width: 100%;
+                 }
+                }
+              }
            }
       
         }
     }
 }
 
-
 //每天的運動icon
-
 li.plan_member_eachday{
     border-right: 2px dashed $orange;
     display: flex;
     flex-direction: column;
     position: relative;
+    min-height: 130px;
+
     &:last-child(){
         border-right: none;
     }
-    div:first-child{
-        // border: 1px solid blue;
+    @include planM(){
+        border-right: none;
+        flex-direction: row;
+        justify-content:left;
+        
+    }
+   
+    .orangetitle{
         height: 20%;
         background-color: $orange;
-        @include flexcenter;
         justify-content:center;
-       
+        @include flexcenter;
+        @include planM(){
+            background-color:transparent;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 20%;        
+        }
         span{
             transform: translate(0%, -50%);
             border: 2px solid $orange;
@@ -201,7 +283,9 @@ li.plan_member_eachday{
             background-color: $white;
             padding: 10px;
             box-shadow: 3px 2px 2px 1px rgba(175, 84, 10, 0.2);
-           
+            @include planM(){
+                transform: translate(0%, 0%);
+               }
             i{
                 width: 20px;
                 height: auto;
@@ -209,47 +293,107 @@ li.plan_member_eachday{
             }
         }
     }
+    
+}
 
+#plan_week_table{
+    display: none;
+    @include table(){
+        display: block;
+        height: 100%;
+        width: 20%;
+    }
+    ul{
+        justify-content: center;
+        align-items: center;
+        @include table(){
+          align-items: center;
+          
+          border-bottom: 1px solid $orange;
+        }
+        li{
+            border-radius: 0;
+            padding: 10px;
+            background-color: transparent;
+            box-shadow: none;
+            border-bottom: 1.3px solid $orange;
+            font-weight: 800;
+        }
+    }
 }
 
 //內文字
-.plan_member_exe{
-    height: 80%;
+div.plan_member_exe{
+    position: relative;
     display: block;
     text-align: center;
     line-height: 2;
-    @include fontfamily(400);
-    &:hover{
-        cursor: pointer;
-        
-        &::before{
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-        }
-        
-        &::after{
-            border-radius: 50%;
-            width: 10%;
-            height: 10%;
-            content: "";
-            border: 1px double rgb(241, 81, 7);
-            transform: translate(-50%, -50%);
-            left: 90%;
-            top: 90%;
-            color: white;
-            letter-spacing: 2px;
-            position: absolute;
-         }
+    height: 80%;
+    @include fontfamily(500);
+    @include planM(){
+        text-align: left;
+        font-size: 18px;
+        height: 100%;
+        width: 80%;
+       
     }
+    @include mobile(){
+        text-align: center;
+    }
+    p{
+        margin: 0;
+        height: 34%;
+    }
+    //完成一天
+    .complete{
+        position: absolute;
+        z-index: 10;
+        border: 2px solid $orange;
+        bottom: 0;
+        right: 0;
+        height: 20px;
+        width: 20px;
+        border-radius: 5px ;
+       
+        &:active{
+            
+            background: $yellowgradient 
+        }
+   
+    }
+    // &:hover{
+    //     cursor: pointer;
+        
+    //     &::before{
+    //         content: "";
+    //         position: absolute;
+    //         width: 100%;
+    //         height: 100%;
+    //         left: 0;
+    //         top: 0;
+    //     }
+        
+    //     &::after{
+    //         border-radius: 50%;
+    //         width: 10px;
+    //         height: 10%;
+    //         content: "";
+    //         border: 1px double rgb(241, 81, 7);
+    //         transform: translate(-50%, -50%);
+    //         left: 90%;
+    //         top: 90%;
+    //         color: white;
+    //         letter-spacing: 2px;
+    //         position: absolute;
+    //      }
+    // }
     
 }
 
 .done{
+    
     &::before{
+        z-index: 80;
         content: "";
         position: absolute;
         width: 100%;
@@ -260,6 +404,7 @@ li.plan_member_eachday{
     }
     &::after{
         padding: 3px 10px;
+        z-index: 90;
         border-radius: 3px;
         content: "done!";
         border: 1px double white;

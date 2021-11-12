@@ -1,5 +1,5 @@
 $orange: #e75f49;
-$white: #ededed;
+$white: rgb(237, 237, 237);
 $blue: #00429d;
 $yellow: #ffa10a;
 $lightyellow: #ffef36;
@@ -8,3 +8,9 @@ $bluegradient: linear-gradient(#00429d, #00214f);
 $black: #282828;
 // 結帳用
 $blackgradient: linear-gradient(#000000, #6161611c);
+//白色透明底
+$bgwhite: rgba(237, 237, 237, .8);
+//陰影
+$shadow: (2px 2px 3px rgba(63, 63, 63, 0.548));
+
+

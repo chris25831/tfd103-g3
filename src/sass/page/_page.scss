@@ -13,7 +13,9 @@
 @import "./plan-member";
 
 // 購物車
-@import "./shopcart-home";
+// *shopcart-home 分開獨立
+// 測試中...
+// @import "./shopcart-checkout";
 
 //後台
 @import "./manage-employees"; //人員管理
@@ -25,6 +27,7 @@
 @import "./manage-order-list"; //訂單管理 - 列表
 @import "./manage-order-single"; //訂單管理 - 單筆
 @import "./manage-black-list"; //黑名單管理
+@import "./manage-race"; //賽程管理
 
 //賽程資訊
 @import "./race";

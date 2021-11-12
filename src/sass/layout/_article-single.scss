@@ -1,6 +1,8 @@
 %page-container-single-article {
+    padding-top: 20px;
     margin: 0 auto;
     max-width: 916px;
+    width: 90%;
     border: solid #00429d 1px;
     background-color: white;
     @include table() {
@@ -12,7 +14,8 @@
     }
     .single-article {
         margin: 0 auto;
-        width: 788px;
+        max-width: 788px;
+        width: 86%;
         @include table() {
             width: 459px;
         }
@@ -20,12 +23,11 @@
             width: 322px;
         }
         .head {
-            width: 100%;
+            max-width: 100%;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             .author {
-                width: 70%;
                 height: 80px;
                 img.avatar {
                     width: 44px;
@@ -33,10 +35,12 @@
                     border-radius: 50%;
                     margin: 18px 0 0 0px;
                     vertical-align: center;
+                    object-fit: cover;
                 }
                 span.name, span.time {
                     display: inline-block;
                     height: 100%;
+                    line-height: 80px;
                     vertical-align: top;
                     line-height: 80px;
                     white-space: nowrap;
@@ -48,9 +52,12 @@
                 span.name {
                     margin: 0 15px 0 18px;
                 }
+                span.time {
+                    color: rgb(104, 103, 103);
+                    font-size: .8rem;
+                }
             }
             .action {
-                width: 30%;
                 height: 80px;
                 display: flex;
                 justify-content: flex-end;
@@ -123,9 +130,9 @@
                     max-width: 120px; 
                     min-width: 120px;
                     margin-bottom: 0;
-                    .edit-self.small-blue {
+                    // .edit-self.small-blue {
                         // display: none;
-                    }
+                    // }
                     .delete-article.small-red {
                         border: solid $orange 1px;
                         color: $orange;
@@ -138,15 +145,16 @@
             }
         }
         .middle {
+           
             h3.title {
                 margin: 25px 0 0;
                 font-size: 24px;
             }
-            .content {
+            div.forum-content-block {
                 margin: 24px 0;
                 width: 100%;
                 height: 100%;
-                p.text {
+                p.manage-forum-content {
                     margin: 0;
                     line-height: 1.5rem;
                 }
@@ -155,7 +163,8 @@
     }
 
     .new-comment {
-        width: 788px; 
+        max-width: 788px;
+        width: 86%;
         min-height: 250px;
         margin: 24px auto 0;
         border: solid #00429D 1px;
@@ -171,17 +180,24 @@
             position: absolute;
             border-radius: 50%;
             top: 18px;
-            left: 28px;
+            left: 20px;
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
         }
         textarea.input-comment {
             border: none;
             padding: 10px;
             resize: none;
             position: absolute;
+            // max-width: 670px;
             width: 85%;
             min-height: 150px;
-            left: 90px;
+            left: 80px;
             top: 20px;
+            &:focus {
+                outline: none;
+            }
             @include table() {
                 width:75%;
             }
@@ -191,7 +207,7 @@
         }
         button.submit-comment {
             position: absolute;
-            right: 27px;
+            right: 5%;
             bottom: 24px;
         }
     }
@@ -208,7 +224,8 @@
     }
 
     .comments {
-        width: 788px; 
+        max-width: 788px;
+        width: 86%;
         margin: 0 auto;
         @include table() {
             width: 459px;
@@ -218,19 +235,42 @@
         }
         .single-comment {
             border: solid #00429d 1px;
-            position: absolute;
+            position: relative;
             border-radius: 30px;
             margin-bottom: 20px;
-            position: relative;
-            
-            img.avatar-comment {
-                position: absolute;
-                border-radius: 50%;
-                left: 28px;
-                top: 18px;
+            .comment-author {
+                width: 40%;
+                min-width: 250px;
+                height: 70px;
+                // border: solid red 1px;
+                display: inline-block;
+                img.avatar-comment {
+                    border-radius: 50%;
+                    width: 44px;
+                    height: 44px;
+                    object-fit: cover;
+                    margin-left: 28px;
+                    margin-top: 15px;
+                }  
+                span.name, span.time {
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: top;
+                    line-height: 70px;
+                    // margin-top: 10px;
+                    // border: solid red 1px;
+                }
+                span.name {
+                    margin: 0 15px;
+                }
+                span.time {
+                    color: rgb(104, 103, 103);
+                    font-size: .8rem;
+                }
+                
             }
             p.comment-content {
-                padding: 72px 28px 16px;
+                padding: 16px 28px 16px;
                 margin: 0;
                 line-height: 1.5rem;
             }
@@ -240,6 +280,7 @@
                 height: 24px;
                 top: 18px;
                 right: 28px;
+      
                 img {
                     width: 100%;
                     height: 100%;

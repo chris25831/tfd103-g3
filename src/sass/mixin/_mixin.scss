@@ -11,6 +11,12 @@
   }
 }
 
+@mixin planM() {
+  @media all and (max-width: 920px) {
+    @content;
+  }
+}
+
 @mixin mobile() {
   @media all and (max-width: 576px) {
     @content;
