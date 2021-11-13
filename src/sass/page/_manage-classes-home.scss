@@ -23,8 +23,9 @@ main.manage-classes-home {
       justify-content: space-between;
       .classesgrid_simple {
         width: 245px;
-        height: 265px;
+        height: 245px;
         border: 1px solid $black;
+        border-radius: 5px;
         font-size: 0px;
         overflow: hidden;
         position: relative;
@@ -40,23 +41,19 @@ main.manage-classes-home {
           width: 100%;
           position: absolute;
           bottom: 0%;
-          background-color: white;
-          border: 1px solid rgb(255, 255, 255);
+          height: 20%;
+          margin-bottom: 0;
+          background-color: rgba(255, 255, 255, 0.8);
           text-align: center;
           overflow: hidden;
           text-overflow: ellipsis;
           span {
+            margin-bottom: 0;
             font-size: 16px;
             text-align: center;
             overflow: hidden;
             color: $black;
-            &:nth-child(1) {
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 3;
-              margin-bottom: 5px;
-              font-weight: 500;
-            }
+           
           }
         }
         img {
@@ -81,7 +78,17 @@ div.classbtn{
   }
 }
 
-
+div.pagination {
+  margin-top: 20px;
+  margin-bottom: $bottomspacing;
+  justify-content: center;
+  li a {
+    color: $blue;
+  }
+  span {
+    color: $blue;
+  }
+}
 
 
 //後台課程內頁
@@ -100,26 +107,35 @@ div.classbtn{
   }
 }
 .classesWrapper{
-  border: 1px solid red;
+  // border: 1px solid red;
   width: 900px;
   padding-top: 50px;
   .classesContent{
-    
-    border: 1px solid rgb(0, 98, 255);
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid rgb(81, 255, 0);
     width: 800px;
     label{
       font-weight: 600;
-      border: 1px solid rgb(4, 36, 105);
+      margin-top: 10px;
     }
-    input{
+    input,textarea{
+      border: none;
       height: 30px;
-      border-radius: 10px;
+      border-radius: 5px;
       width: 80%;
-      border: 1px solid rgb(15, 51, 151);
+      margin-top: 10px;
+    }
+    textarea{
+      height: 400px;
     }
     hr{
       width: 100%;
       margin-top: 10px;
+    }
+    select{
+      width: 150px;
+      
     }
   }
 }

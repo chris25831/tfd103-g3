@@ -394,8 +394,8 @@
                      </div>
                      <template v-for="game in tidedData">
                         <div class="raceinfo"> 
-                           <a class="artical" href="./race-content.html">{{game.date}}</a>
-                           <a class="artical" href="./race-content.html">{{game.place}}</a> 
+                           <a class="artical" href="./race-content.html">{{game.RaceDate}}</a>
+                           <a class="artical" href="./race-content.html">{{game.RaceLocation}}</a> 
                            <a class="artical" href="./race-content.html">{{game.title}}</a>
                            <div class="distences">
                                  <a   v-for="distence in game.distences" v-show="distence.event != false" :style="{backgroundColor:distence.color}" class="artical race_distence" href="./race-content.html">{{distence.dis}}</a>  

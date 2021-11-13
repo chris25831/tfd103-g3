@@ -5,32 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vuex</title>
-    <!-- <script src="./src/js/vuex.js"></script>
-    <script src="./src/js/vue.js"></script> -->
-    <script src="./help.js"></script>
+    <script src="./src/js/vuex.js"></script>
+    <script src="./src/js/vue.js"></script> 
+    <!-- <script src="./help.js"></script> -->
 </head>
 
 <body>
     <div id="app">`
-        <button @click="addCount"> Add </button>
-        <h1>{{count}}</h1>
+        <button> Add </button>
+        <h1 v-for="(item, index) in count" :key="index">{{item.c}}</h1>
+        <h2 v-for="(item, index) in count2" :key="index">{{item.ad}}</h2>
     </div>
 
     <script  type="module">
-        import Vuex,{Store} from './node_modules/vuex' 
-        import Vue  from './node_modules/vue'
+        import plan from './help.js' 
         
         new Vue({
                 el:'#app',
-                store,
+                store:plan,
                 methods: {
-                    addCount(){
-                        this.$store.commit('addCount', 20);
-                    }
+                    // addCount(){
+                    //     this.$store.commit('addCount', 20);
+                    // }
                 },
                 computed:{
                     count(){  //return結果到{{count}}
                         return this.$store.state.count;  
+                    },
+                    count2(){  //return結果到{{count}}
+                        return this.$store.state.count2;  
                     }
                 }
             })
