@@ -29,29 +29,42 @@
 
         <form  enctype="multipart/form-data" > <!--多檔案格式-->
             <div class="classesWrapper">
-                <div v-for="newclass in newclasses" class="classesContent" >
-                    <label class="title3" :for="newclass.id">{{newclass.title}}-</label>
-                    <input :id="newclass.id" type="newclass.type" name="newclass.id">
+                <div  class="classesContent" >
+
+                    <label class="title3" >名稱-</label>
+                    <input v-model="newClass.classTitle" id="classTitle" type="" name="">
                     <hr>
-                </div>
-
-                <div class="classesContent" >
-                    <label class="title3" >{{newclasses[2].title}}-</label>
-                    <select :name="newclasses[2].id" >
-                        <option v-for="choice in newclasses[2].choices" :id="newclasses[2].id" :type="newclasses[2].type">{{choice}}</option>
+                    <label class="title3" >編號-</label>
+                    <input v-model="newClass.classId" id="classId" type="" name="">
+                    <hr>
+                    <label class="title3" >分類-</label>
+                    <select v-model="newClass.classCategory" id="classCategory" name="" >
+                        <option>團練課程</option>
+                        <option>個人教練</option>
+                        <option>營養菜單</option>
                     </select>
-                </div>
+                    <hr>
+                    <label class="title3" >授課教師-</label>
+                    <input v-model="newClass.teacher" id="teacher" type="" name="">
+                    <hr>
+                    <label class="title3" >活動地點-</label>
+                    <input v-model="newClass.classPosition" id="classPosition" type="" name="">
+                    <hr>
+                    <label class="title3" >狀態-</label>
+                    <input v-model="newClass.classState" id="classState" type="" name="">
+                    <hr>
+                    <label class="title3" >簡介-</label>
+                    <textarea v-model="newClass.classInfo" id="classInfo"  name=""></textarea>
+                    <hr>
+                    <label class="title3" >插入圖片-</label>
+                    <input type="file" id="classPhoto"  name="file[]" multiple></input>
 
-                <div class="classesContent" >
-                    <label class="title3" >{{newclasses[6].title}}-</label>
-                    <textarea :id="newclasses[6].id"  :name="newclasses[6].id"></textarea>
-                </div>
 
                 
                 <div class="manage_race_button"> 
                     <button class="yellowbutton ">下架</button>
-                    <button class="bluebutton ">回上一頁</button>
-                    <button onclick="addclass()" class="bluebutton ">更新</button>
+                    <button @click.prevent="manageClasshome()" class="bluebutton">回上一頁</button>
+                    <button @click.prevent="addClass()" class="bluebutton ">送出</button>
                 </div>
             </div>
         </form>
@@ -78,48 +91,16 @@
     new Vue({
         el:'#classes-content',
         data:{
-            
-            newclasses:[
-                {
-                 title:"名稱",
-                 id:"classTitle",
-                 type:"text"
-                },
-                {
-                 title:"編號",
-                 id:"classId",
-                 type:"text"
-                },
-                
-                {
-                 title:"授課教師",
-                 id:"teacher",
-                 type:"text"
-                },
-                {
-                 title:"活動地點",
-                 id:"classPosition",
-                 type:"text"
-                },
-                {
-                 title:"狀態",
-                 id:"classState",
-                 type:"text"
-                },
-                {
-                 title:"簡介",
-                 id:"classInfo",
-                 type:"textarea"
-                },
-                {
-                 title:"插入圖片",
-                 id:"classPhoto",
-                 type:"file"
-                },
-               
-            ],
-
-            
+            newClass:{
+                classTitle: "", //綁定表單資料下面append可以用 (不知圖檔怎綁可能下面axios append進去)
+                classId:"",
+                classCategory:"團練課程",
+                teacher:"",
+                classPosition:"",
+                classState:"",
+                classInfo: "",
+                //classphoto？？
+            },
             
             // **課程組件data**
             // 訓練課程
@@ -356,25 +337,36 @@
             ],
         },
         methods: {
-            addclass(){
+            
+            addClass(){ //給陳族長鋪路
+                const classFromData = new FromData();
+                classFromData.append("newClass" ,this.newClass) //不確定可不可以這樣寫
+                console.log(classFromData);
+
                 axios({
                     method:'post',
                     url: './class.php',
-                    data:{
-                        classTitle:$('#classTitle').val(),
-                        classId:$('#classId').val(),
-                        classType:$('#"input:select[name=type] :selected"').val(),
-                        classTeacher:$('#teacher').val(),
-                        classPosition:$('#classPosition').val(),
-                        classState:$('#classState').val(),
-                        classInfo:$('#classInfo').val(),
-                        classPhote:$('#classPhoto').val(),//照片
-                        
-                    }
+                    data: classFromData,
+                    headers: { "Content-Type": "multipart/form-data" },
+                        // 1.application/x-www-form-urlencoded （這個是變成JSON字符串格式）
+                        // 2.multipart/form-data （這個是formdata格式）
+                        // 3，application/json （默認的格式）
                 })
-                .then((result) => { console.log("result.data")})
-                .catch((err) => {console.error("err")})
+                .then(function (response) { //成功處理
+                    //handle success
+                    console.log(response);
+                })
+                .catch(function (response) { //錯誤捕捉
+                    //handle error
+                    console.log(response);
+                    console.log(response.status);
+                });
+            },
+
+            manageClasshome(){
+                window.location="manage-class-home.html"
             }
+
         },
 
     });
