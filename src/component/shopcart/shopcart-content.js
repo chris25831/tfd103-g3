@@ -26,15 +26,16 @@ Vue.component("shopcart-content",{
                         </div>
                         <!-- 名稱 -->
                         <p class="comclasstitle">
-                        <a  @click="gotodetail(item.comclassid)">{{item.comclassTitle}}</a>
-                        
+                            <a  @click="gotodetail(item.comclassid)">{{item.comclassTitle}}</a>
                         </p>
-                        <!-- 課程編號 -->
-                        <span v-if="checksop == 1">課程編號：{{item.comclassid}}</span>
-                        <!-- 教師 -->
-                        <span v-if="checksop == 1">授課教師：{{item.comtrainer}}</span>
-                        <!-- 上課地點 -->
-                        <span v-if="checksop == 1">上課地點：{{item.comclassLocation}}</span>
+                        <div class="comclassdetail" v-if="checksop == 1">
+                            <!-- 課程編號 -->
+                            <span>課程編號：{{item.comclassid}}</span>
+                            <!-- 教師 -->
+                            <span>授課教師：{{item.comtrainer}}</span>
+                            <!-- 上課地點 -->
+                            <span>上課地點：{{item.comclassLocation}}</span>
+                        </div>
                         <!-- 價錢 -->
                         <p  class="comprice">$ {{item.comprice}}TWD</p>
                         <!-- 刪除 -->
@@ -77,6 +78,13 @@ Vue.component("shopcart-content",{
 
                 <button v-if="checksop == 0" class="title3 orangebutton" @click="goToPay()">前往結帳</button>
                 </div>
+            </div>
+            <!-- checkout -->
+            <div  v-if="checksop == 1" class="golinepay">
+                <p></p>
+                <img src="./src/images/icons/linepay.svg" alt="#">
+                <p>使用LINE PAY進行付款</p>
+                <button class="orangebutton" @click="golinepay">確認結帳</button>
             </div>
         </div>
     `,
@@ -314,6 +322,10 @@ Vue.component("shopcart-content",{
 
         },
 
+        // LINEPAY結帳-傳到父層
+        golinepay(){
+            this.$emit("golinepay");
+        }
 
     },
     

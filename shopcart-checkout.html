@@ -31,9 +31,8 @@
                 <img src="./src/images/img/shopcart/SOP2.png" alt="">
             </div>
             <div>
-                  <!-- list組件 -->
-                  <shopcart-content  :checksop="checksop"></shopcart-content>
-                  <!-- TODO:信用卡 -->
+                <!-- list組件 -->
+                <shopcart-content  :checksop="checksop" @golinepay="checkout"></shopcart-content>     
             </div>
         </div>
    </main>
@@ -50,6 +49,10 @@
     <script src="./src/component/common/header.js"></script>
     <script src="./src/component/common/footer.js"></script>
     <script src="./src/component/shopcart/shopcart-content.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- LINEPAY串接 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
           new Vue({
             el:'#shopcart-checkout',
@@ -57,6 +60,24 @@
                 // 判斷頁面
                 checksop:1,
                 
+            },
+
+            methods: {
+                // LINEPAY結帳
+                checkout(){
+                    // console.log("123");
+                  
+
+
+                    axios({
+
+                    })
+
+
+
+
+
+                }
             },
         })
     </script>
