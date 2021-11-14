@@ -117,7 +117,6 @@
         data: {
             categories: ["全部","閒聊","裝備","心得","問題"],
             showModal: false,
-            dataId: "",
             articleData: [],   //放撈回來的資料
             categorizedData: [], //放當前類別的所有資料
             tidedData: [],  //放螢幕所顯示的項目
@@ -270,6 +269,9 @@
             //資料暫存區 - 指畫面有顯示的項目
             this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
         },
+        mounted() {
+            axios.get('./select-forum.php').then(res => console.log(res));
+        }
     })
 </script>
 

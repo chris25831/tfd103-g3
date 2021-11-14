@@ -1,7 +1,6 @@
 main.manage-classes-home {
   // border: 1px solid red;
-    div {
-    
+  > div {
     max-width: 1000px;
     margin: 0 auto;
     padding-bottom: $bottomspacing;
@@ -9,11 +8,12 @@ main.manage-classes-home {
     // bookmark for classes only
     .classesonly {
       border: none;
+      outline: none;
       background-color: transparent;
     }
-    
+
     // grid
-    .manage-classesgrid{
+    .manage-classesgrid {
       width: 785px;
       overflow-y: auto;
       margin: 0 auto;
@@ -53,7 +53,6 @@ main.manage-classes-home {
             text-align: center;
             overflow: hidden;
             color: $black;
-           
           }
         }
         img {
@@ -64,11 +63,11 @@ main.manage-classes-home {
   }
 }
 
-div.classbtn{
+div.classbtn {
   padding: 10px;
   display: flex;
   justify-content: flex-end;
-  button.classesbtn{
+  button.classesbtn {
     justify-content: center;
     // box-shadow: 5px 5px #00429d;
     align-self: flex-end;
@@ -90,9 +89,8 @@ div.pagination {
   }
 }
 
-
 //後台課程內頁
-.manage-classes-content{
+.manage-classes-content {
   background-color: #ededed;
   div {
     max-width: 1000px;
@@ -106,37 +104,36 @@ div.pagination {
     }
   }
 }
-.classesWrapper{
+.classesWrapper {
   // border: 1px solid red;
   width: 900px;
   padding-top: 50px;
-  .classesContent{
+  .classesContent {
     display: flex;
     flex-direction: column;
     // border: 1px solid rgb(81, 255, 0);
     width: 800px;
-    label{
+    label {
       font-weight: 600;
       margin-top: 10px;
     }
-    input,textarea{
+    input,
+    textarea {
       border: none;
       height: 30px;
       border-radius: 5px;
       width: 80%;
       margin-top: 10px;
     }
-    textarea{
+    textarea {
       height: 400px;
     }
-    hr{
+    hr {
       width: 100%;
       margin-top: 10px;
     }
-    select{
+    select {
       width: 150px;
-      
     }
   }
 }
-
