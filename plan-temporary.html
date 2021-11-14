@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <!--Jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--vuex-->
     <script src="./src/js/vuex.js"></script>
-
+    <!--axios-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="plan">
@@ -173,6 +176,8 @@
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
+
+
 <script type="module">
 
 import plan from "./help.js"
@@ -214,12 +219,7 @@ new Vue({
     el: '#plan_question',
     store:plan,
     methods: {
-        createplan(){
-                $("#plan_question").fadeOut(1500);
-                $(".loading").fadeIn(1500);
-                $(".loading").fadeOut(1500);
-                $("#plan_wrapper").fadeIn(3000);
-        },
+        
         last(){      //切換按鈕index
             this.$store.commit('last')
         },
@@ -237,7 +237,7 @@ new Vue({
         questions(){
             return this.$store.state.questions
         },
-        
+
         current_tab:{
             get () {
             return this.$store.state.current_tab
@@ -245,6 +245,7 @@ new Vue({
             set (value) {
             this.$store.commit('current_tab', value)
             }
+           
         },
         progressWidth(){
                //進度條
@@ -270,10 +271,12 @@ new Vue({
        
     },
 
-    
+        
         
        
 });
+
+
 </script>
 
 <script src="./src/component/common/header.js"></script>
