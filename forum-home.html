@@ -33,7 +33,7 @@
 
         <div class="article-list">
            
-            <div class="article-item" v-for="articleDatum in tidedData" :data-id="articleDatum.ArticleNumber">
+            <div class="article-item" v-for="articleDatum in tidedData" :data-id="articleDatum.ArticleNumber" @click.prevent="seeContent">
                 <a class="enter-article" href="./forum-content.html">
                     <div class="left">
                         <div class="author">
@@ -110,10 +110,12 @@
 <script src="./src/component/common/forum-new-post-modal.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
-
-<script>
+<script src="./forum.js"></script> 
+<script type="module">
+    import forum from "./forum.js"
     new Vue({
         el: "#forum-home",
+        store: forum,
         data: {
             categories: ["全部","閒聊","裝備","心得","問題"],
             showModal: false,
@@ -236,6 +238,12 @@
                     this.currentPage = 1;
                 }
             },
+            seeContent(e) {           
+                let clickTarget = e.target.closest("div.article-item");
+                // this.$store.commit("getPostId", clickTarget.dataset.id);
+                console.log(clickTarget);
+                window.location.href=`./forum-content.html#${clickTarget.dataset.id}`;
+            }
             
         },
         computed: {},
