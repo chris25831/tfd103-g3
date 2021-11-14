@@ -1,3 +1,4 @@
+{/* <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> */}
 
 const plan = new Vuex.Store({
     state:{
@@ -197,16 +198,25 @@ const plan = new Vuex.Store({
                 state.questionanswer.push(state.questions[state.current_tab - 1].answer);
                 state.current_tab ++ 
                 console.log(state.questionanswer);
-                //localStorage.setItem("answer",JSON.stringify(state.questionanswer));
-                //!!傳送request!!
-                // if(state.questionanswer.length === 4){
-                //     state.$store.commit('sendAnswer')
-                // }
+                
             }
             if(state.current_tab === 5){
-                console.log("good");
+                axios({
+                    url: './php/plan.php',
+                    method: 'post',
+                    data: state.questionanswer
+                  })
+                  .then(function (response) {
+                      // your action after success
+                      console.log(response);
+                  })
+                  .catch(function (error) {
+                     // your action on error success
+                      console.log(error);
+                  });
+                  
             }else if(state.current_tab === 4){
-                state.tab === "完成"
+                state.tab = "完成"
             }
         },
         current_tab(state,payload){
@@ -215,6 +225,7 @@ const plan = new Vuex.Store({
         
         
     },
+   
     
 }) 
 
