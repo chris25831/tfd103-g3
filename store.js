@@ -3,6 +3,9 @@
 const plan = new Vuex.Store({
     state:{
         //lightbox答案
+        showquestion:true,
+        showloading:false,
+        showplan:false,
         questionanswer : [],
         current_tab:0,
         tab:"下一步",
@@ -202,9 +205,9 @@ const plan = new Vuex.Store({
             }
             if(state.current_tab === 5){
                 axios({
-                    url: './php/plan.php',
                     method: 'post',
-                    data: state.questionanswer
+                    url: './php/plan.php',
+                    data: JSON.stringify(state.questionanswer)
                   })
                   .then(function (response) {
                       // your action after success
@@ -214,7 +217,9 @@ const plan = new Vuex.Store({
                      // your action on error success
                       console.log(error);
                   });
-                  
+                  state.showquestion = false;
+                  state.showloading = false;
+                  state.showplan = true;
             }else if(state.current_tab === 4){
                 state.tab = "完成"
             }

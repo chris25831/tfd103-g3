@@ -86,6 +86,11 @@ div.progress_bar{
   width: 70%;
   padding-right: 5px;
   height: 30%;
+  span{
+    height: 50px;
+    font-weight: 500;
+    color: $orange;
+  }
   div.progress_bar{
       display: flex;
       justify-content:flex-start;
@@ -159,8 +164,8 @@ div.progress_bar{
     }
   }
   div.select {
-    // border: 2px solid deepskyblue;
     height: 50%;
+    
     select {
       border: none;
       border-radius: 5px;
@@ -168,6 +173,16 @@ div.progress_bar{
       padding: 2px 10px;
       width: 400px;
       box-shadow: 2px 2px $orange;
+      
+    }
+    input{
+      width: 15px;
+      height: 15px;
+      margin-left:20px ;
+      &:hover{
+        width: 20px;
+      height: 20px;
+      }
     }
   }
 
@@ -182,6 +197,7 @@ div.progress_bar{
 }
 
 // ***計畫表*** //
+
 .plan_scroll {
   padding-top: 15px;
 }
@@ -443,14 +459,16 @@ section.plan_tem_wrapper {
 }
 //loading頁面
 .loading { 
-  display: none;
   z-index: 120;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(-220deg, #00429d, #00214f);
+  
   svg{
+    
     display: flex;
+    align-items: center;
     width:40%;
     height: 100vh;
     margin: 0 auto;
