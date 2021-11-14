@@ -38,7 +38,7 @@
             </div>
             <!-- gird -->
             <div class="manage-classesgrid" id="classes-grid">
-                <manage-triclasses  v-for="subdata in this[classdata[currentcategory]]" :img-src="subdata.imgSrc" :class-url="subdata.classUrl" :class-title="subdata.classTitle" :class-subtitle="subdata.classSubtitle" :class-id="subdata.classID"></manage-triclasses>  
+                <triclasses  v-for="subdata in this[classdata[currentcategory]]" :img-src="subdata.imgSrc" :class-url="subdata.classUrl" :class-title="subdata.classTitle" :class-subtitle="subdata.classSubtitle" :class-id="subdata.classID" :currentpage="currentpage"></triclasses>  
             </div>
         </div>
    
@@ -79,14 +79,15 @@
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
-<script src="./src/component/common/manage-grid-classes.js"></script>
+<script src="./src/component/common/grid-classes.js"></script>
 <script src="./src/component/common/manage-header.js"></script>
 <script src="./src/component/common/manage-footer.js"></script>
 <script>
     new Vue({
         el:'#classes-home',
         data:{
-           
+            //判斷前後台
+            currentpage:1,    
             // 書籤組件data
             currentcategory: 0,
             categories: ["團練課程", "個人教練","營養規劃"],

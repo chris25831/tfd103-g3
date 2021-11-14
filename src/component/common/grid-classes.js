@@ -1,10 +1,10 @@
 // 訓練課程grid
 Vue.component("triclasses",{
-    props: ["classUrl","imgSrc","classTitle","classSubtitle","classId"],
+    props: ["classUrl","imgSrc","classTitle","classSubtitle","classId","currentpage"],
     template: `
     <div class="classesgrid_simple">
-        <a @click="goToContent()"></a> 
-        <a @click="goToContent()"></a>  <!--判斷前後台點擊-->
+        <a v-if="currentpage == 0" @click="goToContent()"></a> 
+        <a v-if="currentpage == 1" @click="GoToManageContent()"></a>  <!--判斷前後台點擊-->
         <p> 
             
             <span class="title3">{{classTitle}}</span><br>
@@ -20,10 +20,10 @@ Vue.component("triclasses",{
            
            window.location.href=`${url}?classid=${id}`;
         },
-        manageGoToContent(){ //後台內頁
+        GoToManageContent(){ //後台內頁
             let id = this.classId;
            
-           window.location.href=`(後台的網址)?classid=${id}`;
+           window.location.href=`../../../manage-class-content.html?classid=${id}`;
         }
 
     },
