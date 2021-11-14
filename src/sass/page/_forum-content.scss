@@ -2,10 +2,21 @@ main.main.forum-content {
     padding-bottom: 50px;
     @include bgnormal(100%);
     .back {
+        max-width: 916px;
+        width: 90%;
+        margin: 0 auto;
+        @include table() {
+            width: 576px;
+        }
+    
+        @include mobile(){
+            width: 375px;
+        }
+        
         padding-top: 34px;
         .button-block-frontend.back-post {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
     }
     

@@ -278,7 +278,7 @@
             this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
         },
         mounted() {
-            axios.get('./select-forum.php').then(res => console.log(res));
+            axios.get('./php/select-forum.php').then(res => console.log(res));
         }
     })
 </script>
