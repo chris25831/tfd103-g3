@@ -52,18 +52,21 @@ main.shopcart-checkout {
     }
     > div:last-child {
       // border: 1px solid red;
+      padding: 0 10px;
       // 購物車商品
       .orderclass {
         // border: 1px solid green;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 40px;
         .classlist {
+          grid-column: 1 / span 2;
           border: 1px solid $orange;
           border-radius: 10px;
           background-color: $white;
           overflow: hidden;
           padding-bottom: 44px;
-          width: 820px;
+          width: 100%;
           height: 514px;
           // 共同checkedbox設定
           input {
@@ -87,10 +90,10 @@ main.shopcart-checkout {
             overflow-y: auto;
             > .itemlist_li {
               width: 100%;
-              height: 128px;
+              height: 180px;
               // border: 1px solid black;
               display: grid;
-              grid-template-columns: 1fr 20% 40% 20% 75px;
+              grid-template-columns: 1fr 30% 25% 160px;
               align-items: center;
               padding-right: 0px;
               > div {
@@ -98,10 +101,12 @@ main.shopcart-checkout {
                 width: 158px;
                 height: 92px;
                 overflow: hidden;
-                border: 1px solid $orange;
-                margin-left: 0px;
-                img {
-                  width: 100%;
+                &:first-child {
+                  border: 1px solid $orange;
+                  margin: 0 auto;
+                  img {
+                    width: 100%;
+                  }
                 }
               }
               > p.comclasstitle {
@@ -117,6 +122,11 @@ main.shopcart-checkout {
                     color: $black;
                   }
                 }
+              }
+              div.comclassdetail {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
               }
               p.comprice {
                 // border: 1px solid red;
@@ -139,13 +149,14 @@ main.shopcart-checkout {
         }
         // 總計欄
         .amount {
+          margin: 0 auto;
+          display: inline-block;
           border: 1px solid $orange;
           border-radius: 10px;
           background-color: $white;
           overflow: hidden;
           width: 340px;
           height: 514px;
-          margin-right: 10px;
           > p {
             width: 100%;
             height: 35px;
@@ -203,50 +214,33 @@ main.shopcart-checkout {
             border-top: 1px solid $orange;
           }
         }
-      }
-      // 推薦課程
-      .recomclass {
-        // border: 1px solid green;
-        > p {
-          margin: 55px 0px 25px 18px;
-        }
-        .swiper {
-          // border: 1px solid brown;
-          width: 95%;
-          height: 100%;
-          padding-right: 7px;
-          .swiper-slide {
-            border: 1px solid $black;
-            box-shadow: 8px 0px 0px 0px $orange;
-            width: 250px;
-            height: 258px;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            .imgframe {
-              // border: 1px solid green;
-              width: 100%;
-              height: 152px;
-              overflow: hidden;
-              img {
-                width: 100%;
-              }
-            }
-            > div:last-child {
-              // border: 1px solid red;
-              background-color: $white;
-              flex-grow: 1;
-              position: relative;
-              p {
-                // border: 1px solid red;
-                display: block;
-                position: absolute;
-                width: 100%;
-                text-align: center;
-                top: calc(50% - 17px);
-                left: 0;
-              }
-            }
+        // 結帳
+        .golinepay {
+          margin: 0 auto;
+          border: 1px solid $orange;
+          border-radius: 10px;
+          background-color: $white;
+          overflow: hidden;
+          width: 340px;
+          height: 514px;
+          display: inline-flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          padding-bottom: 30px;
+          > p:first-child {
+            width: 100%;
+            height: 35px;
+            margin: 0;
+            background-color: $orange;
+          }
+          > img {
+            display: block;
+            width: 120px;
+            height: 120px;
+            border: 3px solid green;
+            border-radius: 10px;
+            padding: 20px;
           }
         }
       }

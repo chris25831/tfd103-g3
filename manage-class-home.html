@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
@@ -29,8 +30,9 @@
         <div>
             <!-- bookmark -->
             <div class="bookmark-frontend" id="classes-bookmark">
-                <button  v-for="(category,index) in categories" :key="category" class="bookmark-item classesonly" :class="[{active: currentcategory === index }]"  @click="currentcategory = index">{{category}}</button>
+                <button  v-for="(category,index) in categories" :key="category" class="bookmark-item classesonly" :class="[{active: currentcategory === index }]"  @click="currentcategory = index;changeCategory()">{{category}}</button>
             </div>
+            <!-- newclass -->
             <div class="classbtn">
                 <button class="bluebutton classesbtn" onclick="location.href='./manage-class-content.html'">新增項目</button>
             </div>
@@ -39,7 +41,32 @@
                 <manage-triclasses  v-for="subdata in this[classdata[currentcategory]]" :img-src="subdata.imgSrc" :class-url="subdata.classUrl" :class-title="subdata.classTitle" :class-subtitle="subdata.classSubtitle" :class-id="subdata.classID"></manage-triclasses>  
             </div>
         </div>
-   </main>
+   
+
+        <div class="pagination"> 
+        <!--分頁器-->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous" @click="minusOnePage">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item" v-for="page in totalPage"><a class="page-link"  href="#">{{page}}</a></li>
+                        
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next"  @click="plusOnePage">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+        </div>
+    </main>
+
 
    
    <!-- 這是footer-->
@@ -59,15 +86,18 @@
     new Vue({
         el:'#classes-home',
         data:{
-            
+           
             // 書籤組件data
             currentcategory: 0,
             categories: ["團練課程", "個人教練","營養規劃"],
             classdata: ["triclasses", "trainers","menus"],
-            // en_categories: ["triclass-classes", "trainer-classes","menu-classes"],
-            // list_data:[[],[],[]],
-        
-            
+            totalPage: "",  //總頁面數
+            // 分頁器pagination
+            itemsPerPage: 3,//一頁顯示筆數
+            tidedData:[],//放螢幕所顯示的項目
+            currentPage: 1, //現在的頁碼
+            startIndex: "", //起始項目index，供分頁器使用
+            // categorizedData: [],
             // **課程組件data**
             // 訓練課程
             triclasses:[
@@ -302,17 +332,67 @@
 
             ],
         },
-        
-        // computed:{
-        //     currentCategoryComponent(){
+        methods: {
+            changeClassPage(e) {
+                this.currentPage = parseInt(e.target.innerText);
+            },
+            minusOnePage() { //分頁器
+                if(this.currentPage > 1) {
+                    this.currentPage = this.currentPage - 1;
+                }
+            },
+            plusOnePage() { //分頁器
+                if(this.currentPage < this.totalPage) {
+                    this.currentPage = this.currentPage + 1;
+                }
+            },
+            changeCategory(e) {    
+                    if(this.classdata[0]){
+                        this.totalPage = Math.ceil(this.triclasses.length / this.itemsPerPage)
+                        this.tidedData = this.triclasses.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+                    }
+                    if(this.classdata[1]){
+                        this.totalPage = Math.ceil(this.trainers.length / this.itemsPerPage)
+                        this.tidedData = this.trainers.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+                    }
+                    if(this.classdata[2]){
+                        this.totalPage = Math.ceil(this.menus.length / this.itemsPerPage)
+                        this.tidedData = this.menus.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+                    }
+                    this.tidedData=""
+                    this.currentPage = 1;         
+            },
+        },
+       
+      
+            watch: {
+                currentPage(newValue, oldValue) { //分頁器偵測所處頁面
+                    this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
+                    
+                    document.querySelectorAll("a.page-link").forEach((text, index) => {
+                        if(parseInt(text.innerText) === parseInt(newValue)) {
+                            text.style.backgroundColor = "lightgray";
+                        } else {
+                            text.style.backgroundColor = "";
+                        }
+                    });
+                    
+                },    
+            },
+            created() {
+                //初始團練課程
+                this.totalPage = Math.ceil(this.triclasses.length / this.itemsPerPage)
+                //從哪個index起始
+                this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
+                //回傳切割後的新陣列
+                this.tidedData = this.classData.slice(this.startIndex, this.startIndex + this.itemsPerPage);            
 
-        //         return this.en_categories[this.currentcategory];          
-        //     },
-        // },
+            },
 
-    });
+        });
 
 </script> 
+<script src="https://unpkg.com/spacingjs" defer></script>
 
 
 </body>

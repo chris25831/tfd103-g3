@@ -17,6 +17,5 @@
        //執行
        $pdo->exec($sql);
 
-       header("Location: selectRace.php");
 
 ?>
