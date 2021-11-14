@@ -28,6 +28,7 @@ Vue.component("bookmark-forum",{
             }
         },
     },
+    //am I uploading successfully?
     mounted() { 
         document.querySelectorAll("span.bookmark-item").forEach((text, index) => {
             if(text.innerText.toString() === "全部") {
