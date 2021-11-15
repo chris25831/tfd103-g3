@@ -58,7 +58,7 @@
                         <div class="report" @click="dropDownSwitch">
                             <img src="./src/images/img/forum/report-button.png">
                             <div class="drop-down" v-show="showReport">
-                                <span>檢舉</span>
+                                <span @click="report">檢舉</span>
                             </div>  
                         </div>
                         
@@ -109,8 +109,25 @@
                 
             </div>
         </div>
-
-        <forum-new-post-modal @closing="closeModal" v-show="showModal"></forum-new-post-modal>
+        <!-- <div class="darken-background" id="report-mask" :v-if="showReportModal">
+            <div id="report-block" class="report-block">
+                <h3>檢舉文章</h3>
+                <form action="report.php" method="POST">
+                    <label for="discriminate"> <input type="radio" name="reason" value="1" id="discriminate">中傷、歧視、挑釁或謾罵他人</label>   
+                    <label for="hurt"><input type="radio" name="reason" value="2" id="hurt">暴力、傷害他人或傷害動物的內容</label>
+                    <label for="spam"><input type="radio" name="reason" value="3" id="spam">包含廣告、商業宣傳之內容</label>
+                    <label for="others"><input type="radio" name="reason" value="4" id="others">其他原因</label>   
+                    <div class="button-block">
+                        <button class="cancel">取消</button>
+                        <button class="send-report">送出</button>
+                    </div>
+                </form>
+           
+            </div>
+        </div> -->
+        <report @cancel-report="closeReportModal" v-if="showReportModal"></report>
+        
+        <!-- <forum-new-post-modal @closing="closeModal" v-show="showModal"></forum-new-post-modal> -->
     </main>
     
     <!--這是footer-->
@@ -122,10 +139,12 @@
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
 <script src="./src/js/vuex.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/common/bookmark-forum.js"></script>
 <script src="./src/component/common/forum-new-post-modal.js"></script>
+<script src="./src/component/common/report.js"></script>
 <script src="./forum.js"></script> 
 
 <script type="module">
@@ -139,6 +158,7 @@
             likeSwitch: true,
             likeSwitchForRed: false,
             showReport: false,
+            showReportModal: false,
             dataNumber: "",
             singleArticleData: [],
             dummyData: [
@@ -206,6 +226,13 @@
             dropDownSwitch() {
                 this.showReport = !this.showReport;
             },
+            report() {
+                this.showReportModal = true;
+                console.log("ok");
+            },
+            closeReportModal() {
+                this.showReportModal = false;
+            }
         },
         computed: {
             getPostId() {
@@ -215,10 +242,10 @@
         mounted() {  
             let numberArray = location.hash.split("");
             numberArray.shift();
-            let theNumber;    //theNumber為文章編號
+            
             for(let i = 0; i < numberArray.length; i++) {
                 numberArray[i];
-                theNumber = numberArray[i]
+                this.dataNumber += numberArray[i]
             }           
         },
     })
