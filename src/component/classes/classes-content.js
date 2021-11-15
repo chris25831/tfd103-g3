@@ -105,6 +105,7 @@ Vue.component("contentdetail-1",{
             // 跳轉結帳頁面
             // window.location.href="../../shopcart-home.html";  
             window.open("../../shopcart-home.html","_self");  
+            // window.open("https://tibamef2e.com/tfd103/g3/tfd103-g3/shopcart-home.html","_self");  
         },
         
     },
