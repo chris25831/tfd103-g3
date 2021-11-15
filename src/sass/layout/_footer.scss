@@ -17,15 +17,21 @@ footer{
         flex-wrap: wrap;
         min-height: 300px;
         justify-content: center;
-        // border: 1px solid rgb(255, 255, 255);
         margin: 0 auto;
-        
+        padding-top: 40px;
         div{
             flex: 1 1 auto;
-            padding: 20px 10px;
             justify-content: space-between;
             line-height:1.8;
+            
+            
+           
         }
+        div.footer_tibame{
+            display: flex;
+            align-items: flex-end;
+        }
+        
     }
 }
 div #footerlogo{
@@ -43,29 +49,40 @@ div #footerlogo{
 div.sitemap{
     @include fontfamily(400);
     display: flex;
-    // width: 10%;
     justify-content: space-around;
     // border:1px solid pink;
     ul{
-        
-        padding: 0;
-        margin-top: 0;
-        vertical-align: top;
-        flex: 1 0 auto;
-        text-align: center;
-    }
-    li{
-        list-style: none;
-        
+        padding-left: 0;
+        // border:1px solid white;
+        li{
+            margin-left: 0;
+            // border:1px solid white;
+            list-style: none;
+            a{
+                color: white;
+                text-decoration: none;
+                padding: 0;
+                margin-top: 0;
+                vertical-align: top;
+                flex: 1 0 auto;
+                text-align: center;
+                list-style: none;
+            
+          }
+        }
     }
 }
 div.contactus{
     @include fontfamily(400);
     display: inline-flex;
     flex-direction: column;
+    padding-left: 50px;
     flex-wrap: wrap;
-    // border:1px solid rgb(2, 255, 116);
-    margin-left: 30px;
+    margin-left: 50px;
+    div{
+        
+        padding-top: 25px;
+    }
     p{
         margin: 0;
     }
@@ -80,5 +97,5 @@ div.contactus{
             color:white;
         }
     }
+    
 }
-
