@@ -200,26 +200,39 @@ const plan = new Vuex.Store({
                 //questionanswer答案陣列
                 state.questionanswer.push(state.questions[state.current_tab - 1].answer);
                 state.current_tab ++ 
-                console.log(state.questionanswer);
+                // console.log(state.questionanswer);
                 
             }
             if(state.current_tab === 5){
+                state.showloading = true;
+                // console.log(state.questionanswer);
+                var questionAnswer = JSON.stringify(Object.assign({},state.questionanswer));
+                let data= new URLSearchParams()
+                data.append('answer',questionAnswer)
+               
                 axios({
                     method: 'post',
                     url: './php/plan.php',
-                    data: JSON.stringify(state.questionanswer)
+                    data:data,
+                    header:{
+                        'Content-type':'application/json'
+                    }
                   })
                   .then(function (response) {
-                      // your action after success
-                      console.log(response);
+                    state.showquestion = false;
+                    //   console.log(response); 
+                    //   console.log("成功");
+                      state.showplan = true;
+                      state.showloading = false;
+                      // 這邊的plandata=回傳的資料
+                    //   state.plandata = response.data
                   })
                   .catch(function (error) {
                      // your action on error success
                       console.log(error);
                   });
-                  state.showquestion = false;
-                  state.showloading = false;
-                  state.showplan = true;
+                  
+               
             }else if(state.current_tab === 4){
                 state.tab = "完成"
             }

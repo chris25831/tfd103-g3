@@ -51,11 +51,12 @@
                         <hr style="border: 1px dashed orange;width: 100%;">
                         <p class="title3" style="margin: 0;" >{{memberinfo.week}}<br>week</p>
                     </div>
-                    <div id="plan_chart">
+                    <vue-c3 :handler="handler" id="plan_chart"></vue-c3>
+                    <!-- <div id="plan_chart">
                         <i class="fa-solid fa-person-swimming"></i>
                         <i class="fa-solid fa-person-biking"></i>
                         <i class="fa-solid fa-person-running"></i>
-                    </div>
+                    </div> -->
                 </main>
                 <div class="plan_member_button">
                     <button onclick="window.open('./member-main.html', '_self')" class="bluebutton">我的基本資料</button>
@@ -128,7 +129,7 @@
       <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
    </footer>
 
-<!-- <script src="./src/component/plan/plan.js"></script> --><!--(避風港))-->
+<!-- <script src="./src/component/plan/plan.js"></script> --><!--(美蒂避風港)-->
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script type="module">
@@ -137,6 +138,14 @@
     new Vue({
         el: '#plan_wrapper',
         store:plan,
+        data() {
+            return {
+                handler: new Vue(),
+                Swim:10,
+                Bike:20,
+                Run:10,
+            }
+        },
         methods: {
             checkoneday(){
                 this.$store.commit('checkoneday')
@@ -160,7 +169,71 @@
                     plandata(){
                         return this.$store.state.plandata
                     },
-                
+                    options() {
+                     return {
+                        columns: [
+                            ["Swim", this.Swim],
+                            ["Bike", this.Bike],
+                            ["Run", this.Run],
+                        ],
+                        type: "bar",
+                        colors: {
+                            Swim: "#FFA10A",
+                            Bike: "#00429D",
+                            Run: "#E75F49"
+                        },
+                      }
+                    },
+                    options() {
+                    return {
+                        // 主としてデータ
+                        data: {
+                        columns: [
+                            // 配列一つ目が、データの名前になる
+                            ['弊社', 0, 20, 10, 40, 15, 20],
+                            ['御社', this.val, 200, 100, 400, 150, 250]
+                        ],
+                        },
+                        axis: {
+                        x: {
+                            label: {
+                            // X 軸のラベルを変更する
+                            // 位置も変えれる
+                            text: '期',
+                            position: 'outer-center'
+                            }
+                        },
+                        y: {
+                            label: {
+                            text: '売り上げ(億)',
+                            position: 'outer-middle'
+                            }
+                        }
+                        },
+                        tooltip: {
+                        // 各点にマウスオーバーした際に出てくる部分の設定
+                        format: {
+                            title(d) {
+                            return `第 ${d} 期`
+                            },
+                            value(value, ratio, id) {
+                            return `${value} 億円`
+                            }
+                        }
+                        },
+                        grid: {
+                        x: {
+                            show: true
+                        },
+                        y: {
+                            show: true
+                        }
+                        },
+                        legend: {
+                        position: 'right'
+                        }
+                    }
+                    }
             },
 
             created() { 
@@ -168,51 +241,55 @@
                 if(theData != null){
                     return this.$store.state.plandata = JSON.parse(theData);
                 }
-            }
-            
+            },
+            mounted() {
+                //C3.js
+                this.handler.$emit('init', this.options)
+                var chart = c3.generate({
+                    bindto: "#plan_chart",
+                    size: {
+                            height: 140,
+                            width: 190
+                        },
+                    data: {  //針對圖表的樣式資料屬性寫在data內
+                        
+                        columns: [
+                            ["Swim", this.Swim],
+                            ["Bike", this.Bike],
+                            ["Run", this.Run],
+                        ],
+                        type: "bar",
+                        colors: {
+                            Swim: "#FFA10A",
+                            Bike: "#00429D",
+                            Run: "#E75F49"
+                        },
+                    
+                    },
+                    bar:{
+                        ratio: 0.8 ,
+                        space: 0.25
+                    },
+                    legend: {
+                        show: true, //是否顯示下排項目表
+                    },
+                    axis: {
+                        x:{
+                            show: false,
+                        },
+                        y:{
+                            show: false,
+                        }
+                    }
+                
+                });
+
+            },
         
     });  
     
 
-    //圖表C3.js
-    var chart = c3.generate({
-        bindto: "#plan_chart",
-        size: {
-                height: 140,
-                width: 190
-            },
-        data: {  //針對圖表的樣式資料屬性寫在data內
-            columns: [
-            ["Swim", 30],
-            ["Bike", 60],
-            ["Run", 50],
-            ],
-            type: "bar",
-            colors: {
-                Swim: "#FFA10A",
-                Bike: "#00429D",
-                Run: "#E75F49"
-                
-            },
-        
-        },
-        bar:{
-            ratio: 0.8 ,
-            space: 0.25
-        },
-        legend: {
-            show: true, //是否顯示下排項目表
-        },
-        axis: {
-            x:{
-                show: false,
-            },
-            y:{
-                show: false,
-            }
-        }
-        
-        });
+    
         
 </script>
 </body>

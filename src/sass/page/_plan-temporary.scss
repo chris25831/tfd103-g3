@@ -466,13 +466,11 @@ section.plan_tem_wrapper {
   background: linear-gradient(-220deg, #00429d, #00214f);
   
   svg{
-    
     display: flex;
     align-items: center;
     width:40%;
     height: 100vh;
     margin: 0 auto;
-
     #second  g{
       animation: move 2s ease forwards infinite;
       animation-delay: calc(var(--order) * 200ms);

@@ -11,11 +11,11 @@
        $racelink = $_POST["RaceLink"];
        $racecontent = $_POST["RaceContent"];
        $racephoto = $_POST["RacePhoto"];
-       $raceid = date("YmdHis"); 
+      //  $raceid = date("YmdHis"); 
       //  $raceid = substr(date("YmdHis"), -10); 
        
        //建立SQL
-       $sql = "INSERT INTO Race(RaceID, RaceName, RaceDate,RaceLocation,RaceSponsor,RaceDistance,RaceUpdate,RaceLink,RaceContent,RacePhoto ) VALUES ('".$raceid."','".$racename."','".$racedate."','".$racelocation."','".$racesponsor."','".$racedistance."','".$raceupdate."','".$racelink."','".$racecontent."','".$racephoto."')";
+       $sql = "INSERT INTO Race(RaceID, RaceName, RaceDate,RaceLocation,RaceSponsor,RaceDistance,RaceUpdate,RaceLink,RaceContent,RacePhoto ) VALUES (NOW(),'".$racename."','".$racedate."','".$racelocation."','".$racesponsor."','".$racedistance."','".$raceupdate."','".$racelink."','".$racecontent."','".$racephoto."')";
        //清掉所有資料再打開這個
        //  $sql = "DELETE FROM Race";
        $pdo->exec($sql);
