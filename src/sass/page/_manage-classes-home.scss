@@ -1,3 +1,4 @@
+//***後台課程主頁***
 main.manage-classes-home {
   // border: 1px solid red;
   > div {
@@ -12,6 +13,19 @@ main.manage-classes-home {
       background-color: transparent;
     }
 
+    .classbtn {
+      padding: 10px;
+      display: flex;
+      justify-content: flex-end;
+      button.classesbtn {
+        justify-content: center;
+        // box-shadow: 5px 5px #00429d;
+        align-self: flex-end;
+        width: 100px;
+        height: 40px;
+        outline: none;
+      }
+    }
     // grid
     .manage-classesgrid {
       width: 785px;
@@ -60,80 +74,69 @@ main.manage-classes-home {
         }
       }
     }
+
+    div.pagination {
+      margin-top: 20px;
+      margin-bottom: $bottomspacing;
+      justify-content: center;
+      li a {
+        color: $blue;
+      }
+      span {
+        color: $blue;
+      }
+    }
   }
 }
 
-div.classbtn {
-  padding: 10px;
-  display: flex;
-  justify-content: flex-end;
-  button.classesbtn {
-    justify-content: center;
-    // box-shadow: 5px 5px #00429d;
-    align-self: flex-end;
-    width: 100px;
-    height: 40px;
-    outline: none;
-  }
-}
-
-div.pagination {
-  margin-top: 20px;
-  margin-bottom: $bottomspacing;
-  justify-content: center;
-  li a {
-    color: $blue;
-  }
-  span {
-    color: $blue;
-  }
-}
-
-//後台課程內頁
+//***後台課程內頁***
 .manage-classes-content {
   background-color: #ededed;
-  div {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding-bottom: 20px;
-    // border: 1px solid red;
-    // bookmark for classes only
-    .classesonly {
-      border: none;
-      background-color: transparent;
-    }
-  }
-}
-.classesWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 20px;
   // border: 1px solid red;
-  width: 900px;
-  padding-top: 50px;
-  .classesContent {
-    display: flex;
-    flex-direction: column;
-    // border: 1px solid rgb(81, 255, 0);
-    width: 800px;
-    label {
-      font-weight: 600;
-      margin-top: 10px;
-    }
-    input,
-    textarea {
-      border: none;
-      height: 30px;
-      border-radius: 5px;
-      width: 80%;
-      margin-top: 10px;
-    }
-    textarea {
-      height: 400px;
-    }
-    hr {
-      width: 100%;
-      margin-top: 10px;
-    }
-    select {
-      width: 150px;
+  // bookmark for classes only
+  .classesonly {
+    border: 1px solid red;
+    border: none;
+    background-color: transparent;
+  }
+
+  .classesWrapper {
+    // border: 1px solid red;
+    width: 900px;
+    padding-top: 50px;
+    .classesContent {
+      display: flex;
+      flex-direction: column;
+      // border: 1px solid rgb(81, 255, 0);
+      width: 800px;
+      label {
+        font-weight: 600;
+        margin-top: 10px;
+      }
+      input,
+      textarea {
+        border: none;
+        height: 30px;
+        border-radius: 5px;
+        width: 80%;
+        margin-top: 10px;
+      }
+      textarea {
+        height: 400px;
+      }
+      hr {
+        width: 100%;
+        margin-top: 10px;
+      }
+      select {
+        width: 150px;
+      }
     }
   }
 }
