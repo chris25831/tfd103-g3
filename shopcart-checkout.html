@@ -53,7 +53,15 @@
     <!-- LINEPAY串接 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/hmac-sha256.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/enc-base64.min.js"></script>
+
+
+
+
     <script>
+       
+
           new Vue({
             el:'#shopcart-checkout',
             data:{
@@ -66,12 +74,84 @@
                 // LINEPAY結帳
                 checkout(){
                     // console.log("123");
-                  
 
+                    // 倒出localstorage
+                    let allItem =  JSON.parse(storage['surePayList']);
+                    console.log(allItem);
 
-                    axios({
+                    let allItem_amount =  JSON.parse(storage['surePayAmount']);
+                    console.log(allItem_amount.amount);
 
-                    })
+                    // API物件orderId和packagesId
+                    let orderid = "order-" + Date.now();
+
+                    let today = new Date();
+                    let packagesid = `${today.getFullYear()}${(today.getMonth()+1)}${(today.getDate()+1)}`;
+
+                    console.log(packagesid);
+
+                    // 創造API物件規格
+                    let orderitem = {
+                        amount: allItem_amount.amount,
+                        currency: 'TWD',
+                        orderId: orderid,
+                        packages:[
+                            {
+                                id:packagesid,
+                                amount: allItem_amount.amount,
+                                name:'Triclub課程',
+                                products:[],
+                            }
+                         ],
+                        redirectUrls:{
+                            confirmUrl:"https://tibamef2e.com/tfd103/g3/tfd103-g3/member-main.html",
+                            cancelUrl:"https://tibamef2e.com/tfd103/g3/tfd103-g3/shopcart-checkout.html",
+                        } 
+                    };
+
+                    for(let i=0;i < allItem.length;i++){
+                        let item = {
+                            id:allItem[i].comclassid,
+                            name: allItem[i].comclassTitle,
+                            quantity: 1,
+                            price:allItem[i].comprice,
+                        }
+                        orderitem.packages[0].products.push(item);
+                    }
+
+                    console.log(orderitem);
+
+                    
+                    //產生UUID 
+                    const uuidpw = uuidv4();
+                    // console.log(uuidpw);
+
+                    // HMAC Base64簽章
+
+                    let key = '338e4dd658dfcb3c8c8626b582e26583'; 
+                    let nonce = uuidpw;
+                    let requestUri = '/v3/payments/request';
+
+                    let encrypt = CryptoJS.HmacSHA256(key + requestUri + JSON.stringify(orderitem) + nonce, key);
+
+                    // 轉 Base 64
+                    let hmacBase64 = CryptoJS.enc.Base64.stringify(encrypt);
+
+                    // console.log(hmacBase64);
+
+                    // 上傳
+                    let configs = {
+                        headers:{
+                            'Contemt-Type':'application/json',
+                            'X-LINE-ChannelId':'1656627683',
+                            'X-LINE-Authorization-Nonce': nonce,
+                            'X-LINE-Authorization': hmacBase64,
+                        }
+                    }
+
+                    axios.post('https://sandbox-api-pay.line.me/v3/payments/request', orderitem, configs).then(res => {
+                        console.log(res.data);
+                    });
 
 
 
