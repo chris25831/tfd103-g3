@@ -124,7 +124,7 @@
                     
                     //產生UUID 
                     const uuidpw = uuidv4();
-                    // console.log(uuidpw);
+                    console.log(uuidpw);
 
                     // HMAC Base64簽章
 
@@ -137,7 +137,7 @@
                     // 轉 Base 64
                     let hmacBase64 = CryptoJS.enc.Base64.stringify(encrypt);
 
-                    // console.log(hmacBase64);
+                    console.log(hmacBase64);
 
                     // 上傳
                     let configs = {
@@ -146,6 +146,7 @@
                             'X-LINE-ChannelId':'1656627683',
                             'X-LINE-Authorization-Nonce': nonce,
                             'X-LINE-Authorization': hmacBase64,
+                            'Access-Control-Allow-Origin' : '*',
                         }
                     }
 

@@ -95,11 +95,6 @@
     <footer id="footer">
         <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
     </footer>
- 
-    
-
-
-
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
@@ -128,7 +123,7 @@
             totalPage: "",    //總頁面數
             dummyData: [   //假資料
                 {
-                    "ArticleNumber": "1",
+                    "ArticleNumber": "123",
                     "AuthorName": "Maggie Wang1",
                     "AuthorAvatar": "./src/images/img/forum/smile.jpg",
                     "PostTime": "2021/09/21",
@@ -244,7 +239,6 @@
                 console.log(clickTarget);
                 window.location.href=`./forum-content.html#${clickTarget.dataset.id}`;
             }
-            
         },
         computed: {},
         watch: {
@@ -278,7 +272,10 @@
             this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
         },
         mounted() {
-            axios.get('./php/select-forum.php').then(res => console.log(res));
+            axios
+                .get('./php/select-forum.php')
+                .then(res => console.log(res.data))
+                .catch(function(error){console.log(error)});
         }
     })
 </script>

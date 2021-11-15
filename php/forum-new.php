@@ -7,7 +7,7 @@
 
     //建立SQL
     $sql = "INSERT INTO member(PostID, UserID, PostTitle, PostDate, PostCategory, PostContent, PostPhoto) VALUES (?, ?, ?, NOW(), ?, ?, ?)";
-
+    
     $statement = $pdo->prepare($sql);
     $statement->bindValue(3, $title);
     $statement->bindValue(5, $category); 
