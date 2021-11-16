@@ -42,15 +42,14 @@ div #footerlogo{
         display: flex;
         justify-self: center;
         // border:1px solid rgb(238, 255, 0);
-        max-width: 70%;
-        margin: 0 auto;
+        max-width: 50%;
+        margin: 8px auto;
     }
 }
 div.sitemap{
     @include fontfamily(400);
     display: flex;
     justify-content: space-around;
-    // border:1px solid pink;
     ul{
         padding-left: 0;
         // border:1px solid white;
@@ -77,6 +76,7 @@ div.contactus{
     display: inline-flex;
     flex-direction: column;
     padding-left: 50px;
+    padding-top: 0px;
     flex-wrap: wrap;
     margin-left: 50px;
     div{

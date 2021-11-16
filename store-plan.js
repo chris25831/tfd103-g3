@@ -9,6 +9,9 @@ const plan = new Vuex.Store({
         questionanswer : [],
         current_tab:0,
         tab:"下一步",
+        Swim:0,
+        Bike:0,
+        Run:0,
         max:4,
         //測驗題目
         questions:[
@@ -97,7 +100,7 @@ const plan = new Vuex.Store({
             membername:"maggie",
             racedate:"20221127",
             week:8,
-            point:0,
+            point:"",
         },
         //計畫表資料
         plandata:[
@@ -111,18 +114,18 @@ const plan = new Vuex.Store({
             },
             //day2
             {
-            "Swim":1,
-            "Bike":0.5,
+            "Swim":null,
+            "Bike":null,
             "Run":null,
-            "Rest":false,
+            "Rest":true,
             check:[]
             },
             //day3
             {
-            "Swim":null,
-            "Bike":null,
+            "Swim":1,
+            "Bike":0.5,
             "Run":null,
-            "Rest":"rest",
+            "Rest":false,
             check:[],
             },
             //day4
@@ -169,6 +172,11 @@ const plan = new Vuex.Store({
         },
         checkoneday(state){
             alert("恭喜你獲得一點");
+            
+            let newpoint = JSON.parse(localStorage.getItem('Points'));
+            // console.log(newpoint);
+            state.memberinfo.point = newpoint
+            
             if(state.memberinfo.point){
                 state.memberinfo.point += 1
             }
@@ -182,6 +190,7 @@ const plan = new Vuex.Store({
             var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
             if (yes) {
                 state.cancel = false
+                localStorage.clear("plandata")
             } else {
                 alert('您已取消');
             }
@@ -240,7 +249,18 @@ const plan = new Vuex.Store({
         current_tab(state,payload){
             state.current_tab = payload
         },
+        growSwim(state){
+            state.Swim += 5
         
+        },
+        growRun(state){
+            state.Run += 5
+        
+        },
+        growBike(state){
+            state.Bike += 5
+        
+        }
         
     },
    
