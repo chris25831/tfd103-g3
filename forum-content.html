@@ -46,9 +46,9 @@
             <div class="single-article">
                 <div class="head">
                     <div class="author">
-                        <img class="avatar" src="./src/images/img/forum/smile.jpg" alt="">
-                        <span class="name">Maggie</span>
-                        <span class="time">5 hours ago</span>
+                        <img class="avatar" :src="singleArticleData.AuthorAvatar" alt="">
+                        <span class="name">{{singleArticleData.AuthorName}}</span>
+                        <span class="time">{{singleArticleData.PostTime}}</span>
                     </div>
                     <div class="action">
                         <div class="like">
@@ -65,13 +65,19 @@
                     </div>
                 </div>
                 <div class="middle">
-                    <h3 class="title">關於卡鞋</h3>
+                    <h3 class="title">{{singleArticleData.ArticleTitle}}</h3>
                     
                     <div class="forum-content-block">
                         <p class="manage-forum-content">
-                            自行車與走路、慢跑、登山等同樣是腿部的運動，但最大的差別就是多了一台車子。不像慢跑等運動腳部直接接觸地面，自行車騎士的主要施力點是在自行車踏板上，靠著踩踏踏板，經過鍊條將騎士的能量傳導到車輪，獲得前進的動力。在自行車高速前進的狀態下，踏板迴轉也相當快速，此時腳若離開踏板，不但會造成能量流失，也容易因突然的重心不穩而導致摔車，相當危險。因此自行車廠商開發出專用的自行車鞋與踏板，鞋底有特殊的扣片，能與專用踏板緊密相扣，比起穿一般運動鞋能提升騎乘效能，除了向下踩的力量，更增加上提的能量，使得踩踏的畫圓動作更為協調、順暢。
+                            {{singleArticleData.ArticleContent}}
+                            
                         </p>
-                        <img src="" alt="" class="photo">
+                        <div class="photo-block" v-if="showPhotoBlock">
+                            <img src="" alt="" class="photo-one">
+                            <img src="" alt="" class="photo-two">
+                            <img src="" alt="" class="photo-three">
+                        </div>
+                        
                     </div>
                 </div>
             
@@ -149,26 +155,15 @@
 
 <script type="module">
     import forum from "./forum.js"
-    new Vue({
-        el: "#forum-content",
-        store: forum,
-        data: {
-            categories: ["全部","閒聊","裝備","心得","問題"],
-            showModal: false,
-            likeSwitch: true,
-            likeSwitchForRed: false,
-            showReport: false,
-            showReportModal: false,
-            dataNumber: "",
-            singleArticleData: [],
-            dummyData: [
+
+    let dummyData = [   //假資料
                 {
                     "ArticleNumber": "1",
                     "AuthorName": "Maggie Wang1",
                     "AuthorAvatar": "./src/images/img/forum/smile.jpg",
                     "PostTime": "2021/09/21",
                     "ArticleTitle": "問題跑鞋標題",
-                    "Category": "問題",
+                    "ArticleCategory": "問題",
                     "ArticleContent": "問題跑鞋內容",
                     "ViewsCount": "100",
                     "LikesCount": "100",
@@ -210,7 +205,45 @@
                     "LikesCount": "400",
                     "CommentsCount": "400"
                 },
-            ]
+                {
+                    "ArticleNumber": "5",
+                    "AuthorName": "Johnny Hsieh5",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "心得跑鞋標題",
+                    "ArticleCategory": "心得",
+                    "ArticleContent": "心得跑鞋內容",
+                    "ViewsCount": "500",
+                    "LikesCount": "500",
+                    "CommentsCount": "500"
+                },
+                {
+                    "ArticleNumber": "6",
+                    "AuthorName": "Johnny Walker6",
+                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
+                    "PostTime": "2021/09/21",
+                    "ArticleTitle": "心得跑鞋標題",
+                    "ArticleCategory": "心得",
+                    "ArticleContent": "心得跑鞋內容",
+                    "ViewsCount": "600",
+                    "LikesCount": "600",
+                    "CommentsCount": "600"
+                },
+            ];
+
+    new Vue({
+        el: "#forum-content",
+        store: forum,
+        data: {
+            categories: ["全部","閒聊","裝備","心得","問題"],
+            showPhotoBlock: false,
+            showModal: false,
+            likeSwitch: true,
+            likeSwitchForRed: false,
+            showReport: false,
+            showReportModal: false,
+            dataNumber: "",
+            singleArticleData: [],
         },
         methods: {
             openModal(){
@@ -232,7 +265,7 @@
             },
             closeReportModal() {
                 this.showReportModal = false;
-            }
+            },
         },
         computed: {
             getPostId() {
@@ -246,7 +279,19 @@
             for(let i = 0; i < numberArray.length; i++) {
                 numberArray[i];
                 this.dataNumber += numberArray[i]
-            }           
+            }
+            
+            for(let i = 0; i < dummyData.length; i++) {
+                if(dummyData[i].ArticleNumber.toString() === this.dataNumber.toString()) {
+                    this.singleArticleData = dummyData[i]; 
+                }
+            }
+
+            if(singleArticleData.PostPhotoOne === false  && singleArticleData.PostPhotoTwo === false && singleArticleData.PostPhotoThree === false){
+                this.showPhotoBlock = false;
+            } else {
+                this.showPhotoBlock = true;
+            }
         },
     })
 </script>

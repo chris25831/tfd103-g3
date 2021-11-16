@@ -2,7 +2,7 @@ Vue.component("forum-new-post-modal", {
     template: `
     <div id="forum-new-post-modal" class="darken-background">
         <div class="new-article forum-modal">
-            <form action="forum-new.php" method="POST">
+            <form @submit.prevent="send" action="./php/forum-new.php" method="POST">
                 <span class="info">發表文章</span>
                 <div class="cross"> 
                     <i @click="returning" class="fas fa-times fa-2x"></i>
@@ -23,23 +23,66 @@ Vue.component("forum-new-post-modal", {
                     </div>
                     <div class="single-image image-two-wrapper" @dragover.prevent @drop.prevent="dropSecondImage">
                         <div class="rectangle rectangle-two"></div>
-                        <img class="the-image-two the-image" src=""  name="image-two">
+                        <img class="the-image-two the-image" src="" name="image-two">
                     </div>
                     <div class="single-image image-three-wrapper" @dragover.prevent @drop.prevent="dropThirdImage">
                         <div class="rectangle rectangle-three"></div>
-                        <img class="the-image-three the-image" src=""  name="image-three">
+                        <img class="the-image-three the-image" src="" name="image-three">
                     </div>
                 </div>
                 
-                <button class="send-forum-content" type="submit" @click="test">送出</button>
+                <button class="send-forum-content" type="submit">送出</button>
             </form>
+            
         </div>
     </div>
     `,
-       //am I uploading successfully?
-    methods: {
-        test() {
-            console.log("testing")
+     methods: {
+        send() {    // @click.prevent="send"
+            let forumTitle = document.querySelector(".forum-title").value;
+            
+            let timeOfPost = new Date();
+            let year = timeOfPost.getFullYear();
+            let month = timeOfPost.getMonth() + 1;
+            let date = timeOfPost.getDate();
+            let hour = timeOfPost.getHours();
+            let minute = timeOfPost.getMinutes();
+            
+            let correctTimeOfPost = `${year}年${month}月${date}日 ${hour}:${minute}`;
+            let category = document.querySelector(".category").value;
+            let newArticleContent = document.querySelector(".new-article-content").value;
+            let theImageOne = document.querySelector(".the-image-one").src;
+            let theImageTwo = document.querySelector(".the-image-two").src;
+            let theImageThree = document.querySelector(".the-image-three").src;
+            
+            if(forumTitle.trim().length !== 0 && category.trim().length !== 0 && newArticleContent.trim().length !== 0) {
+                let theText = {
+                    "ArticleNumber": (Math.floor(Math.random() * 1000000000)),
+                    "AuthorName": "Maggie Wang default",
+                    "AuthorAvatar": "./src/images/img/forum/smile.jpg",
+                    "PostTime": correctTimeOfPost,
+                    "ArticleTitle": forumTitle,
+                    "ArticleCategory": category,
+                    "ArticleContent": newArticleContent,
+                    "PostPhotoOne": theImageOne,
+                    "PostPhotoTwo": theImageTwo,
+                    "PostPhotoThree": theImageThree,
+                    "ViewsCount": 0,
+                    "LikesCount": 0,
+                    "CommentsCount": 0
+                }
+                
+                this.$emit("send-all-the-text", theText)
+                
+                // category = ""
+                // newArticleContent = ""
+                // theImageOne = ""
+                // theImageTwo = ""
+                // theImageThree = ""
+            } else {
+                console.log("no");
+                return
+            }
         },
         returning() {
             this.$emit("closing");
@@ -104,7 +147,6 @@ Vue.component("forum-new-post-modal", {
                     theImage.style.objectFit = "contain"; 
                     rectangleThree.style.display = "none";
                     imageOne.appendChild(theImage);
-                
             })
         }
     },

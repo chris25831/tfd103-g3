@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <forum-new-post-modal @closing="closeModal" v-show="showModal"></forum-new-post-modal>   <!-- @closing="closeModal"-->
+        <forum-new-post-modal @closing="closeModal" v-if="showModal" @send-all-the-text="addItem"></forum-new-post-modal>  
     </main>
     
     <!--這是footer-->
@@ -107,23 +107,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 <script src="./forum.js"></script> 
 <script type="module">
-    import forum from "./forum.js"
-    new Vue({
-        el: "#forum-home",
-        store: forum,
-        data: {
-            categories: ["全部","閒聊","裝備","心得","問題"],
-            showModal: false,
-            articleData: [],   //放撈回來的資料
-            categorizedData: [], //放當前類別的所有資料
-            tidedData: [],  //放螢幕所顯示的項目
-            currentPage: 1,     //現在的頁碼
-            itemsPerPage: 2,  //每頁幾個項目
-            startIndex: "",    //起始項目index，供分頁器使用
-            totalPage: "",    //總頁面數
-            dummyData: [   //假資料
+    import forum from "./forum.js"  
+    let dummyData = [   //假資料
                 {
-                    "ArticleNumber": "123",
+                    "ArticleNumber": "1",
                     "AuthorName": "Maggie Wang1",
                     "AuthorAvatar": "./src/images/img/forum/smile.jpg",
                     "PostTime": "2021/09/21",
@@ -194,8 +181,23 @@
                     "LikesCount": "600",
                     "CommentsCount": "600"
                 },
-            ]
+            ];
+
+    new Vue({
+        el: "#forum-home",
+        store: forum,
+        data: {
+            categories: ["全部","閒聊","裝備","心得","問題"],
+            showModal: false,
+            articleData: [],   //放撈回來的資料
+            categorizedData: [], //放當前類別的所有資料
+            tidedData: [],  //放螢幕所顯示的項目
+            currentPage: 1,     //現在的頁碼
+            itemsPerPage: 3,  //每頁幾個項目
+            startIndex: "",    //起始項目index，供分頁器使用
+            totalPage: "",    //總頁面數
         },
+        
         methods: {
             openModal(){
                 this.showModal = true;
@@ -238,9 +240,15 @@
                 // this.$store.commit("getPostId", clickTarget.dataset.id);
                 console.log(clickTarget);
                 window.location.href=`./forum-content.html#${clickTarget.dataset.id}`;
-            }
+            },
+            addItem(item) {
+                console.log(item);
+                
+                this.articleData.unshift(item);
+                console.log(this.articleData)
+                this.showModal = false;
+            },
         },
-        computed: {},
         watch: {
             currentPage(newValue, oldValue) {   //分頁器偵測所處頁面  
                 this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -257,12 +265,12 @@
         },
         created() {
             //取得資料
-            this.articleData = this.dummyData;
+            this.articleData = dummyData;
 
             //存放分類為"全部"的資料 (預設)
             this.categorizedData = this.articleData;
             
-            //計算總頁數
+            // //計算總頁數
             this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);   
             
             //計算起始index number 
@@ -271,11 +279,13 @@
             //資料暫存區 - 指畫面有顯示的項目
             this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
         },
+
         mounted() {
-            axios
-                .get('./php/select-forum.php')
-                .then(res => console.log(res.data))
-                .catch(function(error){console.log(error)});
+            // axios
+            //     .get('./php/select-forum.php')
+            //     .then(res => console.log(res.data))
+            //     .catch(function(error){console.log(error)});
+           
         }
     })
 </script>
