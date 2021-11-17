@@ -5,7 +5,7 @@ const plan = new Vuex.Store({
         //lightbox答案
         showquestion:true,
         showloading:false,
-        showplan:false,
+        showplan:true,
         questionanswer : [],
         current_tab:0,
         tab:"下一步",
@@ -96,10 +96,10 @@ const plan = new Vuex.Store({
         cancel: true,
         //會員資料
         memberinfo:{
-            photo:"./src/images/img/plan/memberphoto.png",
+            photo:"./src/images/img/plan/member00001.jpg",
             membername:"maggie",
             racedate:"20221127",
-            week:8,
+            week:12,
             point:"",
         },
         //計畫表資料
@@ -213,8 +213,9 @@ const plan = new Vuex.Store({
                 
             }
             if(state.current_tab === 5){
-                state.showloading = true;
-                // console.log(state.questionanswer);
+                // state.showloading = true;
+                state.showplan = true;
+                console.log(state.questionanswer);
                 var questionAnswer = JSON.stringify(Object.assign({},state.questionanswer));
                 let data= new URLSearchParams()
                 data.append('answer',questionAnswer)

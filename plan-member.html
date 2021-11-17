@@ -51,8 +51,9 @@
                         <hr style="border: 1px dashed orange;width: 100%;">
                         <p class="title3" style="margin: 0;" >{{memberinfo.week}}<br>week</p>
                     </div>
-                    <vue-c3  id="plan_chart"></vue-c3>
-                   
+                    
+                            <vue-c3  id="plan_chart"></vue-c3>
+                       
                 </main>
                 <div class="plan_member_button">
                     <button onclick="window.open('./member-main.html', '_self')" class="bluebutton">我的基本資料</button>
@@ -168,6 +169,7 @@
                 memberinfo(){
                     return this.$store.state.memberinfo
                 },
+                
                 plandata(){
                     return this.$store.state.plandata
                 },
@@ -189,7 +191,6 @@
                 }
             },
             mounted() {
-                
                 //C3.js
                 var chart = c3.generate({
                     bindto: "#plan_chart",
@@ -198,7 +199,6 @@
                             width: 190
                         },
                     data: {  //針對圖表的樣式資料屬性寫在data內
-                        
                         columns: [
                             ["Swim", this.Swim],
                             ["Bike", this.Bike],
@@ -235,6 +235,11 @@
                     return this.$store.state.memberinfo.point = thePoint;
                 }
             },
+            watch:{
+                Swim(){
+                    
+                }
+            }
            
     });  
     
