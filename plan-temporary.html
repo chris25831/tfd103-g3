@@ -19,7 +19,8 @@
     <script src="./src/js/vue.js"></script>
     <!--axios-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+    <!--gsap-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="plan">
@@ -133,21 +134,32 @@
                 <div class="plan_bg">
                     
                     <div class="plan_info">
-                        <p >比賽日期:2021/11/12</p>
-                        <p>訓練週數: 12 Week</p>
+                        <p>比賽日期{{this.questionanswer[0]}}</p>
+                        <p>訓練週數:{{this.questionanswer[2]}}</p>
                     </div>
-                    
-                    <svg id="bevelyellow" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
-                        <defs>
-                            <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
-                                <stop offset="0" stop-color="#ffa10a"/>
-                                <stop offset="1" stop-color="#ffef36"/>
-                            </linearGradient>
-                        </defs>
+                    <svg id="layer02" style="border:1px solid red" id="bevelyellow" xmlns="http://www.w3.org/2000/svg" width="400" height="107" viewBox="0 0 308.81 107">
+                        <g id="layer02">
+                            <rect id="b1" x="20" y="34" rx="20" ry="20" fill="#FF6CC4" transform="rotate(-10)"  stroke-width="3" width="280" height="25"/>
+                            <rect id="b2" x="30" y="69" rx="20" ry="20" fill="#FF6CC4"  transform="rotate(-10)" stroke-width="3" width="250" height="25"/>
+                            <rect id="b3" x="5" y="100" rx="20" ry="20" fill="#FF6CC4" transform="rotate(-10)" stroke-width="3" width="260" height="25"/>
+                        </g>
+                    </svg>
+                    <svg style="border:1px solid red" id="bevelyellow" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
+                        <path id="bevelwhite" data-name="Path 200" d="M80,0 H318.81 L260,120H0Z" fill="transparent" stroke="orange" />
+
+                        <g id="layer01">
+                            <defs>
+                                <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                                    <stop offset="0" stop-color="#ffa10a"/>
+                                    <stop offset="1" stop-color="#ffef36"/>
+                                </linearGradient>
+                            </defs>
+                        </g>
                         <path  data-name="Path 201" d="M56,0H308.81L257,107H0Z" fill="url(#linear-gradient)"/>
-                        </svg>
-                        <svg id="bevelwhite" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
-                        <path id="bevelwhite" data-name="Path 200" d="M56,0H308.81L257,107H0Z" fill="transparent" stroke="orange" />
+                    </svg>
+                    <svg id="bevelwhite" xmlns="http://www.w3.org/2000/svg" width="308.81" height="107" viewBox="0 0 308.81 107">
+                    <path id="bevelwhite" data-name="Path 200" d="M56,-10 H308.81 L250,99H0Z" fill="transparent" stroke="orange" />
+
                     </svg>
 
                 </div>
@@ -203,7 +215,15 @@
 
 
 
+<script>
+    var timeline = new TimelineLite();
+   
+    gsap.to('#layer02', 1, {
+    x:"600px",
+	delay: "0.5"
+});
 
+</script>
 
 <script type="module">
 
@@ -233,6 +253,9 @@ new Vue({
         },
         showquestion(){
             return this.$store.state.showquestion
+        },
+        questionanswer(){
+            return this.$store.state.questionanswer
         },
         tab(){
             return this.$store.state.tab
@@ -282,7 +305,7 @@ new Vue({
        
     },
 
-        
+      
         
        
 });

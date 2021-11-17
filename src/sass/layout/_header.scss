@@ -10,8 +10,11 @@ body{
     background-color: $blue;    
     display: flex;
     justify-content: center;
+    position: sticky;
+    z-index: 99999;
     @include table(){
         padding: 0 83px;
+        
     }
     #header_wrapper{
         // border: 1px solid white;
@@ -60,10 +63,11 @@ body{
     margin: 0 auto;
     margin-left: 0%;
     padding: 0;
+    
     @include table(){
         background-color: $blue;
         position: absolute;
-        transform:translateY(-100%);
+        transform:translate(-100%,80px);
         left: 0;
         flex-direction: column;
         opacity: 0;
@@ -134,24 +138,28 @@ body{
 .slidedown{
     @include table(){
         padding: 20px;
-        z-index: 100;
+        z-index: 90;
         justify-content: flex-start;
         opacity: 1;
-        transform:translateY(80px);
-        transition: all  .8s;
+        transform:translate(0px,80px);
+        transition: transform  .3s;
         width: 80%;
+    }
+    @include table(){
+        width: 50%;
+        transform:translate(0px,80px);
     }
     @include mobile(){
         width: 100%;
+        transform:translate(0px,80px);
     }
 }
 
 a.header_icon{
-    // border: 1px solid white;
     @include flexcenter;
     align-items: center;
     width: 5%;
-    @include mobile(){
+    @include table(){
         width: 10%;
     }
     i{
@@ -176,21 +184,22 @@ a.header_icon{
         // border: 1px solid $white;
         position: absolute;
         top: 50%;
-        left: 50%;
+        
         transform: translate(-50%, -50%);
         width: 50%;
         height: 20px;
         cursor: pointer;
         @include table() {
-            width: 80%;
+            width: 100%;
         }
         @include mobile(){
-            width: 60%;
+            width: 100%;
         }
         span{
             border: 1px solid $white;
             position: absolute;
             width: 100%;
+            transform: translate(-50%, -50%);
             height: 2px;
             background-color: $white;
             &:nth-child(1){

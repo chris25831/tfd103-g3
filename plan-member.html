@@ -51,12 +51,9 @@
                         <hr style="border: 1px dashed orange;width: 100%;">
                         <p class="title3" style="margin: 0;" >{{memberinfo.week}}<br>week</p>
                     </div>
-                    <vue-c3 :handler="handler" id="plan_chart"></vue-c3>
-                    <!-- <div id="plan_chart">
-                        <i class="fa-solid fa-person-swimming"></i>
-                        <i class="fa-solid fa-person-biking"></i>
-                        <i class="fa-solid fa-person-running"></i>
-                    </div> -->
+                    
+                            <vue-c3  id="plan_chart"></vue-c3>
+                       
                 </main>
                 <div class="plan_member_button">
                     <button onclick="window.open('./member-main.html', '_self')" class="bluebutton">我的基本資料</button>
@@ -109,7 +106,7 @@
                                         <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}</span></p>
                                         <!--完成一天--->
                                         
-                                        <input @click="perday.check.push(week);checkoneday()" v-show="perday.Rest == false" class="complete" type="button" >
+                                        <input   :data-index="index"  @click="perday.check.push(week);checkoneday();clicking()" v-show="perday.Rest == false" class="complete" type="button" >
                                         <p v-show="perday.Rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;">
                                             <span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.Rest}}</span>
                                         </p>
@@ -138,16 +135,21 @@
     new Vue({
         el: '#plan_wrapper',
         store:plan,
-        data() {
-            return {
-                handler: new Vue(),
-                Swim:10,
-                Bike:20,
-                Run:10,
-            }
-        },
         methods: {
-            checkoneday(){
+            clicking(e){
+                event.preventDefault();
+                let target = event.target.dataset.index
+                let growBar = this.plandata[target]
+                
+                if(growBar.Swim != null){
+                    this.$store.commit('growSwim')
+                }else if(growBar.Run != null){
+                    this.$store.commit('growRun')
+                }else if(growBar.Bike != null){
+                    this.$store.commit('growBike')
+                }
+            },
+            checkoneday(){ 
                 this.$store.commit('checkoneday')
             },
             
@@ -155,87 +157,33 @@
                 this.$store.commit('plancancel')
             },
             resetplan(){
-            window.location="./plan-temporary.html"
+                window.location="./plan-temporary.html"
             },
+           
         
         },
-            computed:{
-                    cancel(){
-                        return this.$store.state.cancel
-                    },
-                    memberinfo(){
-                        return this.$store.state.memberinfo
-                    },
-                    plandata(){
-                        return this.$store.state.plandata
-                    },
-                    options() {
-                     return {
-                        columns: [
-                            ["Swim", this.Swim],
-                            ["Bike", this.Bike],
-                            ["Run", this.Run],
-                        ],
-                        type: "bar",
-                        colors: {
-                            Swim: "#FFA10A",
-                            Bike: "#00429D",
-                            Run: "#E75F49"
-                        },
-                      }
-                    },
-                    options() {
-                    return {
-                        // 主としてデータ
-                        data: {
-                        columns: [
-                            // 配列一つ目が、データの名前になる
-                            ['弊社', 0, 20, 10, 40, 15, 20],
-                            ['御社', this.val, 200, 100, 400, 150, 250]
-                        ],
-                        },
-                        axis: {
-                        x: {
-                            label: {
-                            // X 軸のラベルを変更する
-                            // 位置も変えれる
-                            text: '期',
-                            position: 'outer-center'
-                            }
-                        },
-                        y: {
-                            label: {
-                            text: '売り上げ(億)',
-                            position: 'outer-middle'
-                            }
-                        }
-                        },
-                        tooltip: {
-                        // 各点にマウスオーバーした際に出てくる部分の設定
-                        format: {
-                            title(d) {
-                            return `第 ${d} 期`
-                            },
-                            value(value, ratio, id) {
-                            return `${value} 億円`
-                            }
-                        }
-                        },
-                        grid: {
-                        x: {
-                            show: true
-                        },
-                        y: {
-                            show: true
-                        }
-                        },
-                        legend: {
-                        position: 'right'
-                        }
-                    }
-                    }
+        computed:{
+                cancel(){
+                    return this.$store.state.cancel
+                },
+                memberinfo(){
+                    return this.$store.state.memberinfo
+                },
+                
+                plandata(){
+                    return this.$store.state.plandata
+                },
+                Swim(){
+                    return this.$store.state.Swim
+                },
+                Run(){
+                    return this.$store.state.Run
+                },
+                Bike(){
+                    return this.$store.state.Bike
+                },
             },
-
+                
             created() { 
                 let theData = localStorage.getItem('plandata');
                 if(theData != null){
@@ -244,7 +192,6 @@
             },
             mounted() {
                 //C3.js
-                this.handler.$emit('init', this.options)
                 var chart = c3.generate({
                     bindto: "#plan_chart",
                     size: {
@@ -252,7 +199,6 @@
                             width: 190
                         },
                     data: {  //針對圖表的樣式資料屬性寫在data內
-                        
                         columns: [
                             ["Swim", this.Swim],
                             ["Bike", this.Bike],
@@ -284,8 +230,17 @@
                 
                 });
 
+                let thePoint = JSON.parse(localStorage.getItem('Points'));
+                if(thePoint != null){
+                    return this.$store.state.memberinfo.point = thePoint;
+                }
             },
-        
+            watch:{
+                Swim(){
+                    
+                }
+            }
+           
     });  
     
 

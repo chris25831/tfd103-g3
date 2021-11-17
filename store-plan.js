@@ -5,10 +5,13 @@ const plan = new Vuex.Store({
         //lightbox答案
         showquestion:true,
         showloading:false,
-        showplan:false,
+        showplan:true,
         questionanswer : [],
         current_tab:0,
         tab:"下一步",
+        Swim:0,
+        Bike:0,
+        Run:0,
         max:4,
         //測驗題目
         questions:[
@@ -93,11 +96,11 @@ const plan = new Vuex.Store({
         cancel: true,
         //會員資料
         memberinfo:{
-            photo:"./src/images/img/plan/memberphoto.png",
+            photo:"./src/images/img/plan/member00001.jpg",
             membername:"maggie",
             racedate:"20221127",
-            week:8,
-            point:0,
+            week:12,
+            point:"",
         },
         //計畫表資料
         plandata:[
@@ -111,18 +114,18 @@ const plan = new Vuex.Store({
             },
             //day2
             {
-            "Swim":1,
-            "Bike":0.5,
+            "Swim":null,
+            "Bike":null,
             "Run":null,
-            "Rest":false,
+            "Rest":true,
             check:[]
             },
             //day3
             {
-            "Swim":null,
-            "Bike":null,
+            "Swim":1,
+            "Bike":0.5,
             "Run":null,
-            "Rest":"rest",
+            "Rest":false,
             check:[],
             },
             //day4
@@ -169,6 +172,11 @@ const plan = new Vuex.Store({
         },
         checkoneday(state){
             alert("恭喜你獲得一點");
+            
+            let newpoint = JSON.parse(localStorage.getItem('Points'));
+            // console.log(newpoint);
+            state.memberinfo.point = newpoint
+            
             if(state.memberinfo.point){
                 state.memberinfo.point += 1
             }
@@ -182,6 +190,7 @@ const plan = new Vuex.Store({
             var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
             if (yes) {
                 state.cancel = false
+                localStorage.clear("plandata")
             } else {
                 alert('您已取消');
             }
@@ -204,8 +213,9 @@ const plan = new Vuex.Store({
                 
             }
             if(state.current_tab === 5){
-                state.showloading = true;
-                // console.log(state.questionanswer);
+                // state.showloading = true;
+                state.showplan = true;
+                console.log(state.questionanswer);
                 var questionAnswer = JSON.stringify(Object.assign({},state.questionanswer));
                 let data= new URLSearchParams()
                 data.append('answer',questionAnswer)
@@ -240,7 +250,18 @@ const plan = new Vuex.Store({
         current_tab(state,payload){
             state.current_tab = payload
         },
+        growSwim(state){
+            state.Swim += 5
         
+        },
+        growRun(state){
+            state.Run += 5
+        
+        },
+        growBike(state){
+            state.Bike += 5
+        
+        }
         
     },
    
