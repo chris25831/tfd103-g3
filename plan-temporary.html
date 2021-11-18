@@ -241,7 +241,8 @@ new Vue({
         changetab(){ //切換按鈕index
             this.$store.commit('changetab')
             
-        },  
+        }, 
+       
     }, 
         
      computed: {
@@ -304,9 +305,12 @@ new Vue({
         },
        
     },
-
-      
+    mounted() {
+         this.$store.commit('loadrace')
         
+    },
+
+    
        
 });
 
