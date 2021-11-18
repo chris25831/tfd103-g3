@@ -143,9 +143,11 @@
                 
                 if(growBar.Swim != null){
                     this.$store.commit('growSwim')
-                }else if(growBar.Run != null){
+                }
+                 if(growBar.Run != null){
                     this.$store.commit('growRun')
-                }else if(growBar.Bike != null){
+                }
+                 if(growBar.Bike != null){
                     this.$store.commit('growBike')
                 }
             },
@@ -159,39 +161,8 @@
             resetplan(){
                 window.location="./plan-temporary.html"
             },
-           
-        
-        },
-        computed:{
-                cancel(){
-                    return this.$store.state.cancel
-                },
-                memberinfo(){
-                    return this.$store.state.memberinfo
-                },
-                
-                plandata(){
-                    return this.$store.state.plandata
-                },
-                Swim(){
-                    return this.$store.state.Swim
-                },
-                Run(){
-                    return this.$store.state.Run
-                },
-                Bike(){
-                    return this.$store.state.Bike
-                },
-            },
-                
-            created() { 
-                let theData = localStorage.getItem('plandata');
-                if(theData != null){
-                    return this.$store.state.plandata = JSON.parse(theData);
-                }
-            },
-            mounted() {
-                //C3.js
+            setC3(){
+             //C3.js
                 var chart = c3.generate({
                     bindto: "#plan_chart",
                     size: {
@@ -199,11 +170,7 @@
                             width: 190
                         },
                     data: {  //針對圖表的樣式資料屬性寫在data內
-                        columns: [
-                            ["Swim", this.Swim],
-                            ["Bike", this.Bike],
-                            ["Run", this.Run],
-                        ],
+                        columns: this.chartData,
                         type: "bar",
                         colors: {
                             Swim: "#FFA10A",
@@ -229,17 +196,97 @@
                     }
                 
                 });
+            },
+            // *** 帶入會員ID去找會員Plan *** //
+            memberPlan(){
+                console.log(this.memberLogin.memberId);
+                this.$store.commit('loadMemberPlan', this.memberLogin.memberId)
+            }
+        
+        },
+        computed:{
+                cancel(){
+                    return this.$store.state.cancel
+                },
+                memberinfo(){
+                    return this.$store.state.memberinfo
+                },
+                
+                plandata(){
+                    return this.$store.state.plandata
+                },
+                Swim(){
+                    return this.$store.state.Swim
+                },
+                Run(){
+                    return this.$store.state.Run
+                },
+                Bike(){
+                    return this.$store.state.Bike
+                },
+                chartData(){
+                    return  [
+                            ["Swim", this.Swim],
+                            ["Bike", this.Bike],
+                            ["Run", this.Run],
+                    ]
+                },
+                //會員是否登入
+                memberLogin(){
+                    return this.$store.state.memberLogin
+                },
+            },
+                
+            
+            created() { 
+                let theData = localStorage.getItem('plandata');
+                if(theData != null){
+                    return this.$store.state.plandata = JSON.parse(theData);
+                }
+            },
+            mounted() {
+                //1.判斷登入
+                if(this.memberLogin.login != 0){
+                    console.log("Loginsucces");
+                     //2.如果有登入找這會員的plandata
+                     this.memberPlan()
+                }else{
+                    console.log("LoginNotyet");
+                }
+              
 
                 let thePoint = JSON.parse(localStorage.getItem('Points'));
                 if(thePoint != null){
                     return this.$store.state.memberinfo.point = thePoint;
                 }
             },
+
+
+
+            
             watch:{
-                Swim(){
-                    
+
+                chartData: {
+                    handler(new_data, old_data) {
+                        // this.$nextTick(() => { 
+                        this.setC3()
+                        // console.log(new_data);
+                    // })
+                    },
+                    //在剛開始掛載之前就watch所以true的話等於掛載算一次改變
+                    immediate: true,
+                    deep: true
+                },
+                //double check 3.如果臨時登入就執行找他的plan
+                memberLogin:{
+                    handler(new_data, old_data) {
+                        this.memberPlan()
+                    },
+                    immediate: true,
+                    deep: true
                 }
-            }
+            },
+          
            
     });  
     
