@@ -15,6 +15,4 @@
 
        //建立PDO物件，並放入指定的相關資料
        $pdo = new PDO($dsn, $db_user, $db_pass);
-       
-    
 ?>

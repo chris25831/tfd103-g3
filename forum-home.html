@@ -8,7 +8,7 @@
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
     <title>討論區 | Triclub</title> 
     <!--從scss轉譯過來的-->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -33,34 +33,35 @@
 
         <div class="article-list">
            
-            <div class="article-item" v-for="articleDatum in tidedData" :data-id="articleDatum.ArticleNumber" @click.prevent="seeContent">
+            <div class="article-item" v-for="articleDatum in tidedData" :data-id="articleDatum.PostID" @click.prevent="seeContent">
                 <a class="enter-article" href="./forum-content.html">
                     <div class="left">
                         <div class="author">
-                            <img class="avatar" :src=articleDatum.AuthorAvatar alt="">
-                            <span class="name">{{articleDatum.AuthorName}}</span>
-                            <span class="time">{{articleDatum.PostTime}}</span>
+                            <img class="avatar" :src="articleDatum.UserPhoto" alt="">
+                            <span class="name">{{articleDatum.UserID}}</span>
+                            <span class="time">{{articleDatum.PostDate}}</span>
                         </div>
-                        <h3 class="article-title">{{articleDatum.ArticleTitle}}</h3>
-                        <p class="preview-content">{{articleDatum.ArticleContent}}</p>
+                        <h3 class="article-title">{{articleDatum.PostTitle}}</h3>
+                        <p class="preview-content">{{articleDatum.PostContent}}</p>
                         <div class="counts">
                             <div class="views">
                                 <img src="./src/images/img/forum/views.png" alt="">
-                                <span>{{articleDatum.ViewsCount}}</span>
+                                <span>{{articleDatum.Views}}</span>
                             </div>
                             <div class="likes">
                                 <img src="./src/images/img/forum/likes-count.png" alt="">
-                                <span>{{articleDatum.LikesCount}}</span>
+                                <span>{{articleDatum.Likes}}</span>
                             </div>
                             <div class="comments">
                                 <img src="./src/images/img/forum/comments-count.png" alt="">
-                                <span>{{articleDatum.CommentsCount}}</span>
+                                <span>{{articleDatum.Comments}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="right">
-                        <img class="demo-image" src="https://via.placeholder.com/167x167" alt="">
-                    </div>
+                        <img class="demo-image" alt="">
+                    </div>                          
+                    <!--:src="articleDatum.PostPhotoOne"-->
                 </a>
             </div>
 
@@ -87,7 +88,7 @@
                 </nav>
             </div>
         </div>
-
+        
         <forum-new-post-modal @closing="closeModal" v-if="showModal" @send-all-the-text="addItem"></forum-new-post-modal>  
     </main>
     
@@ -189,11 +190,12 @@
         data: {
             categories: ["全部","閒聊","裝備","心得","問題"],
             showModal: false,
-            articleData: [],   //放撈回來的資料
+            articleData:[],   //放撈回來的資料
             categorizedData: [], //放當前類別的所有資料
+            currentCategory: "全部",  //現在頁籤是選到哪個分類
             tidedData: [],  //放螢幕所顯示的項目
             currentPage: 1,     //現在的頁碼
-            itemsPerPage: 3,  //每頁幾個項目
+            itemsPerPage: 4,  //每頁幾個項目
             startIndex: "",    //起始項目index，供分頁器使用
             totalPage: "",    //總頁面數
         },
@@ -223,12 +225,14 @@
                 // this.totalPage = Math.ceil(this.tidedData.length / this.itemsPerPage);
                 if(e.target.innerText === "全部") {
                     this.categorizedData = this.articleData;
+                    this.currentCategory = "全部";
                     this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage);
                     this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);
                     this.currentPage = 1;         
                 } else {                   
-                    console.log(this.startIndex);
-                    this.categorizedData = this.articleData.filter(sorted => sorted.ArticleCategory.toString() === e.target.innerText.toString());
+                    this.categorizedData = this.articleData.filter(sorted => sorted.PostCategory.toString() === e.target.innerText.toString());
+                    this.currentCategory = e.target.innerText;
+                    console.log(this.currentCategory);
                     this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
                     // console.log("this.categorizedData", this.categorizedData);
                     this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);
@@ -242,11 +246,11 @@
                 window.location.href=`./forum-content.html#${clickTarget.dataset.id}`;
             },
             addItem(item) {
-                console.log(item);
-                
                 this.articleData.unshift(item);
-                console.log(this.articleData)
                 this.showModal = false;
+                if(item.ArticleCategory.toString() === this.currentCategory.toString() || this.currentCategory.toString() === "全部") {
+                    this.tidedData = this.articleData;
+                };
             },
         },
         watch: {
@@ -263,29 +267,26 @@
                 });
             },             
         },
-        created() {
-            //取得資料
-            this.articleData = dummyData;
-
-            //存放分類為"全部"的資料 (預設)
-            this.categorizedData = this.articleData;
-            
-            // //計算總頁數
-            this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);   
-            
-            //計算起始index number 
-            this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
-
-            //資料暫存區 - 指畫面有顯示的項目
-            this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
-        },
-
+        created() {},
         mounted() {
-            // axios
-            //     .get('./php/select-forum.php')
-            //     .then(res => console.log(res.data))
-            //     .catch(function(error){console.log(error)});
-           
+            axios.get('./php/select-forum.php')
+            .then((res)=>{
+                this.articleData = res.data;
+
+                //存放分類為"全部"的資料 (預設)
+                this.categorizedData = this.articleData;
+                
+                console.log("this.categorizedData", this.categorizedData);
+                // //計算總頁數
+                this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);   
+
+                //計算起始index number 
+                this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
+
+                //資料暫存區 - 指畫面有顯示的項目
+                this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
+            })              
+            .catch((error)=>{console.log(error)});         
         }
     })
 </script>

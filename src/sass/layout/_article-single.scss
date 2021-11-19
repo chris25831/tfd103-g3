@@ -95,11 +95,12 @@
                         right: -47px;
                         background-color: lightgray;
                         width: 100px;
-                        height: 30px;
+                        height: 90px;
                         line-height: 30px;
                         text-align: center;
                         border-radius: 5px;
                         cursor: pointer;
+                        
                         @include table() {
                             // width: 459px;
                         }
@@ -117,6 +118,12 @@
                             border-bottom: solid lightgray 10px ;
                             border-left: solid transparent 10px;
                             border-right: solid transparent 10px;
+                        }
+                        span {
+                            display: block;
+                            &:hover {
+
+                            }
                         }
                     }
                 }

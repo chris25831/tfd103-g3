@@ -46,31 +46,32 @@
             <div class="single-article">
                 <div class="head">
                     <div class="author">
-                        <img class="avatar" :src="singleArticleData.AuthorAvatar" alt="">
-                        <span class="name">{{singleArticleData.AuthorName}}</span>
-                        <span class="time">{{singleArticleData.PostTime}}</span>
+                        <img class="avatar" :src="singleArticleData.UserPhoto" alt="">
+                        <span class="name">{{singleArticleData.PostID}}</span>
+                        <span class="time">{{singleArticleData.PostDate}}</span>
                     </div>
                     <div class="action">
                         <div class="like">
                             <img class="heart" @click="clickLike" v-show="likeSwitch" src="./src/images/img/forum/heart-size-3.png" alt="">
                             <img class="heart heart-red" @click="clickLike" v-show="likeSwitchForRed" src="./src/images/img/forum/heart-red.png" alt="">
                         </div>
-                        <div class="report" @click="dropDownSwitch">
-                            <img src="./src/images/img/forum/report-button.png">
+                        <div class="report">
+                            <img src="./src/images/img/forum/report-button.png" @click="dropDownSwitch">
                             <div class="drop-down" v-show="showReport">
                                 <span @click="report">檢舉</span>
+                                <span @click="openEditModal">編輯</span>
+                                <span @click="deletePost">刪除</span>
                             </div>  
                         </div>
                         
                     </div>
                 </div>
                 <div class="middle">
-                    <h3 class="title">{{singleArticleData.ArticleTitle}}</h3>
+                    <h3 class="title">{{singleArticleData.PostTitle}}</h3>
                     
                     <div class="forum-content-block">
                         <p class="manage-forum-content">
-                            {{singleArticleData.ArticleContent}}
-                            
+                            {{singleArticleData.PostContent}}
                         </p>
                         <div class="photo-block" v-if="showPhotoBlock">
                             <img src="" alt="" class="photo-one">
@@ -94,14 +95,14 @@
             <hr>
 
             <div class="comments">
-                <div class="single-comment">
+                <div class="single-comment" v-for="comment in commentData" :data-id="comment.CommentId">
                     <div class="comment-author">
                         <img class="avatar avatar-comment" src="./src/images/img/forum/smile.jpg" alt="">
-                        <span class="name">Maggie</span>
-                        <span class="time">5 hours ago</span>
+                        <span class="name">?????</span>
+                        <span class="time">??????</span>
                     </div>
                     <p class="comment-content">
-                        自行車與走路、慢跑、登山等同樣是腿部的運動，但最大的差別就是多了一台車子。不像慢跑等運動腳部直接接觸地面，自行車騎士的主要施力點是在自行車踏板上，靠著踩踏踏板，經過鍊條將騎士的能量傳導到車輪，獲得前進的動力。在自行車高速前進的狀態下，踏板迴轉也相當快速，此時腳若離開踏板，不但會造成能量流失，也容易因突然的重心不穩而導致摔車，相當危險。因此自行車廠商開發出專用的自行車鞋與踏板，鞋底有特殊的扣片，能與專用踏板緊密相扣，比起穿一般運動鞋能提升騎乘效能，除了向下踩的力量，更增加上提的能量，使得踩踏的畫圓動作更為協調、順暢。
+                        ?????????????
                     </p>
                     <div class="report">
                         <img src="./src/images/img/forum/report-button.png">
@@ -115,25 +116,52 @@
                 
             </div>
         </div>
-        <!-- <div class="darken-background" id="report-mask" :v-if="showReportModal">
-            <div id="report-block" class="report-block">
-                <h3>檢舉文章</h3>
-                <form action="report.php" method="POST">
-                    <label for="discriminate"> <input type="radio" name="reason" value="1" id="discriminate">中傷、歧視、挑釁或謾罵他人</label>   
-                    <label for="hurt"><input type="radio" name="reason" value="2" id="hurt">暴力、傷害他人或傷害動物的內容</label>
-                    <label for="spam"><input type="radio" name="reason" value="3" id="spam">包含廣告、商業宣傳之內容</label>
-                    <label for="others"><input type="radio" name="reason" value="4" id="others">其他原因</label>   
-                    <div class="button-block">
-                        <button class="cancel">取消</button>
-                        <button class="send-report">送出</button>
-                    </div>
-                </form>
-           
-            </div>
-        </div> -->
+        
         <report @cancel-report="closeReportModal" v-if="showReportModal"></report>
         
-        <!-- <forum-new-post-modal @closing="closeModal" v-show="showModal"></forum-new-post-modal> -->
+        <!-- 點擊編輯文章後彈出 -->
+        <div class="darken-background forum-edit-post-modal" v-if="showModal">
+            <div class="new-article forum-modal">
+                    
+                    <span class="info">編輯文章</span>
+
+                    <div class="cross"> 
+                        <i @click="closeEditModal" class="fas fa-times fa-2x"></i>
+                    </div>
+
+                    <input type="text" class="title forum-title" placeholder="請輸入文章標題" name="title" v-model="forumTitle" required>
+
+                    <select class="category" name="category" id="" v-model="category" required>
+                        <option value="閒聊">閒聊</option>
+                        <option value="裝備">裝備</option>
+                        <option value="心得">心得</option>
+                        <option value="問題">問題</option>
+                    </select>
+
+                    <textarea class="new-article-content" name="content" id="" cols="30" rows="10" v-model="articleContent" required></textarea>
+
+                    <div class="upload-images">
+                        <div class="single-image image-one-wrapper" @dragover.prevent @drop.prevent="dropFirstImage" >
+                            <div class="rectangle rectangle-one"></div>
+                            <img class="the-image-one the-image" src="" name="photo-one">
+                        </div>
+
+                        <div class="single-image image-two-wrapper" @dragover.prevent @drop.prevent="dropSecondImage">
+                            <div class="rectangle rectangle-two"></div>
+                            <img class="the-image-two the-image" src="" name="photo-two">
+                        </div>
+
+                        <div class="single-image image-three-wrapper" @dragover.prevent @drop.prevent="dropThirdImage">
+                            <div class="rectangle rectangle-three"></div>
+                            <img class="the-image-three the-image" src="" name="photo-three">
+                        </div>
+                    </div>
+                    
+                    <button class="send-forum-content" type="submit" @click="send">送出</button>
+            </div>
+        </div>
+        <!-- 以上為編輯文章 -->
+
     </main>
     
     <!--這是footer-->
@@ -149,13 +177,12 @@
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/common/bookmark-forum.js"></script>
-<script src="./src/component/common/forum-new-post-modal.js"></script>
+<!-- <script src="./src/component/common/forum-new-post-modal.js"></script> -->
 <script src="./src/component/common/report.js"></script>
 <script src="./forum.js"></script> 
 
 <script type="module">
     import forum from "./forum.js"
-
     let dummyData = [   //假資料
                 {
                     "ArticleNumber": "1",
@@ -231,6 +258,23 @@
                 },
             ];
 
+    let dummyCommentData = [
+        {
+            "CommentId": "100",
+            "AuthorName": "Johnny Hsieh1",
+            "PostTime": "2021/09/21",
+            "CommentContent": "留言內容留言內容"    
+    
+        },
+        {
+            "CommentId": "200",
+            "AuthorName": "Johnny Hsieh2",
+            "PostTime": "2021/09/21",
+            "CommentContent": "留言內容留言內容"    
+    
+        }
+    ];
+
     new Vue({
         el: "#forum-content",
         store: forum,
@@ -243,13 +287,20 @@
             showReport: false,
             showReportModal: false,
             dataNumber: "",
+            ArticleData: [],
             singleArticleData: [],
+            commentData: [],
+            showModal: false,
+
+            forumTitle: "",
+            category:"",
+            articleContent:"",
         },
         methods: {
-            openModal(){
+            openEditModal(){
                 this.showModal = true;
             },
-            closeModal(){         
+            closeEditModal(){         
                 this.showModal = false;
             },
             clickLike(){
@@ -266,28 +317,50 @@
             closeReportModal() {
                 this.showReportModal = false;
             },
-        },
-        computed: {
-            getPostId() {
-                return this.$store.state.postId;
+            deletePost(){
+                axios({
+                method: "get",
+                url: "./php/delete-forum.php",
+                //API要求的資料
+                data: {                       
+                    postid: this.singleArticleData.PostID,
+                },
+                })
+                .then((res) => console.log(res))
+                .catch((error) => console.log(error))
             }
         },
         mounted() {  
+            //從網址處拿到號碼，並將#號去掉
             let numberArray = location.hash.split("");
             numberArray.shift();
-            
             for(let i = 0; i < numberArray.length; i++) {
                 numberArray[i];
                 this.dataNumber += numberArray[i]
-            }
-            
-            for(let i = 0; i < dummyData.length; i++) {
-                if(dummyData[i].ArticleNumber.toString() === this.dataNumber.toString()) {
-                    this.singleArticleData = dummyData[i]; 
-                }
+                console.log(this.dataNumber);
             }
 
-            if(singleArticleData.PostPhotoOne === false  && singleArticleData.PostPhotoTwo === false && singleArticleData.PostPhotoThree === false){
+            axios.get('./php/select-forum.php')
+            .then((res) => {
+                this.articleData = res.data;
+                //用號碼來找到相對應的資料
+                for(let i = 0; i < this.articleData.length; i++) {
+                    if(this.articleData[i].PostID.toString() === this.dataNumber.toString()) {
+                        this.singleArticleData = this.articleData[i]; 
+                    }
+                }
+            })
+            .catch((error) => console.log(error))
+
+            //找到本篇文章下的所有留言
+            // axios.get('./php/select-comment.php')
+            // .then((res) => {
+            //     this.commentData = res.data;
+            // })
+            // .catch((error) => console.log(error))
+
+            //圖片欄位出現與否
+            if(this.singleArticleData.PostPhotoOne === false  && this.singleArticleData.PostPhotoTwo === false && this.singleArticleData.PostPhotoThree === false){
                 this.showPhotoBlock = false;
             } else {
                 this.showPhotoBlock = true;
