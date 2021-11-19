@@ -1,8 +1,7 @@
 Vue.component("forum-new-post-modal", {
     template: `
-    <div id="" class="darken-background forum-new-post-modal">
-        <div class="new-article forum-modal">
-                
+    <div id="forum-new-post-modal" class="darken-background">
+        <div class="new-article">
                 <span class="info">發表文章</span>
                 <div class="cross"> 
                     <i @click="returning" class="fas fa-times fa-2x"></i>
@@ -32,8 +31,6 @@ Vue.component("forum-new-post-modal", {
                 </div>
                 
                 <button class="send-forum-content" type="submit" @click="send">送出</button>
-            
-            
         </div>
     </div>
     `,
@@ -53,41 +50,21 @@ Vue.component("forum-new-post-modal", {
     methods: {
         send() {   
             // let forumTitle = document.querySelector(".forum-title").value;
+            // let timeOfPost = new Date();
+            // let year = timeOfPost.getFullYear();
+            // let month = timeOfPost.getMonth() + 1;
+            // let date = timeOfPost.getDate();
+            // let hour = timeOfPost.getHours();
+            // let minute = timeOfPost.getMinutes();
             
-            let timeOfPost = new Date();
-            let year = timeOfPost.getFullYear();
-            let month = timeOfPost.getMonth() + 1;
-            let date = timeOfPost.getDate();
-            let hour = timeOfPost.getHours();
-            let minute = timeOfPost.getMinutes();
-            
-            this.correctTimeOfPost = `${year}年${month}月${date}日 ${hour}:${minute}`;
+            // this.correctTimeOfPost = `${year}年${month}月${date}日 ${hour}:${minute}`;
             // let category = document.querySelector(".category").value;
             // let newArticleContent = document.querySelector(".new-article-content").value;
-            let theImageOne = document.querySelector(".the-image-one").src;
-            let theImageTwo = document.querySelector(".the-image-two").src;
-            let theImageThree = document.querySelector(".the-image-three").src;
+            // let theImageOne = document.querySelector(".the-image-one").src;
+            // let theImageTwo = document.querySelector(".the-image-two").src;
+            // let theImageThree = document.querySelector(".the-image-three").src;
             
             if(this.forumTitle.trim().length !== 0 && this.category.trim().length !== 0 && this.newArticleContent.trim().length !== 0) {
-                let theText = {
-                    // "ArticleNumber": (Math.floor(Math.random() * 1000000000)),
-                    "AuthorName": "Maggie Wang",
-                    "AuthorAvatar": "./src/images/img/forum/smile.jpg",
-                    "PostTime": this.correctTimeOfPost,
-                    "ArticleTitle": this.forumTitle,
-                    "ArticleCategory": this.category,
-                    "ArticleContent": this.newArticleContent,
-                    "PostPhotoOne": theImageOne,
-                    "PostPhotoTwo": theImageTwo,
-                    "PostPhotoThree": theImageThree,
-                    "ViewsCount": 0,
-                    "LikesCount": 0,
-                    "CommentsCount": 0
-                }
-                console.log("有嗎1");
-                this.$emit("send-all-the-text", theText)
-                console.log("有嗎2");
-
                 axios({
                 method: 'post',
                 url: './php/forum-new.php',
@@ -97,13 +74,15 @@ Vue.component("forum-new-post-modal", {
                         title: this.forumTitle,
                         // time: correctTimeOfPost,
                         category: this.category,
-                        content: this.newArticleContent,
-                        photoOne: theImageOne,
-                        photoTwo: theImageTwo,
-                        photoThree: theImageThree                   
-                }
+                        content: this.newArticleContent
+                        // photoOne: theImageOne,
+                        // photoTwo: theImageTwo,
+                        // photoThree: theImageThree                   
+                    }
                 })
-                .then((res) => console.log(res))
+                .then((res) => {
+                    console.log(res);
+                })
                 .catch((error) => console.log(error))
             } else {
                 return
