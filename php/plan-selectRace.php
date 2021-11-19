@@ -14,12 +14,17 @@
        $racedata = $statement->fetchAll();
        
 
+
+       echo json_encode($racedata);
        //將二維陣列取出顯示其值
-       foreach($racedata as $index => $row){
-	       echo $row["RaceName"];    
-	       echo " / ";
-	       echo $row["RaceDate"]; 
-         echo "<br>";
-       }
+      //  foreach($racedata as $index => $row){
+      //   echo $row["RaceName"];    
+      //   echo " / ";
+      //   echo $row["RaceDate"]; 
+      //   echo "/";
+      //   echo $row["RaceID"]; 
+      //   echo "/";
+      //   echo "<br>";
+      //  }
 
 ?>
