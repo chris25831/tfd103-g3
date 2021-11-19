@@ -1,15 +1,7 @@
-.outter {
+// 影片
+.video__container {
+  height: 100vh;
   width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-
-.video-container {
-  height: 100vh;
-  width:100%;
   position: relative;
   overflow: hidden;
 }
@@ -23,7 +15,7 @@ video {
   left: 0;
 }
   
-.video-container:after {
+.video__container:after {
   content: '';
   display: block;
   height: 100vh;
@@ -38,7 +30,7 @@ video {
 .viedo-textoverlay {
   position: relative;
   display: flex;
-  justify-content:left;
+  justify-content: left;
   align-items: left;
   flex-direction: column;
   height: 100%;
@@ -47,19 +39,16 @@ video {
   z-index: 10;
   width: 70%;
   margin: 10%;
-  align-self:flex-start;
+  align-self: flex-start;
 }
 
 .video-quote{
-  font-weight:800;
-  font-size:100px;
+  font-weight: 800;
+  font-size: 100px;
   color: #fff;
   text-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
 }
   
-
-
-
 .btn-hover {
   width: 300px;
   font-size: 16px;
@@ -87,12 +76,24 @@ video {
   background-image: linear-gradient(to right, #E75F49, #E75F49, #FFEF36, #FFA10A, );
   box-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
 }
-  
+
+@media screen and (max-width:767.98px) {
+  .video-quote{
+    font-size:70px;
+  }
+  .index-button{
+    margin-top: 20px;
+  }
+}
 
 
+
+// 如何為人生第一場三鐵安排訓練？
 .slider__wrapper {
   display: block;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .flex__container {
@@ -111,10 +112,9 @@ video {
 
 .flex__content {
   position: absolute;
-  top: 80px;
-  left: 80px;
+  margin: 5% 10%;
   color: #fff;
-  width: 600px;
+  width: 50%;
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s linear 0.2s, opacity 0.1s linear 0.2s;
@@ -158,11 +158,6 @@ video {
   margin:0 0 0 -4px;
 }
 
-.text--small {
-  font-size: 40px;
-  margin-top: 10px;
-}
-
 .text--normal {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.8);
@@ -177,6 +172,25 @@ video {
   color: rgba(0, 0, 0, 0.05);
   font-size: 170px;
   font-weight: 700;
+}
+
+@media screen and (max-width:767.98px) {
+  .flex__content {
+    width: 90%;
+    margin: 10%;
+  }
+  .flex__item--left {
+    width: 0%;
+  }
+   .flex__item--right {
+    width: 100%;
+  }
+  .text--sub {
+    font-size: 30px;
+  }
+  .text--big {
+    font-size: 40px;
+  }
 }
 
 .flex--preStart .flex__item--left,
@@ -220,9 +234,16 @@ video {
   transition: opacity 0.43s 0.6s, transform 0.4s 0.65s cubic-bezier(0, 0.88, 0.4, 0.93);
 }
 
+@media screen and (max-width:767.98px) {
+  .slider__img {
+  max-height: 70vw;
+  right: -100px;
+  }
+}
+
 .slider__navi {
   position: absolute;
-  top: 1000px;
+  top: 300px;
   right: 20px;
   transform: translateY(-50%);
   z-index: 999;
@@ -270,96 +291,202 @@ video {
   transform: translate3d(200px,0,0);
   opacity: 0;
 }
+
+
   
+// 讓TriClub 帶你更專業scss
+.pro__training{
+  display: block;
+  position: relative;
+}
+
+.pro__training-bg{
+  position: absolute;
+  left: 0;
+  top:0;
+}
   
-  /* 讓TriClub 帶你更專業scss */
-  .pro__training{
+.pro__training__title{
+  margin: 0 20%;
+  padding-top: 5%;
+}
+
+.pro__training__title .text--normal {
+  color: #000;
+  margin-top: 20px;
+}
+
+@media screen and (max-width:767.98px) {
+  .pro__training__title {
+    margin: 10%;
+    padding: 0;
+    line-height: 1;
+  }
+  .text--small {
+    font-size: 24px;
+  }
+  .pro__training-bg{
+    display: none;
+  }
+}
+
+.sport-container-one{
+  position:absolute;
+  bottom: 145px;
+  right: 0px; 
+}
+
+.sports {
+  position:absolute;
+  bottom: 30px;
+  right: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px ;
+  margin: 0 4%;
+  text-align: center;
+}
+
+.sports img {
+  width: 300px;
+}
+
+.sport-container-two{
+  display: none;
+}
+  
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .sports {
+  grid-gap: 20px;
+  }
+  .sports img {
+  width: 200px;
+  }
+}
+
+.sports .item {
+  text-align: center;
+  width: 100%;
+}
+
+.pic-container {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  font-size: 0;
+}
+
+.pic-container .pic2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.pic-container:hover .pic2 {
+  opacity:1;
+}
+
+
+@media screen and (max-width:767.98px) {
+  .sport-container-one{
+    display: none;
+  }
+  .sport-container-two{
     display: block;
+  }
+
+  .sport-container-two {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  .course__container {
     position: relative;
-    }
-    
-    .pro__training__title{
-    position: absolute;
-    top: 50px;
-    left: 250px;
-    width: 600px;
-    }
-    
-    .pro__training__title .text--normal {
-    color: #000;
-    margin-top: 20px;
-    }
-    
-    .background-box{
-    position:absolute;
-    bottom: 145px;
-    right: 0px; 
-    }
-    
-    .sports {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-row-gap: 50px ;
-    margin: 0 6%;
-    text-align: center;
-    }
-    
-    .sports img {
+    margin: 20px;
     width: 300px;
-    }
-    
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .sports {
-    grid-row-gap: 20px ;
-    }
-    .sports img {
-    width: 200px;
-    }
-    }
-    
-    
-    .sports .item {
-    text-align: center;
-    width: 100%;
-    }
-    
-    .pic-container {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    font-size: 0;
-    }
-    
-    .pic-container .pic2 {
+    height: 400px;
+  }
+  
+  .course__title {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    }
-    
-    .pic-container:hover .pic2 {
-    opacity:1;
-    }
-    
-    /* 跑馬燈 */
-    .banner{
-    text-align: left;
-    max-width: 100%;
-    background-color: #FFEF36;
-    max-height: 68px;
-    position: absolute;
-    bottom: 55px;
-    }
-    
-    .marquee-container{
-    padding: 10px;
-    color: #000000;
-    text-transform: uppercase;
+    width: 100%;
+    left: 0;
+    top: 150px;
+    font-weight: 700;
     font-size: 30px;
-    font-weight: 800;
-    }
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    z-index: 1;
+    transition: top .5s ease;
+  }
+  
+  .course__container:hover .course__title {
+    top: 90px;
+  }
+  
+  .course__button {
+    color: white;
+    position: absolute;
+    width: 100%;
+    left:0;
+    top: 220px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+    z-index: 600;
+  }
+  
+  .course__button a {
+    width: 200px;
+    padding: 12px 48px;
+    text-align: center;
+    color: #fff;
+    // border: solid 2px white;
+    border-radius:40px;
+    background-image: linear-gradient(to right, #FFEF36, #FFA10A,#E75F49);
+    z-index: 650;
+    text-decoration:none;
+  }
+  
+  .course__container:hover .course__button {
+    opacity: 1;
+    color: #fff;
+  }
+}
+
+/* 跑馬燈 */
+.banner{
+  text-align: left;
+  max-width: 100%;
+  background-color: #FFEF36;
+  height: 68px;
+  position: absolute;
+  bottom: 55px;
+}
+
+.marquee-container{
+  padding: 10px;
+  color: #000000;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+@media screen and (max-width:767.98px) {
+  .banner{
+    height:auto;
+  }
+  .marquee-container{
+    padding: 5px;
+    font-size: 20px;
+  }
+}
     
     
     
