@@ -3,7 +3,6 @@
       include("./connection.php");
 
        //---------------------------------------------------
-
        //建立SQL語法
        $sql = "SELECT * FROM Race";
 

@@ -5,7 +5,7 @@ const plan = new Vuex.Store({
         //lightbox答案
         showquestion:true,
         showloading:false,
-        showplan:true,
+        showplan:false,
         questionanswer : [],
         current_tab:0,
         tab:"下一步",
@@ -20,19 +20,14 @@ const plan = new Vuex.Store({
                 title:'你的參賽日期',
                 choices:
                 [{
-                    title:'2021普悠瑪鐵人三項競賽',
+                    title:'請選擇',
                     value:'20211101'
-                },{
-                    title:'2021梅花湖三鐵',
-                    value:'20211203'
-                },{
-                    title:'2021台東活水湖三鐵',
-                    value:'20211223'
                 },
                 {
-                    title:'我想自主訓練',
+                    title:'我想要自主訓練',
                     value:'selftraning'
-                }],
+                },
+                ],
                 name:'racedate',
                 type:'select',
                 answer: '20211101', 
@@ -183,28 +178,33 @@ const plan = new Vuex.Store({
                 header:{
                  'Content-type':'application/json'
                 }
-            }).then(function (response){
-                console.log(response);
-                //要執行loop塞check[] 進去 ＆rest
-                state.plandata = this.response
-            }).catch(function(error){
-                console.log(error);
-            })
-        },
+                }).then(function (response){
+                    console.log(response);
+                    //要執行loop塞check[] 進去 ＆rest
+                    state.plandata = this.response
+                }).catch(function(error){
+                    console.log(error);
+                })
+            },
 
         loadrace(state){
-            console.log(state.questions[0].choices); 
             axios({
                 method: 'post',
                 url: './php/plan-selectRace.php',
-                
                 header:{
                     'Content-type':'application/json'
                 }
               })
               .then(function (response) {
-                  console.log(response); 
-                  state.state.question[0].choices = response
+                  console.log(response.data);
+                  for( let i = 0; i < response.data.length; i++ ){
+                        state.questions[0].choices.unshift(
+                        {
+                         title: response.data[i].RaceName,
+                         value: response.data[i].RaceDate
+                        }
+                    )
+                  }
               })
               .catch(function (error) {
                   console.log(error);
@@ -260,9 +260,10 @@ const plan = new Vuex.Store({
                 
             }
             if(state.current_tab === 5){
-                // state.showloading = true;
-                state.showplan = true;
+                state.showloading = true;
+                // state.showplan = false;
                 console.log(state.questionanswer);
+                
                 var questionAnswer = JSON.stringify(Object.assign({},state.questionanswer));
                 let data= new URLSearchParams()
                 data.append('answer',questionAnswer)
@@ -272,28 +273,25 @@ const plan = new Vuex.Store({
                     method: 'post',
                     url: './php/plan.php',
                     data:data,
-                    header:{
-                        'Content-type':'application/json'
-                    }
+                    
                   })
                   .then(function (response) {
                     state.showquestion = false;
                       console.log(response); 
-                    //   console.log("成功");
+                      console.log("成功");
                       state.showplan = true;
                       state.showloading = false;
                       // 這邊的plandata=回傳的資料
                     //   state.plandata = response.data
                   })
                   .catch(function (error) {
-                     // your action on error success
                       console.log(error);
                   });
                   
                
-            }else if(state.current_tab === 4){
-                state.tab = "完成"
-            }
+                }else if(state.current_tab === 4){
+                    state.tab = "完成"
+                }
         },
         current_tab(state,payload){
             state.current_tab = payload
