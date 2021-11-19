@@ -24,39 +24,59 @@
 
     <main class="manage-main manage-classes-content" id="manage-classes-content">
         <h1 class="manage-title title1">課程管理</h1>
-        <button @click="manageClasshome()" class="bluebutton manageprebutton">回上一頁</button>
+        <button @click="manageClassHome()" class="bluebutton manageprebutton">回上一頁</button>
 
         <!--多檔案格式-->
-        <form  enctype="multipart/form-data"> 
+        <form id="uploadclassform" method="post" enctype="multipart/form-data"> 
             <div class="classesWrapper">
                 <div  class="classesContent">
-
+                    <!-- 名稱 -->
                     <label class="title3">名稱</label>
-                    <input v-model="this.classTitle" id="classTitle" type="" name="">
+                    <input v-model="this.classTitle" id="classTitle" type="text" name="classTitle">
                     <hr>
-                    <label class="title3">編號</label>
-                    <input :value="this.classId" id="classId" type="" name="" :disabled="newpage">
+                    <!-- 編號 -->
+                    <label v-if="editpage == true" class="title3">編號</label>
+                    <input v-if="editpage == true" :value="this.classId" id="classId" type="text" name="classId" readonly>
+                    <hr v-if="editpage == true">
+                    <!-- 分類 -->  
+                    <label class="title3">分類</label><br>
+                    <!-- TODO:記得送出刪disabled -->
+                    <select v-model="classCategory" name="category" id="category"  :disabled = "editpage" >
+                        <option value="G">團練課程</option>
+                        <option value="T">個人教練</option>
+                        <option value="M">營養規劃</option>
+                    </select>
+                    <!-- <p>{{classCategory}}</p> -->
                     <hr>
+                    <!-- 授課教師 -->
                     <label class="title3">授課教師</label>
-                    <input v-model="this.teacher" id="teacher" type="" name="">
+                    <input v-model="this.trainer" id="trainer" type="text" name="trainer">
                     <hr>
+                     <!-- 活動地點 -->
                     <label class="title3">活動地點</label>
-                    <input v-model="this.classPosition" id="classPosition" type="" name="">
+                    <input v-model="this.classLocation" id="classLocation" type="text" name="classLocation">
                     <hr>
-                    <label class="title3">狀態</label>
+                     <!-- 狀態 -->
+                    <!-- <label class="title3">狀態</label>
                     <input v-model="this.classState" id="classState" type="" name="">
-                    <hr>
+                    <hr> -->
+                     <!-- 簡介 -->
                     <label class="title3">簡介</label>
-                    <textarea v-model="this.classInfo" id="classInfo"  name=""></textarea>
+                    <textarea v-model="this.classInfo" id="classInfo"  name="classInfo"></textarea>
                     <hr>
+                    <!-- 圖片 -->
                     <label class="title3">圖片</label>
-                    <input type="file" id="classimg"  name="file[]" multiple></input>
+                    <input type="file" id="classimg"  name="classimg[]"  accept="image/*" @change="setImagePreviews" multiple></input>
+                    <button @click.prevent="removeImg">重設</button>
+                    <!-- 預覽 -->
+                    <div class="classpreview" id="classpreview"></div>
+                   
+                    <div class="manage_race_button"> 
+                        <button v-if="editpage == true" @click.prevent="deleteClass" class="yellowbutton">下架</button>
 
-
-                
-                <div class="manage_race_button"> 
-                    <button class="yellowbutton">下架</button>
-                    <button class="bluebutton ">保存</button>
+                        <button v-if="editpage == false" type="reset" class="yellowbutton">重置</button>
+                        <button @click.prevent="saveToDB" class="bluebutton">保存/編輯</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -72,59 +92,155 @@
 
 
     <script src="./src/js/vue.js"></script>
+    <script src="./src/js/vuex.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 測量網頁距離 -->
     <script src="https://unpkg.com/spacingjs" defer></script>
     <!--header/footer component-->
     <script src="./src/component/common/manage-header.js"></script>
     <script src="./src/component/common/manage-footer.js"></script>
 
-    <script>
+    <script type="module">
+        // 匯入VUEX
+        import {classes, coach} from "./store-classes.js";
+
         new Vue({
             el:'#manage-classes-content',
+            store:{classes,coach},
+
             data:{
-                    
                 //判斷新增或編輯
                 editpage:false, 
                 
-                classTitle: "", 
-                classId:"G10001",
-                classCategory:"團練課程",
-                teacher:"",
-                classPosition:"",
-                classState:"",
-                classInfo: "",
-                classimg:"",
-
-                
-                // **課程組件data**
-                // 訓練課程
-                triclasses:{       
-                    classID:'G10001',
-                    classUrl:'./classes-content.html',
-                    imgSrc:'./src/images/img/classes/class/class01.jpg',
-                    classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                    classSubtitle:"", 
-                },
-                    
+                classTitle:"", 
+                classId:"",
+                classCategory:"G",
+                trainer:"",
+                classLocation:"",
+                classInfo:"",
+                classimg:[],
+    
                 
             },
 
-            // created() {
-                
-            // },
+            created() {
+
+                // 判斷新增還是編輯
+                let classidval = (new URL(location.href)).searchParams.get('classid');
+
+                // 編輯
+                if(classidval !== 'new'){
+
+                    //判斷分類
+                    let check = classidval.slice(0,1);
+                    console.log(check);
+                    
+                    if(check == "G" || check == "M"){
+                        
+                        this.$store.classes.commit('classesContentStart');
+                        this.classTitle = this.$store.classes.state.classTitle; 
+                        
+                    }else{
+                        
+                        this.$store.coach.commit('classesContentStart');
+                        this.classTitle = this.$store.coach.state.trainerName; 
+                    }
+                    
+                    
+                    this.classId = classidval;
+                    this.editpage = true; 
+                    
+                }
+            },
 
             methods: {
-
-              
-
                 // 上一頁
-                manageClasshome(){
+                manageClassHome(){
                     window.location="manage-class-home.html"
-                }
+                },
 
+
+                // 新增圖片
+                setImagePreviews(e){
+                    console.log(e.target.files);
+
+                    let filelist = e.target.files;
+                  
+                    console.log(filelist);
+
+                    if(filelist && filelist[0] && filelist.length < 4){
+                        
+                        console.log("進來了");
+
+                        // 判斷是否已經有圖 & 清空欄位值
+                        if( $("#classpreviewimg").length > 0){
+                            $("#classpreview").children().remove();
+                            this.classimg = [];
+                        }
+                       
+                        for(let i=0; i < filelist.length; i++){
+                            let reader = new FileReader();
+                            reader.readAsDataURL(filelist[i]);
+                            
+                            reader.onload = () => {
+
+                                // 渲染
+                                $("#classpreview").append(`<div id="classpreviewimg"><img src=${reader.result}></div>`);
+                                
+                            
+
+                            }
+
+                        }
+
+                        
+                    }else if(filelist.length > 3){
+                        
+                        alert("最多上傳3個檔案");
+                        // console.log("false");
+                        let imginput = document.getElementById("classimg");
+                        imginput.value = "";
+                     
+                        
+                    }else{
+                        console.log("88");
+                        
+                    }
+                    
+                },
+
+                // 刪除圖片
+                removeImg(){
+                    if( $("#classpreviewimg").length > 0){
+                        $("#classpreview").children().remove();
+                        this.classimg = [];     
+                    }
+                },
+
+                // 送出
+                saveToDB(){
+                    //TODO:編輯要記得刪disabled 
+
+                    const formData = new FormData(document.getElementById('uploadclassform'));
+                    console.log(formData);
+
+                    let object = {};
+                    formData.forEach((val, key) => {
+                    object[key] = val;
+                    });
+                    console.log(object);
+
+                },
+
+                // 下架
+                deleteClass(){
+
+                },
             },
 
         });
+
+       
 
     </script> 
 

@@ -5,14 +5,7 @@ let footer = new Vue({
     components:{
         'my-footer':{
         
-        data(){
-            return {
-                information:['近期賽事','三鐵資訊'],
-                classes:['團練課程','個人教練','營養菜單'],
-                club:['心得','問題','裝備', '閒聊'],
-              
-            }
-        },
+       
         template:
             `<div id="footer_wrapper">
           
@@ -37,20 +30,29 @@ let footer = new Vue({
                     <ul>
                        
                             <li>
-                                <a>團練課程</a>
+                                <a href="./classes-home.html">團練課程</a>
                             </li>
                             <li>
-                                <a>個人教練</a>
+                                <a href="./classes-home.html">個人教練</a>
                             </li>
                             <li>
-                                <a>營養菜單</a>
+                                <a href="./classes-home.html">營養菜單</a>
                             </li>
                         
                     </ul>
                     <ul>
-                        
-                        <li v-for="article in club">{{article}}</li>
-                        
+                        <li>
+                            <a href="./forum-home.html">心得</a>
+                        </li>
+                        <li>
+                            <a href="./forum-home.html">問題</a>
+                        </li>
+                        <li>
+                            <a href="./forum-home.html">裝備</a>
+                        </li>
+                        <li>
+                            <a href="./forum-home.html">閒聊</a>
+                        </li>
                     </ul>
                 </div>
         
@@ -58,7 +60,7 @@ let footer = new Vue({
                     <p>聯絡我們<br>
                     (02)2470-8053</p>
                     <div>
-                        <a href=""><i class="fa-brands fa-facebook-square fa-2xl" ></i></a>
+                        <a href="./facebook.com"><i class="fa-brands fa-facebook-square fa-2xl" ></i></a>
                         <a href=""><i class="fa-solid fa-envelope fa-2xl"></i></a>
                         <a href=""><i class="fa-brands fa-line fa-2xl"></i></a>
                     </div>

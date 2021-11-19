@@ -15,12 +15,13 @@ Vue.component("triclasses",{
     `,
     methods:{
         goToContent(){
-            let url = this.classUrl;
             let id = this.classId;
            
-           window.location.href=`${url}?classid=${id}`;
+           window.location.href=`../../../classes-content.html?classid=${id}`;
         },
-        GoToManageContent(){ //後台內頁
+
+        //後台編輯內頁
+        GoToManageContent(){ 
             let id = this.classId;
            
            window.location.href=`../../../manage-class-content.html?classid=${id}`;

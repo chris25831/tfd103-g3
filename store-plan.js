@@ -5,13 +5,16 @@ const plan = new Vuex.Store({
         //lightbox答案
         showquestion:true,
         showloading:false,
-        showplan:false,
+        showplan:true,
         questionanswer : [],
         current_tab:0,
         tab:"下一步",
+        Swim:0.2,
+        Bike:0.3,
+        Run:0.4,
         max:4,
         //測驗題目
-        questions:[
+        questions:[ 
             //第一題
             {
                 title:'你的參賽日期',
@@ -93,36 +96,37 @@ const plan = new Vuex.Store({
         cancel: true,
         //會員資料
         memberinfo:{
-            photo:"./src/images/img/plan/memberphoto.png",
+            memberId:"",
+            photo:"./src/images/img/plan/member00001.jpg",
             membername:"maggie",
-            racedate:"20221127",
-            week:8,
-            point:0,
+            racedate:"20221127",//會員Table裡沒有 撈Training Plan
+            week:12,            //會員Table裡沒有 撈Training Plan
+            point:"",
         },
         //計畫表資料
         plandata:[
         //day1
             {
             "Swim":1,
-            "Bike":1,
+            "Bike":null,
             "Run":.5,
             "Rest":false,
             check:[]
             },
             //day2
             {
-            "Swim":1,
-            "Bike":0.5,
+            "Swim":null,
+            "Bike":null,
             "Run":null,
-            "Rest":false,
+            "Rest":true,
             check:[]
             },
             //day3
             {
-            "Swim":null,
-            "Bike":null,
+            "Swim":1,
+            "Bike":0.5,
             "Run":null,
-            "Rest":"rest",
+            "Rest":false,
             check:[],
             },
             //day4
@@ -158,9 +162,55 @@ const plan = new Vuex.Store({
             check:[]
             },
         ],
+
+        //會員登入資料
+        memberLogin:{
+            memberId:20001245,
+            login: 0
+        }
     },
 
     mutations:{
+        //拿該會員的plan資料
+        //同時找會員資料（未完)
+        loadMemberPlan(state,payload){
+            let memberID = payload;
+            
+            axios({
+                method: 'post',
+                data:memberID,
+                url: './php/plan.php',
+                header:{
+                 'Content-type':'application/json'
+                }
+            }).then(function (response){
+                console.log(response);
+                //要執行loop塞check[] 進去 ＆rest
+                state.plandata = this.response
+            }).catch(function(error){
+                console.log(error);
+            })
+        },
+
+        loadrace(state){
+            console.log(state.questions[0].choices); 
+            axios({
+                method: 'post',
+                url: './php/plan-selectRace.php',
+                
+                header:{
+                    'Content-type':'application/json'
+                }
+              })
+              .then(function (response) {
+                  console.log(response); 
+                  state.state.question[0].choices = response
+              })
+              .catch(function (error) {
+                  console.log(error);
+              });
+        },
+
         tab(state,payload){
             state.tab = payload
         },
@@ -169,6 +219,11 @@ const plan = new Vuex.Store({
         },
         checkoneday(state){
             alert("恭喜你獲得一點");
+            
+            let newpoint = JSON.parse(localStorage.getItem('Points'));
+            // console.log(newpoint);
+            state.memberinfo.point = newpoint
+            
             if(state.memberinfo.point){
                 state.memberinfo.point += 1
             }
@@ -182,6 +237,7 @@ const plan = new Vuex.Store({
             var yes = confirm('確定要取消計畫嗎？將會清空計畫表內容')
             if (yes) {
                 state.cancel = false
+                localStorage.clear("plandata")
             } else {
                 alert('您已取消');
             }
@@ -204,12 +260,14 @@ const plan = new Vuex.Store({
                 
             }
             if(state.current_tab === 5){
-                state.showloading = true;
-                // console.log(state.questionanswer);
+                // state.showloading = true;
+                state.showplan = true;
+                console.log(state.questionanswer);
                 var questionAnswer = JSON.stringify(Object.assign({},state.questionanswer));
                 let data= new URLSearchParams()
                 data.append('answer',questionAnswer)
-               
+
+                // 送答案*** 送答案 *** 送答案 *** 送答案//
                 axios({
                     method: 'post',
                     url: './php/plan.php',
@@ -220,7 +278,7 @@ const plan = new Vuex.Store({
                   })
                   .then(function (response) {
                     state.showquestion = false;
-                    //   console.log(response); 
+                      console.log(response); 
                     //   console.log("成功");
                       state.showplan = true;
                       state.showloading = false;
@@ -240,7 +298,18 @@ const plan = new Vuex.Store({
         current_tab(state,payload){
             state.current_tab = payload
         },
+        growSwim(state){
+            state.Swim += 5
         
+        },
+        growRun(state){
+            state.Run += 5
+        
+        },
+        growBike(state){
+            state.Bike += 5
+        
+        }
         
     },
    
