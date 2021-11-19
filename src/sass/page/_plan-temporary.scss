@@ -11,7 +11,10 @@
     background-size: contain;
     background-position: center;
     height: 400px;
-    width: 800px;
+    width: 700px;
+    @include mobile{
+      width: 100%;
+    }
     .plan_question_content {
       height: 90%;
       .plan_question_content_article {
@@ -25,10 +28,7 @@
         height: 100%;
       }
     }
-        background-size:contain ;
-        background-position: center;
-        height: 400px;
-        width: 800px;
+        
         .plan_question_content{
             height: 90%;
             .plan_question_content_article{
@@ -52,26 +52,14 @@
                 justify-content:space-around;
                 // border:2px solid turquoise;
                 height: 100%;
-                
-                .select{
-                    // border:2px solid turquoise;
+                  .select{
+                    border:2px solid turquoise;
                     width: 70%;
                     white-space: pre-line;
-                    div{
-                        align-items: flex-start;
-                        flex-wrap: wrap;
-                        label{
-                            width: 90%;
-                            margin-bottom: 10px;
-                        }
-                        input{
-                            height: 20px;
-                            width: 20px;
-                            
-                        }
-                    }
+                    
                     
                 }
+              
             }
         }
      }
@@ -121,12 +109,19 @@ div.progress_bar{
         text-align: left;
         width: 70%;
         font-weight: 500;  
+        @include mobile{
+          width: 86%;
+          font-size:20px;  
+        }
     }
     div{
       display: flex;
       flex-direction: column;
-      width: 70%;  
-    //   border: 1px solid $orange;
+      width: 80%; 
+      @include mobile{
+        width: 92%; 
+      } 
+       //   border: 1px solid $orange;
     
 
        
@@ -139,7 +134,12 @@ div.progress_bar{
             width: 100%;
             height: 100%;
             line-height: 1.5;
-            white-space:wrap;
+            white-space:pre-line;
+            
+            @include mobile{
+              font-size: 16px;
+            }
+            
         }
         
     }
@@ -147,52 +147,50 @@ div.progress_bar{
         // border: 2px solid deepskyblue;
         height: 50%;
         div{
+            margin-left: 20px;
             display: flex;
             align-items: center;
             justify-content: left;
             flex-direction: row;
-            width: 100%;  
+            width: 100%; 
+            @include mobile{
+              flex-wrap: wrap;
+              align-items: flex-start;
+            }
+            label{
+              // border: 2px solid deepskyblue;
+              @include mobile{
+                width: 90%;
+                margin-bottom: 20px;
+              }
+              &:hover{
+                font-size: 18px;
+              }
+            } 
+            input{
+              width: 20px;
+              height: 20px;
+            }
         }
         select{
+            
             border: none;
             border-radius: 5px;
             background: linear-gradient(-30deg,#e75e49c9,#ffa10aa1,#f8e72b);
             padding: 2px 10px;
-            width: 400px;
+            width: 100%;
             box-shadow: 2px 2px $orange;
         }
     }
   }
-  div.select {
-    height: 50%;
-    
-    select {
-      border: none;
-      border-radius: 5px;
-      background: linear-gradient(-30deg, #e75e49c9, #ffa10aa1, #f8e72b);
-      padding: 2px 10px;
-      width: 400px;
-      box-shadow: 2px 2px $orange;
-      
-    }
-    input{
-      width: 15px;
-      height: 15px;
-      margin-left:20px ;
-      &:hover{
-        width: 20px;
-      height: 20px;
-      }
-    }
-  }
-
+ 
 
 #lightboxbtn {
   display: flex;
   @include flexcenter();
   width: 40%;
   @include mobile() {
-    height: 30%;
+    height: 15%;
   }
 }
 
@@ -214,10 +212,85 @@ div.progress_bar{
   #plan_head {
     width: 100%;
     @include flexcenter;
+    position: relative;
+    text-align: center;
+    @include mobile(){
+      top:30px;
+    }
+    .tip1{
+      
+      p{
+        text-align: left;
+        // margin: 0;
+        
+      }
+      &::after{
+        content: "1";
+        color: $orange;
+        font-weight: 800;
+        padding: 10px 15px;
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        transform: translate(-50%, -50%);
+        top:0;
+        left: 0;
+        box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.256);
+      }
+      box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.256);
+      background-color: rgba(255,255,255,0.8);
+      padding: 0px 5px 0px 15px;
+      border-left: 5px solid $orange;
+      display: flex;
+      align-items: center;
+      height: 40%;
+      width: 20%;
+      border-radius: 5px;
+      position:absolute;
+      transform: translate(-50%, -50%);
+      left: 80%;
+      top:30%;
+      @include table(){
+        left: 40%;
+        top:25%;
+        height: auto;
+        width: 50%;
+      }
+      @include mobile(){
+        left: 50%;
+        top:20%;
+        height: auto;
+        width: 80%;
+      }
+      
+      
+    }
+    svg.arrow{
+      position: absolute;
+      left: 60%;
+      top: 28%;
+      z-index: 20;
+      @include table(){
+        display: none ;
+      }
+    }
   }
+}
+.tick2{
+  stroke-dasharray: 200px;
+  stroke-dashoffset: 200px;
+  animation: 3s tick ease-in-out infinite;
 }
 
 
+@keyframes tick{
+  0%, 50% {
+    stroke-dashoffset: 180px;
+  }
+  50%, 100%{
+    stroke-dashoffset: 0px;
+  }
+}
 
 .plan_bg {
   position: relative;
@@ -229,6 +302,10 @@ div.progress_bar{
     position: absolute;
     filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));
     height: 100%;
+    
+  }
+  #layer02{
+    height: 200px;
   }
   .plan_info {
     z-index: 3;
@@ -239,11 +316,15 @@ div.progress_bar{
     align-items: left;
     flex-direction: column;
     @include fontfamily(500);
+    p{
+      margin:0 ;
+    }
   }
 }
 
 section.plan_tem_wrapper {
   height: 100%;
+  position: relative;
   //天數head
   #plan_week {
     max-width: 1200px;
@@ -277,7 +358,60 @@ section.plan_tem_wrapper {
     
    }
 }
-
+.tip2{ 
+  z-index: 20;
+  p{
+    margin: 0;
+    
+  }
+  &::after{
+    content: "2";
+    font-weight: 800;
+    color: $orange;
+    padding: 10px 15px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    transform: translate(-50%, -50%);
+    top:0;
+    left: 0;
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.256);
+  }
+  box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.256);
+  background-color: rgba(255,255,255,0.8);
+  border-left: 5px solid $orange;
+  padding: 0px 5px 0px 15px;
+  display: flex;
+  align-items: center;
+  height: 3%;
+  width: 22%;
+  border-radius: 5px;
+  position:absolute;
+  transform: translate(-50%, -50%);
+  left: 15%;
+  top:5%;
+  @include table(){
+    top:3%;
+    left: 30%;
+    height: auto;
+    width: 30%;
+  }
+  @include mobile(){
+    padding-left: 20px;
+    width: 50%;
+  }
+ 
+  
+}
+svg.arrow{
+  position: absolute;
+  left: 25%;
+  top: 3%;
+  z-index: 20;
+  @include table(){
+    display: none ;
+  }
+}
 //訓練表主要內容//
 #plan_main_content{
     display: flex;
@@ -290,7 +424,7 @@ section.plan_tem_wrapper {
     }
 
     span.week_mark{
-        border: 3px solid white;
+        // border: 3px solid white;
         filter: drop-shadow(0px 3px  $orange);
         background-color: $white ;
         font-size: 20px;
@@ -440,6 +574,7 @@ section.plan_tem_wrapper {
 
 //button
 .plan_button {
+  position: relative;
   margin-top: 20px;
   @include flexcenter;
   @include fontfamily(500);
@@ -447,6 +582,51 @@ section.plan_tem_wrapper {
     font-size: 16px;
     margin: 10px 20px;
   }
+  .tip3{ 
+    z-index: 20;
+    p{
+      margin: 0;
+      
+    }
+    &::after{
+      content: "3";
+      font-weight: 800;
+      color: $orange;
+      padding: 10px 15px;
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgb(255, 255, 255);
+      transform: translate(-50%, -50%);
+      top:0;
+      left: 0;
+      box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.256);
+    }
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.256);
+    background-color: rgba(255,255,255,0.8);
+    border-left: 5px solid $orange;
+    padding: 10px 5px 10px 15px;
+    display: flex;
+    align-items: center;
+    width: 22%;
+    border-radius: 5px;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    left: 85%;
+    top:5%;
+    @include table(){
+      top:-20%;
+      left: 65%;
+      height: auto;
+      width: 30%;
+    }
+    @include mobile(){
+      padding-left: 20px;
+      width: 50%;
+    }
+   
+    
+  }
+  
 }
 
 @keyframes move{
@@ -476,9 +656,6 @@ section.plan_tem_wrapper {
       animation-delay: calc(var(--order) * 200ms);
       
     }
- 
-
   }
-
 }
 
