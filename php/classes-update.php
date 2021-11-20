@@ -7,8 +7,8 @@ $classTitle = htmlspecialchars($_POST["classTitle"]);
 $classId = htmlspecialchars($_POST["classId"]);
 $trainer = htmlspecialchars($_POST["trainer"]);
 $price = htmlspecialchars($_POST["price"]);
-
 $classInfo =  htmlspecialchars($_POST["classInfo"]);
+
 
 
 //判斷 G&M . T
@@ -21,7 +21,7 @@ if ($classCategory == "T") {
     $ig = htmlspecialchars($_POST["ig"]);
 } else {  //G&M
 
-    // 判斷地點 G
+    // 有地點 => G  沒有 => M
     $checklocation = htmlspecialchars($_POST["classLocation"]);
 
     if (isset($checklocation)) {
@@ -29,13 +29,10 @@ if ($classCategory == "T") {
         $classLocation = $checklocation;
         echo  $classLocation;
         echo "<br/>";
-    }
+    } else {
 
-    // 判斷營養素 M
-    $checknutrients = htmlspecialchars($_POST["nutrients-cal"]);
-
-    if (isset($checknutrients)) {
-        $cal = $checknutrients;
+        // 營養素 M
+        $cal = htmlspecialchars($_POST["nutrients-cal"]);
         $protein =  htmlspecialchars($_POST["nutrients-protein"]);
         $carb =  htmlspecialchars($_POST["nutrients-carb"]);
         $fat =  htmlspecialchars($_POST["nutrients-fat"]);
@@ -55,8 +52,9 @@ echo "<br/>";
 
 
 
-
 // *****圖片******
+$filePath = "";
+
 // 判斷圖片不是空值
 if (!empty($_FILES)) {
 
@@ -66,8 +64,6 @@ if (!empty($_FILES)) {
     //取得上傳的檔案資訊(陣列型態)=============================
     $fileName_arr = $_FILES["classimg"]["name"];  //檔案名稱含副檔名
     $fileTmpName_arr = $_FILES["classimg"]["tmp_name"]; //Server上的暫存檔路徑含檔名    
-    // $fileType_arr = $_FILES["classimg"]["type"];    //檔案種類        
-    // $fileSize_arr = $_FILES["classimg"]["size"];    //檔案尺寸
     $error_arr = $_FILES["classimg"]["error"];  //錯誤代碼
     //=======================================================
 
@@ -92,13 +88,13 @@ if (!empty($_FILES)) {
             //顯示檔案資訊
             echo "檔案存放位置：" . $filePath;
             echo "<br/>";
-            // 畫面渲染用
-            // echo "<img src='/FileUpload/" . $fileName_arr[$i] . "'/>";
-            // echo "<br/><br/>";
         }
     }
 }
 
 
+// *****丟DB*****
 
-// TODO:*****丟DB*****
+// if(){
+
+// }
