@@ -3,7 +3,7 @@ Vue.component("forum-new-post-modal", {
     <div id="forum-new-post-modal" class="darken-background">
         <div class="new-article">
                 <span class="info">發表文章</span>
-                <div class="cross"> 
+                <div class="cross">
                     <i @click="returning" class="fas fa-times fa-2x"></i>
                 </div>
                 <input type="text" class="title forum-title" placeholder="請輸入文章標題" name="title" v-model="forumTitle" required>
@@ -71,7 +71,7 @@ Vue.component("forum-new-post-modal", {
                 //API要求的資料
                 data: { 
                         // username: "Maggie Wang",
-                        title: this.forumTitle,
+                        title: this.forumTitle, 
                         // time: correctTimeOfPost,
                         category: this.category,
                         content: this.newArticleContent

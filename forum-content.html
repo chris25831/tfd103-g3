@@ -47,7 +47,7 @@
                 <div class="head">
                     <div class="author">
                         <img class="avatar" :src="singleArticleData.UserPhoto" alt="">
-                        <span class="name">{{singleArticleData.PostID}}</span>
+                        <span class="name">{{singleArticleData.UserName}}</span>
                         <span class="time">{{singleArticleData.PostDate}}</span>
                     </div>
                     <div class="action">
@@ -86,23 +86,25 @@
 
             <div class="new-comment">
                 <img class="avatar avatar-new-comment" src="./src/images/img/forum/smile.jpg" alt="">
-                <textarea class="input-comment" placeholder="留言..." name="" id=""></textarea>
+                <textarea class="input-comment" placeholder="留言..." name="commentContent" id="" v-model="commentContent"></textarea>
                 <div class="button-block-frontend">
-                    <button class="submit-comment small-blue">留言</button>
+                    <button type="submit" class="submit-comment small-blue" @click="sendComment">留言</button>
                 </div>
             </div>
 
             <hr>
 
+
+            <!-- v-for="comment in commentData" :data-id="comment.CommentId" -->
             <div class="comments">
-                <div class="single-comment" v-for="comment in commentData" :data-id="comment.CommentId">
+                <div class="single-comment" v-for="commentDatum in commentData" :data-id="commentDatum.CommentID">
                     <div class="comment-author">
                         <img class="avatar avatar-comment" src="./src/images/img/forum/smile.jpg" alt="">
-                        <span class="name">?????</span>
-                        <span class="time">??????</span>
+                        <span class="name">{{commentDatum.UserID}}</span>
+                        <span class="time">{{commentDatum.CommentPostDate}}</span>
                     </div>
                     <p class="comment-content">
-                        ?????????????
+                        {{commentDatum.CommentContent}}
                     </p>
                     <div class="report">
                         <img src="./src/images/img/forum/report-button.png">
@@ -110,10 +112,7 @@
                             <span>檢舉</span>
                         </div>  
                     </div>
-                    
                 </div>
-                
-                
             </div>
         </div>
         
@@ -122,13 +121,13 @@
         <!-- 點擊編輯文章後彈出 -->
         <div id="forum-edit-post-modal" class="darken-background" v-show="showEditModal">
             <div class="new-article edit-article">
-                    
+
                     <span class="info">編輯文章</span>
 
                     <div class="cross">
                         <i @click="closeEditModal" class="fas fa-times fa-2x"></i>
                     </div>
-
+                    
                     <input type="text" class="title forum-title" placeholder="請輸入文章標題" name="title" v-model="forumTitle" required>
 
                     <select class="category" name="category" id="" v-model="category" required>
@@ -204,6 +203,8 @@
             forumTitle: "",
             category:"",
             articleContent:"",
+
+            commentContent: ""
         },
         methods: {
             openEditModal(){
@@ -258,30 +259,39 @@
                 })
                 .then((res) => console.log(res))
                 .catch((error) => console.log(error))
-
-                // axios.post("./php/edit-forum.php", {
-                //     postid: `${postId}`,                     
-                //     title: this.forumTitle,
-                //     category: `${this.category}`,
-                //     content: `${this.articleContent}`
-                // })
-                //     .then( (response) => console.log(response))
-                //     .catch( (error) => console.log(error))
             },
+            sendComment(){  
+                let postId = parseInt(this.singleArticleData.PostID);
+
+                axios({
+                    method: 'post',
+                    url: './php/new-comment.php',
+                    //API要求的資料
+                    data: {    
+                        postid: postId,                     
+                        commentContent: this.commentContent,
+                        userid : parseInt(this.singleArticleData.UserID)
+                    }
+                })
+                .then((res) => console.log(res.data))
+                .catch((error) => console.log(error))
+            }   
         },
         mounted() {  
+            let that = this;
             //從網址處拿到號碼，並將#號去掉
             let numberArray = location.hash.split("");
             numberArray.shift();
             for(let i = 0; i < numberArray.length; i++) {
                 numberArray[i];
                 this.dataNumber += numberArray[i]
-                // console.log(this.dataNumber);
-            }
-
+            };
+            
+            //用文編號找到指定的文章
             axios.get('./php/select-forum.php')
             .then((res) => {
                 this.articleData = res.data;
+                
                 //用號碼來找到相對應的資料
                 for(let i = 0; i < this.articleData.length; i++) {
                     if(this.articleData[i].PostID.toString() === this.dataNumber.toString()) {
@@ -289,21 +299,40 @@
                     }
                 }
             })
-            .catch((error) => console.log(error))
+            .catch((error) => console.log(error));
 
+            
             //找到本篇文章下的所有留言
-            // axios.get('./php/select-comment.php')
-            // .then((res) => {
-            //     this.commentData = res.data;
+            let thePostId = parseInt(this.dataNumber);
+
+            axios({
+                method: "post",
+                url: "./php/select-comment.php",
+                data: {
+                    postid: thePostId
+                }
+            })
+            .then((res) => {
+                
+                this.commentData = res.data;
+            })
+            .catch((error) => console.log(error));
+            
+            // axios.get('./php/select-comment.php', {
+            //     postid: thePostId
             // })
-            // .catch((error) => console.log(error))
+            // .then((res) => {
+            //     that.commentData = res.data;
+            // })
+            // .catch((error) => console.log(error));
+            
 
             //圖片欄位出現與否
-            if(this.singleArticleData.PostPhotoOne === false  && this.singleArticleData.PostPhotoTwo === false && this.singleArticleData.PostPhotoThree === false){
-                this.showPhotoBlock = false;
-            } else {
-                this.showPhotoBlock = true;
-            };
+            // if(this.singleArticleData.PostPhotoOne === false  && this.singleArticleData.PostPhotoTwo === false && this.singleArticleData.PostPhotoThree === false){
+            //     this.showPhotoBlock = false;
+            // } else {
+            //     this.showPhotoBlock = true;
+            // };
 
             
         },

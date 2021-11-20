@@ -11,11 +11,8 @@
   
     print_r($formData);
 
-    // $data = json_encode($formData, JSON_UNESCAPED_UNICODE);
-
     // $username = htmlspecialchars($_POST["username"]);
-    $title = $formData["title"];
-    // $theTime = htmlspecialchars($_POST["time"]);
+    $title = $formData["title"]; 
     $category = $formData["category"];
     $content = $formData["content"];
     // $photoOne = htmlspecialchars($_POST["photo-one"]);
@@ -23,13 +20,12 @@
     // $photoThree = htmlspecialchars($_POST["photo-three"]);
     
     //建立SQL
-    // $sql = "INSERT into Post(PostTitle, PostDate, PostCategory, PostContent, PostPhotoOne, PostPhotoTwo, PostPhotoThree) VALUES('title', NOW(), 1, 'content', 'photo1', 'photo2', 'photo3');";
     $sql = "INSERT into Post(UserID, PostTitle, PostDate, PostCategory, PostContent, Blocked) VALUES(123456, ?, NOW(), ?, ?, false)";
     
     $statement = $pdo->prepare($sql);
 
     
-    // $statement->bindValue(2, $username);
+
 
     $statement->bindValue(1, $title);    
     $statement->bindValue(2, $category); 
