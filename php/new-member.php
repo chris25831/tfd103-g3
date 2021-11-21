@@ -8,22 +8,19 @@
     var_dump($requestBody);
 
     $formData = json_decode($requestBody, true);
-  
+    
     print_r($formData);
 
-    $postId = $formData["postid"];
-    $commentContent = $formData["commentContent"];
-    $userId = $formData["userid"];
-    
+    $account = $formData["account"];
+    $password = $formData["password"];
 
     //建立SQL
-    $sql = "INSERT into Comment(PostID, CommentContent, CommentPostDate ,UserID , Blocked) VALUES(?, ?, NOW(), ?, false)";
+    $sql = "INSERT into User(Account, Password) VALUES(?, ?);";
     
     $statement = $pdo->prepare($sql);
 
-    $statement->bindValue(1, $postId);    
-    $statement->bindValue(2, $commentContent); 
-    $statement->bindValue(3, $userId); 
+    $statement->bindValue(1, $account);    
+    $statement->bindValue(2, $password); 
 
     $statement->execute();
     
