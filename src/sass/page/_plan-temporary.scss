@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
   .plan_ques_wrapper {
     @include questionbox();
     display: flex;
@@ -13,7 +14,9 @@
     height: 400px;
     width: 700px;
     @include mobile{
-      width: 100%;
+      
+      width: 90%;
+      height: 50%;
     }
     .plan_question_content {
       height: 90%;
@@ -75,11 +78,14 @@ div.progress_bar{
   padding-right: 5px;
   height: 30%;
   span{
-    height: 50px;
-    font-weight: 500;
+    padding-left: 10px;
+    margin-top: 20px;
+    height: 40px;
+    font-weight: 700;
     color: $orange;
   }
   div.progress_bar{
+    
       display: flex;
       justify-content:flex-start;
       width: 60%;
@@ -89,6 +95,9 @@ div.progress_bar{
       border-radius: 8px;
       margin-left: 10px;
       overflow: hidden;
+      @include mobile(){
+        width: 90%;
+      }
       span.progress{
         margin: 3px;
         height: 80%;
@@ -105,13 +114,13 @@ div.progress_bar{
         border: 1px solid $orange;
     }
     h1{
-        // border: 1px solid $orange;
         text-align: left;
-        width: 70%;
+        width: 75%;
         font-weight: 500;  
         @include mobile{
           width: 86%;
-          font-size:20px;  
+          font-size:24px;
+          font-weight: 700;    
         }
     }
     div{
@@ -150,17 +159,19 @@ div.progress_bar{
             margin-left: 20px;
             display: flex;
             align-items: center;
-            justify-content: left;
+            justify-content:left;
             flex-direction: row;
-            width: 100%; 
+            width: 90%; 
             @include mobile{
               flex-wrap: wrap;
               align-items: flex-start;
             }
             label{
-              // border: 2px solid deepskyblue;
+              width: 24%;
+              margin-right: 30px;
+              margin-left: 10px;
               @include mobile{
-                width: 90%;
+                width: 80%;
                 margin-bottom: 20px;
               }
               &:hover{
@@ -173,13 +184,16 @@ div.progress_bar{
             }
         }
         select{
-            
             border: none;
             border-radius: 5px;
             background: linear-gradient(-30deg,#e75e49c9,#ffa10aa1,#f8e72b);
             padding: 2px 10px;
-            width: 100%;
+            width: 80%;
             box-shadow: 2px 2px $orange;
+            @include mobile(){
+              width: 90%;
+              padding: 10px 10px;
+            }
         }
     }
   }
@@ -389,7 +403,7 @@ section.plan_tem_wrapper {
   position:absolute;
   transform: translate(-50%, -50%);
   left: 15%;
-  top:5%;
+  top:3%;
   @include table(){
     top:3%;
     left: 30%;
@@ -406,7 +420,7 @@ section.plan_tem_wrapper {
 svg.arrow{
   position: absolute;
   left: 25%;
-  top: 3%;
+  top: 2%;
   z-index: 20;
   @include table(){
     display: none ;
@@ -611,17 +625,17 @@ svg.arrow{
     border-radius: 5px;
     position:absolute;
     transform: translate(-50%, -50%);
-    left: 85%;
-    top:5%;
+    left: 65%;
+    top:-15%;
     @include table(){
-      top:-20%;
-      left: 65%;
+      top:-50%;
+      left: 55%;
       height: auto;
-      width: 30%;
+      width: auto;
     }
     @include mobile(){
       padding-left: 20px;
-      width: 50%;
+      
     }
    
     

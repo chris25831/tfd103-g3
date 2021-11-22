@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
     <title>訂製計畫表|Triclub</title> 
-    <!--從scss轉譯過來的-->
-    <link rel="stylesheet" href="css/style.css">
+   
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <!--Jquery-->
@@ -19,10 +18,13 @@
     <script src="./src/js/vue.js"></script>
     <!--axios-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <!--gsap-->
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
-    </head>
+     <!--從scss轉譯過來的-->
+     <link rel="stylesheet" href="css/style.css">
+</head>
 
 <body class="plan">
     <!--這是header-->
@@ -60,9 +62,6 @@
 
         <!--這是計畫表lightbox-->
         <section  class="plan_question_wrapper" v-if="showquestion">
-            
-            
-
             <div class="plan_ques_wrapper">
                 <!--上一步-->
                 <a href="#" @click="last" class="previouspage">
@@ -103,7 +102,7 @@
                                 <div class="select">
                                     <div v-if="question.type === 'radio'">
                                         <template v-for="choice in question.choices">
-                                            <input v-model="question.answer" style="margin:0 10px;" :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
+                                            <input v-model="question.answer"  :id="choice.value" :name="question.name" type="radio" v-model="choices" :value="choice.value">
                                             <label :for="choice.value">{{choice.title}}</label>
                                         </template>    
                                     </div>
@@ -117,7 +116,7 @@
                                     </div>
                                 </div>
                                 <!--下一步-->
-                                <button  id="lightboxbtn"  @click="changetab()" class="orangebutton title3 ">{{tab}}</button>
+                                <button  id="lightboxbtn"   @click="changetab()" class="orangebutton title3 ">{{tab}}</button>
                         </div>
                     </template> 
 
@@ -128,13 +127,13 @@
         </section>
 
         <!--這是計畫表主體-->
-        <main id="plan_wrapper" v-if="showplan">
+        <main id="plan_wrapper" v-show="showplan">
            
             <div id="plan_head" >
                 <div class="plan_bg">
                     
                     <div class="plan_info">
-                        <p>比賽日期{{this.questionanswer[0]}}</p>
+                        <p>比賽日期:{{this.questionanswer[0]}}</p>
                         <p>訓練週數:{{this.questionanswer[2]}}</p>
                     </div>
                     <svg id="layer02"  id="bevelyellow" xmlns="http://www.w3.org/2000/svg" width="400" height="107" viewBox="0 0 308.81 107">
@@ -188,7 +187,7 @@
                     </svg>
                 <!--訓練表主要內容-->
                 <div class="plan_scroll">
-                    <section  v-for="week in 8" id="plan_main_content" class="plan_row">
+                    <section  v-for="week in questionanswer[2]" id="plan_main_content" class="plan_row">
                     <span class="week_mark title2">W{{week}}</span>
                         <ul class="plan_main_content_row">
                             <li v-for="(perday,index) in plandata" class="plan_eachday">
@@ -203,9 +202,9 @@
                                     <span v-show="perday.Run"><i class="fa-solid fa-person-running"></i></span>
                                 </div>
                                 <div class="plan_exe">
-                                    <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}</span></p>
-                                    <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}</span></p>
-                                    <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}</span></p>
+                                    <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}hr</span></p>
+                                    <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}hr</span></p>
+                                    <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}hr</span></p>
                                     <p v-show="perday.Rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.Rest}}</span></p>
                                 </div>
                             </li>
@@ -230,11 +229,6 @@
       <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
    </footer>
 
-
-
-
-
-
 <script type="module">
 
 import plan from "./store-plan.js"
@@ -244,7 +238,6 @@ new Vue({
     el: '#plan_question',
     store:plan,
     methods: {
-        
         last(){      //切換按鈕index
             this.$store.commit('last')
         },
@@ -256,6 +249,7 @@ new Vue({
     }, 
         
      computed: {
+       
         showplan(){
             return this.$store.state.showplan
         },
@@ -313,31 +307,20 @@ new Vue({
                     
             }
         },
-       
+
     },
     mounted() {
          this.$store.commit('loadrace')
-         
-        
-         let tl = gsap.from(".plan_row", {
-            duration: 1,
-            scale:0,
-            stagger: 0.5,
-            scrollTrigger: {
-            trigger: "#plan_head", //觸發得物件
-            start: "top top", // (物件開始位置, 卷軸開始位置) top center bottom px
-            end: "100%", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
-            scrub: false, // 物件動畫根據卷軸捲動程度跑
-            // markers: true // 顯示標記
-          }
-        })
-
-
+            gsap.from('.plan_ques_wrapper',{
+                duration : 1,
+                x : -200,
+                
+            })
             gsap.from('#layer02',{
                 duration : 1,
                 x : 200,
                 y : -200,
-            });
+            })
             gsap.to('#b1,.tip2,.tip3',{
                 duration : 3,
                 x : 2,
@@ -369,13 +352,11 @@ new Vue({
                 repeat: -1,
                 });
     },
-
+    
 });
 
 </script>
-
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
-<!-- <script src="./src/component/plan/plan.js"></script> -->
 </body>
 </html>
