@@ -121,9 +121,9 @@
                         }
                         span {
                             display: block;
-                            &:hover {
+                            // &:hover {
 
-                            }
+                            // }
                         }
                     }
                 }
@@ -266,11 +266,15 @@
             border-radius: 30px;
             margin-bottom: 20px;
             .comment-author {
-                width: 40%;
+                width: 60%;
                 min-width: 250px;
                 height: 70px;
                 // border: solid red 1px;
                 display: inline-block;
+                @include mobile(){
+                    width: 322px;
+                    min-width: 322px;
+                }
                 img.avatar-comment {
                     border-radius: 50%;
                     width: 44px;
@@ -278,6 +282,9 @@
                     object-fit: cover;
                     margin-left: 28px;
                     margin-top: 15px;
+                    @include mobile(){
+                        margin-left: 25px;
+                    }
                 }  
                 span.name, span.time {
                     display: inline-block;
@@ -300,6 +307,9 @@
                 padding: 16px 28px 16px;
                 margin: 0;
                 line-height: 1.5rem;
+                @include mobile(){
+                    padding: 16px 25px 16px;
+                }
             }
             div.report {
                 position: absolute;

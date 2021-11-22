@@ -38,7 +38,7 @@
                     <div class="left">
                         <div class="author">
                             <img class="avatar" :src="articleDatum.UserPhoto" alt="">
-                            <span class="name">{{articleDatum.UserID}}</span>
+                            <span class="name">{{articleDatum.UserName}}</span>
                             <span class="time">{{articleDatum.PostDate}}</span>
                         </div>
                         <h3 class="article-title">{{articleDatum.PostTitle}}</h3>
@@ -89,7 +89,7 @@
             </div>
         </div>
         
-        <forum-new-post-modal @closing="closeModal" v-if="showModal" @send-all-the-text="addItem"></forum-new-post-modal>  
+        <forum-new-post-modal @closing="closeModal" v-if="showModal"></forum-new-post-modal>   <!-- @send-all-the-text="addItem"-->
     </main>
     
     <!--這是footer-->
@@ -109,80 +109,7 @@
 <script src="./forum.js"></script> 
 <script type="module">
     import forum from "./forum.js"  
-    let dummyData = [   //假資料
-                {
-                    "ArticleNumber": "1",
-                    "AuthorName": "Maggie Wang1",
-                    "AuthorAvatar": "./src/images/img/forum/smile.jpg",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "問題跑鞋標題",
-                    "ArticleCategory": "問題",
-                    "ArticleContent": "問題跑鞋內容",
-                    "ViewsCount": "100",
-                    "LikesCount": "100",
-                    "CommentsCount": "100"
-                },
-                {
-                    "ArticleNumber": "2",
-                    "AuthorName": "Johnny Hsieh2",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "閒聊跑鞋標題",
-                    "ArticleCategory": "閒聊",
-                    "ArticleContent": "閒聊跑鞋內容",
-                    "ViewsCount": "200",
-                    "LikesCount": "200",
-                    "CommentsCount": "200"
-                },
-                {
-                    "ArticleNumber": "3",
-                    "AuthorName": "Johnny Hsieh3",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "裝備跑鞋標題",
-                    "ArticleCategory": "裝備",
-                    "ArticleContent": "裝備跑鞋內容",
-                    "ViewsCount": "300",
-                    "LikesCount": "300",
-                    "CommentsCount": "300"
-                },
-                {
-                    "ArticleNumber": "4",
-                    "AuthorName": "Johnny Hsieh4",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "心得跑鞋標題",
-                    "ArticleCategory": "心得",
-                    "ArticleContent": "心得跑鞋內容",
-                    "ViewsCount": "400",
-                    "LikesCount": "400",
-                    "CommentsCount": "400"
-                },
-                {
-                    "ArticleNumber": "5",
-                    "AuthorName": "Johnny Hsieh5",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "心得跑鞋標題",
-                    "ArticleCategory": "心得",
-                    "ArticleContent": "心得跑鞋內容",
-                    "ViewsCount": "500",
-                    "LikesCount": "500",
-                    "CommentsCount": "500"
-                },
-                {
-                    "ArticleNumber": "6",
-                    "AuthorName": "Johnny Walker6",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "心得跑鞋標題",
-                    "ArticleCategory": "心得",
-                    "ArticleContent": "心得跑鞋內容",
-                    "ViewsCount": "600",
-                    "LikesCount": "600",
-                    "CommentsCount": "600"
-                },
-            ];
+  
 
     new Vue({
         el: "#forum-home",
@@ -232,7 +159,7 @@
                 } else {                   
                     this.categorizedData = this.articleData.filter(sorted => sorted.PostCategory.toString() === e.target.innerText.toString());
                     this.currentCategory = e.target.innerText;
-                    console.log(this.currentCategory);
+                    
                     this.tidedData = this.categorizedData.slice(this.startIndex, this.startIndex + this.itemsPerPage); 
                     // console.log("this.categorizedData", this.categorizedData);
                     this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);
@@ -242,16 +169,16 @@
             seeContent(e) {           
                 let clickTarget = e.target.closest("div.article-item");
                 // this.$store.commit("getPostId", clickTarget.dataset.id);
-                console.log(clickTarget);
+                
                 window.location.href=`./forum-content.html#${clickTarget.dataset.id}`;
             },
-            addItem(item) {
-                this.articleData.unshift(item);
-                this.showModal = false;
-                if(item.ArticleCategory.toString() === this.currentCategory.toString() || this.currentCategory.toString() === "全部") {
-                    this.tidedData = this.articleData;
-                };
-            },
+            // addItem(item) {
+            //     this.articleData.unshift(item);
+            //     this.showModal = false;
+            //     if(item.ArticleCategory.toString() === this.currentCategory.toString() || this.currentCategory.toString() === "全部") {
+            //         this.tidedData = this.articleData;
+            //     };
+            // },
         },
         watch: {
             currentPage(newValue, oldValue) {   //分頁器偵測所處頁面  
@@ -273,10 +200,11 @@
             .then((res)=>{
                 this.articleData = res.data;
 
+                this.articleData.reverse();
+                console.log(this.articleData);
                 //存放分類為"全部"的資料 (預設)
                 this.categorizedData = this.articleData;
                 
-                console.log("this.categorizedData", this.categorizedData);
                 // //計算總頁數
                 this.totalPage = Math.ceil(this.categorizedData.length / this.itemsPerPage);   
 

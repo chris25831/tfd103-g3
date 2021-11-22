@@ -47,7 +47,7 @@
                 <div class="head">
                     <div class="author">
                         <img class="avatar" :src="singleArticleData.UserPhoto" alt="">
-                        <span class="name">{{singleArticleData.PostID}}</span>
+                        <span class="name">{{singleArticleData.UserName}}</span>
                         <span class="time">{{singleArticleData.PostDate}}</span>
                     </div>
                     <div class="action">
@@ -86,23 +86,25 @@
 
             <div class="new-comment">
                 <img class="avatar avatar-new-comment" src="./src/images/img/forum/smile.jpg" alt="">
-                <textarea class="input-comment" placeholder="留言..." name="" id=""></textarea>
+                <textarea class="input-comment" placeholder="留言..." name="commentContent" id="" v-model="commentContent"></textarea>
                 <div class="button-block-frontend">
-                    <button class="submit-comment small-blue">留言</button>
+                    <button type="submit" class="submit-comment small-blue" @click="sendComment">留言</button>
                 </div>
             </div>
 
             <hr>
 
+
+            <!-- v-for="comment in commentData" :data-id="comment.CommentId" -->
             <div class="comments">
-                <div class="single-comment" v-for="comment in commentData" :data-id="comment.CommentId">
+                <div class="single-comment" v-for="commentDatum in commentData" :data-id="commentDatum.CommentID">
                     <div class="comment-author">
                         <img class="avatar avatar-comment" src="./src/images/img/forum/smile.jpg" alt="">
-                        <span class="name">?????</span>
-                        <span class="time">??????</span>
+                        <span class="name">{{commentDatum.UserID}}</span>
+                        <span class="time">{{commentDatum.CommentPostDate}}</span>
                     </div>
                     <p class="comment-content">
-                        ?????????????
+                        {{commentDatum.CommentContent}}
                     </p>
                     <div class="report">
                         <img src="./src/images/img/forum/report-button.png">
@@ -110,25 +112,22 @@
                             <span>檢舉</span>
                         </div>  
                     </div>
-                    
                 </div>
-                
-                
             </div>
         </div>
         
         <report @cancel-report="closeReportModal" v-if="showReportModal"></report>
         
         <!-- 點擊編輯文章後彈出 -->
-        <div class="darken-background forum-edit-post-modal" v-if="showModal">
-            <div class="new-article forum-modal">
-                    
+        <div id="forum-edit-post-modal" class="darken-background" v-show="showEditModal">
+            <div class="new-article edit-article">
+
                     <span class="info">編輯文章</span>
 
-                    <div class="cross"> 
+                    <div class="cross">
                         <i @click="closeEditModal" class="fas fa-times fa-2x"></i>
                     </div>
-
+                    
                     <input type="text" class="title forum-title" placeholder="請輸入文章標題" name="title" v-model="forumTitle" required>
 
                     <select class="category" name="category" id="" v-model="category" required>
@@ -157,7 +156,7 @@
                         </div>
                     </div>
                     
-                    <button class="send-forum-content" type="submit" @click="send">送出</button>
+                    <button class="send-forum-content" @click.prevent="sendEdit">送出</button>   <!-- @click="send"--->
             </div>
         </div>
         <!-- 以上為編輯文章 -->
@@ -166,7 +165,7 @@
     
     <!--這是footer-->
     <footer id="footer">
-        <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+        <my-footer></my-footer> <!--這是目標標籤會被覆蓋-->
     </footer>
 
 
@@ -183,97 +182,7 @@
 
 <script type="module">
     import forum from "./forum.js"
-    let dummyData = [   //假資料
-                {
-                    "ArticleNumber": "1",
-                    "AuthorName": "Maggie Wang1",
-                    "AuthorAvatar": "./src/images/img/forum/smile.jpg",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "問題跑鞋標題",
-                    "ArticleCategory": "問題",
-                    "ArticleContent": "問題跑鞋內容",
-                    "ViewsCount": "100",
-                    "LikesCount": "100",
-                    "CommentsCount": "100"
-                },
-                {
-                    "ArticleNumber": "2",
-                    "AuthorName": "Johnny Hsieh2",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "閒聊跑鞋標題",
-                    "ArticleCategory": "閒聊",
-                    "ArticleContent": "閒聊跑鞋內容",
-                    "ViewsCount": "200",
-                    "LikesCount": "200",
-                    "CommentsCount": "200"
-                },
-                {
-                    "ArticleNumber": "3",
-                    "AuthorName": "Johnny Hsieh3",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "裝備跑鞋標題",
-                    "ArticleCategory": "裝備",
-                    "ArticleContent": "裝備跑鞋內容",
-                    "ViewsCount": "300",
-                    "LikesCount": "300",
-                    "CommentsCount": "300"
-                },
-                {
-                    "ArticleNumber": "4",
-                    "AuthorName": "Johnny Hsieh4",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "心得跑鞋標題",
-                    "ArticleCategory": "心得",
-                    "ArticleContent": "心得跑鞋內容",
-                    "ViewsCount": "400",
-                    "LikesCount": "400",
-                    "CommentsCount": "400"
-                },
-                {
-                    "ArticleNumber": "5",
-                    "AuthorName": "Johnny Hsieh5",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "心得跑鞋標題",
-                    "ArticleCategory": "心得",
-                    "ArticleContent": "心得跑鞋內容",
-                    "ViewsCount": "500",
-                    "LikesCount": "500",
-                    "CommentsCount": "500"
-                },
-                {
-                    "ArticleNumber": "6",
-                    "AuthorName": "Johnny Walker6",
-                    "AuthorAvatar": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.6435-9/122891827_3775399562473211_2678647114024992983_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=0Yscly8Bi6IAX_M7KPw&_nc_ht=scontent.ftpe8-3.fna&oh=14610ff24a6fa819b877c8142e2eea01&oe=61A500A6",
-                    "PostTime": "2021/09/21",
-                    "ArticleTitle": "心得跑鞋標題",
-                    "ArticleCategory": "心得",
-                    "ArticleContent": "心得跑鞋內容",
-                    "ViewsCount": "600",
-                    "LikesCount": "600",
-                    "CommentsCount": "600"
-                },
-            ];
-
-    let dummyCommentData = [
-        {
-            "CommentId": "100",
-            "AuthorName": "Johnny Hsieh1",
-            "PostTime": "2021/09/21",
-            "CommentContent": "留言內容留言內容"    
     
-        },
-        {
-            "CommentId": "200",
-            "AuthorName": "Johnny Hsieh2",
-            "PostTime": "2021/09/21",
-            "CommentContent": "留言內容留言內容"    
-    
-        }
-    ];
 
     new Vue({
         el: "#forum-content",
@@ -281,7 +190,7 @@
         data: {
             categories: ["全部","閒聊","裝備","心得","問題"],
             showPhotoBlock: false,
-            showModal: false,
+            showEditModal: false,
             likeSwitch: true,
             likeSwitchForRed: false,
             showReport: false,
@@ -290,18 +199,22 @@
             ArticleData: [],
             singleArticleData: [],
             commentData: [],
-            showModal: false,
 
             forumTitle: "",
             category:"",
             articleContent:"",
+
+            commentContent: ""
         },
         methods: {
             openEditModal(){
-                this.showModal = true;
+                this.showEditModal = true;
+                this.forumTitle = this.singleArticleData.PostTitle;
+                this.category = this.singleArticleData.PostCategory;
+                this.articleContent = this.singleArticleData.PostContent;
             },
             closeEditModal(){         
-                this.showModal = false;
+                this.showEditModal = false;
             },
             clickLike(){
                 this.likeSwitch = !this.likeSwitch;
@@ -318,31 +231,69 @@
                 this.showReportModal = false;
             },
             deletePost(){
+                let postId = parseInt(this.singleArticleData.PostID);
+                
                 axios({
-                method: "get",
+                method: "post",
                 url: "./php/delete-forum.php",
-                //API要求的資料
+                headers: { 'content-type': 'application/form-data' },
                 data: {                       
-                    postid: this.singleArticleData.PostID,
-                },
+                    postid: postId
+                }
                 })
                 .then((res) => console.log(res))
                 .catch((error) => console.log(error))
-            }
+            },
+            sendEdit() {
+                let postId = parseInt(this.singleArticleData.PostID);
+                axios({
+                    method: 'post',
+                    url: './php/edit-forum.php',
+                    //API要求的資料
+                    data: {    
+                        postid: postId,                     
+                        title: this.forumTitle,
+                        category: this.category,
+                        content: this.articleContent
+                    }
+                })
+                .then((res) => console.log(res))
+                .catch((error) => console.log(error))
+            },
+            sendComment(){  
+                let postId = parseInt(this.singleArticleData.PostID);
+
+                axios({
+                    method: 'post',
+                    url: './php/new-comment.php',
+                    //API要求的資料
+                    data: {    
+                        postid: postId,                     
+                        commentContent: this.commentContent,
+                        userid : parseInt(this.singleArticleData.UserID)
+                    }
+                })
+                .then((res) => console.log(res.data))
+                .catch((error) => console.log(error))
+            }   
         },
         mounted() {  
+            let that = this;
             //從網址處拿到號碼，並將#號去掉
             let numberArray = location.hash.split("");
             numberArray.shift();
             for(let i = 0; i < numberArray.length; i++) {
                 numberArray[i];
                 this.dataNumber += numberArray[i]
-                console.log(this.dataNumber);
-            }
+            };
 
+            console.log("this.dataNumber", this.dataNumber);
+            
+            //用文編號找到指定的文章
             axios.get('./php/select-forum.php')
             .then((res) => {
                 this.articleData = res.data;
+                
                 //用號碼來找到相對應的資料
                 for(let i = 0; i < this.articleData.length; i++) {
                     if(this.articleData[i].PostID.toString() === this.dataNumber.toString()) {
@@ -350,21 +301,42 @@
                     }
                 }
             })
-            .catch((error) => console.log(error))
+            .catch((error) => console.log(error));
 
+            
             //找到本篇文章下的所有留言
-            // axios.get('./php/select-comment.php')
-            // .then((res) => {
-            //     this.commentData = res.data;
+            let thePostId = parseInt(this.dataNumber);
+
+            axios({
+                method: "post",
+                url: "./php/select-comment.php",
+                data: {
+                    postid: thePostId
+                }
+            })
+            .then((res) => {
+                
+                this.commentData = res.data;
+            })
+            .catch((error) => console.log(error));
+            
+            // axios.get('./php/select-comment.php', {
+            //     postid: thePostId
             // })
-            // .catch((error) => console.log(error))
+            // .then((res) => {
+            //     that.commentData = res.data;
+            // })
+            // .catch((error) => console.log(error));
+            
 
             //圖片欄位出現與否
-            if(this.singleArticleData.PostPhotoOne === false  && this.singleArticleData.PostPhotoTwo === false && this.singleArticleData.PostPhotoThree === false){
-                this.showPhotoBlock = false;
-            } else {
-                this.showPhotoBlock = true;
-            }
+            // if(this.singleArticleData.PostPhotoOne === false  && this.singleArticleData.PostPhotoTwo === false && this.singleArticleData.PostPhotoThree === false){
+            //     this.showPhotoBlock = false;
+            // } else {
+            //     this.showPhotoBlock = true;
+            // };
+
+            
         },
     })
 </script>

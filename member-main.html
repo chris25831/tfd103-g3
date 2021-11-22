@@ -21,18 +21,18 @@
         <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
    </header>
   
-
+   
    <!--內容所有都放在這div裡面-->
    <main id="member-main" class="member-main">
-        <div class="member-bgwhite">
+        <div class="member-bgwhite" v-for="userInfo in userInformation">
 			<aside class="left-area">
-				<div class="member-photo"><img src="./src/images/img/member/memberphoto.jpg"></div>
-				<div class="member-name-left">Lawrence</div>
+				<div class="member-photo"><img src="#"></div>
+				<!-- <div class="member-name-left">Lawrence</div> -->
 				<ul class="member-info-left">
-					<li>Lawrence Chen</li>
-					<li>0123456789</li>
-					<li>lawrence@gmail.com</li>
-					<li>103點</li>
+					<li>{{userInfo.UserName}}</li>
+					<li>{{userInfo.Account}}</li>
+					<li>{{userInfo.Email}}</li>
+					<li>{{userInfo.Points}}點</li>
 				</ul>
 				<input type="button" value="我的個人計畫" class="orangebutton" onclick="self.location.href='plan-member.html'">
 			</aside>
@@ -42,24 +42,28 @@
 					<div class="member-info-right-top">
 						<form action="" class="firstpartleft">
 							<label for="member-name">姓名：</label>
-							<input type="text" name="member-data" id="member-name" value="Lawrence Chen" disabled><br>
+							<input type="text" v-model="name"  name="member-data" id="member-name" disabled><br>
+							
 							<label for="member-birth">生日：</label>
-							<input type="date" name="member-data" id="member-birth" value="2021-12-03" disabled><br>
+							<input type="date" v-model="birthday" name="member-data" id="member-birth" disabled><br>
+							
 							<label for="member-phone">電話：</label>
-							<input type="text" name="member-data" id="member-phone" value="0912-345-678" disabled><br>
+							<input type="text" v-model="phone" name="member-data" id="member-phone" disabled><br>
+							
 							<label for="member-address">地址：</label>
-							<input type="text" name="member-data" id="member-address" value="新北市新莊區建國路456號" disabled><br>
+							<input type="text" v-model="address"  name="member-data" id="member-address" disabled><br>
+							
 							<label for="member-password">密碼：</label>
-							<input type="password" name="member-password" id="member-password" value="0123456789" disabled>
+							<input type="password" v-model="password" name="member-password" id="member-password" disabled>
 							<a href="javascript:void(0);" id="changepw" class="changepw">更改密碼</a>
 						</form>
 						<ul class="firstpartright">
-							<li>電子信箱：	lawrence@gmail.com</li>
-							<li>會員帳號：	0123456789</li>
-							<li>累積點數：	103</li>
-							<li>登入天數：	301天</li>
+							<li>電子信箱：	{{userInfo.Email}}</li>
+							<li>會員帳號：	{{userInfo.Account}}</li>
+							<li>累積點數：	{{userInfo.Points}}</li>
+							<li>登入天數：	301天</li>   
 						</ul>
-						<button class="edit-btn" id="click-btn">
+						<button class="edit-btn" id="click-btn" @click="turnOn">
 							<i class="fas fa-pen"></i>
 						</button>
 						<div id="popup-bg" class="popup-bg">
@@ -75,14 +79,14 @@
 								</div>
 								<div class="close-btn">
 									<button id="cancel-btn" class="cancel-btn">取消</button>
-									<input type="submit" id="submit-btn" class="submit-btn" value="送出">
+									<input type="submit" id="submit-btn" class="submit-btn" value="送出" @click="submitEdit">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="firstpart-btn" id="firstpart-btn">
-						<input type="button" value="取消" class="orangebutton" id="firstpart-cancel-btn">
-						<input type="submit" value="保存設定" class="orangebutton" id="firstpart-submit-btn">
+						<input type="button" value="取消" class="orangebutton" id="firstpart-cancel-btn" @click="turnOff">
+						<input type="submit" value="保存設定" class="orangebutton" id="firstpart-submit-btn" @click="submitEdit">
 					</div>
 				</div>
 				<h2 class="title">我的訂單</h2>
@@ -150,8 +154,72 @@
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/member/passwordpopup.js"></script>
-<script src="./src/component/member/edit-btn.js"></script>
+<!-- <script src="./src/component/member/edit-btn.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+<script>
+	new Vue({
+		el: "#member-main",
+		data: {
+			name: "",
+			birthday: "",
+			phone: "",
+			address: "",
+			password: "000000",
+			userInformation: [],
+		},
+		methods: {
+			turnOn(){
+				document.getElementById('member-name').disabled = false;
+				document.getElementById('member-birth').disabled = false;
+				document.getElementById('member-phone').disabled = false;
+				document.getElementById('member-address').disabled = false;
+				document.getElementById('firstpart-btn').setAttribute("style", "display: block");
+			},
+			turnOff(){
+				document.getElementById('member-name').disabled = true;
+				document.getElementById('member-birth').disabled = true;
+				document.getElementById('member-phone').disabled = true;
+				document.getElementById('member-address').disabled = true;
+				document.getElementById('firstpart-btn').setAttribute("style", "display: none");
+			},
+			submitEdit(){
+				axios({
+					method: "post",
+					url: "./php/edit-member.php",
+					data: {
+						name: this.name,
+						birthday: this.birthday,
+						phone: this.phone,
+						address: this.address
+					}
+				})
+				.then((res) => {
+					alert("修改成功!")
+					// document.location.href="../member-main.html";
+				})
+			}
+		},
+		mounted(){
+			axios({
+				method: "post",
+				url: "./php/select-member.php",
+			})
+			.then((res) => {
+				this.userInformation = res.data;
+				// for(let i = 0; i < this.userInformation.length; i++){
+					
+				// }
+				this.name = this.userInformation[0].UserName;
+				this.birthday = this.userInformation[0].Birthday;
+				this.phone = this.userInformation[0].Mobile;
+				this.address = this.userInformation[0].Address;
 
+				console.log(this.userInformation);
+			})
+			.catch((error) => console.log(error))
+		},
+	})
+</script>
 
 </body>
 </html>

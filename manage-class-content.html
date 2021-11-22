@@ -27,17 +27,19 @@
         <button @click="manageClassHome()" class="bluebutton manageprebutton">回上一頁</button>
 
         <!--多檔案格式-->
-        <form id="uploadclassform" method="post" enctype="multipart/form-data"> 
+        <form id="uploadclassform" method="post"> 
             <div class="classesWrapper">
                 <div  class="classesContent">
                     <!-- 名稱 -->
                     <label class="title3">名稱</label>
-                    <input v-model="this.classTitle" id="classTitle" type="text" name="classTitle">
+                    <input v-model="classTitle" id="classTitle" type="text" name="classTitle">
                     <hr>
+
                     <!-- 編號 -->
                     <label v-if="editpage == true" class="title3">編號</label>
-                    <input v-if="editpage == true" :value="this.classId" id="classId" type="text" name="classId" readonly>
+                    <input v-if="editpage == true" :value="classId" id="classId" type="text" name="classId" readonly>
                     <hr v-if="editpage == true">
+
                     <!-- 分類 -->  
                     <label class="title3">分類</label><br>
                     <!-- TODO:記得送出刪disabled -->
@@ -46,31 +48,80 @@
                         <option value="T">個人教練</option>
                         <option value="M">營養規劃</option>
                     </select>
-                    <!-- <p>{{classCategory}}</p> -->
                     <hr>
+
                     <!-- 授課教師 -->
                     <label class="title3">授課教師</label>
-                    <input v-model="this.trainer" id="trainer" type="text" name="trainer">
+                    <input v-model="trainer" id="trainer" type="text" name="trainer">
                     <hr>
-                     <!-- 活動地點 -->
-                    <label class="title3">活動地點</label>
-                    <input v-model="this.classLocation" id="classLocation" type="text" name="classLocation">
+
+                    <!-- 價錢 -->
+                    <label class="title3">價錢</label>
+                    <input v-model="price" id="price" type="text" name="price">
                     <hr>
-                     <!-- 狀態 -->
-                    <!-- <label class="title3">狀態</label>
-                    <input v-model="this.classState" id="classState" type="" name="">
-                    <hr> -->
-                     <!-- 簡介 -->
+
+
+                    <!-- 活動地點 -->
+                    <div v-if="classCategory =='G'">
+                        <label class="title3">活動地點</label><br>
+                        <input v-model="classLocation" id="classLocation" type="text" name="classLocation">
+                        <hr>
+                    </div>
+
+                    <!-- 營養素 -->
+                    <div v-if="classCategory == 'M'">
+                        <label class="title3">營養素</label><br>
+                        <label>熱量</label><br>
+                        <input v-model="nutrients.cal" type="number" name="nutrients-cal"><br>
+                        <label>蛋白質</label><br>
+                        <input v-model="nutrients.protein" type="number" name="nutrients-protein"><br>
+                        <label>醣類</label><br>
+                        <input v-model="nutrients.carb" type="number" name="nutrients-carb"><br>
+                        <label>脂肪</label><br>
+                        <input v-model="nutrients.fat" type="number" name="nutrients-fat">
+                        <hr>
+                    </div>
+
+                    <!-- 教練區 -->
+                    <div v-if="classCategory == 'T'">
+                        <!-- 開課日期 -->
+                        <label class="title3">開課日期</label><br>
+                        <input v-model="classDate" id="classDate" type="text" name="classDate">
+                        <hr>
+
+                        <!-- 專長 -->
+                        <label class="title3">專長</label><br>
+                        <label class="small">---每項請用半形,做分隔---</label><br>
+                        <label class="small">---最多六項--</label><br>
+                        <textarea v-model="trainerExpertise" id="trainerExpertise"  name="trainerExpertise"></textarea>
+                        <hr>
+                        <!-- 證照 -->
+                        <label class="title3">證照</label><br>
+                        <label class="small">---每張請用半形,做分隔---</label><br>
+                        <textarea v-model="trainerLicense" id="trainerLicense"  name="trainerLicense"></textarea>
+                        <hr>
+                        <!-- IG -->
+                        <label class="title3">社群軟體</label><br>
+                        <input v-model="ig" id="ig" type="text" name="ig">
+                        <hr>
+                    </div>
+
+                    <!-- 簡介 -->
                     <label class="title3">簡介</label>
-                    <textarea v-model="this.classInfo" id="classInfo"  name="classInfo"></textarea>
+                    <label class="small">---前台換行請用半形,做分隔---</label>
+                    <textarea v-model="classInfo" id="classInfo"  name="classInfo"></textarea>
                     <hr>
+
                     <!-- 圖片 -->
                     <label class="title3">圖片</label>
+                    <label  v-if="classCategory == 'T'" class="small">---教練頭貼限一張，最少一張---</label>
+                    <label  v-else class="small">---圖片最多三張，最少一張---</label>
                     <input type="file" id="classimg"  name="classimg[]"  accept="image/*" @change="setImagePreviews" multiple></input>
-                    <button @click.prevent="removeImg">重設</button>
-                    <!-- 預覽 -->
+                    <button @click.prevent="removeImg">重設圖片</button>
+                    <!-- 圖片預覽 -->
                     <div class="classpreview" id="classpreview"></div>
                    
+                    <!-- 按鈕 -->
                     <div class="manage_race_button"> 
                         <button v-if="editpage == true" @click.prevent="deleteClass" class="yellowbutton">下架</button>
 
@@ -94,8 +145,9 @@
     <script src="./src/js/vue.js"></script>
     <script src="./src/js/vuex.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
     <!-- 測量網頁距離 -->
-    <script src="https://unpkg.com/spacingjs" defer></script>
+    <!-- <script src="https://unpkg.com/spacingjs" defer></script> -->
     <!--header/footer component-->
     <script src="./src/component/common/manage-header.js"></script>
     <script src="./src/component/common/manage-footer.js"></script>
@@ -116,40 +168,109 @@
                 classId:"",
                 classCategory:"G",
                 trainer:"",
+                price:"",
                 classLocation:"",
                 classInfo:"",
                 classimg:[],
-    
-                
+                nutrients:{},
+
+                // 教練區
+                trainerExpertise:[],
+                trainerLicense:[],
+                classDate:"",
+                ig:"",
+
             },
 
             created() {
 
                 // 判斷新增還是編輯
-                let classidval = (new URL(location.href)).searchParams.get('classid');
+                var classidval = (new URL(location.href)).searchParams.get('classid');
 
-                // 編輯
+                // 編輯頁面
                 if(classidval !== 'new'){
 
-                    //判斷分類
+                    this.editpage = true; 
+
+                    // 編號
+                    this.classId = classidval;
+
+                    //判斷哪個分類
                     let check = classidval.slice(0,1);
                     console.log(check);
                     
                     if(check == "G" || check == "M"){
-                        
-                        this.$store.classes.commit('classesContentStart');
+                        // 分類
+                        this.classCategory = check;
+                        this.$store.classes.commit('classesContentStart', classidval);
+                      
+                        // 名稱
                         this.classTitle = this.$store.classes.state.classTitle; 
-                        
-                    }else{
-                        
-                        this.$store.coach.commit('classesContentStart');
-                        this.classTitle = this.$store.coach.state.trainerName; 
+
+                        // 授課教師
+                        this.trainer = this.$store.classes.state.trainerName; 
+                        // 價錢
+                        this.price = this.$store.classes.state.price; 
+                        // 團課地點
+                        if(check == "G"){
+                            this.classLocation = this.$store.classes.state.classLocation;     
+                        }
+                        // 營養素
+                        if(check == "M"){
+                            this.nutrients = this.$store.classes.state.nutrients;     
+                        }
+                        // 簡介
+                        this.classInfo = this.$store.classes.state.intro;
+                        // 圖片
+                        this.classimg = this.$store.classes.state.imgSrc;
+
+                        console.log(this.classimg);
+
+                        for(let i=0; i < this.classimg.length; i++){
+                            $("#classpreview").append(`<div id="classpreviewimg-${i}"><img src=${this.classimg[i]}></div>`);
+                        }
+
+
+
+
+
+                    }else{ //教練
+
+                        // 分類
+                        this.classCategory = check;
+                        this.$store.coach.commit('classesContentStart', classidval);
+
+                        // 教練私課
+                        this.classTitle = this.$store.coach.state.trainerclass.name;
+                        // 授課教師
+                        this.trainer = this.$store.coach.state.trainerName;
+                        // 價錢
+                        this.price =  this.$store.coach.state.trainerclass.price;
+                        // 開課日期
+                        this.classDate = this.$store.coach.state.trainerclass.date;
+
+                        // 專長
+                        this.trainerExpertise = this.$store.coach.state.trainerExpertise;
+                        // 證照
+                        this.trainerLicense = this.$store.coach.state.trainerLicense;
+                        // IG
+                        this.ig = this.$store.coach.state.ig;
+                        // 簡介
+                        this.classInfo =  this.$store.coach.state.intro;
+                        // 圖片
+                        this.classimg = this.$store.coach.state.imgSrc;
+
+                        // console.log(this.classimg);
+                        $("#classpreview").append(`<div id="classpreviewimg-0"><img src=${this.classimg}></div>`);
+                      
+
+            
+
+
+
                     }
                     
-                    
-                    this.classId = classidval;
-                    this.editpage = true; 
-                    
+                              
                 }
             },
 
@@ -173,7 +294,7 @@
                         console.log("進來了");
 
                         // 判斷是否已經有圖 & 清空欄位值
-                        if( $("#classpreviewimg").length > 0){
+                        if( $("#classpreview").children().length > 0){
                             $("#classpreview").children().remove();
                             this.classimg = [];
                         }
@@ -185,15 +306,13 @@
                             reader.onload = () => {
 
                                 // 渲染
-                                $("#classpreview").append(`<div id="classpreviewimg"><img src=${reader.result}></div>`);
+                                $("#classpreview").append(`<div id="classpreviewimg-${i}"><img src=${reader.result}></div>`);
                                 
                             
 
                             }
 
-                        }
-
-                        
+                        }         
                     }else if(filelist.length > 3){
                         
                         alert("最多上傳3個檔案");
@@ -203,7 +322,7 @@
                      
                         
                     }else{
-                        console.log("88");
+                        console.log("不為所動");
                         
                     }
                     
@@ -211,7 +330,7 @@
 
                 // 刪除圖片
                 removeImg(){
-                    if( $("#classpreviewimg").length > 0){
+                    if( $("#classpreview").length > 0){
                         $("#classpreview").children().remove();
                         this.classimg = [];     
                     }
@@ -219,17 +338,95 @@
 
                 // 送出
                 saveToDB(){
-                    //TODO:編輯要記得刪disabled 
-
-                    const formData = new FormData(document.getElementById('uploadclassform'));
-                    console.log(formData);
-
-                    let object = {};
-                    formData.forEach((val, key) => {
-                    object[key] = val;
+                    var gotoPHP = axios.create({
+                        timeout: 1000,
+                        baseURL:"./php",
                     });
-                    console.log(object);
 
+                    var classForm = document.getElementById("uploadclassform");
+                    // console.log(classForm);
+
+                    // 判斷教練頭項只能一張&新增課程一定要有一張照片
+                    var uploadimg = $("#classpreview").children().length;
+
+                    if(this.classCategory == "T" && uploadimg > 1){
+                        alert("教練頭貼只能用一張! 請重新選擇");
+
+                    }else{
+                        // 頁面欄位都要有值
+                        let finalcheck = 1;
+                        // input
+                        let allinput = document.querySelectorAll("input");
+                        // textarea
+                        let allarea = document.querySelectorAll("textarea");
+                        
+                        
+                        // 最後的img不要判斷
+                        for(let i=0; i < allinput.length - 1; i++ ){
+                            if(allinput[i].value == ""){
+                                // console.log(`input${i}有空值`);
+                                allinput[i].style.border="3px solid red";
+                                finalcheck = 0;
+                            }else{
+                                allinput[i].style.border="none";
+                            }
+                        }
+
+                        for(let i=0; i < allarea.length; i++){
+                            if(allarea[i].value == ""){
+                                // console.log(`textarea${i}有空值`);
+                                allarea[i].style.border="3px solid red";
+                                finalcheck = 0;
+                            }else{
+                                allarea[i].style.border="none";
+                            }
+                        }
+
+                        if(finalcheck){
+
+                            // 至少都有一張照片
+                            if(uploadimg > 0){
+    
+                                if(this.editpage){  //編輯頁
+                                       
+                                    // 分類關disabled 
+                                    $("#category").attr("disabled",false);
+            
+        
+                                    const formData = new FormData(classForm);
+            
+                                    console.log(formData);
+        
+                                    // formdata檢查
+                                    let object = {};
+                                    formData.forEach((val, key) => {
+                                        object[key] = val;
+                                    });
+                                    console.log(object);
+            
+                                    
+                                    console.log("axios啟動");
+                                    gotoPHP.post('/classes-update.php', formData).then((response) => console.log(response)).catch((error) => console.log(error));
+            
+                                }else{   //新頁面
+                                    // console.log("123");
+                                
+                                    const formData = new FormData(classForm);
+    
+                                    gotoPHP.post('/classes-insert.php', formData).then((response) => console.log(response)).catch((error) => console.log(error));
+                                  
+                                }
+    
+                            }else{
+                                alert("請新增照片");
+                            }
+
+                        }else{
+                            alert("欄位不可有空值")
+                        }
+                    }
+
+                      
                 },
 
                 // 下架
@@ -239,9 +436,6 @@
             },
 
         });
-
-       
-
     </script> 
 
 

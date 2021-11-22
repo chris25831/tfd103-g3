@@ -33,20 +33,23 @@
                <h2>註冊</h2>
                <div class="input-wrapper">
                    <label class="required">*</label>
-                   <input type="text" class="register-input" placeholder="請輸入帳號/Email"><br>
+                   <input type="text" class="register-input" v-model.trim="account" placeholder="請輸入帳號/Email"><br>
+                   
                    <label class="required">*</label>
-                   <input type="password" class="register-input" placeholder="請輸入密碼"><br>
+                   <input type="password" class="register-input" v-model="password" placeholder="請輸入密碼"><br>
                    <label class="required">*</label>
-                   <input type="password" class="register-input" placeholder="再次確認密碼"><br>
-                   <label  class="notice">
-                        <input type="radio">我已同意遵守本網站個人隱私權政策及交易安全宣告與其他有關著作權、版權、商標專用權等之法律規定。
+
+                   <input type="password" class="register-input" v-model="passwordConfirm" placeholder="再次確認密碼"><br>
+                   <label class="notice">
+                        <input type="checkbox" v-model="check">我已同意遵守本網站個人隱私權政策及交易安全宣告與其他有關著作權、版權、商標專用權等之法律規定。
                    </label>
                </div>
                <button class="fb-btn">
                    <i class="fab fa-facebook"><span>使用Facebook註冊/登入</span></i>
                </button>
                <div class="btn-wrapper">
-                   <button class="orangebutton" onclick="self.location.href='member-login.html'">加入會員</button>
+                   <button class="orangebutton" @click="join">加入會員</button>
+                   <!-- onclick="self.location.href='member-login.html'" -->
                </div>
            </div>
        </div>
@@ -64,7 +67,38 @@
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 
+<script>
+    new Vue({
+        el: "#member-register",
+        data: {
+            account: "",
+            password: "",
+            passwordConfirm: "",
+            check: false,
+        },
+        methods: {
+            join(){
+                if(this.password === this.passwordConfirm && this.check === true) {
+                    axios({
+                        method: "post",
+                        url: "./php/new-member.php",
+                        data: {
+                            account: this.account,
+                            password: this.password
+                        },
+                    })
+                    alert("註冊成功，請重新登入!");
+                    document.location.href="./member-login.html";
+                } else {
+                    alert("密碼不相符");
+                }
+            },
+        }
+    })
+
+</script>
 
 </body>
 </html>

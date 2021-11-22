@@ -11,26 +11,33 @@
 
 
 
-    $postid = $formData["postid"];
+
+    $postId = $formData["postid"];
+    $title = $formData["title"];
+    $category = $formData["category"];
+    $content = $formData["content"];
     echo "1";
-    //刪除文章功能
-    echo "1-1".$postid."";
-    // $sql = "UPDATE Post SET Blocked = 1 where PostID = $PostID;";
-    
-    $sql = "UPDATE Post SET Blocked = true WHERE PostID = ?";
-    //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
+    echo "title".$title."";
+
+    $sql = "UPDATE Post SET PostTitle = ?, PostCategory = ?, PostContent = ? where PostID = ?;";
     echo "2";
+    
+    //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
     $statement = $pdo->prepare($sql);
+
+    $statement->bindValue(1, $title); 
+    $statement->bindValue(2, $category); 
+    $statement->bindValue(3, $content); 
+    $statement->bindValue(4, $postId); 
+    $statement->execute();
     echo "3";
-    $statement->bindValue(1, $postid); 
-    echo "4";
+    
     //抓出全部且依照順序封裝成一個二維陣列
     // $data = $statement->fetchAll();
-    $statement->execute();
-    echo "5";
     // print_r($data);
+    echo "4";
 
-    // echo json_encode($data);
     // echo json_encode($data,JSON_UNESCAPED_UNICODE);
-   
+
+
 ?>
