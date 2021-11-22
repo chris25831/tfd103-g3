@@ -48,22 +48,7 @@ Vue.component("forum-new-post-modal", {
     },
 
     methods: {
-        send() {   
-            // let forumTitle = document.querySelector(".forum-title").value;
-            // let timeOfPost = new Date();
-            // let year = timeOfPost.getFullYear();
-            // let month = timeOfPost.getMonth() + 1;
-            // let date = timeOfPost.getDate();
-            // let hour = timeOfPost.getHours();
-            // let minute = timeOfPost.getMinutes();
-            
-            // this.correctTimeOfPost = `${year}年${month}月${date}日 ${hour}:${minute}`;
-            // let category = document.querySelector(".category").value;
-            // let newArticleContent = document.querySelector(".new-article-content").value;
-            // let theImageOne = document.querySelector(".the-image-one").src;
-            // let theImageTwo = document.querySelector(".the-image-two").src;
-            // let theImageThree = document.querySelector(".the-image-three").src;
-            
+        send() {               
             if(this.forumTitle.trim().length !== 0 && this.category.trim().length !== 0 && this.newArticleContent.trim().length !== 0) {
                 axios({
                 method: 'post',
