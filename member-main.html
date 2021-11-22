@@ -24,15 +24,15 @@
    
    <!--內容所有都放在這div裡面-->
    <main id="member-main" class="member-main">
-        <div class="member-bgwhite">
+        <div class="member-bgwhite" v-for="userInfo in userInformation">
 			<aside class="left-area">
 				<div class="member-photo"><img src="#"></div>
-				<div class="member-name-left">Lawrence</div>
+				<!-- <div class="member-name-left">Lawrence</div> -->
 				<ul class="member-info-left">
-					<li>Lawrence Chen</li>
-					<li>0123456789</li>
-					<li>lawrence@gmail.com</li>
-					<li>103點</li>
+					<li>{{userInfo.UserName}}</li>
+					<li>{{userInfo.Account}}</li>
+					<li>{{userInfo.Email}}</li>
+					<li>{{userInfo.Points}}點</li>
 				</ul>
 				<input type="button" value="我的個人計畫" class="orangebutton" onclick="self.location.href='plan-member.html'">
 			</aside>
@@ -54,14 +54,14 @@
 							<input type="text" v-model="address"  name="member-data" id="member-address" disabled><br>
 							
 							<label for="member-password">密碼：</label>
-							<input type="password" name="member-password" id="member-password" disabled>
+							<input type="password" v-model="password" name="member-password" id="member-password" disabled>
 							<a href="javascript:void(0);" id="changepw" class="changepw">更改密碼</a>
 						</form>
 						<ul class="firstpartright">
-							<li>電子信箱：	lawrence@gmail.com</li>
-							<li>會員帳號：	0123456789</li>
-							<li>累積點數：	103</li>
-							<li>登入天數：	301天</li>
+							<li>電子信箱：	{{userInfo.Email}}</li>
+							<li>會員帳號：	{{userInfo.Account}}</li>
+							<li>累積點數：	{{userInfo.Points}}</li>
+							<li>登入天數：	301天</li>   
 						</ul>
 						<button class="edit-btn" id="click-btn" @click="turnOn">
 							<i class="fas fa-pen"></i>
@@ -163,7 +163,9 @@
 			name: "",
 			birthday: "",
 			phone: "",
-			address: ""
+			address: "",
+			password: "000000",
+			userInformation: [],
 		},
 		methods: {
 			turnOn(){
@@ -198,7 +200,23 @@
 			}
 		},
 		mounted(){
+			axios({
+				method: "post",
+				url: "./php/select-member.php",
+			})
+			.then((res) => {
+				this.userInformation = res.data;
+				// for(let i = 0; i < this.userInformation.length; i++){
+					
+				// }
+				this.name = this.userInformation[0].UserName;
+				this.birthday = this.userInformation[0].Birthday;
+				this.phone = this.userInformation[0].Mobile;
+				this.address = this.userInformation[0].Address;
 
+				console.log(this.userInformation);
+			})
+			.catch((error) => console.log(error))
 		},
 	})
 </script>
