@@ -19,14 +19,17 @@ Vue.component("forum-new-post-modal", {
                     <div class="single-image image-one-wrapper" @dragover.prevent @drop.prevent="dropFirstImage" >
                         <div class="rectangle rectangle-one"></div>
                         <img class="the-image-one the-image" src="" name="photo-one">
+                        <input type="file" class="insert-photo">
                     </div>
                     <div class="single-image image-two-wrapper" @dragover.prevent @drop.prevent="dropSecondImage">
                         <div class="rectangle rectangle-two"></div>
                         <img class="the-image-two the-image" src="" name="photo-two">
+                        <input type="file" class="insert-photo">
                     </div>
                     <div class="single-image image-three-wrapper" @dragover.prevent @drop.prevent="dropThirdImage">
                         <div class="rectangle rectangle-three"></div>
                         <img class="the-image-three the-image" src="" name="photo-three">
+                        <input type="file" class="insert-photo">
                     </div>
                 </div>
                 
@@ -76,67 +79,67 @@ Vue.component("forum-new-post-modal", {
         returning() {
             this.$emit("closing");
         },
-        dropFirstImage(e) {
-            let file = e.dataTransfer.files[0];
-            let readFile = new FileReader();
-
-            let rectangle = document.querySelector(".rectangle");
-            let imageOne = document.querySelector(".image-one-wrapper");
-            let theImage = document.querySelector("img.the-image-one"); 
-
-            readFile.readAsDataURL(file);
+        // dropFirstImage(e) {
+        //     let file = e.dataTransfer.files[0];
+        //     let readFile = new FileReader();
             
-            readFile.addEventListener("load", function(){    
-                
-                    theImage.src = readFile.result;
-                    theImage.style.width = "100%";
-                    theImage.style.height = "100%";
-                    theImage.style.objectFit = "contain"; 
-                    rectangle.style.display = "none";
-                    imageOne.appendChild(theImage);
-                
-            })         
-        },
-        dropSecondImage(e) {
-            let file = e.dataTransfer.files[0];
-            let readFile = new FileReader();
+        //     let rectangle = document.querySelector(".rectangle");
+        //     let imageOne = document.querySelector(".image-one-wrapper");
+        //     let theImage = document.querySelector("img.the-image-one"); 
 
-            let rectangleTwo = document.querySelector(".rectangle-two");
-            let imageOne = document.querySelector(".image-two-wrapper");
-            let theImage = document.querySelector("img.the-image-two"); 
-
-            readFile.readAsDataURL(file);
+        //     readFile.readAsDataURL(file);
             
-            readFile.addEventListener("load", function(){    
-
-                    theImage.src = readFile.result;
-                    theImage.style.width = "100%";
-                    theImage.style.height = "100%";
-                    theImage.style.objectFit = "contain"; 
-                    rectangleTwo.style.display = "none";
-                    imageOne.appendChild(theImage);
+        //     readFile.addEventListener("load", function(){    
                 
-            })  
-        },
-        dropThirdImage(e) {
-            let file = e.dataTransfer.files[0];
-            let readFile = new FileReader();
+        //             theImage.src = readFile.result;
+        //             theImage.style.width = "100%";
+        //             theImage.style.height = "100%";
+        //             theImage.style.objectFit = "contain"; 
+        //             rectangle.style.display = "none";
+        //             imageOne.appendChild(theImage);
+                
+        //     })         
+        // },
+        // dropSecondImage(e) {
+        //     let file = e.dataTransfer.files[0];
+        //     let readFile = new FileReader();
 
-            let rectangleThree = document.querySelector(".rectangle-three");
-            let imageOne = document.querySelector(".image-three-wrapper");
-            let theImage = document.querySelector("img.the-image-three"); 
+        //     let rectangleTwo = document.querySelector(".rectangle-two");
+        //     let imageOne = document.querySelector(".image-two-wrapper");
+        //     let theImage = document.querySelector("img.the-image-two"); 
 
-            readFile.readAsDataURL(file);
+        //     readFile.readAsDataURL(file);
             
-            readFile.addEventListener("load", function(){    
-                    theImage.src = readFile.result;
-                    theImage.style.width = "100%";
-                    theImage.style.height = "100%";
-                    theImage.style.objectFit = "contain"; 
-                    rectangleThree.style.display = "none";
-                    imageOne.appendChild(theImage);
-            })
-        }
+        //     readFile.addEventListener("load", function(){    
+
+        //             theImage.src = readFile.result;
+        //             theImage.style.width = "100%";
+        //             theImage.style.height = "100%";
+        //             theImage.style.objectFit = "contain"; 
+        //             rectangleTwo.style.display = "none";
+        //             imageOne.appendChild(theImage);
+                
+        //     })  
+        // },
+        // dropThirdImage(e) {
+        //     let file = e.dataTransfer.files[0];
+        //     let readFile = new FileReader();
+
+        //     let rectangleThree = document.querySelector(".rectangle-three");
+        //     let imageOne = document.querySelector(".image-three-wrapper");
+        //     let theImage = document.querySelector("img.the-image-three"); 
+
+        //     readFile.readAsDataURL(file);
+            
+        //     readFile.addEventListener("load", function(){    
+        //             theImage.src = readFile.result;
+        //             theImage.style.width = "100%";
+        //             theImage.style.height = "100%";
+        //             theImage.style.objectFit = "contain"; 
+        //             rectangleThree.style.display = "none";
+        //             imageOne.appendChild(theImage);
+        //     })
+        // }
     },
 });
 
