@@ -1,13 +1,13 @@
 var click = document.getElementById('click-btn');
 
 click.addEventListener("click", function(e){
-    
+    console.log("click1");
     document.getElementById('member-name').disabled = false;
     document.getElementById('member-birth').disabled = false;
     document.getElementById('member-phone').disabled = false;
     document.getElementById('member-address').disabled = false;
     document.getElementById('firstpart-btn').setAttribute("style", "display: block");
-
+    console.log("click2");  
 });
 
 var submit_btn = document.getElementById('firstpart-submit-btn');

@@ -30,13 +30,13 @@
         $userName = $row["UserName"];
     }
 
-    function setMemberInfo($userID, $userName){
+    function setMemberInfo($userId, $userName){
         //先判斷session是否存在
         if(!isset($_SESSION)){
             session_start(); 
         }
         //Table 'ec_member'裡的ID欄位值
-        $_SESSION["UserID"] = $userID; 
+        $_SESSION["UserID"] = $userId; 
 
         //Table 'ec_member'裡的Account欄位值
         $_SESSION["UserName"] = $userName; 
@@ -45,7 +45,7 @@
     //判斷是否有會員資料?
     if($userId != "" && $userName != ""){    
         //將會員資訊寫入session
-        setMemberInfo($userID, $userName);
+        setMemberInfo($userId, $userName);
         //導回產品頁        
         echo "登入成功";
         
@@ -53,7 +53,7 @@
         //跳出提示停留在登入頁
         echo "帳號或密碼錯誤!"; 
     }
-
+   
  
 ?>
 

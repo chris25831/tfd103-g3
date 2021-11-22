@@ -42,15 +42,19 @@
 					<div class="member-info-right-top">
 						<form action="" class="firstpartleft">
 							<label for="member-name">姓名：</label>
-							<input type="text" name="member-data" id="member-name" value="Lawrence Chen" disabled><br>
+							<input type="text" v-model="name"  name="member-data" id="member-name" disabled><br>
+							
 							<label for="member-birth">生日：</label>
-							<input type="date" name="member-data" id="member-birth" value="2021-12-03" disabled><br>
+							<input type="date" v-model="birthday" name="member-data" id="member-birth" disabled><br>
+							
 							<label for="member-phone">電話：</label>
-							<input type="text" name="member-data" id="member-phone" value="0912-345-678" disabled><br>
+							<input type="text" v-model="phone" name="member-data" id="member-phone" disabled><br>
+							
 							<label for="member-address">地址：</label>
-							<input type="text" name="member-data" id="member-address" value="新北市新莊區建國路456號" disabled><br>
+							<input type="text" v-model="address"  name="member-data" id="member-address" disabled><br>
+							
 							<label for="member-password">密碼：</label>
-							<input type="password" name="member-password" id="member-password" value="0123456789" disabled>
+							<input type="password" name="member-password" id="member-password" disabled>
 							<a href="javascript:void(0);" id="changepw" class="changepw">更改密碼</a>
 						</form>
 						<ul class="firstpartright">
@@ -59,7 +63,7 @@
 							<li>累積點數：	103</li>
 							<li>登入天數：	301天</li>
 						</ul>
-						<button class="edit-btn" id="click-btn">
+						<button class="edit-btn" id="click-btn" @click="turnOn">
 							<i class="fas fa-pen"></i>
 						</button>
 						<div id="popup-bg" class="popup-bg">
@@ -75,14 +79,14 @@
 								</div>
 								<div class="close-btn">
 									<button id="cancel-btn" class="cancel-btn">取消</button>
-									<input type="submit" id="submit-btn" class="submit-btn" value="送出">
+									<input type="submit" id="submit-btn" class="submit-btn" value="送出" @click="submitEdit">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="firstpart-btn" id="firstpart-btn">
-						<input type="button" value="取消" class="orangebutton" id="firstpart-cancel-btn">
-						<input type="submit" value="保存設定" class="orangebutton" id="firstpart-submit-btn">
+						<input type="button" value="取消" class="orangebutton" id="firstpart-cancel-btn" @click="turnOff">
+						<input type="submit" value="保存設定" class="orangebutton" id="firstpart-submit-btn" @click="submitEdit">
 					</div>
 				</div>
 				<h2 class="title">我的訂單</h2>
@@ -150,8 +154,54 @@
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/member/passwordpopup.js"></script>
-<script src="./src/component/member/edit-btn.js"></script>
+<!-- <script src="./src/component/member/edit-btn.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+<script>
+	new Vue({
+		el: "#member-main",
+		data: {
+			name: "",
+			birthday: "",
+			phone: "",
+			address: ""
+		},
+		methods: {
+			turnOn(){
+				document.getElementById('member-name').disabled = false;
+				document.getElementById('member-birth').disabled = false;
+				document.getElementById('member-phone').disabled = false;
+				document.getElementById('member-address').disabled = false;
+				document.getElementById('firstpart-btn').setAttribute("style", "display: block");
+			},
+			turnOff(){
+				document.getElementById('member-name').disabled = true;
+				document.getElementById('member-birth').disabled = true;
+				document.getElementById('member-phone').disabled = true;
+				document.getElementById('member-address').disabled = true;
+				document.getElementById('firstpart-btn').setAttribute("style", "display: none");
+			},
+			submitEdit(){
+				axios({
+					method: "post",
+					url: "./php/edit-member.php",
+					data: {
+						name: this.name,
+						birthday: this.birthday,
+						phone: this.phone,
+						address: this.address
+					}
+				})
+				.then((res) => {
+					alert("修改成功!")
+					// document.location.href="../member-main.html";
+				})
+			}
+		},
+		mounted(){
 
+		},
+	})
+</script>
 
 </body>
 </html>
