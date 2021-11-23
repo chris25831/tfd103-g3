@@ -6,7 +6,7 @@
     .forgot-bg{
         @include questionbox();
         width: 720px;
-        height: 500px;
+        height: 550px;
         .forgot-content{
             display: flex;
             flex-direction: column;
@@ -26,13 +26,23 @@
                 position: relative;
                 &::after{
                     content: "";
-                    width: 650px;
+                    width: 600px;
                     height: 2px;
                     background-color: $orange;
                     position: absolute;
                     top: 120%;
                     left: 50%;
                     transform: translateX(-50%);
+                }
+                @include table(){
+                    &::after{
+                        width: 430px;
+                    }
+                }
+                @include mobile(){
+                    &::after{
+                        width: 330px;
+                    }
                 }
             }
             .input-wrapper{
@@ -47,6 +57,12 @@
                     margin-bottom: 20px;
                     width: 300px;
                     outline: none;
+                    @include table(){
+                        width: 300px;
+                    }
+                    @include mobile(){
+                        width: 250px;
+                    }
                 }
                 .required{
                     color: red;
@@ -55,6 +71,10 @@
             p{
                 text-align: center;
                 margin-bottom: 10px;
+                width: 350px;
+                @include mobile(){
+                    width: 320px;
+                }
             }
             .btn-wrapper{
                 text-align: center;
@@ -62,6 +82,9 @@
                 .orangebutton{
                     width: 250px;
                     height: 40px;
+                    @include mobile(){
+                        width: 200px;
+                    }
                 }
             }
         }
