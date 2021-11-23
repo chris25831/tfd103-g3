@@ -55,7 +55,9 @@ Vue.component("forum-new-post-modal", {
 
     methods: {
         send() {          
+            let button = document.querySelector(".send-forum-content");
             if(this.forumTitle.trim().length !== 0 && this.category.trim().length !== 0 && this.newArticleContent.trim().length !== 0) {
+                button.disabled = true;
                 axios({
                 method: 'post',
                 url: './php/forum-new.php',
@@ -68,7 +70,7 @@ Vue.component("forum-new-post-modal", {
                     }
                 })
                 .then((res) => {
-                    // this.$emit("sending");
+                    this.$emit("sending");
                 })
                 .catch((error) => console.log(error))
                 
