@@ -2,10 +2,16 @@
     @include bgnormal(100%);
     .member-bgwhite{
         @include bgwhite();
-        width: 1200px;
+        width: 95%;
         height: 100%;
         margin: 0 auto;
         padding-top: 10px;
+        @include table(){
+            width: 95%;
+        }
+        @include mobile(){
+            width: 95%;
+        }
         .order-breadcrumb{
             padding: 5px 10px 5px 30px;
             margin-bottom: 10px;
@@ -60,10 +66,15 @@
             display: flex;
             justify-content: space-around;
             padding: 10px;
+            @include table(){
+                display: block;
+                margin-left: 15%;
+            }
             .left-area{
                 display: inline-block;
                 .top-part{
-                    width: 454px;
+                    // width: 454px;
+                    width: 85%;
                     height: 291px;
                     background-color: white;
                     border-left: 20px solid $orange;
@@ -71,6 +82,9 @@
                     box-shadow: 2px 2px 3px #6e6d6d;
                     margin-bottom: 150px;
                     position: relative;
+                    @include mobile(){
+                        width: 100%;
+                    }
                     ul{
                         list-style: none;
                         padding: 30px 40px;
@@ -85,13 +99,23 @@
                         top: 110%;
                         right: 5%;
                         width: 150px;
+                        @include table(){
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: 200px;
+                        }
                     }
                 }
                 .bottom-part{
-                    width: 454px;
+                    // width: 454px;
+                    width: 85%;
                     margin-bottom: $bottomspacing;
+                    padding-left: 3%;
                     li{
                         margin: 5px;
+                    }
+                    @include mobile(){
+                        width: 100%;
                     }
                 }
             }
@@ -102,7 +126,8 @@
                         border-radius: 10px;
                         background-color: white;
                         box-shadow: 2px 2px 3px #6e6d6d;
-                        width: 510px;
+                        // width: 510px;
+                        width: 100%;
                         display: flex;
                         justify-content: start;
                         text-decoration: none;
@@ -114,6 +139,7 @@
                         p{
                             margin-left: 10px;
                             margin-top: 20px;
+                            margin-right: 5px;
                             color: black;
                             span{
                                 color: red;

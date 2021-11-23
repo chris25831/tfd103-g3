@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="三鐵,三鐵訓練,triathlon">  
+    <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
+    <title>結帳頁面 | Triclub</title> 
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <!--從scss轉譯過來的-->
+    <link rel="stylesheet" href="css/shopcart-checkout-origin.css">
+
+    
+</head>
+
+<body>
+    <!--這是header-->
+
+   <header id="header" :class="{sticky:active}">
+        <my-header></my-header><!--這是自定義標籤會被覆蓋-->
+   </header>
+  
+
+   <!--內容所有都放在這div裡面-->
+   <main class="shopcart-checkout" id="shopcart-checkout">
+        <div>
+            <div class="shopcart-title">
+                <p class="title3">結帳方式</p>
+                <img src="./src/images/img/shopcart/SOP2.png" alt="">
+            </div>
+            <div>
+                <!-- list組件 -->
+                <shopcart-content  :checksop="checksop" @golinepay="checkout"></shopcart-content>     
+            </div>
+        </div>
+   </main>
+
+   
+   <!--這是footer-->
+   <footer id="footer">
+      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   </footer>
+
+
+    <!--component-->
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/component/common/header.js"></script>
+    <script src="./src/component/common/footer.js"></script>
+    <script src="./src/component/shopcart/shopcart-content.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- LINEPAY串接 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/hmac-sha256.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/enc-base64.min.js"></script>
+
+
+
+    <script>
+       
+
+          new Vue({
+            el:'#shopcart-checkout',
+            data:{
+                // 判斷頁面
+                checksop:1,
+                
+            },
+
+            methods: {
+                // LINEPAY結帳
+                checkout(){
+                    // console.log("123");
+
+                    // 倒出localstorage
+                    let allItem =  JSON.parse(storage['surePayList']);
+                    console.log(allItem);
+
+                    let allItem_amount =  JSON.parse(storage['surePayAmount']);
+                    console.log(allItem_amount.amount);
+
+                    // API物件orderId和packagesId
+                    let orderid = "order-" + Date.now();
+
+                    let today = new Date();
+                    let packagesid = `${today.getFullYear()}${(today.getMonth()+1)}${(today.getDate()+1)}`;
+
+                    console.log(packagesid);
+
+                    // 創造API物件規格
+                    let orderitem = {
+                        amount: allItem_amount.amount,
+                        currency: 'TWD',
+                        orderId: orderid,
+                        packages:[
+                            {
+                                id:packagesid,
+                                amount: allItem_amount.amount,
+                                name:'Triclub課程',
+                                products:[],
+                            }
+                         ],
+                        redirectUrls:{
+                            confirmUrl:"https://sexfat.tw/member-login.html",
+                            cancelUrl:"https://sexfat.tw/shopcart-checkout.html",
+                        } 
+                    };
+
+                    for(let i=0;i < allItem.length;i++){
+                        let item = {
+                            id:allItem[i].comclassid,
+                            name: allItem[i].comclassTitle,
+                            quantity: 1,
+                            price:allItem[i].comprice,
+                        }
+                        orderitem.packages[0].products.push(item);
+                    }
+
+                    console.log(orderitem);
+
+                    
+                    //產生UUID 
+                    const uuidpw = uuidv4();
+                    console.log(uuidpw);
+
+                    // HMAC Base64簽章
+
+                    let key = '338e4dd658dfcb3c8c8626b582e26583'; 
+                    let nonce = uuidpw;
+                    let requestUri = '/v3/payments/request';
+
+                    let encrypt = CryptoJS.HmacSHA256(key + requestUri + JSON.stringify(orderitem) + nonce, key);
+
+                    // 轉 Base 64
+                    let hmacBase64 = CryptoJS.enc.Base64.stringify(encrypt);
+
+                    console.log(hmacBase64);
+
+                    // 上傳
+                    let configs = {
+                        headers:{
+                            'Content-Type':'application/json',
+                            'X-LINE-ChannelId':'1656627683',
+                            'X-LINE-Authorization-Nonce': nonce,
+                            'X-LINE-Authorization': hmacBase64,
+                        }
+                    }
+                    // 'Access-Control-Allow-Origin' : '*',
+
+                    axios.post('https://sandbox-api-pay.line.me/v3/payments/request', orderitem, configs).then(res => {
+                        console.log(res.data);
+                    });
+
+
+                },
+
+              
+                
+
+            },
+
+        })
+    </script>
+       
+</body>
+</html>

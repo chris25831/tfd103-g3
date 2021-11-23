@@ -32,7 +32,7 @@
                 <div  class="classesContent">
                     <!-- 名稱 -->
                     <label class="title3">名稱</label>
-                    <input v-model="classTitle" id="classTitle" type="text" name="classTitle">
+                    <input v-model.trim="classTitle" id="classTitle" type="text" name="classTitle">
                     <hr>
 
                     <!-- 編號 -->
@@ -42,7 +42,7 @@
 
                     <!-- 分類 -->  
                     <label class="title3">分類</label><br>
-                    <!-- TODO:記得送出刪disabled -->
+                    <!-- 送出刪disabled -->
                     <select v-model="classCategory" name="category" id="category"  :disabled = "editpage" >
                         <option value="G">團練課程</option>
                         <option value="T">個人教練</option>
@@ -52,19 +52,27 @@
 
                     <!-- 授課教師 -->
                     <label class="title3">授課教師</label>
-                    <input v-model="trainer" id="trainer" type="text" name="trainer">
+                    <input v-if="classCategory =='T'" v-model.trim="trainer" id="trainer" type="text" name="trainer" :disabled="editpage">
+                    <!-- 英文名 -->
+                    <label v-if="classCategory =='T'">英文姓名</label>
+                    <input v-if="classCategory =='T'" v-model.trim="en_trainer" id="en_trainer" type="text" name="en_trainer" :disabled="editpage">
+                    <select v-else name="trainer" id="trainer">
+                        <option v-if="editpage == false" value="none" selected disabled>--請選擇教練--</option>
+                        <option v-for="t in trainer"  :value="t">{{t}}</option>
+                    </select>
+
                     <hr>
 
                     <!-- 價錢 -->
                     <label class="title3">價錢</label>
-                    <input v-model="price" id="price" type="text" name="price">
+                    <input v-model.trim="price" id="price" type="text" name="price">
                     <hr>
 
 
                     <!-- 活動地點 -->
                     <div v-if="classCategory =='G'">
                         <label class="title3">活動地點</label><br>
-                        <input v-model="classLocation" id="classLocation" type="text" name="classLocation">
+                        <input v-model.trim="classLocation" id="classLocation" type="text" name="classLocation">
                         <hr>
                     </div>
 
@@ -72,13 +80,13 @@
                     <div v-if="classCategory == 'M'">
                         <label class="title3">營養素</label><br>
                         <label>熱量</label><br>
-                        <input v-model="nutrients.cal" type="number" name="nutrients-cal"><br>
+                        <input v-model.trim="nutrients.cal" type="number" name="nutrients-cal"><br>
                         <label>蛋白質</label><br>
-                        <input v-model="nutrients.protein" type="number" name="nutrients-protein"><br>
+                        <input v-model.trim="nutrients.protein" type="number" name="nutrients-protein"><br>
                         <label>醣類</label><br>
-                        <input v-model="nutrients.carb" type="number" name="nutrients-carb"><br>
+                        <input v-model.trim="nutrients.carb" type="number" name="nutrients-carb"><br>
                         <label>脂肪</label><br>
-                        <input v-model="nutrients.fat" type="number" name="nutrients-fat">
+                        <input v-model.trim="nutrients.fat" type="number" name="nutrients-fat">
                         <hr>
                     </div>
 
@@ -86,30 +94,30 @@
                     <div v-if="classCategory == 'T'">
                         <!-- 開課日期 -->
                         <label class="title3">開課日期</label><br>
-                        <input v-model="classDate" id="classDate" type="text" name="classDate">
+                        <input v-model.trim="classDate" id="classDate" type="text" name="classDate">
                         <hr>
 
                         <!-- 專長 -->
                         <label class="title3">專長</label><br>
                         <label class="small">---每項請用半形,做分隔---</label><br>
                         <label class="small">---最多六項--</label><br>
-                        <textarea v-model="trainerExpertise" id="trainerExpertise"  name="trainerExpertise"></textarea>
+                        <textarea v-model.trim="trainerExpertise" id="trainerExpertise"  name="trainerExpertise"></textarea>
                         <hr>
                         <!-- 證照 -->
                         <label class="title3">證照</label><br>
                         <label class="small">---每張請用半形,做分隔---</label><br>
-                        <textarea v-model="trainerLicense" id="trainerLicense"  name="trainerLicense"></textarea>
+                        <textarea v-model.trim="trainerLicense" id="trainerLicense"  name="trainerLicense"></textarea>
                         <hr>
                         <!-- IG -->
                         <label class="title3">社群軟體</label><br>
-                        <input v-model="ig" id="ig" type="text" name="ig">
+                        <input v-model.trim="ig" id="ig" type="text" name="ig">
                         <hr>
                     </div>
 
                     <!-- 簡介 -->
                     <label class="title3">簡介</label>
                     <label class="small">---前台換行請用半形,做分隔---</label>
-                    <textarea v-model="classInfo" id="classInfo"  name="classInfo"></textarea>
+                    <textarea v-model.trim="classInfo" id="classInfo"  name="classInfo"></textarea>
                     <hr>
 
                     <!-- 圖片 -->
@@ -168,6 +176,7 @@
                 classId:"",
                 classCategory:"G",
                 trainer:"",
+                en_trainer:"",
                 price:"",
                 classLocation:"",
                 classInfo:"",
@@ -187,48 +196,69 @@
                 // 判斷新增還是編輯
                 var classidval = (new URL(location.href)).searchParams.get('classid');
 
+                
                 // 編輯頁面
                 if(classidval !== 'new'){
-
+                    
                     this.editpage = true; 
-
+                    
                     // 編號
                     this.classId = classidval;
-
+                    
                     //判斷哪個分類
                     let check = classidval.slice(0,1);
                     console.log(check);
+                    // 分類
+                    this.classCategory = check;
                     
                     if(check == "G" || check == "M"){
-                        // 分類
-                        this.classCategory = check;
                         this.$store.classes.commit('classesContentStart', classidval);
-                      
+                        // 先找出所有教練
+                        this.$store.classes.commit('newClassesInsert');
+                        this.trainer = this.$store.classes.state.trainerName; 
+
+                    }else{ //教練
+                        this.$store.coach.commit('classesContentStart', classidval);
+
+        
+            
+                    }
+                                               
+                }else{
+
+                   this.$store.classes.commit('newClassesInsert');
+                   this.trainer = this.$store.classes.state.trainerName; 
+                }
+            },
+
+            beforeMount() {
+                if(this.classCategory == "G" || this.classCategory == "M"){
+                  
                         // 名稱
-                        this.classTitle = this.$store.classes.state.classTitle; 
+                        // this.classTitle = this.$store.classes.state.classTitle; 
 
                         // 授課教師
-                        this.trainer = this.$store.classes.state.trainerName; 
+                        // this.trainer = this.$store.classes.state.trainerName; 
                         // 價錢
-                        this.price = this.$store.classes.state.price; 
+                        // this.price = this.$store.classes.state.price; 
                         // 團課地點
-                        if(check == "G"){
-                            this.classLocation = this.$store.classes.state.classLocation;     
-                        }
+                        // if(this.classCategory  == "G"){
+                            // this.classLocation = this.$store.classes.state.classLocation;     
+                        // }
                         // 營養素
-                        if(check == "M"){
-                            this.nutrients = this.$store.classes.state.nutrients;     
-                        }
+                        // if(this.classCategory  == "M"){
+                            // this.nutrients = this.$store.classes.state.nutrients;     
+                        // }
                         // 簡介
-                        this.classInfo = this.$store.classes.state.intro;
+                        // this.classInfo = this.$store.classes.state.intro;
                         // 圖片
-                        this.classimg = this.$store.classes.state.imgSrc;
+                        // this.classimg = this.$store.classes.state.imgSrc;
 
-                        console.log(this.classimg);
+                        // console.log(this.classimg);
 
-                        for(let i=0; i < this.classimg.length; i++){
-                            $("#classpreview").append(`<div id="classpreviewimg-${i}"><img src=${this.classimg[i]}></div>`);
-                        }
+                        // for(let i=0; i < this.classimg.length; i++){
+                        //     $("#classpreview").append(`<div id="classpreviewimg-${i}"><img src=${this.classimg[i]}></div>`);
+                        // }
 
 
 
@@ -236,42 +266,36 @@
 
                     }else{ //教練
 
-                        // 分類
-                        this.classCategory = check;
-                        this.$store.coach.commit('classesContentStart', classidval);
 
                         // 教練私課
-                        this.classTitle = this.$store.coach.state.trainerclass.name;
+                        // this.classTitle = this.$store.coach.state.trainerclass.name;
                         // 授課教師
-                        this.trainer = this.$store.coach.state.trainerName;
+                        // this.trainer = this.$store.coach.state.trainerName;
+                        // 教師英文名
+                        // this.en_trainer = this.$store.coach.state.en_trainerName;
                         // 價錢
-                        this.price =  this.$store.coach.state.trainerclass.price;
+                        // this.price =  this.$store.coach.state.trainerclass.price;
                         // 開課日期
-                        this.classDate = this.$store.coach.state.trainerclass.date;
+                        // this.classDate = this.$store.coach.state.trainerclass.date;
 
                         // 專長
-                        this.trainerExpertise = this.$store.coach.state.trainerExpertise;
+                        // this.trainerExpertise = this.$store.coach.state.trainerExpertise;
                         // 證照
-                        this.trainerLicense = this.$store.coach.state.trainerLicense;
+                        // this.trainerLicense = this.$store.coach.state.trainerLicense;
                         // IG
-                        this.ig = this.$store.coach.state.ig;
+                        // this.ig = this.$store.coach.state.ig;
                         // 簡介
-                        this.classInfo =  this.$store.coach.state.intro;
+                        // this.classInfo =  this.$store.coach.state.intro;
                         // 圖片
-                        this.classimg = this.$store.coach.state.imgSrc;
+                        // this.classimg = this.$store.coach.state.imgSrc;
 
                         // console.log(this.classimg);
-                        $("#classpreview").append(`<div id="classpreviewimg-0"><img src=${this.classimg}></div>`);
+                        // $("#classpreview").append(`<div id="classpreviewimg-0"><img src=${this.classimg}></div>`);
                       
 
             
-
-
-
                     }
                     
-                              
-                }
             },
 
             methods: {
@@ -338,8 +362,9 @@
 
                 // 送出
                 saveToDB(){
+            
                     var gotoPHP = axios.create({
-                        timeout: 1000,
+                        timeout: 3000,
                         baseURL:"./php",
                     });
 
@@ -359,7 +384,9 @@
                         let allinput = document.querySelectorAll("input");
                         // textarea
                         let allarea = document.querySelectorAll("textarea");
-                        
+                        // 新增的教練select
+                        let selectT = document.getElementById("trainer");
+                        console.log(selectT);
                         
                         // 最後的img不要判斷
                         for(let i=0; i < allinput.length - 1; i++ ){
@@ -380,6 +407,15 @@
                             }else{
                                 allarea[i].style.border="none";
                             }
+                        }
+
+                        if(!(this.editpage)){
+                         if(selectT.value == "none"){
+                            selectT.style.border="3px solid red";
+                            finalcheck = 0;
+                         }else{
+                            selectT.style.border="none";
+                         }
                         }
 
                         if(finalcheck){
@@ -433,7 +469,71 @@
                 deleteClass(){
 
                 },
+                // 更新 //G&M用
+                updateClass(data){
+                    // console.log(data);
+                    // console.log(this);
+                    // 名稱
+                    this.classTitle = data.title;
+                    // 價錢
+                    this.price = data.price;
+                    // 地點
+                    this.classLocation = data.location;
+                    // 營養素
+                    this.nutrients = data.nutrients;
+                    // 簡介
+                    this.classInfo = data.intro;
+                    // 教練
+                    this.trainer = data.trainer;
+                    
+                    // 圖片
+                    this.classimg = data.imgs;
+                    // console.log(this.classimg);
+
+                    $("#classpreview").children().remove();
+                    for(let i=0; i < this.classimg.length; i++){
+                        $("#classpreview").append(`<div id="classpreviewimg-${i}"><img src="${this.classimg[i]}"></div>`);
+                    }                  
+                },
+
+                //T用
+                updateTrianer(data){
+                    console.log(data);
+                }
+
             },
+            
+            computed:{
+                reloadclass(){
+                    return this.$store.classes.getters.reload;
+                },
+
+                reloadtrainer(){
+                    return this.$store.coach.getters.reload;
+                }
+            },
+
+            
+            watch:{
+                classCategory: function(val) {
+                    // console.log(val);
+
+                    if(this.editpage == false){ //新頁面
+
+                        if(val == "T"){
+                            this.trainer = "";
+                            this.en_trainer = "";
+                        }else{
+                            this.$store.classes.commit('newClassesInsert');
+                            this.trainer = this.$store.classes.state.trainerName; 
+                        }
+                    }
+                },
+                // 回傳資料觸發
+                reloadclass: 'updateClass',
+                reloadtrainer: 'updateTrianer',
+
+            }
 
         });
     </script> 
