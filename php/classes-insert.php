@@ -1,5 +1,5 @@
 <?php
-// include("./connection.php");
+include("./connection.php");
 
 // ***字串****
 $classCategory = htmlspecialchars($_POST["category"]);
@@ -10,8 +10,13 @@ $trainer = htmlspecialchars($_POST["trainer"]);
 $price = htmlspecialchars($_POST["price"]);
 $classInfo =  htmlspecialchars($_POST["classInfo"]);
 
+// 教練英文姓名
+$entrainer = "";
 // 教練課程組合物件
 $personalCoach = new stdClass();
+
+// 照片陣列
+$classimgList = [];
 
 
 
@@ -19,6 +24,7 @@ $personalCoach = new stdClass();
 //判斷 G&M . T
 if ($classCategory == "T") {
 
+    $entrainer = htmlspecialchars($_POST["en_trainer"]);
     $classDate =  htmlspecialchars($_POST["classDate"]);
     $trainerExpertise = htmlspecialchars($_POST["trainerExpertise"]);
     // print_r($trainerExpertise);
@@ -81,8 +87,16 @@ if (!empty($_FILES)) {
         $filePath_Temp = $fileTmpName_arr[$i];
 
         //檔案最終存放位置
-        // $filePath = $ServerRoot . "/test/postover/" . $fileName_arr[$i];
-        $filePath = $ServerRoot . $fileName_arr[$i];
+        if ($classCategory == "T") {
+            $filePath = $ServerRoot . "/src/images/img/classes/trainer/" . $fileName_arr[$i];
+            $filePath_select = "/src/images/img/classes/trainer/" . $fileName_arr[$i];
+        } elseif ($classCategory == "G") {
+            $filePath = $ServerRoot . "/src/images/img/classes/class/" . $fileName_arr[$i];
+            $filePath_select = "/src/images/img/classes/class/" . $fileName_arr[$i];
+        } else { //M
+            $filePath = $ServerRoot . "/src/images/img/classes/menu/" . $fileName_arr[$i];
+            $filePath_select = "/src/images/img/classes/menu/" . $fileName_arr[$i];
+        }
 
         echo $fileName_arr[$i];
 
@@ -96,9 +110,10 @@ if (!empty($_FILES)) {
             //顯示檔案資訊
             echo "檔案存放位置：" . $filePath;
             echo "<br/>";
-            // 畫面渲染用
-            // echo "<img src='/FileUpload/" . $fileName_arr[$i] . "'/>";
-            // echo "<br/><br/>";
+
+            // 放入照片陣列
+            array_push($classimgList, $filePath_select);
+            print_r($classimgList);
         }
     }
 }
@@ -109,23 +124,24 @@ if (!empty($_FILES)) {
 
 if ($classCategory == "T") {
     // 丟入組合物件
-    $personalCoach->name = [$classTitle];
-    $personalCoach->date = [$classDate];
-    $personalCoach->price = [$price];
+    $personalCoach->name = $classTitle;
+    $personalCoach->date = $classDate;
+    $personalCoach->price = $price;
 
     // echo json_encode($personalCoach);
 
-    $sql = "INSERT into Coach (CoachName, CoachExpertise, CoachPhoto, CoachLicense, CoachIG, CoachProfile, PersonalCoach) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT into Coach (CoachName, en_CoachName, CoachExpertise, CoachPhoto, CoachLicense, CoachIG, CoachProfile, PersonalCoach) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
     $statement = $pdo->prepare($sql);
 
     $statement->bindValue(1, $trainer);
-    $statement->bindValue(2, $trainerExpertise);
-    $statement->bindValue(3, $filePath);
-    $statement->bindValue(4, $trainerLicense);
-    $statement->bindValue(5, $ig);
-    $statement->bindValue(6, $classInfo);
-    $statement->bindValue(7, json_encode($personalCoach));
+    $statement->bindValue(2, $entrainer);
+    $statement->bindValue(3, $trainerExpertise);
+    $statement->bindValue(4, $filePath_select);
+    $statement->bindValue(5, $trainerLicense);
+    $statement->bindValue(6, $ig);
+    $statement->bindValue(7, $classInfo);
+    $statement->bindValue(8, json_encode($personalCoach));
 
     $statement->execute();
 } else {
@@ -133,16 +149,20 @@ if ($classCategory == "T") {
     if ($classCategory == "G") {
 
         $sql = "INSERT into Course (CourseCatalog, CourseName, CourseContent, CoursePhoto, CourseLocation, CoachName, Price, Blocked) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
         $statement = $pdo->prepare($sql);
 
         $statement->bindValue(1, $classCategory);
         $statement->bindValue(2, $classTitle);
         $statement->bindValue(3, $classInfo);
-        $statement->bindValue(4, $filePath);
+        // 多張照片
+        $statement->bindValue(4, json_encode($classimgList));
         $statement->bindValue(5, $classLocation);
         $statement->bindValue(6, $trainer);
         $statement->bindValue(7, $price);
         $statement->bindValue(8, 0);
+
+        $statement->execute();
     } else {
 
         $sql = "INSERT into Course (CourseCatalog, CourseName, CourseContent, CoursePhoto, Nutrition, CoachName, Price, Blocked) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -151,10 +171,13 @@ if ($classCategory == "T") {
         $statement->bindValue(1, $classCategory);
         $statement->bindValue(2, $classTitle);
         $statement->bindValue(3, $classInfo);
-        $statement->bindValue(4, $filePath);
-        $statement->bindValue(5, $nutrients);
+        // 多張照片
+        $statement->bindValue(4, json_encode($classimgList));
+        $statement->bindValue(5, json_encode($nutrients));
         $statement->bindValue(6, $trainer);
         $statement->bindValue(7, $price);
         $statement->bindValue(8, 0);
+
+        $statement->execute();
     }
 }

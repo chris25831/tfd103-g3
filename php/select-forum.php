@@ -1,7 +1,7 @@
 <?php
     include("./connection.php");  
     
-    $sql = "SELECT * FROM Post p join User u on p.UserID = u.UserID";
+    $sql = "SELECT * FROM Post p join User u on p.UserID = u.UserID where Blocked = 0;";
     // $sql = "SELECT * FROM Post where Blocked = 0;";
     // echo "1";
     //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料

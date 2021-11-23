@@ -146,7 +146,6 @@ main.race_contents {
     border: 1.3px solid $orange;
     background-color: $white;
     @include table() {
-      grid-template-columns: 1fr;
       grid-template-rows: auto;
     }
     &:hover {
@@ -169,7 +168,7 @@ main.race_contents {
           color: white;
         }
         @include table() {
-          width: 10%;
+          width: fit-content;
         }
       }
     }
