@@ -8,11 +8,11 @@
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
     <title>討論區 | Triclub</title> 
     <!--從scss轉譯過來的-->
-    <link rel="stylesheet" href="./css/style.css">
+    
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -89,7 +89,7 @@
             </div>
         </div>
         
-        <forum-new-post-modal @closing="closeModal" v-if="showModal"></forum-new-post-modal>   <!-- @send-all-the-text="addItem"-->
+        <forum-new-post-modal @closing="closeModal" @sending="reloading" v-if="showModal"></forum-new-post-modal>   <!-- @send-all-the-text="addItem"-->
     </main>
     
     <!--這是footer-->
@@ -100,12 +100,12 @@
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
 <script src="./src/js/vuex.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/common/bookmark-forum.js"></script>
 <script src="./src/component/common/forum-new-post-modal.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 <script src="./forum.js"></script> 
 <script type="module">
     import forum from "./forum.js"  
@@ -172,6 +172,9 @@
                 
                 window.location.href=`./forum-content.html#${clickTarget.dataset.id}`;
             },
+            reloading(){
+                window.location.href="./forum-home.html";
+            }
             // addItem(item) {
             //     this.articleData.unshift(item);
             //     this.showModal = false;

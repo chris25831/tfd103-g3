@@ -25,13 +25,13 @@
     <!-- 進行切版時再自行加上各自頁面專屬的class名稱，-->
     <main id="manage-forum-report" class="manage-main manage-forum-report">  
         <h1 class="manage-title title1">討論區管理</h1>
-        <div class="bookmark-manage">
+        <!-- <div class="bookmark-manage">
             <bookmark-forum v-for="(category, index) in categories" :key="index" :category="category">
-        </div>
+        </div> -->
         
-        <form action="">
+        <div>
             <div class="button-block-manage">
-                <button class="small-red report">解除檢舉</button>
+                <button class="small-red report" @click="blockThePost">下架文章</button>
             </div>
         
             <table class="report-table">
@@ -46,79 +46,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="single-report">
+                    <tr class="single-report" v-for="singleReport in reportData" :data-id="singleReport.PostID">
                         <td>
-                            <input type="checkbox" name="report" id="">
+                            <input type="checkbox" name="report" class="checking" @change="getId">
                         </td>
-                        <td>A3958</td>
-                        <td>跟著老師一起賺</td>
-                        <td>
-                            <span class="article-content">
-                                明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                            </span>
-                        </td>
-                        <td>M4593845</td>
-                        <td>垃圾訊息</td>
-                    </tr>
-
-                    <tr class="single-report">
-                        <td>
-                            <input type="checkbox" name="report" id="">
-                        </td>
-                        <td>A3958</td>
-                        <td>跟著老師一起賺</td>
+                        <td>{{singleReport.PostID}}</td>
+                        <td>{{singleReport.PostTitle}}</td>
                         <td>
                             <span class="article-content">
-                                明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
-                                發大財!明天股市就要起飛啦!
+                                {{singleReport.PostContent}}
                             </span>
                         </td>
-                        <td>M4593845</td>
-                        <td>垃圾訊息</td>
+                        <td>{{singleReport.UserID}}</td>
+                        <td>{{singleReport.ReportReason}}</td>
                     </tr>
-                    
                 </tbody>
             </table>
-        </form>
+        </div>
     </main>
 
     
@@ -135,15 +79,51 @@
 <script src="./src/component/common/manage-header.js"></script>
 <script src="./src/component/common/manage-footer.js"></script>
 <script src="./src/component/common/bookmark-forum.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 
 <script>
     new Vue({
         el: "#manage-forum-report",
         data: {
-            categories: ["公告", "檢舉"],
-            word: "解除檢舉",
-            report: "report",
+            categories: ["檢舉"],
+            reportData: [],
+            storeId: ""
         },
+        methods: {
+            getId(){
+                let wrap = document.querySelector(".checking").closest("tr");
+                this.storeId = wrap.dataset.id;
+            },
+            blockThePost(){
+                
+                axios({
+                    method: "post",
+                    url: "./php/delete-forum.php",
+                    data: {
+                        postid: parseInt(this.storeId)
+                    }
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            }
+        },
+        mounted(){
+            axios({
+                method: "post",
+                url: "./php/select-report.php"
+            })
+            .then((res)=> {
+                console.log(res.data);
+                this.reportData = res.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
     });
 </script>
 
