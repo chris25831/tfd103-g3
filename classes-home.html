@@ -50,9 +50,14 @@
     <script src="./src/component/common/footer.js"></script>
     <script src="./src/component/common/grid-classes.js"></script>
 
-    <script>
+    <script type="Module">
+        // 匯入VUEX
+        import {classes, coach} from "./store-classes.js";
+
         new Vue({
             el:'#classes-home',
+            store:{class,coach},
+            
             data:{
                  //判斷前後台
                 currentpage:0,  

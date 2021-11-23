@@ -1,6 +1,50 @@
 <?php
 include("./connection.php");
 
+$postdata = file_get_contents("php://input");
+$check =  json_decode($postdata, true);
+
+$id = "";
+// print_r($check);
+
+
+
+// 新增的教練select
+if ($check["check"] == "tname") {
+
+    $sql = "SELECT CoachName FROM Coach";
+
+    $statement = $pdo->query($sql);
+
+
+    $data = $statement->fetchAll();
+
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+} elseif ($check["check"] == "content") { //內文請求
+    $id = $check["id"];
+    $cat = $check["catalog"];
+    // echo $id;
+    if ($cat == "G" || $cat == "M") {
+        $sql = "SELECT * FROM Course where CourseCatalog = '$cat' and CourseID = '$id'";
+    } else {
+        $sql = "SELECT * FROM Coach where CoachID = '$id'";
+    }
+    $statement = $pdo->query($sql);
+    $data = $statement->fetchAll();
+
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+} else { //首頁
+}
+
+
+
+
+
+
+
+
+/*
+
 // ***字串****
 $classCategory = htmlspecialchars($_POST["category"]);
 $classTitle = htmlspecialchars($_POST["classTitle"]);
@@ -89,13 +133,10 @@ if (!empty($_FILES)) {
         //檔案最終存放位置
         if ($classCategory == "T") {
             $filePath = $ServerRoot . "/src/images/img/classes/trainer/" . $fileName_arr[$i];
-            $filePath_select = "/src/images/img/classes/trainer/" . $fileName_arr[$i];
         } elseif ($classCategory == "G") {
             $filePath = $ServerRoot . "/src/images/img/classes/class/" . $fileName_arr[$i];
-            $filePath_select = "/src/images/img/classes/class/" . $fileName_arr[$i];
         } else { //M
             $filePath = $ServerRoot . "/src/images/img/classes/menu/" . $fileName_arr[$i];
-            $filePath_select = "/src/images/img/classes/menu/" . $fileName_arr[$i];
         }
 
         echo $fileName_arr[$i];
@@ -112,8 +153,7 @@ if (!empty($_FILES)) {
             echo "<br/>";
 
             // 放入照片陣列
-            array_push($classimgList, $filePath_select);
-            print_r($classimgList);
+            array_push($classimgList, $filePath);
         }
     }
 }
@@ -124,9 +164,9 @@ if (!empty($_FILES)) {
 
 if ($classCategory == "T") {
     // 丟入組合物件
-    $personalCoach->name = $classTitle;
-    $personalCoach->date = $classDate;
-    $personalCoach->price = $price;
+    $personalCoach->name = [$classTitle];
+    $personalCoach->date = [$classDate];
+    $personalCoach->price = [$price];
 
     // echo json_encode($personalCoach);
 
@@ -137,7 +177,7 @@ if ($classCategory == "T") {
     $statement->bindValue(1, $trainer);
     $statement->bindValue(2, $entrainer);
     $statement->bindValue(3, $trainerExpertise);
-    $statement->bindValue(4, $filePath_select);
+    $statement->bindValue(4, $filePath);
     $statement->bindValue(5, $trainerLicense);
     $statement->bindValue(6, $ig);
     $statement->bindValue(7, $classInfo);
@@ -156,7 +196,7 @@ if ($classCategory == "T") {
         $statement->bindValue(2, $classTitle);
         $statement->bindValue(3, $classInfo);
         // 多張照片
-        $statement->bindValue(4, json_encode($classimgList));
+        $statement->bindValue(4, $classimgList);
         $statement->bindValue(5, $classLocation);
         $statement->bindValue(6, $trainer);
         $statement->bindValue(7, $price);
@@ -172,12 +212,11 @@ if ($classCategory == "T") {
         $statement->bindValue(2, $classTitle);
         $statement->bindValue(3, $classInfo);
         // 多張照片
-        $statement->bindValue(4, json_encode($classimgList));
-        $statement->bindValue(5, json_encode($nutrients));
+        $statement->bindValue(4, $classimgList);
+        $statement->bindValue(5, $nutrients);
         $statement->bindValue(6, $trainer);
         $statement->bindValue(7, $price);
         $statement->bindValue(8, 0);
-
-        $statement->execute();
     }
 }
+*/
