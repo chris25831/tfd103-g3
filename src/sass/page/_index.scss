@@ -524,10 +524,17 @@ video {
    /* 這裡是放計畫表的黃色塊 */	
     .training__plan__container{
     position: absolute;  
-    bottom: 6%;           
+    top: 60%;           
     left: 0;        
     right: 0;
     margin: auto; 
+    }
+
+    .plan video{
+      object-fit: cover;
+      height: 100vh;
+      width: 100%;
+
     }
   
     
