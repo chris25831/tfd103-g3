@@ -14,7 +14,7 @@ template: `
           </div>
         </main>
 
-        <a class="logo" onclick="window.open('./index.html', '_self')" href="index.html" ><img src="./src/images/icons/logo.svg"/></a>
+        <a class="logo"  href=" index.html" ><img src="./src/images/icons/logo.svg"/></a>
         
 
         <ul class="header_menu" :class="{slidedown:slide}">
@@ -24,13 +24,13 @@ template: `
               <a href="race-home.html"><li>近期賽事</li></a>
               </ul>
           </li>
-          <li class="head_title"><a onclick="window.open('./classes-home.html', '_self')" href="classes-home.html" class="title3">訓練課程</a>
+          <li class="head_title"><a href="classes-home.html" class="title3">訓練課程</a>
             
           </li>
-          <li class="head_title"><a onclick="window.open('./forum-home.html', '_self')" href="forum-home.html" class="title3">討論區</a>
+          <li class="head_title"><a href="forum-home.html" class="title3">討論區</a>
            
           </li>
-          <li class="head_title"><a onclick="window.open('./plan-temporary.html', '_self')" href="plan-temporary.html" class="title3">訂製計畫表</a></li>
+          <li class="head_title"><a href="plan-temporary.html" class="title3">訂製計畫表</a></li>
           
          
             <ul class="head_subtitle head_contactus">
@@ -52,9 +52,10 @@ template: `
           
         </ul>
         <!--會員-->
-        <a class="header_icon" onclick="window.open('./member-login.html', '_self')" href="#"><i class="fas fa-user fa-xl"></i></a>
+        <a v-if="logouthref" class="header_icon" @click="logout" href="#">登出</a>
+        <a class="header_icon" href="member-login.html"><i class="fas fa-user fa-xl"></i></a>
         <!--購物車-->
-        <a class="header_icon" onclick="window.open('./shopcart-home.html', '_self')" href="#"><i class="fas fa-shopping-basket fa-xl"></i></a>
+        <a class="header_icon" href="shopcart-home.html"><i class="fas fa-shopping-basket fa-xl"></i></a>
     </div>  
 `,
 
@@ -62,15 +63,61 @@ template: `
     return{
       slide: false,
       hamBar_close:false,
+      logouthref:false
     }
   },
-
+  mounted(){
+    this.loginCheck()
+  },
   methods: {
+    loginCheck(){
+        axios({            
+          method: "POST",
+          url: ".php/loginCheck.php",
+          data:{},            
+          dataType: "text",
+        }).then(function (response) {
+              
+                  //尚未登入->前往Login.php
+                  this.logouthref = true;
+                  alert('請先登入，將前往登入頁'); 
+                  location.href = 'Login.html';
+              }).catch(function(error){
+                console.log(error);
+                alert('錯誤'); 
+              })          
+          },
+         
+      
+     
+     
+  
     slideDown(){
       this.slide = !this.slide
       this.hamBar_close = !this.hamBar_close
     },
+    logout(){
+        $.ajax({            
+          method: "POST",
+          url: "/php/logout.php",
+          data:{},            
+          dataType: "text",
+          success: function (response) {
+              if(response){
+                  alert('登出成功'); 
+                  this.logouthref = false;
+                  location.href = 'index.html';
+              }else{
+                alert('登出失敗QQ請重新執行'); 
+              }              
+          },
+          error: function(exception) {
+              alert("數據載入失敗: " + exception.status);
+          }
+      });
+    }
   },
+  
 });
 
 let header = new Vue({
