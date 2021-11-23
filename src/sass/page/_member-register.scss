@@ -30,13 +30,23 @@
                 position: relative;
                 &::after{
                     content: "";
-                    width: 650px;
+                    width: 600px;
                     height: 2px;
                     background-color: $orange;
                     position: absolute;
                     top: 120%;
                     left: 50%;
                     transform: translateX(-50%);
+                }
+                @include table(){
+                    &::after{
+                        width: 430px;
+                    }
+                }
+                @include mobile(){
+                    &::after{
+                        width: 330px;
+                    }
                 }
             }
             .input-wrapper{
@@ -51,14 +61,23 @@
                     margin-bottom: 10px;
                     width: 300px;
                     outline: none;
+                    @include mobile(){
+                        width: 250px;
+                    }
                 }
                 .notice{
                     font-size: 12px;
                     margin-top: 10px;
                     display: inline-block;
                     cursor: pointer;
-                    input[type='radio']{
-                        vertical-align: text-bottom;
+                    input[type='checkbox']{
+                        vertical-align: text-top;
+                    }
+                    @include table(){
+                        width: 400px
+                    }
+                    @include mobile(){
+                        width: 320px;
                     }
                 }
                 .required{
@@ -95,6 +114,9 @@
                 .orangebutton{
                     width: 250px;
                     height: 40px;
+                    @include mobile(){
+                        width: 200px;
+                    }
                 }
             }
         }
