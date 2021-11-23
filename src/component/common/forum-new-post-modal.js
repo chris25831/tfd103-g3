@@ -16,20 +16,23 @@ Vue.component("forum-new-post-modal", {
                 </select>
                 <textarea class="new-article-content" name="content" id="" cols="30" rows="10" v-model="newArticleContent" required></textarea>
                 <div class="upload-images">
-                    <div class="single-image image-one-wrapper" @dragover.prevent @drop.prevent="dropFirstImage" >
+
+                    <div class="single-image image-one-wrapper">
                         <div class="rectangle rectangle-one"></div>
                         <img class="the-image-one the-image" src="" name="photo-one">
-                        <input type="file" class="insert-photo">
+                        <input type="file" id="insert-one" class="insert-photo insert-one" @change="updateImageDisplayOne">
                     </div>
-                    <div class="single-image image-two-wrapper" @dragover.prevent @drop.prevent="dropSecondImage">
+
+                    <div class="single-image image-two-wrapper">
                         <div class="rectangle rectangle-two"></div>
                         <img class="the-image-two the-image" src="" name="photo-two">
-                        <input type="file" class="insert-photo">
+                        <input type="file" id="insert-two" class="insert-photo insert-two" @change="updateImageDisplayTwo">
                     </div>
-                    <div class="single-image image-three-wrapper" @dragover.prevent @drop.prevent="dropThirdImage">
+
+                    <div class="single-image image-three-wrapper">
                         <div class="rectangle rectangle-three"></div>
                         <img class="the-image-three the-image" src="" name="photo-three">
-                        <input type="file" class="insert-photo">
+                        <input type="file" id="insert-three" class="insert-photo insert-three" @change="updateImageDisplayThree">
                     </div>
                 </div>
                 
@@ -44,34 +47,31 @@ Vue.component("forum-new-post-modal", {
             correctTimeOfPost: "",
             category: "",
             newArticleContent: "",
-            // theImageOne: "",
-            // theImageTwo: "",
-            // theImageThree: "",
+            theImageOne: "",
+            theImageTwo: "",
+            theImageThree: ""
         }
     },
 
     methods: {
-        send() {               
+        send() {          
             if(this.forumTitle.trim().length !== 0 && this.category.trim().length !== 0 && this.newArticleContent.trim().length !== 0) {
                 axios({
                 method: 'post',
                 url: './php/forum-new.php',
                 //API要求的資料
                 data: { 
-                        // username: "Maggie Wang",
                         title: this.forumTitle, 
-                        // time: correctTimeOfPost,
                         category: this.category,
-                        content: this.newArticleContent
-                        // photoOne: theImageOne,
-                        // photoTwo: theImageTwo,
-                        // photoThree: theImageThree                   
+                        content: this.newArticleContent,
+                        photos: [this.theImageOne, this.theImageTwo, this.theImageThree]           
                     }
                 })
                 .then((res) => {
-                    console.log(res);
+                    // this.$emit("sending");
                 })
                 .catch((error) => console.log(error))
+                
             } else {
                 return
             }
@@ -79,6 +79,39 @@ Vue.component("forum-new-post-modal", {
         returning() {
             this.$emit("closing");
         },
+        updateImageDisplayOne(){
+            let insertOne = document.querySelector("#insert-one");
+            let rectangleOne = document.querySelector(".rectangle-one");
+
+            console.log(insertOne.files[0]);
+            this.theImageOne = document.querySelector(".the-image-one");
+            this.theImageOne.src = window.URL.createObjectURL(insertOne.files[0]);
+            if(this.theImageOne.src !== "") {
+                rectangleOne.style.display = "none";
+            }
+        },
+        updateImageDisplayTwo(){
+            let insertTwo = document.querySelector("#insert-two");
+            let rectangleTwo= document.querySelector(".rectangle-two");
+
+            // console.log(insertTwo.files[0]);
+            this.theImageTwo = document.querySelector(".the-image-two");
+            this.theImageTwo.src = window.URL.createObjectURL(insertTwo.files[0]);
+            if(this.theImageTwo.src !== "") {
+                rectangleTwo.style.display = "none";
+            }
+        },
+        updateImageDisplayThree(){
+            let insertThree = document.querySelector("#insert-three");
+            let rectangleThree = document.querySelector(".rectangle-three");
+
+            // console.log(insertThree.files[0]);
+            this.theImageThree = document.querySelector(".the-image-three");
+            this.theImageThree.src = window.URL.createObjectURL(insertThree.files[0]);
+            if(this.theImageThree.src !== "") {
+                rectangleThree.style.display = "none";
+            }
+        }
         // dropFirstImage(e) {
         //     let file = e.dataTransfer.files[0];
         //     let readFile = new FileReader();

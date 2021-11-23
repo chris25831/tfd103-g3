@@ -116,10 +116,10 @@
             </div>
         </div>
         
-        <report @cancel-report="closeReportModal" v-if="showReportModal"></report>
+        <report :num="dataNumber" @cancel-report="closeReportModal" v-if="showReportModal"></report>
         
         <!-- 點擊編輯文章後彈出 -->
-        <div id="forum-edit-post-modal" class="darken-background" v-show="showEditModal">
+        <div id="forum-edit-post-modal" class="darken-background" v-if="showEditModal">
             <div class="new-article edit-article">
 
                     <span class="info">編輯文章</span>
@@ -204,7 +204,9 @@
             category:"",
             articleContent:"",
 
-            commentContent: ""
+            commentContent: "",
+
+            likeArray: []
         },
         methods: {
             openEditModal(){
@@ -217,24 +219,37 @@
                 this.showEditModal = false;
             },
             clickLike(){
-                this.likeSwitch = !this.likeSwitch;
-                this.likeSwitchForRed = !this.likeSwitchForRed;
+                // this.likeSwitch = !this.likeSwitch;
+                // this.likeSwitchForRed = !this.likeSwitchForRed;
                 //存入資料庫
-                if(this.likeSwitchForRed) {
+                
                     axios({
                         method: "post",
-                        url: "./php/select-forum.php",
-                        data: {
-                            
-                        }
+                        url: "./php/likePost.php"
                     })
                     .then((res) => {
-                        console.log(res);
+                        console.log("res.data:", res.data);
+                        // res.data[0] 
+                        this.likeArray = res.data[0];
+                        console.log(this.likeArray);
+
+                        console.log("測試",this.likeArray);
+                        // for(let i = 0; i < this.likeArray.length; i++) {
+                        //     if(parseInt(this.likeArray[i]) === parseInt(this.dataNumber)){
+                        //         this.likeArray[i].remove();
+                        //         this.likeSwitch = !this.likeSwitch;
+                        //         this.likeSwitchForRed = !this.likeSwitchForRed;
+                        //     } else {
+                        //         this.likedArray = [...this.likedArray, this.dataNumber];
+                        //         this.likeSwitch = !this.likeSwitch;
+                        //         this.likeSwitchForRed = !this.likeSwitchForRed;
+                        //     }
+                        // }
                     })
                     .catch((error) => {
                         console.log(error);
                     })
-                }
+                
             
             
             },
@@ -330,7 +345,7 @@
                 url: "./php/select-comment.php",
                 data: {
                     postid: thePostId
-                }
+                },
             })
             .then((res) => {
                 
