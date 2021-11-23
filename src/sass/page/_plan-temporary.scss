@@ -16,24 +16,11 @@
     @include mobile{
       
       width: 90%;
-      height: 50%;
+      height: 60%;
     }
-    .plan_question_content {
-      height: 90%;
-      .plan_question_content_article {
-        @include flexcenter;
-        flex-direction: column;
-        background-size:contain ;
-        background-position: center;
-        // border: 2px solid white;
-        justify-content: space-around;
-        // border:2px solid turquoise;
-        height: 100%;
-      }
-    }
-        
+    
         .plan_question_content{
-            height: 90%;
+            height: 86%;
             .plan_question_content_article{
                 @include flexcenter;
                 flex-direction: column;
@@ -119,7 +106,7 @@ div.progress_bar{
         font-weight: 500;  
         @include mobile{
           width: 86%;
-          font-size:24px;
+          font-size: 20px;
           font-weight: 700;    
         }
     }
@@ -146,7 +133,7 @@ div.progress_bar{
             white-space:pre-line;
             
             @include mobile{
-              font-size: 16px;
+              font-size: 14px;
             }
             
         }
@@ -161,25 +148,26 @@ div.progress_bar{
             align-items: center;
             justify-content:left;
             flex-direction: row;
-            width: 90%; 
+            width: 100%; 
             @include mobile{
               flex-wrap: wrap;
               align-items: flex-start;
+              margin-bottom: 20px;
             }
             label{
               width: 24%;
               margin-right: 30px;
               margin-left: 10px;
               @include mobile{
-                width: 80%;
-                margin-bottom: 20px;
+                width: 79%;
+                margin-bottom: 10px;
               }
               &:hover{
-                font-size: 18px;
+                font-size: 15px;
               }
             } 
             input{
-              width: 20px;
+              width: 8%;
               height: 20px;
             }
         }
