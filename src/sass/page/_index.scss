@@ -9,7 +9,6 @@
 video {
   object-fit: cover; 
   position: absolute;
-  height: 100vh;
   width: 100%;
   top: 0;
   left: 0;
@@ -495,7 +494,7 @@ video {
     /* 開始製作我的個人計畫 */
     .training__plan{
     display: block;
-    height: 1470px;
+    height: 1400px;
     width: 100%;
     position: relative;
     background-color: #00429D;
@@ -517,14 +516,14 @@ video {
   .training__plan__photo{
     position: absolute;
     top:-45px;
-    left: 15px;
+    left: 50px;
   }
   
     
    /* 這裡是放計畫表的黃色塊 */	
     .training__plan__container{
     position: absolute;  
-    top: 60%;           
+    top: 55%;           
     left: 0;        
     right: 0;
     margin: auto; 
@@ -532,8 +531,8 @@ video {
 
     .plan video{
       object-fit: cover;
-      height: 100vh;
       width: 100%;
+      border: 5px solid #FFEF36;
 
     }
   
