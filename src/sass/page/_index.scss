@@ -298,6 +298,7 @@ video {
 .pro__training{
   display: block;
   position: relative;
+  height: 900px;
 }
 
 .pro__training-bg{
@@ -494,7 +495,10 @@ video {
     /* 開始製作我的個人計畫 */
     .training__plan{
     display: block;
+    height: 1470px;
+    width: 100%;
     position: relative;
+    background-color: #00429D;
     }
     
     .training__plan__svg{
@@ -515,6 +519,7 @@ video {
     top:-45px;
     left: 15px;
   }
+  
     
    /* 這裡是放計畫表的黃色塊 */	
     .training__plan__container{
@@ -531,35 +536,41 @@ video {
     /* TriClub會員專屬 */
     .member__FAQ{
     display: block;
+    min-height: fit-content;
+    width: 100%;
     position: relative;
+    background-color: #E75F49;
+    padding-bottom: 3%;
+    z-index: 30;
     }
     
     .member__title {
-    position: absolute;
-    top: 80px;
-    left: 170px;
+    padding: 5% 10% 2%;
     color: #fff;
-    width: 600px;
     }
   
     .member__photo{
       position: absolute;
       top:-60px;
       right: 150px;
+      z-index: -10;
+    }
+
+    @media screen and (max-width:767.98px) {
+      .member__photo{
+        height: 800px;
+        right: 10px;
+      }
     }
   
-    
-    
+      
     /* 會員權益表格  */
     .member-table {
     border-collapse: separate;
     border-radius: 10px;
     border-spacing: 0;
-    margin: 4rem 0;
-    width: 37%;
-    position: absolute;
-    top: 280px;
-    left: 170px;
+    width: 60%;
+    padding: 0 10%;
     }
     
     th {
@@ -616,11 +627,14 @@ video {
     background-color: #fff;
     width: 80%;
     border-radius:10px;
-    position: absolute;  
-    bottom: 6%;           
-    left: 0;        
-    right: 0;
-    margin: auto; 
+    margin: 5% 10%; 
+    z-index: 1000;
+    }
+
+    @media screen and (max-width:767.98px) {
+      .FAQ__container {
+        margin: 5%;
+      }
     }
     
     .faq-drawer {
@@ -704,7 +718,12 @@ video {
   
   .training__course__title {
     color: #000;
-    margin: 55px 0 50px 85px;
+    margin: 5% 10%;
+  }
+  @media only screen and (max-width: 768px) {
+    .training__course__title {
+      margin: 10% 10% 0;
+    }
   }
   
   .training__course__title .text--normal {
@@ -730,6 +749,15 @@ video {
       margin: 20px;
       width: 300px;
       height: 400px;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .course__flex-container {
+        flex-direction: column;
+      }
+      .course__container {
+        margin: 30px;
+      }
     }
     
     .overlay {
@@ -859,20 +887,23 @@ video {
     
     /* 鐵人三項賽事時間表 */
     .triathlon__events{
-    border: 1px solid $blue;  
-    padding-top: 50px;  
+    border: 1px solid $blue;   
     display: block;
     background-color: $blue;
       div{  
         position: relative;
       }
+      div.events__title {
+        margin: 5% 10% 2%;
+        color: #fff;
+        }
+        
       main{
         background-color: $blue;
         background-image: none;
+        margin: 0 2%;
       }
     }	
     
-   .events__title {
-    margin: 50px 80px 0 ;
-    color: #fff;
-    }
+
+
