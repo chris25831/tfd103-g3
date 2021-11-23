@@ -1,6 +1,7 @@
 <?php
     //清除Session
-     include("./member.php");
+    include("connection.php");
+    include("./member.php");
 
  
     //清空session
