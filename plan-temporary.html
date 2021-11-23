@@ -133,7 +133,7 @@
                 <div class="plan_bg">
                     
                     <div class="plan_info">
-                        <p>比賽日期:{{this.questionanswer[0]}}</p>
+                        <p>比賽日期:{{this.choicedate}}</p>
                         <p>訓練週數:{{this.questionanswer[2]}}</p>
                     </div>
                     <svg id="layer02"  id="bevelyellow" xmlns="http://www.w3.org/2000/svg" width="400" height="107" viewBox="0 0 308.81 107">
@@ -187,7 +187,7 @@
                     </svg>
                 <!--訓練表主要內容-->
                 <div class="plan_scroll">
-                    <section  v-for="week in questionanswer[2]" id="plan_main_content" class="plan_row">
+                    <section v-for="week in questionanswer[2]" id="plan_main_content" class="plan_row">
                     <span class="week_mark title2">W{{week}}</span>
                         <ul class="plan_main_content_row">
                             <li v-for="(perday,index) in plandata" class="plan_eachday">
@@ -202,9 +202,9 @@
                                     <span v-show="perday.Run"><i class="fa-solid fa-person-running"></i></span>
                                 </div>
                                 <div class="plan_exe">
-                                    <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}hr</span></p>
-                                    <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}hr</span></p>
-                                    <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}hr</span></p>
+                                    <p v-show="perday.Swim != null">{{Object.keys(perday)[0]}}-<span>{{perday.Swim}}min</span></p>
+                                    <p v-show="perday.Bike != null">{{Object.keys(perday)[1]}}-<span>{{perday.Bike}}min</span></p>
+                                    <p v-show="perday.Run != null">{{Object.keys(perday)[2]}}-<span>{{perday.Run}}min</span></p>
                                     <p v-show="perday.Rest != false" style="background:linear-gradient(120deg,#E75F49,#FFA10A,#FFEF36);height: 100%;" ><span style="color: rgba(248, 248, 248, 0.8);font-size:24px;">{{perday.Rest}}</span></p>
                                 </div>
                             </li>
@@ -217,7 +217,7 @@
                     </div>
                    
                     <button onclick="window.open('./plan-temporary.html', '_self')" class="bluebutton title3">重新製作</button>
-                    <button onclick="window.open('./plan-member.html', '_self')" class="orangebutton title3">儲存</button>
+                    <button @click="checkMember" class="orangebutton title3">儲存</button>
                         
                 </div>
             </section>
@@ -237,6 +237,7 @@ import plan from "./store-plan.js"
 new Vue({
     el: '#plan_question',
     store:plan,
+    
     methods: {
         last(){      //切換按鈕index
             this.$store.commit('last')
@@ -245,11 +246,36 @@ new Vue({
             this.$store.commit('changetab')
             
         }, 
-       
+          checkMember(){
+            axios({            
+            method: "POST",
+            url: "./php/loginCheck.php",
+            data:{},            
+            dataType: "json",
+            }).then((response)=>{
+                if(response === ""){
+                  alert('請先登入，將前往登入頁'); 
+                  location.href = 'Login.html';
+              }else{
+                  console.log("有登入");
+                //   console.log(response)
+                //   this.insertplandata()
+                  this.$store.commit('insertplandata',123460)
+                    
+              } 
+              
+              }).catch((error)=>{
+                console.log(error);
+                alert('錯誤'); 
+              })        
+        },
+        
     }, 
         
      computed: {
-       
+     
+
+    
         showplan(){
             return this.$store.state.showplan
         },
