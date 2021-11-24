@@ -15,11 +15,14 @@
     $account = $formData["account"];
     $password = $formData["password"];
 
-    $sql = "SELECT * FROM User where account = ? and password = ?;";
 
+    $sql = "SELECT * FROM User where account = ? and password = ? and UserIdentity = 'manager';";
+    
     $statement = $pdo->prepare($sql);
     $statement->bindValue(1, $account); 
-    $statement->bindValue(2, $password); 
+    $statement->bindValue(2, $password);
+    
+
     $statement->execute();
     $data = $statement->fetchAll();
 
@@ -48,7 +51,6 @@
         setMemberInfo($userId, $userName);
         //導回產品頁        
         echo "登入成功";
-        
     }else{
         //跳出提示停留在登入頁
         echo "帳號或密碼錯誤!"; 

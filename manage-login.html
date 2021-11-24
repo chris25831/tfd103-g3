@@ -6,13 +6,13 @@
     <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>會員登入 | Triclub</title> 
+    <title>管理員登入 | Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 
-    
 </head>
 
 <body>
@@ -23,7 +23,7 @@
   
 
    <!--內容所有都放在這div裡面-->
-   <main id="member-login" class="member-login">
+   <main id="manage-login" class="member-login">
        <div class="login-bg">
            
            <div class="login-content">
@@ -54,7 +54,6 @@
 <script src="./src/js/vue.js"></script>
 <script src="./src/component/common/manage-header.js"></script>
 <script src="./src/component/common/manage-footer.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 <script>
     new Vue({
         el: "#member-login",
@@ -75,7 +74,7 @@
                 .then((res) => {
                     if(!res.data.includes("帳號或密碼錯誤!")) {
                         alert(res.data);
-                        // document.location.href='./member-main.html';
+                        document.location.href='./manage-member-personal-info.html';
                     } else {
                         alert(res.data);
                     }

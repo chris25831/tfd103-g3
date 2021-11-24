@@ -201,7 +201,7 @@
 
             // likeString: "",
             likeArray: [],
-            notMine: true,
+            notMine: false,
             isMine: false
         },
         methods: {
@@ -219,8 +219,7 @@
                 axios({
                 method: "post",
                 url: "./php/loginCheck.php",
-                data: {
-                    // postid: thePostId
+                data: {// postid: thePostId
                 },
             })
             .then((res) => {
