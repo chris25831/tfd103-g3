@@ -15,7 +15,7 @@
     $account = $formData["account"];
     $password = $formData["password"];
 
-    $sql = "SELECT * FROM User where account = ? and password = ?;";
+    $sql = "SELECT * FROM User where Account = ? and Password = ?;";
 
     $statement = $pdo->prepare($sql);
     $statement->bindValue(1, $account); 

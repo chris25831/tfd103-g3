@@ -17,15 +17,14 @@
 
 <body>
     <!--這是header-->
-   <header id="header" :class="{sticky: active}">
-        <my-header ></my-header><!--這是自定義標籤會被覆蓋-->
+   <header id="manage-header">
+        <manage-header></manage-header><!--這是自定義標籤會被覆蓋-->
    </header>
   
 
    <!--內容所有都放在這div裡面-->
    <main id="manage-login" class="member-login">
        <div class="login-bg">
-           
            <div class="login-content">
                <img src="./src/images/icons/logo.svg">
                <h2>管理者登入</h2>
@@ -44,8 +43,8 @@
 
    
    <!--這是footer-->
-   <footer id="footer">
-      <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
+   <footer id="manage-footer">
+       <manage-footer></manage-footer>
    </footer>
 
 
@@ -56,7 +55,7 @@
 <script src="./src/component/common/manage-footer.js"></script>
 <script>
     new Vue({
-        el: "#member-login",
+        el: "#manage-login",
         data: {
             account: "",
             password: ""
@@ -81,7 +80,8 @@
                 })
                 .catch((error) => console.log(error))
             }
-        }
+        },
+        
     })
 </script>
 
