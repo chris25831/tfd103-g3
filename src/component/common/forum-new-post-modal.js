@@ -15,26 +15,7 @@ Vue.component("forum-new-post-modal", {
                     <option value="問題">問題</option>
                 </select>
                 <textarea class="new-article-content" name="content" id="" cols="30" rows="10" v-model="newArticleContent" required></textarea>
-                <div class="upload-images">
-
-                    <div class="single-image image-one-wrapper">
-                        <div class="rectangle rectangle-one"></div>
-                        <img class="the-image-one the-image" src="" name="photo-one">
-                        <input type="file" id="insert-one" class="insert-photo insert-one" @change="updateImageDisplayOne">
-                    </div>
-
-                    <div class="single-image image-two-wrapper">
-                        <div class="rectangle rectangle-two"></div>
-                        <img class="the-image-two the-image" src="" name="photo-two">
-                        <input type="file" id="insert-two" class="insert-photo insert-two" @change="updateImageDisplayTwo">
-                    </div>
-
-                    <div class="single-image image-three-wrapper">
-                        <div class="rectangle rectangle-three"></div>
-                        <img class="the-image-three the-image" src="" name="photo-three">
-                        <input type="file" id="insert-three" class="insert-photo insert-three" @change="updateImageDisplayThree">
-                    </div>
-                </div>
+                
                 
                 <button class="send-forum-content" type="submit" @click="send">送出</button>
         </div>
@@ -175,6 +156,27 @@ Vue.component("forum-new-post-modal", {
         //             imageOne.appendChild(theImage);
         //     })
         // }
+
+        // <div class="upload-images">
+
+        //             <div class="single-image image-one-wrapper">
+        //                 <div class="rectangle rectangle-one"></div>
+        //                 <img class="the-image-one the-image" src="" name="photo-one">
+        //                 <input type="file" id="insert-one" class="insert-photo insert-one" @change="updateImageDisplayOne">
+        //             </div>
+
+        //             <div class="single-image image-two-wrapper">
+        //                 <div class="rectangle rectangle-two"></div>
+        //                 <img class="the-image-two the-image" src="" name="photo-two">
+        //                 <input type="file" id="insert-two" class="insert-photo insert-two" @change="updateImageDisplayTwo">
+        //             </div>
+
+        //             <div class="single-image image-three-wrapper">
+        //                 <div class="rectangle rectangle-three"></div>
+        //                 <img class="the-image-three the-image" src="" name="photo-three">
+        //                 <input type="file" id="insert-three" class="insert-photo insert-three" @change="updateImageDisplayThree">
+        //             </div>
+        //         </div>
     },
 });
 

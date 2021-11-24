@@ -46,15 +46,15 @@
             <div class="single-article">
                 <div class="head">
                     <div class="author">
-                        <img class="avatar" :src="singleArticleData.UserPhoto" alt="">
+                        <!-- <img class="avatar" :src="singleArticleData.UserPhoto" alt=""> -->
                         <span class="name">{{singleArticleData.UserName}}</span>
                         <span class="time">{{singleArticleData.PostDate}}</span>
                     </div>
                     <div class="action">
-                        <div class="like">
-                            <img class="heart" @click="clickLike" v-show="likeSwitch" src="./src/images/img/forum/heart-size-3.png" alt="">
-                            <img class="heart heart-red" @click="clickLike" v-show="likeSwitchForRed" src="./src/images/img/forum/heart-red.png" alt="">
-                        </div>
+                        <!-- <div class="like">
+                            <img class="heart" v-show="likeSwitch" src="./src/images/img/forum/heart-size-3.png" alt="">
+                            <img class="heart heart-red" v-show="likeSwitchForRed" src="./src/images/img/forum/heart-red.png" alt="">
+                        </div> -->
                         <div class="report">
                             <img src="./src/images/img/forum/report-button.png" @click="dropDownSwitch">
                             <div class="drop-down" v-show="showReport">
@@ -70,14 +70,9 @@
                     <h3 class="title">{{singleArticleData.PostTitle}}</h3>
                     
                     <div class="forum-content-block">
-                        <p class="manage-forum-content">
+                        <p class="forum-content">
                             {{singleArticleData.PostContent}}
                         </p>
-                        <div class="photo-block" v-if="showPhotoBlock">
-                            <img src="" alt="" class="photo-one">
-                            <img src="" alt="" class="photo-two">
-                            <img src="" alt="" class="photo-three">
-                        </div>
                         
                     </div>
                 </div>
@@ -85,7 +80,7 @@
             </div>
 
             <div class="new-comment">
-                <img class="avatar avatar-new-comment" src="./src/images/img/forum/smile.jpg" alt="">
+                <!-- <img class="avatar avatar-new-comment" src="./src/images/img/forum/smile.jpg" alt=""> -->
                 <textarea class="input-comment" placeholder="留言..." name="commentContent" id="" v-model="commentContent"></textarea>
                 <div class="button-block-frontend">
                     <button type="submit" class="submit-comment small-blue" @click="sendComment">留言</button>
@@ -106,12 +101,12 @@
                     <p class="comment-content">
                         {{commentDatum.CommentContent}}
                     </p>
-                    <div class="report">
+                    <!-- <div class="report">
                         <img src="./src/images/img/forum/report-button.png">
                         <div class="drop-down-comment">
                             <span>檢舉</span>
                         </div>  
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -139,7 +134,7 @@
 
                     <textarea class="new-article-content" name="content" id="" cols="30" rows="10" v-model="articleContent" required></textarea>
 
-                    <div class="upload-images">
+                    <!-- <div class="upload-images">
                         <div class="single-image image-one-wrapper" @dragover.prevent @drop.prevent="dropFirstImage" >
                             <div class="rectangle rectangle-one"></div>
                             <img class="the-image-one the-image" src="" name="photo-one">
@@ -154,7 +149,7 @@
                             <div class="rectangle rectangle-three"></div>
                             <img class="the-image-three the-image" src="" name="photo-three">
                         </div>
-                    </div>
+                    </div> -->
                     
                     <button class="send-forum-content" @click.prevent="sendEdit">送出</button>   <!-- @click="send"--->
             </div>
@@ -204,6 +199,7 @@
 
             commentContent: "",
 
+            // likeString: "",
             likeArray: [],
             notMine: true,
             isMine: false
@@ -218,38 +214,7 @@
             closeEditModal(){         
                 this.showEditModal = false;
             },
-            clickLike(){
-                // this.likeSwitch = !this.likeSwitch;
-                // this.likeSwitchForRed = !this.likeSwitchForRed;
-                //存入資料庫
-                
-                    axios({
-                        method: "post",
-                        url: "./php/likePost.php"
-                    })
-                    .then((res) => {
-                        console.log("res.data:", res.data);
-                        // res.data[0] 
-                        this.likeArray = res.data[0];
-                        console.log(this.likeArray);
-
-                        console.log("測試",this.likeArray);
-                        // for(let i = 0; i < this.likeArray.length; i++) {
-                        //     if(parseInt(this.likeArray[i]) === parseInt(this.dataNumber)){
-                        //         this.likeArray[i].remove();
-                        //         this.likeSwitch = !this.likeSwitch;
-                        //         this.likeSwitchForRed = !this.likeSwitchForRed;
-                        //     } else {
-                        //         this.likedArray = [...this.likedArray, this.dataNumber];
-                        //         this.likeSwitch = !this.likeSwitch;
-                        //         this.likeSwitchForRed = !this.likeSwitchForRed;
-                        //     }
-                        // }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            },
+            
             dropDownSwitch() {
                 this.showReport = !this.showReport;
             },
@@ -319,8 +284,6 @@
                 numberArray[i];
                 this.dataNumber += numberArray[i]
             };
-
-            console.log("this.dataNumber", this.dataNumber);
             
             //用文編號找到指定的文章
             axios.get('./php/select-forum.php')
@@ -361,7 +324,7 @@
             })
             .then((res) => {
                 console.log("這是我的文嗎",res);
-                if(parseInt(this.singleArticleData[0].UserID) === parseInt(res.data[0])) {
+                if(parseInt(this.singleArticleData.UserID) === parseInt(res.data[0])) {
                     //顯示編輯、刪除
                     this.isMine = true;
                     this.notMine = false;

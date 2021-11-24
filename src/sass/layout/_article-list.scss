@@ -32,11 +32,11 @@
         
             .left{
                 // border: solid red 1px;
-                width: 70%;
+                width: 100%;
                 display: inline-block;
                 height: 100%;
                 @include table() {
-                    width: 60%;
+                    width: 100%;
                 }
 
                 @include mobile() {
@@ -67,7 +67,7 @@
                     }
 
                     span.name {
-                        margin: 0 15px 0 18px;
+                        margin: 0 15px 0 25px;
                         max-width: 60%;
                         @include table() {
                             max-width: 45%;
@@ -103,7 +103,7 @@
                     display: inline-block;
                     max-width: 90%;
                     // min-width: 70%;
-                    margin: 18px 0 0 25px;
+                    margin: 18px 0 18px 25px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -166,7 +166,7 @@
                 font-size: 0;
                 display: inline-block;
                 width: 30%;
-                height: 203.81px;
+                height: 160px;
                 margin: 0;
                 vertical-align: top;
                 @include table() {

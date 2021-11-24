@@ -44,6 +44,7 @@ Vue.component("report",{
             .catch((error) => {
                 console.log(error);
             })
+            window.location.reload();
         }
 
     }
