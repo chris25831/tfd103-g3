@@ -44,7 +44,7 @@
     break;
 
     default:
-     echo "請重新選擇";
+     echo "沒有計畫表";
     break;
   }
 

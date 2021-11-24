@@ -138,21 +138,32 @@
     new Vue({
         el: '#plan_wrapper',
         store:plan,
+        data(){
+            return{
+                memberID:""
+            }
+        },
         methods: {
             checkMember(){
+                
                     axios({            
                     method: "POST",
                     url: "./php/loginCheck.php",
                     data:{},            
                     dataType: "json",
                     }).then((response)=>{
-                        if(response === ""){
+                        let memberID = response.data;
+                        this.memberID = memberID
+                        if(response.data === ""){
                         alert('請先登入，將前往登入頁'); 
                         location.href = 'Login.html';
-                    }else{
+                     }else{
                         console.log("有登入");
-                        this.$store.commit('selectplandata',123460)
-                    } 
+                        localStorage.clear("plandata")
+                        this.$store.commit('selectplandata',memberID)
+                        
+                        console.log(memberID)
+                     } 
                     
                     }).catch((error)=>{
                         console.log(error);
@@ -180,7 +191,9 @@
             },
             
             plancancel(){
+                let memberID = this.memberID
                 this.$store.commit('plancancel')
+                this.$store.commit('deleteplandata',memberID)
             },
             resetplan(){
                 window.location="./plan-temporary.html"
@@ -267,13 +280,11 @@
                 let theData = localStorage.getItem('plandata');
                 if(theData != null){
                     return this.$store.state.plandata = JSON.parse(theData);
+                }else{
+                    this.checkMember();
                 }
             },
             mounted() {
-                this.checkMember();
-             
-              
-
                 let thePoint = JSON.parse(localStorage.getItem('Points'));
                 if(thePoint != null){
                     return this.$store.state.memberinfo.point = thePoint;

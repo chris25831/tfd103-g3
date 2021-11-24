@@ -246,28 +246,30 @@ new Vue({
             this.$store.commit('changetab')
             
         }, 
-          checkMember(){
-            axios({            
-            method: "POST",
-            url: "./php/loginCheck.php",
-            data:{},            
-            dataType: "json",
-            }).then((response)=>{
-                if(response === ""){
-                  alert('請先登入，將前往登入頁'); 
-                  location.href = 'Login.html';
-              }else{
-                  console.log("有登入");
-                //   console.log(response)
-                //   this.insertplandata()
-                  this.$store.commit('insertplandata',123460)
-                    
-              } 
-              
-              }).catch((error)=>{
-                console.log(error);
-                alert('錯誤'); 
-              })        
+        checkMember(){
+        axios({            
+        method: "POST",
+        url: "./php/loginCheck.php",
+        data:{},            
+        dataType: "json",
+        }).then((response)=>{
+            if(response === ""){
+                alert('請先登入，將前往登入頁'); 
+                location.href = 'Login.html';
+            }else{
+                console.log("有登入");
+                let memberID = response.data
+            //    console.log(response.data)
+            //   this.insertplandata()
+            this.$store.commit('deleteplandata',memberID)
+            this.$store.commit('insertplandata',memberID)
+                
+            } 
+            
+            }).catch((error)=>{
+            console.log(error);
+            alert('錯誤'); 
+            })        
         },
         
     }, 
@@ -337,6 +339,9 @@ new Vue({
     },
     mounted() {
          this.$store.commit('loadrace')
+
+
+         
             gsap.from('.plan_ques_wrapper',{
                 duration : 1,
                 x : -200,

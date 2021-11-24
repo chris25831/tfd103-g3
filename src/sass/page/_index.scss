@@ -318,6 +318,9 @@ video {
 }
 
 @media screen and (max-width:767.98px) {
+  .pro__training{
+    height: 650px;
+  }
   .pro__training__title {
     margin: 10%;
     padding: 0;
@@ -406,59 +409,13 @@ video {
     align-items: center; 
   }
   
-  .course__container {
+  .sports__container {
     position: relative;
-    margin: 20px;
-    width: 300px;
-    height: 400px;
+    margin: 5px;
+    width: 50%;
+    height: 200px;
   }
   
-  .course__title {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 150px;
-    font-weight: 700;
-    font-size: 30px;
-    text-align: center;
-    text-transform: uppercase;
-    color: white;
-    z-index: 1;
-    transition: top .5s ease;
-  }
-  
-  .course__container:hover .course__title {
-    top: 90px;
-  }
-  
-  .course__button {
-    color: white;
-    position: absolute;
-    width: 100%;
-    left:0;
-    top: 220px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity .35s ease;
-    z-index: 600;
-  }
-  
-  .course__button a {
-    width: 200px;
-    padding: 12px 48px;
-    text-align: center;
-    color: #fff;
-    // border: solid 2px white;
-    border-radius:40px;
-    background-image: linear-gradient(to right, #FFEF36, #FFA10A,#E75F49);
-    z-index: 650;
-    text-decoration:none;
-  }
-  
-  .course__container:hover .course__button {
-    opacity: 1;
-    color: #fff;
-  }
 }
 
 /* 跑馬燈 */
@@ -492,50 +449,62 @@ video {
     
     
     
-    /* 開始製作我的個人計畫 */
-    .training__plan{
-    display: block;
-    height: 1400px;
-    width: 100%;
-    position: relative;
-    background-color: #00429D;
-    }
-    
-    .training__plan__svg{
-    position: absolute;  
-    top: 23%;   
-    }
-  
+/* 開始製作我的個人計畫 */
+.training__plan{
+  display: block;
+  height: 1400px;
+  width: 100%;
+  position: relative;
+  background-color: #00429D;
+  z-index: 8;
+}
+
+.training__plan__svg{
+  position: absolute;  
+  top: 23%;
+  z-index: -1;   
+}
+
+.training__plan__title{
+  color: #fff;
+  margin: 0 50%;
+  padding-top: 5%;
+  width: 550px;
+}
+
+.training__plan__photo{
+  position: absolute;
+  top:-45px;
+  left: 50px;
+}
+
+@media screen and (max-width:767.98px) {
   .training__plan__title{
-    color: #fff;
-    position: absolute;
-    top: 60px; 
-    right: 50px;
-    width: 550px;
+    margin-left: 10%;
+    width: 415px;
   }
-  
   .training__plan__photo{
-    position: absolute;
-    top:-45px;
-    left: 50px;
+    height: 500px;
+    top: 375px;
+    left: 150px;
   }
-  
+}
+
     
-   /* 這裡是放計畫表的黃色塊 */	
-    .training__plan__container{
-    position: absolute;  
-    top: 55%;           
-    left: 0;        
-    right: 0;
-    margin: auto; 
-    }
+/* 這裡是放計畫表的黃色塊 */	
+.training__plan__container{
+  position: absolute;  
+  top: 55%;           
+  left: 0;        
+  right: 0;
+  margin: auto; 
+}
 
-    .plan video{
-      object-fit: cover;
-      width: 100%;
-      border: 5px solid #FFEF36;
-
-    }
+.plan video{
+  object-fit: cover;
+  width: 100%;
+  border: 5px solid #FFEF36;
+}
   
     
     
@@ -588,7 +557,6 @@ video {
     
     th, td {
     padding: 0.75em;
-    text-align: center;
     }
     
     td {
@@ -912,5 +880,32 @@ video {
       }
     }	
     
+
+#course__item_7 {
+  background: url('../src/images/img/index/bike_255x255.jpg');
+  width: 100%;
+  height: 100%;    
+  position: absolute;
+  max-width: 95%;
+  text-align: center;
+}
+
+#course__item_8 {
+  background: url('../src/images/img/index/run_255x255.jpg');
+  width: 100%;
+  height: 100%;    
+  position: absolute;
+  max-width: 95%;
+  text-align: center;
+}
+  
+  #course__item_9 {
+    background: url('../src/images/img/index/swim_255x255.jpg');
+    width: 100%;
+    height: 100%;    
+    position: absolute;
+    max-width: 95%;
+    text-align: center;
+  }
 
 
