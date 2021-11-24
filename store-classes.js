@@ -28,18 +28,60 @@ const classes =  new Vuex.Store({
         //DataBase抓值
         // 主頁
         classesHomeStart(state){
-            //***TODO:解析axios的東西,多物件 for迴圈
-            
-            
-            //***解析完畢 
-            // state.triclasses = [],
-            // state.menus = [],
+        
+            axios({
+                method: 'post',
+                url: './php/classes-select.php',
+                data:{
+                    check: 'home', 
+                    catalog:"GM"  
+                }
 
+            }).then((response) => {
+                console.log(response);
+                let alldata = response.data;
+                console.log(alldata);
 
+                // 補0
+                function pluszero(id){
+                   return id.padStart(5,"0");
+                };
 
+                // 解析
+                for(let i=0; i < alldata.length; i++){
+                    let id = alldata[i].CourseID;
+                    let idlength =  alldata[i].CourseID.length;
+                    let fullid ="";
+                    let arrimg = JSON.parse(alldata[i].CoursePhoto);
+                    if(idlength < 5){
 
+                        fullid = pluszero(id);      
+                    }
+                    // console.log(fullid);
+
+                    let item ={
+                        classID: alldata[i].CourseCatalog + fullid,
+                        imgSrc: arrimg[0],
+                        classTitle: alldata[i].CourseName,
+                    }
+                    // console.log(item);
+
+                    // 丟入 判斷G || M
+                    if(alldata[i].CourseCatalog == "G"){
+
+                        state.triclasses.push(item);
+                        console.log(state.triclasses);
+                    }else{
+                        state.menus.push(item);
+                        console.log(state.menus);
+                    }
+                } 
+
+            }).catch((error) => console.log(error));
+        
         },
-
+   
+        
         // 內頁
         classesContentStart(state, id){
                 
@@ -154,7 +196,7 @@ const classes =  new Vuex.Store({
 
     getters:{
         reload: state =>{
-            console.log(state.price);
+            // console.log(state.price);
             let newdata = {
                 title: state.classTitle,
                 price: state.price,
@@ -190,7 +232,7 @@ const coach = new Vuex.Store({
         // 教練IG
         ig:"",
         // 教練介紹
-        intro:[],
+        intro:"",
 
         // 教練照片
         imgSrc:"",
@@ -206,7 +248,54 @@ const coach = new Vuex.Store({
         //DataBase抓值
         // 主頁
         classesHomeStart(state){
-            state.trainers = [];
+           
+            axios({
+                method: 'post',
+                url: './php/classes-select.php',
+                data:{
+                    check: 'home', 
+                    catalog:"T"  
+                }
+
+            }).then((response) => {
+                // console.log(response);
+                let alldata = response.data;
+                console.log(alldata);
+
+                 // 補0
+                 function pluszero(id){
+                    return id.padStart(5,"0");
+                 };
+
+                // 解析
+                for(let i=0; i < alldata.length; i++){
+                    let id = alldata[i].CoachID;
+                    let idlength =  alldata[i].CoachID.length;
+                    let fullid ="";
+                    let arrexp = alldata[i].CoachExpertise.split(",");
+                    // console.log(arrexp);
+
+                    if(idlength < 5){
+
+                        fullid = pluszero(id);      
+                    }
+
+                    let item ={
+                        classID: "T" + fullid,
+                        imgSrc: alldata[i].CoachPhoto,
+                        classTitle: alldata[i].CoachName,
+                        classSubtitle: arrexp[0],
+                    }
+
+                    // 丟入
+                    state.trainers.push(item);
+                  
+                }
+
+
+            }).catch((error) => console.log(error));
+
+
         },
 
         // 內頁
@@ -237,71 +326,32 @@ const coach = new Vuex.Store({
                 state.trainerName = selectdata.CoachName;
                 // 英文名
                 state.en_trainerName = selectdata.en_CoachName;
+
                 // 專長
-                state.trainerExpertise = selectdata.CoachExpertise;
+                let arrExp =  selectdata.CoachExpertise.split(",");
+                state.trainerExpertise = arrExp;
+                console.log(state.trainerExpertise);
+
                 // 證照
-                state.trainerLicense = selectdata.CoachLicense;
+                let arrLic =  selectdata.CoachLicense.split(",");
+                state.trainerLicense = arrLic;
+
                 // IG
                 state.ig = selectdata.CoachIG;
+
                 // 介紹
-                state.intro = selectdata.CoachProfile;
+                let arrintro =  selectdata.CoachProfile.split(",");
+                state.intro = arrintro;
+              
                 // 照片
                 state.imgSrc = selectdata.CoachPhoto;
-
+               
                 // 課程
                 let tclass = JSON.parse(selectdata.PersonalCoach);
                 // console.log(tclass);
                 state.trainerclass = tclass;
              
-
             }).catch((error) => console.log(error));
-
-
-
-            // 解析完畢
-            /*
-            state.trainerName="黃雨欣";
-            state.en_trainerName="Silvia"; 
-            state.trainerExpertise = [
-             '游泳四式調整',
-             '個人體能鍛鍊',
-             '體態雕塑',
-             '姿態評估',
-             '功能性訓練',
-             'TRX訓練'
-            ];
- 
-            state.trainerclass = {
-             name:'游泳肌力訓練(初階)',
-             date:'12/01',
-             price:'3000',
-            };
- 
-            state.trainerLicense = [
-                 'PTA GLOBAL體適能教練證',
-                 '中華民國健身C級指導員證',
-                 '中華民國C級健美運動教練證',
-                 '中華民國游泳協C級教練證',
-                 '新北市水上安全救生協會C級游泳教練證',
-                 '台灣國際身心障礙游泳協會C級游泳教練證',
-                 '台灣國際身心障礙游泳協會C級游泳裁判證',
-                 '中華民國水上救生協會救生員證',
-                 '臺北市水上運動協會救生員證',
-                 '中華民國紅十字心肺復甦術'
-            ];
- 
-            state.ig="https://www.peeta.tw/fitness";
- 
-            state.intro = [
-             '一直很喜歡運動，',
-             '大學是排球校隊，曾經很胖，',
-             '也曾瘦到不行現在認為重訓打造出來的女人曲線才美，',
-             '強壯能保護自己的女人才有魅力已不追求瘦身，',
-             '線條才能讓我性感美麗充滿自信。'
-            ];
- 
-            state.imgSrc = "./src/images/img/classes/trainer/trainer02.jpg";
-             */
 
         },
     },

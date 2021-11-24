@@ -134,8 +134,10 @@ Vue.component("contentdetail-2",{
                 </div>
                 <!-- 證照 -->
                 <div class="license">
-                    <p>證照</p>
-                    <span v-for="lic in license">{{lic}}<br></span>
+                    <p>證照</p>  
+                    <span v-for="lic in license">
+                        {{lic}}<hr>
+                    </span>
                 </div>
                 <br>
                 <div>

@@ -38,6 +38,8 @@
                     <!-- 編號 -->
                     <label v-if="editpage == true" class="title3">編號</label>
                     <input v-if="editpage == true" :value="classId" id="classId" type="text" name="classId" readonly>
+                    <!-- 紀錄ID -->
+                    <input v-if="editpage == true"  :value="idUpdate" id="idUpdate" type="text" name="idUpdate" style="display: none;" readonly>
                     <hr v-if="editpage == true">
 
                     <!-- 分類 -->  
@@ -174,6 +176,8 @@
                 
                 classTitle:"", 
                 classId:"",
+                // update用
+                idUpdate:"",
                 classCategory:"G",
                 trainer:"",
                 en_trainer:"",
@@ -196,6 +200,7 @@
                 // 判斷新增還是編輯
                 var classidval = (new URL(location.href)).searchParams.get('classid');
 
+
                 
                 // 編輯頁面
                 if(classidval !== 'new'){
@@ -208,6 +213,12 @@
                     //判斷哪個分類
                     let check = classidval.slice(0,1);
                     console.log(check);
+
+                    // 發送id
+                    let fullid = classidval.slice(1);
+                    this.idUpdate = fullid.replace(/\b(0+)/gi,"");
+                    // console.log(this.idUpdate);
+
                     // 分類
                     this.classCategory = check;
                     
@@ -218,10 +229,8 @@
                         this.trainer = this.$store.classes.state.trainerName; 
 
                     }else{ //教練
-                        this.$store.coach.commit('classesContentStart', classidval);
 
-        
-            
+                        this.$store.coach.commit('classesContentStart', classidval);
                     }
                                                
                 }else{
@@ -229,73 +238,6 @@
                    this.$store.classes.commit('newClassesInsert');
                    this.trainer = this.$store.classes.state.trainerName; 
                 }
-            },
-
-            beforeMount() {
-                if(this.classCategory == "G" || this.classCategory == "M"){
-                  
-                        // 名稱
-                        // this.classTitle = this.$store.classes.state.classTitle; 
-
-                        // 授課教師
-                        // this.trainer = this.$store.classes.state.trainerName; 
-                        // 價錢
-                        // this.price = this.$store.classes.state.price; 
-                        // 團課地點
-                        // if(this.classCategory  == "G"){
-                            // this.classLocation = this.$store.classes.state.classLocation;     
-                        // }
-                        // 營養素
-                        // if(this.classCategory  == "M"){
-                            // this.nutrients = this.$store.classes.state.nutrients;     
-                        // }
-                        // 簡介
-                        // this.classInfo = this.$store.classes.state.intro;
-                        // 圖片
-                        // this.classimg = this.$store.classes.state.imgSrc;
-
-                        // console.log(this.classimg);
-
-                        // for(let i=0; i < this.classimg.length; i++){
-                        //     $("#classpreview").append(`<div id="classpreviewimg-${i}"><img src=${this.classimg[i]}></div>`);
-                        // }
-
-
-
-
-
-                    }else{ //教練
-
-
-                        // 教練私課
-                        // this.classTitle = this.$store.coach.state.trainerclass.name;
-                        // 授課教師
-                        // this.trainer = this.$store.coach.state.trainerName;
-                        // 教師英文名
-                        // this.en_trainer = this.$store.coach.state.en_trainerName;
-                        // 價錢
-                        // this.price =  this.$store.coach.state.trainerclass.price;
-                        // 開課日期
-                        // this.classDate = this.$store.coach.state.trainerclass.date;
-
-                        // 專長
-                        // this.trainerExpertise = this.$store.coach.state.trainerExpertise;
-                        // 證照
-                        // this.trainerLicense = this.$store.coach.state.trainerLicense;
-                        // IG
-                        // this.ig = this.$store.coach.state.ig;
-                        // 簡介
-                        // this.classInfo =  this.$store.coach.state.intro;
-                        // 圖片
-                        // this.classimg = this.$store.coach.state.imgSrc;
-
-                        // console.log(this.classimg);
-                        // $("#classpreview").append(`<div id="classpreviewimg-0"><img src=${this.classimg}></div>`);
-                      
-
-            
-                    }
-                    
             },
 
             methods: {
@@ -460,15 +402,31 @@
                         }else{
                             alert("欄位不可有空值")
                         }
-                    }
-
-                      
+                    }   
                 },
 
                 // 下架
                 deleteClass(){
+                    var gotoPHP = axios.create({
+                        timeout: 3000,
+                        baseURL:"./php",
+                    });
+
+                    var classForm = document.getElementById("uploadclassform");
+
+                     // 分類關disabled 
+                     $("#category").attr("disabled",false);
+            
+                    const formData = new FormData(classForm);
+
+                    console.log(formData);
+
+                    console.log("axios啟動");
+                    gotoPHP.post('/classes-delete.php', formData).then((response) => console.log(response)).catch((error) => console.log(error));
+
 
                 },
+
                 // 更新 //G&M用
                 updateClass(data){
                     // console.log(data);
@@ -499,6 +457,21 @@
                 //T用
                 updateTrianer(data){
                     console.log(data);
+                    this.classTitle = data.trainerclass.name;
+                    this.trainer = data.trainerName;
+                    this.en_trainer = data.en_trainerName;
+                    this.price = data.trainerclass.price;
+                    this.classInfo = data.intro;
+
+                    // 圖片
+                    this.classimg = data.imgs;
+                    $("#classpreview").children().remove();
+                    $("#classpreview").append(`<div id="classpreviewimg-0"><img src="${this.classimg}"></div>`);
+
+                    this.trainerExpertise = data.trainerExpertise;
+                    this.trainerLicense = data.trainerLicense;
+                    this.classDate = data.trainerclass.date;
+                    this.ig = data.ig;
                 }
 
             },
@@ -512,8 +485,7 @@
                     return this.$store.coach.getters.reload;
                 }
             },
-
-            
+       
             watch:{
                 classCategory: function(val) {
                     // console.log(val);
@@ -537,7 +509,5 @@
 
         });
     </script> 
-
-
 </body>
 </html>
