@@ -53,7 +53,7 @@ Vue.component("my-header", {
           <!--會員-->
           <a v-if="logouthref" class="header_icon" @click="logout" href="#">登出</a>
 
-          <a class="header_icon" href="member-login.html"><i class="fas fa-user fa-xl"></i></a>
+          <a class="header_icon to-member-info" href="#"><i @click="allocate" class="fas fa-user fa-xl"></i></a>
           <!--購物車-->
           <a class="header_icon" href="shopcart-home.html"><i class="fas fa-shopping-basket fa-xl"></i></a>
       </div>  
@@ -91,6 +91,13 @@ Vue.component("my-header", {
 
     },
     methods: {
+      allocate(){
+        if(this.logouthref === true) {
+          document.location.href = "./member-main.html"
+        } else {
+          document.location.href = "./member-login.html"
+        }
+      },
       slideDown(){
         this.slide = !this.slide
         this.hamBar_close = !this.hamBar_close
@@ -101,7 +108,7 @@ Vue.component("my-header", {
           }
           axios({            
               method: "POST",
-              url: "../../../php/logout.php",
+              url: "./php/logout.php",
             })
             .then((response) => {
                 if(response.data){
