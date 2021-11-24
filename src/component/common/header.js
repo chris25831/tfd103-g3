@@ -49,7 +49,6 @@ Vue.component("my-header", {
                     </p>
                   </li>
               </ul>
-            
           </ul>
           <!--會員-->
           <a v-if="logouthref" class="header_icon" @click="logout" href="#">登出</a>
@@ -70,13 +69,12 @@ Vue.component("my-header", {
     mounted(){
         axios({            
             method: "POST",
-            url: "/php/loginCheck.php",
+            url: "./php/loginCheck.php",
           }).then((response) => {
               // console.log(response.data)
                 if(response.data === ""){
                     console.log('未登入')
-                      // alert('請先登入，將前往登入頁'); 
-                      // location.href = 'Login.html';
+                      
                   }else{
                       console.log("有登入")
                       console.log(response.data)
