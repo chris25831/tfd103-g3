@@ -1,10 +1,10 @@
-.isShowing#forum-edit-post-modal.darken-background {
-    display: block;
-}
+// .isShowing {
+//     display: block;
+// }
 
-.drop-down.reportShowing {
-    display: block;
-}
+// .reportShowing {
+//     display: block;
+// }
 
 .darken-background#forum-new-post-modal, .darken-background#forum-edit-post-modal {
     position: fixed;
@@ -14,7 +14,7 @@
     top: 0;
     left: 0;
     z-index: 100000;
-    display: none;
+    // display: none;
     .new-article, .edit-article { 
         margin: 0 auto;
         max-width: 800px;

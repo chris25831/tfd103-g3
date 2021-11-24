@@ -57,7 +57,8 @@
                         </div> -->
                         <div class="report">
                             <img src="./src/images/img/forum/report-button.png" @click="dropDownSwitch">
-                            <div class="drop-down" v-if="showReport" :class="{ reportShowing: reportShowing }">
+                            <div class="drop-down" v-if="showReport">
+                                <!-- :class="{ reportShowing: reportShowing }" -->
                                 <span @click="report" v-if="notMine">檢舉</span>
                                 <span @click="openEditModal" v-if="isMine">編輯</span>
                                 <span @click="deletePost" v-if="isMine">刪除</span>
@@ -114,7 +115,8 @@
         <report :num="dataNumber" @cancel-report="closeReportModal" v-if="showReportModal"></report>
         
         <!-- 點擊編輯文章後彈出 -->
-        <div id="forum-edit-post-modal" class="darken-background" v-if="showEditModal" :class="{ isShowing: isShowing }">  
+        <div id="forum-edit-post-modal" class="darken-background" v-if="showEditModal">
+            <!-- :class="{ isShowing: isShowing }"   -->
             <div class="new-article edit-article">
 
                     <span class="info">編輯文章</span>
@@ -164,8 +166,8 @@
         el: "#forum-content",
         store: forum,
         data: {
-            reportShowing: false,
-            isShowing: false,
+            // reportShowing: false,
+            // isShowing: false,
             categories: ["全部","閒聊","裝備","心得","問題"],
             showEditModal: false,
             likeSwitch: true,
@@ -190,7 +192,7 @@
         },
         methods: {
             openEditModal(){               
-                this.isShowing = true;
+                // this.isShowing = true;
                 this.showEditModal = true;
                 this.forumTitle = this.singleArticleData.PostTitle;
                 this.category = this.singleArticleData.PostCategory;
@@ -198,10 +200,11 @@
             },
             closeEditModal(){         
                 this.showEditModal = false;
-                this.isShowing = false;
+                // this.isShowing = false;
             },
             
             dropDownSwitch() {
+               
                 axios({
                     method: "post",
                     url: "./php/loginCheck.php",
@@ -225,15 +228,16 @@
                 })
                 .catch((error) => console.log(error))
                 this.showReport = !this.showReport;
-                this.reportShowing = !this.reportShowing;
+                console.log(this.showReport);
+                
             },
             report() {
-                this.isShowing = true;
+                // this.isShowing = true;
                 this.showReportModal = true;
                 console.log("ok");
             },
             closeReportModal() {
-                this.reportShowing = false;
+                // this.reportShowing = false;
                 this.showReportModal = false;
             },
             deletePost(){
