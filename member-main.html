@@ -169,68 +169,68 @@
 <!-- <script src="./src/component/member/edit-btn.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 <script>
-	// new Vue({
-	// 	el: "#member-main",
-	// 	data: {
-	// 		name: "",
-	// 		birthday: "",
-	// 		phone: "",
-	// 		address: "",
-	// 		password: "000000",
-	// 		userInformation: [],
-	// 	},
-	// 	methods: {
-	// 		turnOn(){
-	// 			document.getElementById('member-name').disabled = false;
-	// 			document.getElementById('member-birth').disabled = false;
-	// 			document.getElementById('member-phone').disabled = false;
-	// 			document.getElementById('member-address').disabled = false;
-	// 			document.getElementById('firstpart-btn').setAttribute("style", "display: block");
-	// 		},
-	// 		turnOff(){
-	// 			document.getElementById('member-name').disabled = true;
-	// 			document.getElementById('member-birth').disabled = true;
-	// 			document.getElementById('member-phone').disabled = true;
-	// 			document.getElementById('member-address').disabled = true;
-	// 			document.getElementById('firstpart-btn').setAttribute("style", "display: none");
-	// 		},
-	// 		submitEdit(){
-	// 			axios({
-	// 				method: "post",
-	// 				url: "./php/edit-member.php",
-	// 				data: {
-	// 					name: this.name,
-	// 					birthday: this.birthday,
-	// 					phone: this.phone,
-	// 					address: this.address
-	// 				}
-	// 			})
-	// 			.then((res) => {
-	// 				alert("修改成功!")
-	// 				// document.location.href="../member-main.html";
-	// 			})
-	// 		}
-	// 	},
-	// 	mounted(){
-	// 		axios({
-	// 			method: "post",
-	// 			url: "./php/select-member.php",
-	// 		})
-	// 		.then((res) => {
-	// 			this.userInformation = res.data;
-	// 			// for(let i = 0; i < this.userInformation.length; i++){
+	new Vue({
+		el: "#member-main",
+		data: {
+			name: "",
+			birthday: "",
+			phone: "",
+			address: "",
+			password: "000000",
+			userInformation: [],
+		},
+		methods: {
+			turnOn(){
+				document.getElementById('member-name').disabled = false;
+				document.getElementById('member-birth').disabled = false;
+				document.getElementById('member-phone').disabled = false;
+				document.getElementById('member-address').disabled = false;
+				document.getElementById('firstpart-btn').setAttribute("style", "display: block");
+			},
+			turnOff(){
+				document.getElementById('member-name').disabled = true;
+				document.getElementById('member-birth').disabled = true;
+				document.getElementById('member-phone').disabled = true;
+				document.getElementById('member-address').disabled = true;
+				document.getElementById('firstpart-btn').setAttribute("style", "display: none");
+			},
+			submitEdit(){
+				axios({
+					method: "post",
+					url: "./php/edit-member.php",
+					data: {
+						name: this.name,
+						birthday: this.birthday,
+						phone: this.phone,
+						address: this.address
+					}
+				})
+				.then((res) => {
+					alert("修改成功!")
+					// document.location.href="../member-main.html";
+				})
+			}
+		},
+		mounted(){
+			axios({
+				method: "post",
+				url: "./php/select-member.php",
+			})
+			.then((res) => {
+				this.userInformation = res.data;
+				// for(let i = 0; i < this.userInformation.length; i++){
 					
-	// 			// }
-	// 			this.name = this.userInformation[0].UserName;
-	// 			this.birthday = this.userInformation[0].Birthday;
-	// 			this.phone = this.userInformation[0].Mobile;
-	// 			this.address = this.userInformation[0].Address;
+				// }
+				this.name = this.userInformation[0].UserName;
+				this.birthday = this.userInformation[0].Birthday;
+				this.phone = this.userInformation[0].Mobile;
+				this.address = this.userInformation[0].Address;
 
-	// 			console.log(this.userInformation);
-	// 		})
-	// 		.catch((error) => console.log(error))
-	// 	},
-	// })
+				console.log(this.userInformation);
+			})
+			.catch((error) => console.log(error))
+		},
+	})
 </script>
 
 </body>

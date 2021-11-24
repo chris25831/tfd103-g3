@@ -45,7 +45,7 @@ Vue.component("manage-header", {
                         alert("已登出"); 
                         this.logoutHref = false;
                         this.memberID = "";
-                        location.href = 'index.html';
+                        location.href = 'manage-login.html';
                     }else{
                         alert('登出失敗QQ請重新執行'); 
                     }              

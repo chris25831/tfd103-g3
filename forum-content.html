@@ -57,7 +57,7 @@
                         </div> -->
                         <div class="report">
                             <img src="./src/images/img/forum/report-button.png" @click="dropDownSwitch">
-                            <div class="drop-down" v-show="showReport">
+                            <div class="drop-down" v-if="showReport" :class="{ reportShowing: reportShowing }">
                                 <span @click="report" v-if="notMine">檢舉</span>
                                 <span @click="openEditModal" v-if="isMine">編輯</span>
                                 <span @click="deletePost" v-if="isMine">刪除</span>
@@ -114,7 +114,7 @@
         <report :num="dataNumber" @cancel-report="closeReportModal" v-if="showReportModal"></report>
         
         <!-- 點擊編輯文章後彈出 -->
-        <div id="forum-edit-post-modal" class="darken-background" v-if="showEditModal">
+        <div id="forum-edit-post-modal" class="darken-background" v-if="showEditModal" :class="{ isShowing: isShowing }">  
             <div class="new-article edit-article">
 
                     <span class="info">編輯文章</span>
@@ -134,23 +134,6 @@
 
                     <textarea class="new-article-content" name="content" id="" cols="30" rows="10" v-model="articleContent" required></textarea>
 
-                    <!-- <div class="upload-images">
-                        <div class="single-image image-one-wrapper" @dragover.prevent @drop.prevent="dropFirstImage" >
-                            <div class="rectangle rectangle-one"></div>
-                            <img class="the-image-one the-image" src="" name="photo-one">
-                        </div>
-
-                        <div class="single-image image-two-wrapper" @dragover.prevent @drop.prevent="dropSecondImage">
-                            <div class="rectangle rectangle-two"></div>
-                            <img class="the-image-two the-image" src="" name="photo-two">
-                        </div>
-
-                        <div class="single-image image-three-wrapper" @dragover.prevent @drop.prevent="dropThirdImage">
-                            <div class="rectangle rectangle-three"></div>
-                            <img class="the-image-three the-image" src="" name="photo-three">
-                        </div>
-                    </div> -->
-                    
                     <button class="send-forum-content" @click.prevent="sendEdit">送出</button>   <!-- @click="send"--->
             </div>
         </div>
@@ -181,8 +164,9 @@
         el: "#forum-content",
         store: forum,
         data: {
+            reportShowing: false,
+            isShowing: false,
             categories: ["全部","閒聊","裝備","心得","問題"],
-            showPhotoBlock: false,
             showEditModal: false,
             likeSwitch: true,
             likeSwitchForRed: false,
@@ -206,6 +190,7 @@
         },
         methods: {
             openEditModal(){               
+                this.isShowing = true;
                 this.showEditModal = true;
                 this.forumTitle = this.singleArticleData.PostTitle;
                 this.category = this.singleArticleData.PostCategory;
@@ -213,38 +198,42 @@
             },
             closeEditModal(){         
                 this.showEditModal = false;
+                this.isShowing = false;
             },
             
             dropDownSwitch() {
                 axios({
-                method: "post",
-                url: "./php/loginCheck.php",
-                data: {// postid: thePostId
-                },
-            })
-            .then((res) => {
-                console.log("這是我的文嗎", res.data);
-                console.log("userID??", this.singleArticleData.UserID);
-                
-                if(this.singleArticleData.UserID.toString() === res.data.toString()) {
-                    //顯示編輯、刪除
-                    console.log("???", parseInt(this.singleArticleData.UserID));
-                    this.isMine = true;
-                    this.notMine = false;
-                } else {
-                    //只顯示檢舉
-                    this.isMine = false;
-                    this.notMine = true;
-                }
-            })
-            .catch((error) => console.log(error))
+                    method: "post",
+                    url: "./php/loginCheck.php",
+                    data: {// postid: thePostId
+                    }
+                })
+                .then((res) => {
+                    console.log("這是我的文嗎", res.data);
+                    console.log("userID??", this.singleArticleData.UserID);
+                    
+                    if(this.singleArticleData.UserID.toString() === res.data.toString()) {
+                        //顯示編輯、刪除
+                        console.log("???", parseInt(this.singleArticleData.UserID));
+                        this.isMine = true;
+                        this.notMine = false;
+                    } else {
+                        //只顯示檢舉
+                        this.isMine = false;
+                        this.notMine = true;
+                    }
+                })
+                .catch((error) => console.log(error))
                 this.showReport = !this.showReport;
+                this.reportShowing = !this.reportShowing;
             },
             report() {
+                this.isShowing = true;
                 this.showReportModal = true;
                 console.log("ok");
             },
             closeReportModal() {
+                this.reportShowing = false;
                 this.showReportModal = false;
             },
             deletePost(){
@@ -258,7 +247,10 @@
                     postid: postId
                 }
                 })
-                .then((res) => console.log(res))
+                .then((res) => {
+                    console.log(res)
+                    document.location.href = "./forum-home.html"
+                })
                 .catch((error) => console.log(error))
             },
             sendEdit() {

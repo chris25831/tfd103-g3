@@ -115,7 +115,7 @@ Vue.component("my-header", {
                     alert("已登出"); 
                     this.logouthref = false;
                     this.memberID = "";
-                    // location.href = 'index.html';
+                    location.href = 'index.html';
                 }else{
                    alert('登出失敗，請重新執行'); 
                 }              

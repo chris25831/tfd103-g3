@@ -40,11 +40,12 @@ Vue.component("report",{
             .then((res)=>{
                 console.log(res);
                 console.log("this.number", this.number);
+                window.location.reload();
             })
             .catch((error) => {
                 console.log(error);
             })
-            window.location.reload();
+            // window.location.reload();
         }
 
     }
