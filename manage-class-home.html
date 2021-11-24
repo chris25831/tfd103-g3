@@ -41,29 +41,6 @@
             </div>
         </div>
    
-
-        <!--分頁器-->
-        <div class="pagination"> 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous" @click="minusOnePage">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item" v-for="page in totalPage"><a class="page-link"  href="#">{{page}}</a></li>
-                        
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next"  @click="plusOnePage">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </main>
 
 
@@ -77,17 +54,24 @@
 
 
     <script src="./src/js/vue.js"></script>
-    <script src="./src/component/common/grid-classes.js"></script>
-    <!--header/footer component-->
-    <script src="./src/component/common/manage-header.js"></script>
-    <script src="./src/component/common/manage-footer.js"></script>
+    <script src="./src/js/vuex.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
     <!-- 測量網頁距離 -->
     <script src="https://unpkg.com/spacingjs" defer></script>
+    <!--component-->
+    <script src="./src/component/common/manage-header.js"></script>
+    <script src="./src/component/common/manage-footer.js"></script>
+    <script src="./src/component/common/grid-classes.js"></script>
 
-    <script>
+    <script type="module">
+        // 匯入VUEX
+        import {classes, coach} from "./store-classes.js";
+
         new Vue({
             el:'#manage-classes-home',
-            
+            store:{classes,coach},
+
             data:{
                 //判斷前後台
                 currentpage:1,    
@@ -96,281 +80,29 @@
                 categories: ["團練課程", "個人教練","營養規劃"],
                 classdata: ["triclasses", "trainers","menus"],
 
-                
-                // **分頁器pagination**
-                totalPage: "",  //總頁面數
-                itemsPerPage: 3,//一頁顯示筆數
-                tidedData:[],//放螢幕所顯示的項目
-                currentPage: 1, //現在的頁碼
-                startIndex: "", //起始項目index，供分頁器使用
-                // categorizedData: [],
-
-                // **課程組件data**
-                // 訓練課程
-                triclasses:[
-                    // 1
-                    {       
-                        classID:'G00001',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 2
-                    {
-                        classID:'G00002',
-                        imgSrc:'./src/images/img/classes/class/class02.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 3
-                    {
-                        classID:'G00003',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 4
-                    {
-                        classID:'G00004',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 5
-                    {
-                        classID:'G00005',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 6
-                    {
-                        classID:'G00006',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 7
-                    {
-                        classID:'G00007',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 8
-                    {
-                        classID:'G00008',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    // 9
-                    {
-                        classID:'G00009',
-                        imgSrc:'./src/images/img/classes/class/class01.jpg',
-                        classTitle:"2021 Liv Iron Girl X 鐵人私塾 官方聯名系列課",
-                        classSubtitle:"", 
-                    },
-                    
-                ],
-                
-                
-                // 個人教練
-                trainers:[
-                    // 1
-                    {
-                        classID:'T00001',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 2
-                    {
-                        classID:'T00002',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 3
-                    {
-                        classID:'T00003',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 4
-                    {
-                        classID:'T00004',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 5
-                    {
-                        classID:'T00005',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 6
-                    {
-                        classID:'T00006',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 7
-                    {
-                        classID:'T00007',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 8
-                    {
-                        classID:'T00008',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                    // 9
-                    {
-                        classID:'T00009',
-                        imgSrc:'./src/images/img/classes/trainer/trainer01.jpg',
-                        classTitle:"黃雨欣",
-                        classSubtitle:"游泳四段調整" 
-                    },
-                ],       
-
-                
-                // 營養規劃 
-                menus:[
-                    // 1
-                    {
-                        classID:'M00001',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-                    // 2
-                    {
-                        classID:'M00002',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-                    // 3
-                    {
-                        classID:'M00003',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-                    // 4
-                    {
-                        classID:'M00004',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-                    // 5
-                    {
-                        classID:'M00005',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-                    // 6
-                    {
-                        classID:'M00006',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-
-                    // 7
-                    {
-                        classID:'M00007',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-                    // 8
-                    {
-                        classID:'M00008',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-                    // 9
-                    {
-                        classID:'M00009',
-                        imgSrc:'./src/images/img/classes/menu/menu01.jpg',
-                        classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                        classSubtitle:"", 
-                    },
-
-                ],
             },
             
             created() {
-                //初始團練課程
-                this.totalPage = Math.ceil(this.triclasses.length / this.itemsPerPage)
-                //從哪個index起始
-                this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
-                //回傳切割後的新陣列
-                this.tidedData = this.classData.slice(this.startIndex, this.startIndex + this.itemsPerPage);            
-
+                this.$store.classes.commit('classesHomeStart');
+                this.$store.coach.commit('classesHomeStart');
             },
 
-            methods: {
-                changeClassPage(e) {
-                    this.currentPage = parseInt(e.target.innerText);
+            // 回傳vuex值
+            computed:{
+                // 訓練課程
+                triclasses(){
+                    return this.$store.classes.state.triclasses;
                 },
-                minusOnePage() { //分頁器
-                    if(this.currentPage > 1) {
-                        this.currentPage = this.currentPage - 1;
-                    }
+                // 營養規劃 
+                menus(){
+                    return this.$store.classes.state.menus;
                 },
-                plusOnePage() { //分頁器
-                    if(this.currentPage < this.totalPage) {
-                        this.currentPage = this.currentPage + 1;
-                    }
-                },
-                changeCategory(e) {    
-                        if(this.classdata[0]){
-                            this.totalPage = Math.ceil(this.triclasses.length / this.itemsPerPage)
-                            this.tidedData = this.triclasses.slice(this.startIndex, this.startIndex + this.itemsPerPage);
-                        }
-                        if(this.classdata[1]){
-                            this.totalPage = Math.ceil(this.trainers.length / this.itemsPerPage)
-                            this.tidedData = this.trainers.slice(this.startIndex, this.startIndex + this.itemsPerPage);
-                        }
-                        if(this.classdata[2]){
-                            this.totalPage = Math.ceil(this.menus.length / this.itemsPerPage)
-                            this.tidedData = this.menus.slice(this.startIndex, this.startIndex + this.itemsPerPage);
-                        }
-                        this.tidedData=""
-                        this.currentPage = 1;         
+                // 個人教練
+                trainers(){
+                    return this.$store.coach.state.trainers;
                 },
             },
-            
-        
-            watch: {
-                currentPage(newValue, oldValue) { //分頁器偵測所處頁面
-                    this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
-                        
-                    document.querySelectorAll("a.page-link").forEach((text, index) => {
-                        if(parseInt(text.innerText) === parseInt(newValue)) {
-                            text.style.backgroundColor = "lightgray";
-                        } else {
-                            text.style.backgroundColor = "";
-                        }
-                    });
-                        
-                },    
-            },
-                
+                           
         });
 
     </script> 

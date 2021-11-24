@@ -24,16 +24,29 @@ if ($check["check"] == "tname") {
     $id = $check["id"];
     $cat = $check["catalog"];
     // echo $id;
+    // 判斷分類
     if ($cat == "G" || $cat == "M") {
         $sql = "SELECT * FROM Course where CourseCatalog = '$cat' and CourseID = '$id'";
     } else {
         $sql = "SELECT * FROM Coach where CoachID = '$id'";
     }
+
     $statement = $pdo->query($sql);
     $data = $statement->fetchAll();
 
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
 } else { //首頁
+    $cat = $check["catalog"];
+    if ($cat == "GM") {
+        $sql = "SELECT CourseID, CourseCatalog, CourseName, CoursePhoto FROM Course where Blocked = '0'";
+    } else {
+        $sql = "SELECT CoachID, CoachName, CoachExpertise, CoachPhoto FROM Coach";
+    }
+
+    $statement = $pdo->query($sql);
+    $data = $statement->fetchAll();
+
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
 }
 
 

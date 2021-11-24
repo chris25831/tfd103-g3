@@ -68,8 +68,7 @@ echo "<br/>";
 
 
 // *****圖片******
-// 判斷圖片不是空值
-if (!empty($_FILES)) {
+if (!empty($_FILES["classimg"]["name"][0])) {
 
     //Web根目錄真實路徑, ex: C:/XAMPP/htdocs
     $ServerRoot = $_SERVER["DOCUMENT_ROOT"];
@@ -130,15 +129,15 @@ if ($classCategory == "T") {
 
     // echo json_encode($personalCoach);
 
-    $sql = "INSERT into Coach (CoachName, en_CoachName, CoachExpertise, CoachPhoto, CoachLicense, CoachIG, CoachProfile, PersonalCoach) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT into Coach (CoachName, en_CoachName, CoachExpertise, CoachLicense, CoachPhoto, CoachIG, CoachProfile, PersonalCoach) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
     $statement = $pdo->prepare($sql);
 
     $statement->bindValue(1, $trainer);
     $statement->bindValue(2, $entrainer);
     $statement->bindValue(3, $trainerExpertise);
-    $statement->bindValue(4, $filePath_select);
-    $statement->bindValue(5, $trainerLicense);
+    $statement->bindValue(4, $trainerLicense);
+    $statement->bindValue(5, $filePath_select);
     $statement->bindValue(6, $ig);
     $statement->bindValue(7, $classInfo);
     $statement->bindValue(8, json_encode($personalCoach));
