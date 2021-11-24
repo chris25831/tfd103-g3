@@ -1,9 +1,6 @@
-<?php   
-    // ini_set(“display_errors”, “On”);
-    
-    // error_reporting(E_ALL);
+<?php    
 	include("./member.php");
-    
+    include("./connection.php");  
     //登入檢查
     echo getUserID();
 ?>

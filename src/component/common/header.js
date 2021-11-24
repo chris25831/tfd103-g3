@@ -52,7 +52,8 @@ Vue.component("my-header", {
           </ul>
           <!--會員-->
           <a v-if="logouthref" class="header_icon" @click="logout" href="#">登出</a>
-          <a class="header_icon" href="member-login.html"><i class="fas fa-user fa-xl"></i></a>
+
+          <a class="header_icon to-member-info" href="#"><i @click="allocate" class="fas fa-user fa-xl"></i></a>
           <!--購物車-->
           <a class="header_icon" href="shopcart-home.html"><i class="fas fa-shopping-basket fa-xl"></i></a>
       </div>  
@@ -71,6 +72,8 @@ Vue.component("my-header", {
             method: "POST",
             url: "./php/loginCheck.php",
           }).then((response) => {
+
+    
               // console.log(response.data)
                 if(response.data === ""){
                     console.log('未登入')
@@ -85,8 +88,16 @@ Vue.component("my-header", {
                 }).catch(function(error){
                   console.log("錯誤");
                 })    
+
     },
     methods: {
+      allocate(){
+        if(this.logouthref === true) {
+          document.location.href = "./member-main.html"
+        } else {
+          document.location.href = "./member-login.html"
+        }
+      },
       slideDown(){
         this.slide = !this.slide
         this.hamBar_close = !this.hamBar_close
@@ -95,9 +106,8 @@ Vue.component("my-header", {
           if(this.memberID != ""){
           }
           axios({            
-            method: "POST",
-            url: "./php/logout.php",
-            data:{},  
+              method: "POST",
+              url: "./php/logout.php",
             })
             .then((response) => {
                 if(response.data){
@@ -105,13 +115,14 @@ Vue.component("my-header", {
                     alert("已登出"); 
                     this.logouthref = false;
                     this.memberID = "";
-                    location.href = 'index.html';
+                    // location.href = 'index.html';
                 }else{
-                   alert('登出失敗QQ請重新執行'); 
+                   alert('登出失敗，請重新執行'); 
                 }              
             })
             .catch((error)=>{
-                console.log(error)
+                console.log(error);
+                console.log("錯誤");
             });
           
       }

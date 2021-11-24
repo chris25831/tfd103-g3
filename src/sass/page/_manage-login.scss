@@ -1,0 +1,114 @@
+main#manage-login{
+    @include bgplan(100%);
+    display: flex;
+    justify-content: center;
+    padding: $bottomspacing;
+    .login-bg{
+        @include questionbox();
+        width: 720px;
+        height: 500px;
+        .login-content{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            img{
+                width: 220px;
+                height: 30px;
+                margin-bottom: 20px;
+                display: flex;
+                align-self: center;
+            }
+            h2{
+                text-align: center;
+                margin-bottom: 20px;
+                position: relative;
+                &::after{
+                    content: "";
+                    // width: 600px;
+                    width: 200%;
+                    height: 2px;
+                    background-color: $orange;
+                    position: absolute;
+                    top: 120%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                // @include table(){
+                //     &::after{
+                //         width: 140%;
+                //     }
+                // }
+                // @include mobile(){
+                //     &::after{
+                //         width: 110%;
+                //     }
+                // }
+            }
+            .input-wrapper{
+                text-align: center;
+                margin-top: 25px;
+                .login-input{
+                    border: none;
+                    border-bottom: 3px solid $blue;
+                    background-color: transparent;
+                    padding: 5px;
+                    margin-bottom: 15px;
+                    width: 300px;
+                    outline: none;
+                    // @include mobile(){
+                    //     width: 90%;
+                    // }
+                }
+            }
+            .fb-btn{                
+                display: flex;
+                align-self: center;
+                border: none;
+                cursor: pointer;
+                background-color: transparent;
+                margin-top: 10px;
+                i{
+                    font-size: 30px;
+                    color: #3B5998;
+                    span{
+                        font-size: 1rem;
+                        color: black;
+                        margin-left: 5px;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            .member-a-btn{
+                text-align: center;
+                margin-top: 20px;
+                .register-btn{
+                    text-align: center;
+                    color: black;
+                    margin: 5px 5px;
+                }
+                .forgotpw{
+                    color: black;
+                    text-align: center;
+                    margin: 5px 5px;
+                }
+            }
+            .btn-wrapper{
+                text-align: center;
+                margin-top: 20px;
+                .orangebutton{
+                    width: 250px;
+                    height: 40px;
+                    // @include mobile(){
+                    //     width: 200px;
+                    // }
+                }
+            }
+        }
+        .previouspage{
+            display: inline-block;
+        }
+    }
+}
