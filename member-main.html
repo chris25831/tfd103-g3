@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
-
-    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+	<script src="./src/js/vue.js"></script>
 </head>
 
 <body>
@@ -150,12 +150,12 @@
 
 
 <!--header/footer component-->
-<script src="./src/js/vue.js"></script>
+
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/member/passwordpopup.js"></script>
 <!-- <script src="./src/component/member/edit-btn.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+
 <script>
 	new Vue({
 		el: "#member-main",
@@ -206,9 +206,6 @@
 			})
 			.then((res) => {
 				this.userInformation = res.data;
-				// for(let i = 0; i < this.userInformation.length; i++){
-					
-				// }
 				this.name = this.userInformation[0].UserName;
 				this.birthday = this.userInformation[0].Birthday;
 				this.phone = this.userInformation[0].Mobile;

@@ -48,9 +48,9 @@
                     text-overflow: ellipsis;
                     font-size: 1rem;
                 }
-    
+                
                 span.name {
-                    margin: 0 15px 0 18px;
+                    margin: 0 15px 0 0;
                 }
                 span.time {
                     color: rgb(104, 103, 103);
@@ -151,7 +151,7 @@
             }
         }
         .middle {
-           
+            height: auto;
             h3.title {
                 margin: 25px 0 0;
                 font-size: 24px;
@@ -159,14 +159,20 @@
             div.forum-content-block {
                 margin: 24px 0;
                 width: 100%;
-                height: 100%;
+                max-width: 100%;
+                // height: 100%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                p.manage-forum-content {
+                title{
+                    max-width: 100%;
+                }
+                p.forum-content {
                     margin: 0;
                     line-height: 1.5rem;
                     flex-grow: 1;
+                    width: 100%;
+                    height: 100%;
                 }
                 div.photo-block {
 
@@ -265,11 +271,11 @@
             border-radius: 30px;
             margin-bottom: 20px;
             .comment-author {
-                width: 60%;
+                display: inline-block;
+                width: 80%;
                 min-width: 250px;
                 height: 70px;
                 // border: solid red 1px;
-                display: inline-block;
                 @include mobile(){
                     width: 322px;
                     min-width: 322px;
@@ -306,6 +312,7 @@
                 padding: 16px 28px 16px;
                 margin: 0;
                 line-height: 1.5rem;
+                height: auto;
                 @include mobile(){
                     padding: 16px 25px 16px;
                 }

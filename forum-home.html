@@ -37,13 +37,13 @@
                 <a class="enter-article" href="./forum-content.html">
                     <div class="left">
                         <div class="author">
-                            <img class="avatar" :src="articleDatum.UserPhoto" alt="">
+                            <!-- <img class="avatar" :src="articleDatum.UserPhoto" alt=""> -->
                             <span class="name">{{articleDatum.UserName}}</span>
                             <span class="time">{{articleDatum.PostDate}}</span>
                         </div>
                         <h3 class="article-title">{{articleDatum.PostTitle}}</h3>
                         <p class="preview-content">{{articleDatum.PostContent}}</p>
-                        <div class="counts">
+                        <!-- <div class="counts">
                             <div class="views">
                                 <img src="./src/images/img/forum/views.png" alt="">
                                 <span>{{articleDatum.Views}}</span>
@@ -56,11 +56,11 @@
                                 <img src="./src/images/img/forum/comments-count.png" alt="">
                                 <span>{{articleDatum.Comments}}</span>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="right">
-                        <img class="demo-image" alt="">
-                    </div>                          
+                    <!-- <div class="right"> -->
+                        <!-- <img class="demo-image" alt=""> -->
+                    <!-- </div>                           -->
                     <!--:src="articleDatum.PostPhotoOne"-->
                 </a>
             </div>
@@ -68,7 +68,7 @@
             <div class="pagination">
                 <!--分頁器放置區-->
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination">
+                    <ul class="pagination flex-wrap">
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous" @click.prevent="minusOnePage">
                         <span aria-hidden="true">&laquo;</span>
@@ -122,7 +122,7 @@
             currentCategory: "全部",  //現在頁籤是選到哪個分類
             tidedData: [],  //放螢幕所顯示的項目
             currentPage: 1,     //現在的頁碼
-            itemsPerPage: 4,  //每頁幾個項目
+            itemsPerPage: 10,  //每頁幾個項目
             startIndex: "",    //起始項目index，供分頁器使用
             totalPage: "",    //總頁面數
         },

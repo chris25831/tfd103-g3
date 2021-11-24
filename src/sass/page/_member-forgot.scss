@@ -26,7 +26,7 @@
                 position: relative;
                 &::after{
                     content: "";
-                    width: 600px;
+                    width: 170%;
                     height: 2px;
                     background-color: $orange;
                     position: absolute;
@@ -36,12 +36,12 @@
                 }
                 @include table(){
                     &::after{
-                        width: 430px;
+                        width: 110%;
                     }
                 }
                 @include mobile(){
                     &::after{
-                        width: 330px;
+                        width: 98%;
                     }
                 }
             }
@@ -58,10 +58,11 @@
                     width: 300px;
                     outline: none;
                     @include table(){
-                        width: 300px;
+                        width: 80%;
                     }
                     @include mobile(){
-                        width: 250px;
+                        width: 70%;
+                        margin-bottom: 5px;
                     }
                 }
                 .required{
@@ -73,7 +74,7 @@
                 margin-bottom: 10px;
                 width: 350px;
                 @include mobile(){
-                    width: 320px;
+                    width: 80%;
                 }
             }
             .btn-wrapper{

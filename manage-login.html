@@ -6,21 +6,13 @@
     <meta name="description" content="幫助想參加三鐵賽事的人製作訓練計畫表，且提供相關訓練課程">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
-    <title>會員登入 | Triclub</title> 
+    <title>管理員登入 | Triclub</title> 
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
-     <!--Jquery-->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     <!--vuex-->
-     <script src="./src/js/vuex.js"></script>
-     <!--vue-->
-     <script src="./src/js/vue.js"></script>
-     <!--axios-->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -31,27 +23,19 @@
   
 
    <!--內容所有都放在這div裡面-->
-   <main id="member-login" class="member-login">
+   <main id="manage-login" class="member-login">
        <div class="login-bg">
-           <a href="member-login.html" class="previouspage">
-               <div class="arrow"></div>
-           </a>
+           
            <div class="login-content">
                <img src="./src/images/icons/logo.svg">
-               <h2>登入</h2>
+               <h2>管理者登入</h2>
                <div class="input-wrapper">
                    <input type="text" class="login-input" v-model="account" placeholder="請輸入帳號"><br>
                    <input type="password" class="login-input" v-model="password" placeholder="請輸入密碼">
                </div>
-               <button class="fb-btn">
-                   <i class="fab fa-facebook"><span>使用Facebook註冊/登入</span></i>
-               </button>
-                <div class="member-a-btn">
-                    <a href="member-register.html" class="register-btn">註冊會員</a>
-                    <a href="member-forgot.html" class="forgotpw">忘記密碼</a>
-                </div>
+              
                <div class="btn-wrapper">
-                   <button class="orangebutton" @click="login" onclick="self.location.href='member-main.html'">登入</button>
+                   <button class="orangebutton" @click="login">登入</button>
                    <!-- onclick="self.location.href='member-main.html'" -->
                </div>
            </div>
@@ -68,9 +52,8 @@
 
 <!--header/footer component-->
 <script src="./src/js/vue.js"></script>
-<script src="./src/component/common/header.js"></script>
-<script src="./src/component/common/footer.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+<script src="./src/component/common/manage-header.js"></script>
+<script src="./src/component/common/manage-footer.js"></script>
 <script>
     new Vue({
         el: "#member-login",
@@ -82,7 +65,7 @@
             login(){
                 axios({
                     method: "post",
-                    url: "./php/login.php",
+                    url: "./php/manage-login.php",
                     data: {
                         account: this.account,
                         password: this.password
@@ -91,7 +74,7 @@
                 .then((res) => {
                     if(!res.data.includes("帳號或密碼錯誤!")) {
                         alert(res.data);
-                        document.location.href='./member-main.html';
+                        document.location.href='./manage-member-personal-info.html';
                     } else {
                         alert(res.data);
                     }

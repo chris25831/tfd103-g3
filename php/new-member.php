@@ -19,7 +19,7 @@
     $sql = "INSERT into User(Account, Password, UserName) VALUES(?, ?, ?);";
     
     $statement = $pdo->prepare($sql);
-
+    
     $statement->bindValue(1, $account);    
     $statement->bindValue(2, $password); 
     $statement->bindValue(3, $account);    

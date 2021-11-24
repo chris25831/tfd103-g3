@@ -15,6 +15,10 @@
         .order-breadcrumb{
             padding: 5px 10px 5px 30px;
             margin-bottom: 10px;
+            @include mobile(){
+                display: block;
+                font-size: 14px;
+            }
             ol{
                 list-style: none;
                 margin: 0;
@@ -60,6 +64,9 @@
         }
         .title{
             margin: 0 0 20px 0;
+            @include mobile(){
+                font-size: 1.2rem;
+            }
         }
         .order-bottom{
             margin: 20px 50px 0;
@@ -92,6 +99,9 @@
                         height: 100%;
                         li{
                             margin: 25px auto;
+                        }
+                        @include mobile(){
+                            padding-top: 1%;
                         }
                     }
                     .orangebutton{
@@ -135,6 +145,10 @@
                         img{
                             width: 175px;
                             height: 175px;
+                            @include mobile(){
+                                width: 50%;
+                                height: 50%;
+                            }
                         }
                         p{
                             margin-left: 10px;
@@ -145,6 +159,9 @@
                                 color: red;
                                 display: inline-block;
                                 margin-top: 10px;
+                            }
+                            @include mobile(){
+                                margin-top: 3px;
                             }
                         }
                     }

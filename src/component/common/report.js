@@ -31,7 +31,7 @@ Vue.component("report",{
             
             axios({
                 method: "post",
-                url: "../../php/report.php",
+                url: "./php/report.php",
                 data: {
                     reason:this.reason,
                     postid: parseInt(this.number)
@@ -44,6 +44,7 @@ Vue.component("report",{
             .catch((error) => {
                 console.log(error);
             })
+            window.location.reload();
         }
 
     }
