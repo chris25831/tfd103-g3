@@ -216,6 +216,29 @@
             },
             
             dropDownSwitch() {
+                axios({
+                method: "post",
+                url: "./php/loginCheck.php",
+                data: {
+                    // postid: thePostId
+                },
+            })
+            .then((res) => {
+                console.log("這是我的文嗎", res.data);
+                console.log("userID??", this.singleArticleData.UserID);
+                
+                if(this.singleArticleData.UserID.toString() === res.data.toString()) {
+                    //顯示編輯、刪除
+                    console.log("???", parseInt(this.singleArticleData.UserID));
+                    this.isMine = true;
+                    this.notMine = false;
+                } else {
+                    //只顯示檢舉
+                    this.isMine = false;
+                    this.notMine = true;
+                }
+            })
+            .catch((error) => console.log(error))
                 this.showReport = !this.showReport;
             },
             report() {
@@ -294,6 +317,9 @@
                 for(let i = 0; i < this.articleData.length; i++) {
                     if(this.articleData[i].PostID.toString() === this.dataNumber.toString()) {
                         this.singleArticleData = this.articleData[i]; 
+                        // console.log(this.singleArticleData);
+
+                        // console.log(this.singleArticleData[0]);
                     }
                 }
             })
@@ -314,37 +340,6 @@
                 this.commentData = res.data;
             })
             .catch((error) => console.log(error));
-
-            axios({
-                method: "post",
-                url: "./php/loginCheck.php",
-                data: {
-                    postid: thePostId
-                },
-            })
-            .then((res) => {
-                console.log("這是我的文嗎",res);
-                if(parseInt(this.singleArticleData.UserID) === parseInt(res.data[0])) {
-                    //顯示編輯、刪除
-                    this.isMine = true;
-                    this.notMine = false;
-                } else {
-                    //只顯示檢舉
-                    this.isMine = false;
-                    this.notMine = true;
-                }
-            })
-            .catch((error) => console.log(error));
-            //圖片欄位出現與否
-            // if(this.singleArticleData.PostPhotoOne === false  && this.singleArticleData.PostPhotoTwo === false && this.singleArticleData.PostPhotoThree === false){
-            //     this.showPhotoBlock = false;
-            // } else {
-            //     this.showPhotoBlock = true;
-            // };
-            
-
-
-            
         },
     })
 </script>

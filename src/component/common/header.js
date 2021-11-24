@@ -70,31 +70,24 @@ Vue.component("my-header", {
     mounted(){
         axios({            
             method: "POST",
-            url: "/php/loginCheck.php",
+            url: "./php/loginCheck.php",
           }).then((response) => {
-              // console.log(response.data)
-                if(response.data === ""){
-                    console.log('未登入')
-                      // alert('請先登入，將前往登入頁'); 
-                      // location.href = 'Login.html';
-                  }else{
-                      console.log("有登入")
-                      console.log(response.data)
-                      this.logouthref = true;
-                      this.memberID = response.data
-                  } 
-                  
-                }).catch(function(error){
-                  console.log("錯誤");
-                })    
+          // console.log(response.data)
+            if(response.data === ""){
+                console.log('未登入')
+                  // alert('請先登入，將前往登入頁'); 
+                  // location.href = 'Login.html';
+              }else{
+                  console.log("有登入")
+                  console.log(response.data)
+                  this.logouthref = true;
+                  this.memberID = response.data
+              } 
+          }).catch(function(error){
+            console.log("錯誤");
+          })    
     },
     methods: {
-      
-           
-        
-       
-       
-    
       slideDown(){
         this.slide = !this.slide
         this.hamBar_close = !this.hamBar_close
@@ -105,18 +98,20 @@ Vue.component("my-header", {
           }
           axios({            
             method: "POST",
-            url: "/php/logout.php",
+            url: "./php/logout.php",
             data:{},  
-            }).then((response) => {
+            })
+            .then((response) => {
                 if(response.data){
-                    alert(); 
+                    alert("已登出"); 
                     this.logouthref = false;
                     this.memberID = "";
                     location.href = 'index.html';
                 }else{
                    alert('登出失敗QQ請重新執行'); 
                 }              
-            }).catch((error)=>{
+            })
+            .catch((error)=>{
                 console.log("錯誤")
             });
       }
