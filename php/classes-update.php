@@ -85,14 +85,14 @@ if (!empty($_FILES["classimg"]["name"][0])) {
 
         //檔案最終存放位置
         if ($classCategory == "T") {
-            $filePath = $ServerRoot . "/src/images/img/classes/trainer/" . $fileName_arr[$i];
-            $filePath_select = "/src/images/img/classes/trainer/" . $fileName_arr[$i];
+            $filePath = $ServerRoot . "/tfd103/g3/tfd103-g3/src/images/img/classes/trainer/" . $fileName_arr[$i];
+            $filePath_select = "/tfd103/g3/tfd103-g3/src/images/img/classes/trainer/" . $fileName_arr[$i];
         } elseif ($classCategory == "G") {
-            $filePath = $ServerRoot . "/src/images/img/classes/class/" . $fileName_arr[$i];
-            $filePath_select = "/src/images/img/classes/class/" . $fileName_arr[$i];
+            $filePath = $ServerRoot . "/tfd103/g3/tfd103-g3/src/images/img/classes/class/" . $fileName_arr[$i];
+            $filePath_select = "/tfd103/g3/tfd103-g3/src/images/img/classes/class/" . $fileName_arr[$i];
         } else { //M
-            $filePath = $ServerRoot . "/src/images/img/classes/menu/" . $fileName_arr[$i];
-            $filePath_select = "/src/images/img/classes/menu/" . $fileName_arr[$i];
+            $filePath = $ServerRoot . "/tfd103/g3/tfd103-g3/src/images/img/classes/menu/" . $fileName_arr[$i];
+            $filePath_select = "/tfd103/g3/tfd103-g3/src/images/img/classes/menu/" . $fileName_arr[$i];
         }
 
         echo $fileName_arr[$i];

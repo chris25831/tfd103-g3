@@ -84,7 +84,7 @@
             
             created() {
                 this.$store.classes.commit('classesHomeStart');
-                this.$store.coach.commit('classesHomeStart');
+                this.$store.coach.commit('classesHomeStart', this.currentpage);
             },
 
             // 回傳vuex值
