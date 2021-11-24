@@ -27,7 +27,10 @@
    <main id="member-main" class="member-main">
         <div class="member-bgwhite" v-for="userInfo in userInformation">
 			<aside class="left-area">
-				<div class="member-photo"><img src="#"></div>
+				<div class="member-photo">
+					<input class="upload-image" type="file" name="file" id="" @change="upload">
+					<img class="avatar" :src="avatarSrc">
+				</div>
 				<!-- <div class="member-name-left">Lawrence</div> -->
 				<ul class="member-info-left">
 					<li>{{userInfo.UserName}}</li>
@@ -178,8 +181,45 @@
 			address: "",
 			password: "000000",
 			userInformation: [],
+			avatar_arr: [],
+			avatarSrc: ""
+
 		},
 		methods: {
+			upload(e){
+				let input = document.querySelector(".upload-image");
+				let avatar = document.querySelector(".avatar");
+				let inputFile = input.files[0];
+				console.log("input.files[0]",input.files[0]);
+				// let readFile = new FileReader();  
+				// // console.log("readFile", readFile);
+				// theFile = readFile.readAsDataURL(inputFile);
+				
+				// console.log("readFile.result", readFile.result);
+
+				// console.log("readFile.result::", readFile.result);
+				let virtualPath = URL.createObjectURL(inputFile);
+
+				this.avatarSrc = virtualPath;
+				
+				console.log("virtualPath", virtualPath);
+				// console.log("readFile.result", readFile.result);
+				
+				axios({
+					method: "post",
+					url: "./php/new-avatar.php",
+					data: {
+						avatar: input.files[0].name,
+						source: virtualPath
+					}
+				})
+				.then((res) => {
+					console.log(res);
+				})
+				.catch((error) => {
+					console.log(error);
+				})
+			},
 			turnOn(){
 				document.getElementById('member-name').disabled = false;
 				document.getElementById('member-birth').disabled = false;
@@ -218,9 +258,6 @@
 			})
 			.then((res) => {
 				this.userInformation = res.data;
-				// for(let i = 0; i < this.userInformation.length; i++){
-					
-				// }
 				this.name = this.userInformation[0].UserName;
 				this.birthday = this.userInformation[0].Birthday;
 				this.phone = this.userInformation[0].Mobile;
@@ -229,6 +266,25 @@
 				console.log(this.userInformation);
 			})
 			.catch((error) => console.log(error))
+
+			axios({
+				method: "post",
+				url: "./php/select-avatar.php"
+			})
+			.then((res)=>{
+				console.log(res);
+				this.avatar_arr = res.data;
+				this.avatarSrc = this.avatar_arr[0].UserPhoto;
+
+				console.log("arr", this.avatar_arr);
+				
+				// console.log("ava", this.avatarSrc);
+				let img = document.querySelector(".avatar");
+				console.log("img", img);
+			})
+			.catch((error)=>{
+				console.log(error);
+			})
 		},
 	})
 </script>
