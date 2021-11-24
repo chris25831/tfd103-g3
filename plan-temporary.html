@@ -65,7 +65,7 @@
             <div class="plan_ques_wrapper">
                 <!--上一步-->
                 <a href="#" @click="last" class="previouspage">
-                    <div class="arrow"></div>
+                   <div class="arrow"></div>
                 </a>
 
                 <div  class="plan_question_content">
@@ -248,25 +248,20 @@ new Vue({
         }, 
         checkMember(){
         axios({            
-        method: "POST",
-        url: "./php/loginCheck.php",
-        data:{},            
-        dataType: "json",
+            method: "POST",
+            url: "./php/loginCheck.php",
+            data:{},            
+            dataType: "json",
         }).then((response)=>{
-            if(response === ""){
+            if(response.data === ""){
                 alert('請先登入，將前往登入頁'); 
-                location.href = 'Login.html';
+                location.href = 'member-login.html';
             }else{
                 console.log("有登入");
                 let memberID = response.data
-            //    console.log(response.data)
-            //   this.insertplandata()
-            this.$store.commit('deleteplandata',memberID)
-            this.$store.commit('insertplandata',memberID)
-                
-            } 
-            
-            }).catch((error)=>{
+                this.$store.commit('deleteplandata',memberID)
+                this.$store.commit('insertplandata',memberID)
+            }}).catch((error)=>{
             console.log(error);
             alert('錯誤'); 
             })        

@@ -93,7 +93,6 @@ Vue.component("my-header", {
       },
       logout(){
           if(this.memberID != ""){
-              let MemberID = this.memberID;
           }
           axios({            
             method: "POST",
@@ -102,6 +101,7 @@ Vue.component("my-header", {
             })
             .then((response) => {
                 if(response.data){
+                    
                     alert("已登出"); 
                     this.logouthref = false;
                     this.memberID = "";
@@ -111,8 +111,9 @@ Vue.component("my-header", {
                 }              
             })
             .catch((error)=>{
-                console.log("錯誤")
+                console.log(error)
             });
+          
       }
     },
     

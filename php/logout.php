@@ -1,6 +1,6 @@
 <?php
     //清除Session
-    include("connection.php");
+    // include("./connection.php");
     include("./member.php");
 
  

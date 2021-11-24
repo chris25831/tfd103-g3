@@ -3,11 +3,13 @@
  
   
   // ---------------------------------------------------
-  $MemberID = $_POST["memberID"];
-//   echo $MemberID;
+ 
+  $A = file_get_contents('php://input');
+  $B = json_decode($A,true);
+  $MEMBERID = $B['memberID'];
+  // echo $MEMBERID;
 
-
-  $sql = "SELECT * FROM TrainingPlan WHERE UserID = '123460'";
+  $sql = "SELECT * FROM TrainingPlan WHERE UserID = $MEMBERID";
   $statement = $pdo->query($sql);
   $data = $statement->fetchAll();
   foreach($data as $index => $row){
@@ -43,9 +45,9 @@
     $TotalTime = 70;
     break;
 
-    default:
-     echo "沒有計畫表";
-    break;
+    // default:
+    //  echo 0;
+    // break;
   }
 
   if($Level === "hard"){

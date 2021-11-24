@@ -168,25 +168,48 @@ const plan = new Vuex.Store({
     },
 
     mutations:{
+         //撈會員資料//
+        memberdata(state,payload){
+            axios({
+                method: 'post',
+                url: './php/plan-getmemberinfo.php',
+                data:{
+                    memberID:payload
+                },
+            }).then((response) => {
+                console.log(response.data)
+                let  returnMemberinfo = response.data;
+                let  memberweek = parseInt(returnMemberinfo[0]);
+                let  memberrace = returnMemberinfo[1];
+                console.log(memberweek);
+                console.log(memberrace);
+                state.memberinfo.week = memberweek;
+                state.memberinfo.racedate = memberrace;
+                
+            }).catch((error)=>{
+                console.log(error)
+                
+            })
+        },
          // 撈計畫表//
         selectplandata(state,payload){
                 axios({
                     method: 'post',
                     url: './php/plan-select.php',
                     data:{
-                        MemberID:payload
+                        memberID:payload
                     },
                    
                   })
                   .then((response) => {
-                      if(response.data === "沒有計畫表"){
+                      if(response.data == "0"){
                           state.cancel = false
-                          console.log("沒又計畫表")
+                          console.log("沒計畫表")
                       }else{
                           var swimdata = response.data[0]
                           var rundata = response.data[1]
                           var bikedata = response.data[2]
-                          console.log(response.data)
+                          console.log("有計畫表")
                           
                             for(let s in swimdata){
                                state.plandata.unshift({
@@ -227,7 +250,8 @@ const plan = new Vuex.Store({
                    
                   })
                   .catch((error)=> {
-                      console.log("錯誤!!!");
+                    console.log(error)
+                    state.cancel = false
                   });
 
      
