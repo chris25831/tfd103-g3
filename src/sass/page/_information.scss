@@ -8,49 +8,91 @@ main.info {
     }
 }
 
-.panel-control {
-    position:absolute;
-    opacity:0;
-  }
-  .tab-group label {
-    display:inline-block;
-    padding: 10px 50px;
-    border:1px solid #ccc;
-    border-bottom:none;
-    background-color: #ccc;
-    bottom:-1px;
-    position:relative;
-  }
-  .content-group {
-    border:1px solid #ccc;
-    padding: 20px;
-  }
-  .content {
-      display:none;
-      padding: 20px
+.tab-group{
+  display:flex;
+  align-items:center;
+  label{
+    padding:20px 0px;
+    border-right:1px solid black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    cursor: pointer;
+    width:100%;
+    &:hover{
+      color:orange
     }
-  /*.content1{display:block;} */
-
-  /* .tab-group .active {
-    position:relative;
-    background-color: #fff;
-  } */
-
-  .photo{
-      float: right;
   }
-
-
-
-
+  label.active{
+    color:orange
+  }
+  label:first-child{
+    border-left:1px solid black
+  }
   
-  #radio1:checked ~ .tab-group [for="radio1"],
-  #radio2:checked ~ .tab-group [for="radio2"],
-  #radio3:checked ~ .tab-group [for="radio3"]{background-color: #fff;}
-  
-  /* #radio2:checked~ .content-group .content1{display:none}
-  #radio3:checked~ .content-group .content1{display:none} */
-  
-  #radio1:checked ~ .content-group .content1,
-  #radio2:checked ~ .content-group .content2,
-  #radio3:checked ~ .content-group .content3 {display:block}
+}
+.content-group{
+  width: 100%;
+  max-width:1200px;
+  margin:0 auto;
+}
+.content{
+  display:flex;
+  flex-direction: column;
+  .what_is_triclub{
+    display:flex;
+    justify-content: space-between;
+    // align-items: center;
+    flex:1;
+    p{
+      width:100%;
+      max-width:800px;
+      // flex:1;
+    }
+    .cty_img_outline{
+      // width:100%;
+      max-width:450px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      .cty_img{
+        width:100%;
+        img{
+          margin:10px;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+@media all and (max-width:576px){
+  .what_is_triclub{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction: column; 
+    p{
+      width:100% !important
+    }
+  }
+}
+
+// 以下不要動!!!選擇器!!!
+.panel-control {
+  display:none;
+}
+.content {
+  display:none;
+  padding: 20px
+}
+
+#radio1:checked ~ .content-group .content1{
+  display:flex
+}
+#radio2:checked ~ .content-group .content2,
+#radio3:checked ~ .content-group .content3{
+  display:flex
+}
+// 以上不要動!!!!!!!!
+
+

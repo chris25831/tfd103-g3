@@ -2,11 +2,14 @@
     @include bgnormal(100%);
     .member-bgwhite{
         @include bgwhite();
-        width: 1200px;
+        width: 100%;
+        max-width:1200px;
         height: 100%;
         margin: 0 auto;
         display: flex;
         .left-area{
+            width:100%;
+            flex:0;
             display: inline-block;
             text-align: center;
             margin: 50px 30px 0 20px;
@@ -52,6 +55,8 @@
             }
         }
         .right-area{
+            flex:1;
+            width:100%;
             display: inline-block;
             margin-top: 50px;
             .title{
@@ -61,7 +66,9 @@
                 background-color: $white;
                 box-shadow: 5px 5px 0 5px $orange;
                 border-radius: 10px;
-                width: 817px;
+                // width:817px;
+                max-width: 817px;
+                width:100%;
                 height: 374px;
                 position: relative;
                 margin-bottom: $bottomspacing;
@@ -73,21 +80,31 @@
                         display: inline-block;
                         input{
                             margin: 15px auto;
-                            width: 250px;
+                            width: 73%;
                         }
                     }
                     .firstpartright{
+                        margin:0;
                         list-style: none;
                         padding: 0;
                         display: flex;
                         flex-direction: column;
-                        justify-content: space-around;
+                        // justify-content: space-around;
+                        li:nth-child(1){
+                            margin-top: 20px;
+                        }
+                        li{
+                            margin-bottom:35px;
+                        }
                     }
                     .edit-btn{
                         border: none;
                         width: 30px;
                         height: 30px;
                         cursor: pointer;
+                        position:absolute;
+                        top:10px;
+                        right:10px;
                     }
                 }
                 .firstpart-btn{
@@ -173,6 +190,7 @@
                     background-color: #FFF;
                     cursor: pointer;
                     padding: 3px;
+                    
                 }
                 .searchbar{
                     border: 1px solid black;
@@ -180,6 +198,7 @@
                     width: 15%;
                     outline: none;
                     padding-left: 5px;
+                    background: white;
                 }
             }
             .grid-order{
@@ -214,3 +233,153 @@
         }
     }
 }
+// 此變數為767寬度下的max-width
+$forwidth767:750px;
+@media all and (max-width: 767px) {
+    .member-main .member-bgwhite{
+        flex-direction: column;
+        justify-content:center;
+        max-width:$forwidth767;//最外面的padding 你們自己再微調
+        padding:5px;
+        .left-area{
+            max-width:$forwidth767;
+            margin:20px 0 20px;
+            // margin:50px auto 20px;
+        }
+        .right-area{
+            max-width:$forwidth767;
+            .member_data_membertitle{
+                display:none;
+            }
+            .member-info-right{
+                width:100%;
+                padding:20px 0 0;
+                box-shadow:none;
+                .member-info-right-top .firstpartleft input{
+                    width:77%;
+                    max-width:250px;
+                }
+            }
+            .grid-order{
+                box-sizing: border-box;
+                width:100%;
+                border:none;
+                .grid-items1,.grid-items2{
+                    // padding:0;
+                    width:100%;
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                    // overflow: hidden;
+                    font-size:16px;
+                }
+            }
+        }
+        
+    }
+}
+$forwidth576:559px;
+@media all and (max-width: 576px){
+    #header #header_wrapper{
+        min-width:0;
+    }
+    .member-main{
+        max-width:$forwidth576;
+        margin:0 auto;
+        .member-bgwhite{
+            max-width:$forwidth576;
+            .right-area{
+                .member-info-right .member-info-right-top{
+                    padding:20px;
+                    flex-direction: column;
+                    align-items: center;
+                    .firstpartleft{
+                        margin:0;
+                        width:100%;
+                        max-width:350px;
+                    }
+                    .firstpartright{
+                        margin-top:40px;
+                        width:100%;
+                        max-width:350px;
+                        li{
+                            margin-bottom:25px;
+
+                        }
+                   }
+                }
+                .member-info-right{
+                    height:auto;
+                    position:relative;
+                    .member-info-right-top .edit-btn{
+                        position:absolute;
+                        top:5px;
+                        right:5px;
+                    }
+                }
+            } 
+        }
+    } 
+
+}
+#ctyForChangePassword{
+    position:relative;
+    #changepw{
+        position:absolute;
+        white-space: nowrap;
+        bottom:-30px;
+        left:0;
+    }
+}
+#ctyForGridOutline{
+        display:flex;
+        flex-direction: column;
+        .ctyForGrid{
+            display:grid;
+            grid-template-columns: 3fr 1fr minmax(90px,1fr);
+            .ctyForGridContent{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                padding:20px;
+                // text-align: center;
+            }
+            .ctyForGridContent:nth-child(3){
+                text-align: center;
+            }
+            .ctyForGridContent:nth-child(2){
+                white-space: nowrap;
+            }
+            .ctyForGridContent>span{
+                display:none;
+            }
+        }
+}
+@media all and (max-width:576px){
+    #ctyForGridOutline{
+        .ctyForGrid{
+            grid-template-areas:'grid1 grid1 grid1 grid2 grid2' 'grid3 grid3 grid3 grid3 grid3' ;
+            .ctyForGridContent:nth-child(1){
+                grid-area: grid1;
+                padding:20px 20px 10px;
+            }
+            .ctyForGridContent:nth-child(2){
+                grid-area: grid2;
+                padding:20px 20px 10px;
+            }
+            .ctyForGridContent:nth-child(3){
+                grid-area: grid3;
+                padding:0;
+                justify-content:flex-start;
+                padding-left:20px;
+                #ctyForNone{
+                    display:none;
+                }
+            }
+            .ctyForGridContent>span{
+                display:inline-block;
+            }
+        }
+    }
+}
+

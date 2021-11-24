@@ -13,6 +13,7 @@ const plan = new Vuex.Store({
         Bike:0,
         Run:0,
         max:4,
+        
         //測驗題目
         questions:[ 
             //第一題
@@ -167,80 +168,99 @@ const plan = new Vuex.Store({
     },
 
     mutations:{
+         // 撈計畫表//
         selectplandata(state,payload){
-            // console.log("到底",payload);
-           
-            // 撈計畫表資料//
                 axios({
                     method: 'post',
                     url: './php/plan-select.php',
                     data:{
                         MemberID:payload
                     },
-                    // dataType:'json',
-                  })
-                  .then(function (response) {
-                    // console.log("success")
-                    // console.log(response.data)
-                    
-                    var swimdata = response.data[0]
-                    var rundata = response.data[1]
-                    var bikedata = response.data[2]
-                 
-                    
-                      for(let s in swimdata){
-                       
-                         state.plandata.unshift({
-                             "Swim": swimdata[s],
-                             "Run":  rundata[s],
-                             "Bike": bikedata[s],
-                              check:[]
-                         })
-                      }
-                      
-                      var splice = state.plandata.splice(7, 2);
-                      state.plandata.forEach(function(item,index){
-                        item.Rest = false;
-                        
-                        if(item.Swim === 0){
-                            item.Swim =null
-                        }
-                        if(item.Run === 0){
-                            item.Run =null
-                        }
-                        if(item.Bike === 0){
-                             item.Bike =null
-                        }
-                          
-                        
-                        if(item.Swim === null && item.Run === null && item.Bike === null){
-                            
-                            item.Rest = "rest";
-                        }
-                      })
-                    //   方法
-                      var method = (splice[0].Swim);
-                      state.memberinfo.membermethod = method;
-                      state.showplan = true;
-                      state.showloading = false;
                    
                   })
-                  .catch(function (error) {
-                      console.log(error);
+                  .then((response) => {
+                      if(response.data === "沒有計畫表"){
+                          state.cancel = false
+                          console.log("沒又計畫表")
+                      }else{
+                          var swimdata = response.data[0]
+                          var rundata = response.data[1]
+                          var bikedata = response.data[2]
+                          console.log(response.data)
+                          
+                            for(let s in swimdata){
+                               state.plandata.unshift({
+                                   "Swim": swimdata[s],
+                                   "Run":  rundata[s],
+                                   "Bike": bikedata[s],
+                                    check:[]
+                               })
+                            }
+                            
+                            var splice = state.plandata.splice(7, 2);
+                            state.plandata.forEach(function(item,index){
+                              item.Rest = false;
+                              
+                              if(item.Swim === 0){
+                                  item.Swim =null
+                              }
+                              if(item.Run === 0){
+                                  item.Run =null
+                              }
+                              if(item.Bike === 0){
+                                   item.Bike =null
+                              }
+                                
+                              
+                              if(item.Swim === null && item.Run === null && item.Bike === null){
+                                  
+                                  item.Rest = "rest";
+                              }
+                            })
+                          //   方法
+                            var method = (splice[0].Swim);
+                            state.memberinfo.membermethod = method;
+                            state.showplan = true;
+                            state.showloading = false;
+
+                      }
+                   
+                  })
+                  .catch((error)=> {
+                      console.log("錯誤!!!");
                   });
 
      
         },
+         //刪除計畫表
+        deleteplandata(state,payload){
+            let memberid = payload;
+            axios({
+              method: "POST",
+              url: "./php/plan-delete.php",
+              data:{
+                 memberID:memberid
+              }
+            }).then((response)=>{
+                console.log(response.data)
+                state.saveplan = false
+                
+            }).catch((error)=>{
+                console.log(error)
+            })
+        },
+        
+
+
+        //存入計畫表
         insertplandata(state,payload){
-            // console.log(payload);
+            console.log('存')
             var questionAnswer = JSON.stringify(Object.assign({},state.questionanswer));
-            
             let data= new URLSearchParams()
             data.append('lightBoxAnswer',questionAnswer)
             data.append('memberID',payload)
             data.append('method', state.memberinfo.membermethod)
             
-        
              axios({            
               method: "POST",
               url: "./php/plan-insert.php",
@@ -309,11 +329,12 @@ const plan = new Vuex.Store({
             if (yes) {
                 state.cancel = false
                 localStorage.clear("plandata")
+
             } else {
                 alert('您已取消');
             }
         },
-        noplan(state){
+         noplan(state){
             state.cancel = false
         },
         last(state){
@@ -343,7 +364,7 @@ const plan = new Vuex.Store({
                 var questionAnswer = JSON.stringify(Object.assign({},state.questionanswer));
                 let data= new URLSearchParams()
                 data.append('lightBoxAnswer',questionAnswer)
-                console.log(data)
+                // console.log(data)
                 //PHP那裡要寫$POST[lightBoxAnswer]
                 
                 

@@ -12,7 +12,8 @@
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
-	<script src="./src/js/vue.js"></script>
+
+    
 </head>
 
 <body>
@@ -37,7 +38,7 @@
 				<input type="button" value="我的個人計畫" class="orangebutton" onclick="self.location.href='plan-member.html'">
 			</aside>
 			<aside class="right-area">
-				<h2 class="title">會員基本資料</h2>
+				<h2 class="title member_data_membertitle">會員基本資料</h2>
 				<div class="member-info-right">
 					<div class="member-info-right-top">
 						<form action="" class="firstpartleft">
@@ -52,10 +53,11 @@
 							
 							<label for="member-address">地址：</label>
 							<input type="text" v-model="address"  name="member-data" id="member-address" disabled><br>
-							
+							<span id="ctyForChangePassword">
 							<label for="member-password">密碼：</label>
 							<input type="password" v-model="password" name="member-password" id="member-password" disabled>
 							<a href="javascript:void(0);" id="changepw" class="changepw">更改密碼</a>
+							</span>
 						</form>
 						<ul class="firstpartright">
 							<li>電子信箱：	{{userInfo.Email}}</li>
@@ -91,10 +93,7 @@
 				</div>
 				<h2 class="title">我的訂單</h2>
 				<div class="member-search">
-					<button class="search-btn">
-						<i class="fas fa-search"></i>
-					</button>
-					<input type="text" class="searchbar" name="searchbar" id="searchbar">
+					
 				</div>
 				<div class="grid-order">
 					<div class="grid-items1"><a href="member-order.html">0123456789</a></div>
@@ -117,25 +116,38 @@
 					<div class="grid-items2">未完成</div>
 				</div>
 				<h2 class="title">我的收藏</h2>
-				<div class="grid-order">
-					<div class="grid-items1"><a href="classes-content.html">從零開始練三鐵！！</a></div>
-					<div class="grid-items1">2021-10-06</div>
-					<div class="grid-items1">黃雨心</div>
-					<div class="grid-items2"><a href="classes-content.html">跟著阿晉動次動 - 鐵人三項進階訓練</a></div>
-					<div class="grid-items2">2021-10-06</div>
-					<div class="grid-items2">萬能阿晉</div>
-					<div class="grid-items1"><a href="classes-content.html">Lawrence葛隔帶你變成金牌飛魚</a></div>
-					<div class="grid-items1">2021-10-06</div>
-					<div class="grid-items1">Lawrence葛格</div>
-					<div class="grid-items2"><a href="classes-content.html">連河豚也能懂得三鐵訓練菜單 - Teacher April</a></div>
-					<div class="grid-items2">2021-10-06</div>
-					<div class="grid-items2">Teacher April</div>
-					<div class="grid-items1"><a href="classes-content.html">小魔女王美蒂 - 跟著音樂練三鐵</a></div>
-					<div class="grid-items1">2021-10-06</div>
-					<div class="grid-items1">王美蒂</div>
-					<div class="grid-items2"><a href="classes-content.html">宇哥講三鐵 - 宇哥出品，必屬精品</a></div>
-					<div class="grid-items2">2021-10-06</div>
-					<div class="grid-items2">宇哥</div>
+				<div class="grid-order" id="ctyForGridOutline">
+					<span class="ctyForGrid">
+						<div class="grid-items1 ctyForGridContent"><a href="classes-content.html">從零開始練三鐵！！</a></div>
+						<div class="grid-items1 ctyForGridContent">2021-10-06</div>
+						<div class="grid-items1 ctyForGridContent"><span>教練：</span>黃雨心</div>
+					</span>
+					<span class="ctyForGrid">
+						<div class="grid-items2 ctyForGridContent"><a href="classes-content.html">跟著阿晉動次動 - 鐵人三項進階訓練</a></div>
+						<div class="grid-items2 ctyForGridContent">2021-10-06</div>
+						<div class="grid-items2 ctyForGridContent"><span>教練：</span>萬能阿晉</div>
+					</span>
+					<span class="ctyForGrid">
+						<div class="grid-items1 ctyForGridContent"><a href="classes-content.html">Lawrence葛隔帶你變成金牌飛魚</a></div>
+						<div class="grid-items1 ctyForGridContent">2021-10-06</div>
+						<div class="grid-items1 ctyForGridContent"><span>教練：</span>Lawrence<br id="ctyForNone">葛格</div>
+					</span>
+					<span class="ctyForGrid">
+						<div class="grid-items2 ctyForGridContent"><a href="classes-content.html">連河豚也能懂得三鐵訓練菜單 - Teacher April</a></div>
+						<div class="grid-items2 ctyForGridContent">2021-10-06</div>
+						<div class="grid-items2 ctyForGridContent"><span>教練：</span>Teacher April</div>
+					</span>
+					<span class="ctyForGrid">
+						<div class="grid-items1 ctyForGridContent"><a href="classes-content.html">小魔女王美蒂 - 跟著音樂練三鐵</a></div>
+						<div class="grid-items1 ctyForGridContent">2021-10-06</div>
+						<div class="grid-items1 ctyForGridContent"><span>教練：</span>王美蒂</div>
+					</span>
+					<span class="ctyForGrid">
+						<div class="grid-items2 ctyForGridContent"><a href="classes-content.html">宇哥講三鐵 - 宇哥出品，必屬精品</a></div>
+						<div class="grid-items2 ctyForGridContent">2021-10-06</div>
+						<div class="grid-items2 ctyForGridContent"><span>教練：</span>宇哥</div>
+					</span>
+
 				</div>
 			</aside>
 		</div>
@@ -150,72 +162,75 @@
 
 
 <!--header/footer component-->
-
+<script src="./src/js/vue.js"></script>
 <script src="./src/component/common/header.js"></script>
 <script src="./src/component/common/footer.js"></script>
 <script src="./src/component/member/passwordpopup.js"></script>
 <!-- <script src="./src/component/member/edit-btn.js"></script> -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 <script>
-	new Vue({
-		el: "#member-main",
-		data: {
-			name: "",
-			birthday: "",
-			phone: "",
-			address: "",
-			password: "000000",
-			userInformation: [],
-		},
-		methods: {
-			turnOn(){
-				document.getElementById('member-name').disabled = false;
-				document.getElementById('member-birth').disabled = false;
-				document.getElementById('member-phone').disabled = false;
-				document.getElementById('member-address').disabled = false;
-				document.getElementById('firstpart-btn').setAttribute("style", "display: block");
-			},
-			turnOff(){
-				document.getElementById('member-name').disabled = true;
-				document.getElementById('member-birth').disabled = true;
-				document.getElementById('member-phone').disabled = true;
-				document.getElementById('member-address').disabled = true;
-				document.getElementById('firstpart-btn').setAttribute("style", "display: none");
-			},
-			submitEdit(){
-				axios({
-					method: "post",
-					url: "./php/edit-member.php",
-					data: {
-						name: this.name,
-						birthday: this.birthday,
-						phone: this.phone,
-						address: this.address
-					}
-				})
-				.then((res) => {
-					alert("修改成功!")
-					// document.location.href="../member-main.html";
-				})
-			}
-		},
-		mounted(){
-			axios({
-				method: "post",
-				url: "./php/select-member.php",
-			})
-			.then((res) => {
-				this.userInformation = res.data;
-				this.name = this.userInformation[0].UserName;
-				this.birthday = this.userInformation[0].Birthday;
-				this.phone = this.userInformation[0].Mobile;
-				this.address = this.userInformation[0].Address;
+	// new Vue({
+	// 	el: "#member-main",
+	// 	data: {
+	// 		name: "",
+	// 		birthday: "",
+	// 		phone: "",
+	// 		address: "",
+	// 		password: "000000",
+	// 		userInformation: [],
+	// 	},
+	// 	methods: {
+	// 		turnOn(){
+	// 			document.getElementById('member-name').disabled = false;
+	// 			document.getElementById('member-birth').disabled = false;
+	// 			document.getElementById('member-phone').disabled = false;
+	// 			document.getElementById('member-address').disabled = false;
+	// 			document.getElementById('firstpart-btn').setAttribute("style", "display: block");
+	// 		},
+	// 		turnOff(){
+	// 			document.getElementById('member-name').disabled = true;
+	// 			document.getElementById('member-birth').disabled = true;
+	// 			document.getElementById('member-phone').disabled = true;
+	// 			document.getElementById('member-address').disabled = true;
+	// 			document.getElementById('firstpart-btn').setAttribute("style", "display: none");
+	// 		},
+	// 		submitEdit(){
+	// 			axios({
+	// 				method: "post",
+	// 				url: "./php/edit-member.php",
+	// 				data: {
+	// 					name: this.name,
+	// 					birthday: this.birthday,
+	// 					phone: this.phone,
+	// 					address: this.address
+	// 				}
+	// 			})
+	// 			.then((res) => {
+	// 				alert("修改成功!")
+	// 				// document.location.href="../member-main.html";
+	// 			})
+	// 		}
+	// 	},
+	// 	mounted(){
+	// 		axios({
+	// 			method: "post",
+	// 			url: "./php/select-member.php",
+	// 		})
+	// 		.then((res) => {
+	// 			this.userInformation = res.data;
+	// 			// for(let i = 0; i < this.userInformation.length; i++){
+					
+	// 			// }
+	// 			this.name = this.userInformation[0].UserName;
+	// 			this.birthday = this.userInformation[0].Birthday;
+	// 			this.phone = this.userInformation[0].Mobile;
+	// 			this.address = this.userInformation[0].Address;
 
-				console.log(this.userInformation);
-			})
-			.catch((error) => console.log(error))
-		},
-	})
+	// 			console.log(this.userInformation);
+	// 		})
+	// 		.catch((error) => console.log(error))
+	// 	},
+	// })
 </script>
 
 </body>
