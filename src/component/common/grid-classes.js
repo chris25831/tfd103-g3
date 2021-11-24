@@ -17,14 +17,14 @@ Vue.component("triclasses",{
         goToContent(){
             let id = this.classId;
            
-           window.location.href=`../../../classes-content.html?classid=${id}`;
+           location.href=`classes-content.html?classid=${id}`;
         },
 
         //後台編輯內頁
         GoToManageContent(){ 
             let id = this.classId;
            
-           window.location.href=`../../../manage-class-content.html?classid=${id}`;
+           location.href=`manage-class-content.html?classid=${id}`;
         }
 
     },

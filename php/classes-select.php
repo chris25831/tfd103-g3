@@ -37,11 +37,24 @@ if ($check["check"] == "tname") {
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
 } else { //首頁
     $cat = $check["catalog"];
-    if ($cat == "GM") {
-        $sql = "SELECT CourseID, CourseCatalog, CourseName, CoursePhoto FROM Course where Blocked = '0'";
+    $now = $check["now"];
+
+    //前台0 後台1 
+    if ($now) {
+        if ($cat == "GM") {
+            $sql = "SELECT CourseID, CourseCatalog, CourseName, CoursePhoto FROM Course where Blocked = '0'";
+        } else { //T
+            $sql = "SELECT CoachID, CoachName, CoachExpertise, CoachPhoto FROM Coach";
+        }
     } else {
-        $sql = "SELECT CoachID, CoachName, CoachExpertise, CoachPhoto FROM Coach";
+
+        if ($cat == "GM") {
+            $sql = "SELECT CourseID, CourseCatalog, CourseName, CoursePhoto FROM Course where Blocked = '0'";
+        } else { //T
+            $sql = "SELECT CoachID, CoachName, CoachExpertise, CoachPhoto FROM Coach where PersonalCoach != ''";
+        }
     }
+
 
     $statement = $pdo->query($sql);
     $data = $statement->fetchAll();

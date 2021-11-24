@@ -28,13 +28,14 @@ const classes =  new Vuex.Store({
         //DataBase抓值
         // 主頁
         classesHomeStart(state){
-        
+      
+
             axios({
                 method: 'post',
                 url: './php/classes-select.php',
                 data:{
                     check: 'home', 
-                    catalog:"GM"  
+                    catalog:"GM",
                 }
 
             }).then((response) => {
@@ -247,14 +248,16 @@ const coach = new Vuex.Store({
 
         //DataBase抓值
         // 主頁
-        classesHomeStart(state){
-           
+        classesHomeStart(state,now){
+            let nowpage = now;
+
             axios({
                 method: 'post',
                 url: './php/classes-select.php',
                 data:{
                     check: 'home', 
-                    catalog:"T"  
+                    catalog:"T",
+                    now: nowpage,
                 }
 
             }).then((response) => {
@@ -347,9 +350,11 @@ const coach = new Vuex.Store({
                 state.imgSrc = selectdata.CoachPhoto;
                
                 // 課程
-                let tclass = JSON.parse(selectdata.PersonalCoach);
-                // console.log(tclass);
-                state.trainerclass = tclass;
+                if(selectdata.PersonalCoach !== ""){        
+                    let tclass = JSON.parse(selectdata.PersonalCoach);
+                    // console.log(tclass);
+                    state.trainerclass = tclass;
+                }
              
             }).catch((error) => console.log(error));
 
