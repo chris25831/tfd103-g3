@@ -158,6 +158,7 @@ div.progress_bar{
               width: 24%;
               margin-right: 30px;
               margin-left: 10px;
+              cursor: pointer;
               @include mobile{
                 width: 79%;
                 margin-bottom: 10px;
@@ -167,11 +168,13 @@ div.progress_bar{
               }
             } 
             input{
+              cursor: pointer;
               width: 8%;
               height: 20px;
             }
         }
         select{
+            cursor: pointer;
             border: none;
             border-radius: 5px;
             background: linear-gradient(-30deg,#e75e49c9,#ffa10aa1,#f8e72b);
