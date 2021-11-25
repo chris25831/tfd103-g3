@@ -103,9 +103,10 @@ Vue.component("contentdetail-1",{
             this.addCart();
 
             // 跳轉結帳頁面
-            // window.location.href="../../shopcart-home.html";  
-            window.open("../../shopcart-home.html","_self");  
-            // window.open("https://tibamef2e.com/tfd103/g3/tfd103-g3/shopcart-home.html","_self");  
+            
+            location.assign("https://tibamef2e.com/tfd103/g3/tfd103-g3/shopcart-home.html");
+           
+            
         },
         
     },
@@ -159,7 +160,7 @@ Vue.component("contentdetail-2",{
                 comtrainer : this.trainer,
                 comprice :  this.tclass.price,
                 comdate : this.tclass.date,
-                comimg : this.img[0], 
+                comimg : this.img, 
                 comclassLocation : "",
             }
             
@@ -193,7 +194,7 @@ Vue.component("contentdetail-2",{
             this.addCart();
 
             // 跳轉結帳頁面
-            window.location.href="../../shopcart-home.html";  
+            location.assign("https://tibamef2e.com/tfd103/g3/tfd103-g3/shopcart-home.html");
         },
     },
 });

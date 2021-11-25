@@ -5,6 +5,9 @@ const classes =  new Vuex.Store({
         //***前台主頁***
         triclasses:[],
         menus:[],
+        
+        // 推薦課程
+        recomClass:[],
 
         //***內頁***
         classID:"",
@@ -20,6 +23,7 @@ const classes =  new Vuex.Store({
         
         // ^^^營養專用^^^
         nutrients:{},
+
 
 
     },
@@ -39,7 +43,7 @@ const classes =  new Vuex.Store({
                 }
 
             }).then((response) => {
-                console.log(response);
+                // console.log(response);
                 let alldata = response.data;
                 console.log(alldata);
 
@@ -67,15 +71,29 @@ const classes =  new Vuex.Store({
                     }
                     // console.log(item);
 
+                    let recomitem = {
+                        classTitle: alldata[i].CourseName,
+                        classID: alldata[i].CourseCatalog + fullid,
+                        imgSrc: arrimg[0],
+
+                    }
+
                     // 丟入 判斷G || M
                     if(alldata[i].CourseCatalog == "G"){
 
                         state.triclasses.push(item);
-                        console.log(state.triclasses);
                     }else{
+
                         state.menus.push(item);
-                        console.log(state.menus);
                     }
+
+                    // recomclass
+                    if( state.recomClass.length < 5){
+                        state.recomClass.push(recomitem);
+                        // console.log(state.recomClass);
+                    }
+
+
                 } 
 
             }).catch((error) => console.log(error));
@@ -264,7 +282,7 @@ const coach = new Vuex.Store({
             }).then((response) => {
                 // console.log(response);
                 let alldata = response.data;
-                console.log(alldata);
+                // console.log(alldata);
 
                  // 補0
                  function pluszero(id){

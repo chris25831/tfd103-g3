@@ -15,16 +15,13 @@
     <script src="./src/js/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- LINEPAY串接 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/hmac-sha256.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/enc-base64.min.js"></script>
-    <!--component-->
-    <script src="./src/component/common/header.js"></script>
-    <script src="./src/component/common/footer.js"></script>
-    <script src="./src/component/shopcart/shopcart-content.js"></script>
-
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/enc-base64.min.js"></script> -->
+    <!-- 綠界串接 -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"></script> -->
+  
 </head>
 
 <body>
@@ -44,8 +41,14 @@
             </div>
             <div>
                 <!-- list組件 -->
-                <shopcart-content  :checksop="checksop" @golinepay="checkout"></shopcart-content>     
+                <shopcart-content  :checksop="checksop" @goecpay="checkout()"></shopcart-content>     
+                <!-- 表單 -->
+                <form v-show="false" action="./php/sample_Credit_CreateOrder.php"  method="post" id="ecpay">
+                    <input type="text" id="productname" name="productname"  value="">
+                    <input type="number" id="total" name="total" value="">
+                </form>
             </div>
+
         </div>
    </main>
 
@@ -55,51 +58,97 @@
       <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
    </footer>
 
-
- 
+    <!--component-->
+    <script src="./src/component/common/header.js"></script>
+    <script src="./src/component/common/footer.js"></script>
+    <script src="./src/component/shopcart/shopcart-content.js"></script>
    
 
-
     <script>
-       
+        // 宣告qs
+        // var  qs = Qs;
 
           new Vue({
             el:'#shopcart-checkout',
             data:{
                 // 判斷頁面
-                checksop:1,
-                
+                checksop:1, 
+            },
+
+            created() {
+
+                let checkpay = (new URL(location.href)).searchParams.get('checkout');
+                // console.log(checkpay);
+
+                if(checkpay == "done"){
+                    alert("結帳成功!");
+                    location.assign("https://tibamef2e.com/tfd103/g3/tfd103-g3/member-main.html");
+                }
+
+                      
             },
 
             methods: {
-                // LINEPAY結帳
+                // 綠界結帳
                 checkout(){
                     // console.log("123");
 
                     // 倒出localstorage
+                    let allItemStr = "";
+                    let allItemName = "";
                     let allItem =  JSON.parse(storage['surePayList']);
-                    console.log(allItem);
+                    // console.log(allItem);
 
-                    let allItem_amount =  JSON.parse(storage['surePayAmount']);
-                    console.log(allItem_amount.amount);
+                    // 名稱
+                    for(let i=0; i < allItem.length ;i++){
+
+                        console.log(allItem[i].comclassTitle);
+
+                        allItemStr += `${allItem[i].comclassTitle}#`;
+                    }
+
+                    // console.log(allItemStr);
+
+                    allItemName = allItemStr.slice(0, allItemStr.length - 1);
+
+                    console.log(allItemName);
+
+                    // 金額
+                    let allItem_amount =   JSON.parse(storage['surePayAmount']);
+
+
+
+                    let input_pn = document.getElementById("productname");
+                    let input_t = document.getElementById("total");
+                    let ecpayform = document.getElementById("ecpay");
+
+                    input_pn.value = allItemName;
+                    input_t.value = allItem_amount.total;
+
+
+                    console.log(allItem_amount.total);
+                    console.log(input_pn);
+                    console.log(input_t);
+                    ecpayform.submit();
+
+                
+                    // console.log(allItem_amount.amount);
 
                     // API物件orderId和packagesId
-                    let orderid = "order-" + Date.now();
+                    // let orderid = "order-" + Date.now();
 
-                    let today = new Date();
-                    let packagesid = `${today.getFullYear()}${(today.getMonth()+1)}${(today.getDate()+1)}`;
+                    // let today = new Date();
+                    // let packagesid = `${today.getFullYear()}${(today.getMonth()+1)}${(today.getDate()+1)}`;
 
-                    console.log(orderid);
+                    // console.log(orderid);
 
                     // 創造API物件規格
-                    let orderitem = {
+                    // let orderitem = {
 
-                        "productName": allItem[0].comclassTitle,
-                        "amount": allItem[0].comprice,
-                        "currency": 'TWD',
-                        "confirmUrl":"https://sexfat.tw/member-login.html",
-                        "orderId": orderid,     
-                    };
+                    //     productName: allItemName,
+                    //     total: allItem_amount.total,
+                      
+                    // };
 
                     // for(let i=0;i < allItem.length;i++){
                     //     let item = {
@@ -111,22 +160,19 @@
                     //     orderitem.packages[0].products.push(item);
                     // }
 
-                    console.log(orderitem);
-
+                    // console.log(orderitem);
+                    // let jorderitem = JSON.stringify(orderitem);    
                     
                     // 上傳
-                    let configs = {
-                        headers:{
-                            'Content-Type':'application/json',
-                            'X-LINE-ChannelId':'1656627683',
-                            'X-LINE-ChannelSecret':'338e4dd658dfcb3c8c8626b582e26583',
-                        }
-                    }
-                    // 'Access-Control-Allow-Origin' : '*',
-
-                    axios.post('https://sandbox-api-pay.line.me/v2/payments/request', orderitem, configs).then(res => {
-                        console.log(res.data);
-                    });
+                    // let configs = {
+                    //     headers:{
+                    //         'Content-Type':'application/x-www-form-urlencoded'            
+                    //     }
+                    // }
+                  
+                    // axios.post('./php/sample_Credit_CreateOrder.php', qs.stringify(orderitem), configs).then((res) => {
+                    //     window.open(res);
+                    // });
 
 
                 },

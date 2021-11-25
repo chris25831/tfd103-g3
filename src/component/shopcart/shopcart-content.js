@@ -82,9 +82,9 @@ Vue.component("shopcart-content",{
             <!-- checkout -->
             <div  v-if="checksop == 1" class="golinepay">
                 <p></p>
-                <img src="./src/images/icons/linepay.svg" alt="#">
-                <p>使用LINE PAY進行付款</p>
-                <button class="orangebutton" @click="golinepay">確認結帳</button>
+                <img src="./src/images/icons/ECPay.png" alt="#">
+                <p>使用綠界進行付款</p>
+                <button class="orangebutton" @click="goecpay">ECpay</button>
             </div>
         </div>
     `,
@@ -157,8 +157,9 @@ Vue.component("shopcart-content",{
     methods: {
         // 詳細商品連結
         gotodetail(id){
-            // console.log(id);
-            window.open(`../../../classes-content.html?classid=${id}`,"_self");   
+      
+            location.assign(`https://tibamef2e.com/tfd103/g3/tfd103-g3/classes-content.html?classid=${id}`);
+            
         },
 
       
@@ -207,7 +208,7 @@ Vue.component("shopcart-content",{
                 let checkin = confirm("請登入會員");
 
                 if(checkin){
-                    window.open("../../../member-login.html","_self");
+                    location.assign("https://tibamef2e.com/tfd103/g3/tfd103-g3/member-login.html");
                 }
 
             }else{
@@ -244,9 +245,8 @@ Vue.component("shopcart-content",{
                 // 打包計算
                 storage['surePayAmount'] = JSON.stringify(amountdetail);
     
-                
-                // window.location.href="../../shopcart-checkout.html"; 
-                window.open("../../shopcart-checkout.html","_self");   
+        
+                location.assign("https://tibamef2e.com/tfd103/g3/tfd103-g3/shopcart-checkout.html?checkout=0");
             }
         
         },
@@ -323,8 +323,8 @@ Vue.component("shopcart-content",{
         },
 
         // LINEPAY結帳-傳到父層
-        golinepay(){
-            this.$emit("golinepay");
+        goecpay(){
+            this.$emit("goecpay");
         }
 
     },

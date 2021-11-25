@@ -19,10 +19,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
     <!-- 測量網頁距離 -->
     <!-- <script src="https://unpkg.com/spacingjs" defer></script> -->
-    <!--header/footer component-->
-    <script src="./src/component/common/manage-header.js"></script>
-    <script src="./src/component/common/manage-footer.js"></script>
 
+   
 </head>
 
 <body>
@@ -42,9 +40,9 @@
                 <div  class="classesContent">
                     <!-- 名稱 -->
                     <label class="title3">名稱</label>
-                    <!-- <input v-if="editpage == false" id="classTitle" type="text" name="classTitle"> -->
-                    <!-- 名稱-編輯用 -->
-                    <input v-if="editpage == true" v-model.trim="classTitle" id="classTitle" type="text" name="classTitle">
+                    <input v-if="editpage == false"  id="classTitle" type="text" name="classTitle">
+
+                    <input v-else v-model.trim="classTitle" id="classTitle" type="text" name="classTitle">
                     <hr>
 
                     <!-- 編號 -->
@@ -77,19 +75,22 @@
                         <option v-if="editpage == false" value="none" selected disabled>--請選擇教練--</option>
                         <option v-for="t in trainer"  :value="t">{{t}}</option>
                     </select>
-
                     <hr>
 
                     <!-- 價錢 -->
                     <label class="title3">價錢</label>
-                    <input v-model.trim="price" id="price" type="text" name="price">
+                    <input v-if="editpage == false" id="price" type="text" name="price">
+
+                    <input v-else v-model.trim="price" id="price" type="text" name="price">
                     <hr>
 
 
                     <!-- 活動地點 -->
                     <div v-if="classCategory =='G'">
                         <label class="title3">活動地點</label><br>
-                        <input v-model.trim="classLocation" id="classLocation" type="text" name="classLocation">
+                        <input v-if="editpage == false" id="classLocation" type="text" name="classLocation">
+
+                        <input v-else v-model.trim="classLocation" id="classLocation" type="text" name="classLocation">
                         <hr>
                     </div>
 
@@ -97,13 +98,20 @@
                     <div v-if="classCategory == 'M'">
                         <label class="title3">營養素</label><br>
                         <label>熱量</label><br>
-                        <input v-model.trim="nutrients.cal" type="number" name="nutrients-cal"><br>
+                        <input v-if="editpage == false" type="number" name="nutrients-cal"><br>
+                        <input  v-if="editpage == true" v-model.trim="nutrients.cal" type="number" name="nutrients-cal"><br>
+
                         <label>蛋白質</label><br>
-                        <input v-model.trim="nutrients.protein" type="number" name="nutrients-protein"><br>
+                        <input v-if="editpage == false" type="number" name="nutrients.protein"><br>
+                        <input v-if="editpage == true" v-model.trim="nutrients.protein" type="number" name="nutrients-protein"><br>
+                        
                         <label>醣類</label><br>
-                        <input v-model.trim="nutrients.carb" type="number" name="nutrients-carb"><br>
+                        <input v-if="editpage == false" type="number" name="nutrients-carb"><br>
+                        <input v-if="editpage == true" v-model.trim="nutrients.carb" type="number" name="nutrients-carb"><br>
+
                         <label>脂肪</label><br>
-                        <input v-model.trim="nutrients.fat" type="number" name="nutrients-fat">
+                        <input v-if="editpage == false" type="number" name="nutrients-fat">
+                        <input v-if="editpage == true" v-model.trim="nutrients.fat" type="number" name="nutrients-fat">
                         <hr>
                     </div>
 
@@ -111,30 +119,36 @@
                     <div v-if="classCategory == 'T'">
                         <!-- 開課日期 -->
                         <label class="title3">開課日期</label><br>
-                        <input v-model.trim="classDate" id="classDate" type="text" name="classDate">
+                        <input v-if="editpage == false" id="classDate" type="text" name="classDate">
+                        <input v-else v-model.trim="classDate" id="classDate" type="text" name="classDate">
                         <hr>
 
                         <!-- 專長 -->
                         <label class="title3">專長</label><br>
                         <label class="small">---每項請用半形,做分隔---</label><br>
                         <label class="small">---最多六項--</label><br>
-                        <textarea v-model.trim="trainerExpertise" id="trainerExpertise"  name="trainerExpertise"></textarea>
+                        <textarea v-if="editpage == false" v-model.trim="trainerExpertise" id="trainerExpertise"  name="trainerExpertise"></textarea>
+
+                        <textarea v-else v-model.trim="trainerExpertise" id="trainerExpertise"  name="trainerExpertise"></textarea>
                         <hr>
                         <!-- 證照 -->
                         <label class="title3">證照</label><br>
                         <label class="small">---每張請用半形,做分隔---</label><br>
-                        <textarea v-model.trim="trainerLicense" id="trainerLicense"  name="trainerLicense"></textarea>
+                        <textarea v-if="editpage == false" id="trainerLicense"  name="trainerLicense"></textarea>
+                        <textarea v-else v-model.trim="trainerLicense" id="trainerLicense"  name="trainerLicense"></textarea>
                         <hr>
                         <!-- IG -->
                         <label class="title3">社群軟體</label><br>
-                        <input v-model.trim="ig" id="ig" type="text" name="ig">
+                        <input v-if="editpage == false" id="ig" type="text" name="ig">
+                        <input v-else v-model.trim="ig" id="ig" type="text" name="ig">
                         <hr>
                     </div>
 
                     <!-- 簡介 -->
                     <label class="title3">簡介</label>
                     <label class="small">---前台換行請用半形,做分隔---</label>
-                    <textarea v-model.trim="classInfo" id="classInfo"  name="classInfo"></textarea>
+                    <textarea v-if="editpage == false" id="classInfo"  name="classInfo"></textarea>
+                    <textarea v-else v-model.trim="classInfo" id="classInfo"  name="classInfo"></textarea>
                     <hr>
 
                     <!-- 圖片 -->
@@ -165,7 +179,10 @@
     <!--這是目標標籤會被覆蓋 -->
     </footer>
 
-
+    <!--header/footer component-->
+    <script src="./src/component/common/manage-header.js"></script>
+    <script src="./src/component/common/manage-footer.js"></script>
+ 
     <script type="module">
         // 匯入VUEX
         import {classes, coach} from "./store-classes.js";
@@ -377,25 +394,37 @@
         
                                     const formData = new FormData(classForm);
             
-                                    console.log(formData);
+                                    // console.log(formData);
         
                                     // formdata檢查
-                                    let object = {};
-                                    formData.forEach((val, key) => {
-                                        object[key] = val;
-                                    });
-                                    console.log(object);
+                                    // let object = {};
+                                    // formData.forEach((val, key) => {
+                                    //     object[key] = val;
+                                    // });
+                                    // console.log(object);
             
                                     
                                     console.log("axios啟動");
-                                    gotoPHP.post('/classes-update.php', formData).then((response) => console.log(response)).catch((error) => console.log(error));
+                                    gotoPHP.post('/classes-update.php', formData).then(function(response){
+                                        console.log(response);
+                                        alert("更新成功!");
+
+                                        location.href= "manage-class-home.html";
+
+                                    }).catch((error) => console.log(error));
             
                                 }else{   //新頁面
                                     // console.log("123");
                                 
                                     const formData = new FormData(classForm);
     
-                                    gotoPHP.post('/classes-insert.php', formData).then((response) => console.log(response)).catch((error) => console.log(error));
+                                    gotoPHP.post('/classes-insert.php', formData).then(function(response){
+                                        console.log(response);
+                                        alert("新增成功!");
+
+                                        location.href= "manage-class-home.html";
+
+                                    }).catch((error) => console.log(error));
                                   
                                 }
     
@@ -425,7 +454,13 @@
                     console.log(formData);
 
                     console.log("axios啟動");
-                    gotoPHP.post('/classes-delete.php', formData).then((response) => console.log(response)).catch((error) => console.log(error));
+                    gotoPHP.post('/classes-delete.php', formData).then(function(response){
+                        console.log(response);
+                        alert("下架成功!");
+
+                        location.href= "manage-class-home.html";
+
+                    }).catch((error) => console.log(error));
 
 
                 },
