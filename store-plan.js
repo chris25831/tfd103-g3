@@ -31,7 +31,8 @@ const plan = new Vuex.Store({
                 ],
                 name:'racedate',
                 type:'select',
-                answer: '20211101', 
+                answer: '20211101',
+                racedate: "比賽日期" 
             },
             //第二題
             {
@@ -164,7 +165,24 @@ const plan = new Vuex.Store({
     },
 
     mutations:{
-         //撈會員資料//
+       
+        //  撈會員資料//
+         memberinfo(state,payload){
+            axios({
+                method: 'post',
+                url: './php/memberinfo.php',
+                data:{
+                    memberID:payload
+                },
+            }).then((response) =>{
+                console.log(response.data)
+                state.memberinfo.photo = response.data[1]
+                state.memberinfo.membername = response.data[0]
+            }).catch((error)=>{
+                console.log(error)
+                
+            })
+        },
         memberdata(state,payload){
             axios({
                 method: 'post',
@@ -352,7 +370,7 @@ const plan = new Vuex.Store({
                 alert('您已取消');
             }
         },
-         noplan(state){
+        noplan(state){
             state.cancel = false
         },
         last(state){
