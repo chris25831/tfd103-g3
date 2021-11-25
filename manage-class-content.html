@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
+    <!-- js -->
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/js/vuex.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+    <!-- 測量網頁距離 -->
+    <!-- <script src="https://unpkg.com/spacingjs" defer></script> -->
+    <!--header/footer component-->
+    <script src="./src/component/common/manage-header.js"></script>
+    <script src="./src/component/common/manage-footer.js"></script>
 
 </head>
 
@@ -32,7 +42,9 @@
                 <div  class="classesContent">
                     <!-- 名稱 -->
                     <label class="title3">名稱</label>
-                    <input v-model.trim="classTitle" id="classTitle" type="text" name="classTitle">
+                    <!-- <input v-if="editpage == false" id="classTitle" type="text" name="classTitle"> -->
+                    <!-- 名稱-編輯用 -->
+                    <input v-if="editpage == true" v-model.trim="classTitle" id="classTitle" type="text" name="classTitle">
                     <hr>
 
                     <!-- 編號 -->
@@ -54,10 +66,13 @@
 
                     <!-- 授課教師 -->
                     <label class="title3">授課教師</label>
+                    <!-- 教師頁面input -->
                     <input v-if="classCategory =='T'" v-model.trim="trainer" id="trainer" type="text" name="trainer" :disabled="editpage">
                     <!-- 英文名 -->
                     <label v-if="classCategory =='T'">英文姓名</label>
                     <input v-if="classCategory =='T'" v-model.trim="en_trainer" id="en_trainer" type="text" name="en_trainer" :disabled="editpage">
+
+
                     <select v-else name="trainer" id="trainer">
                         <option v-if="editpage == false" value="none" selected disabled>--請選擇教練--</option>
                         <option v-for="t in trainer"  :value="t">{{t}}</option>
@@ -151,17 +166,6 @@
     </footer>
 
 
-
-    <script src="./src/js/vue.js"></script>
-    <script src="./src/js/vuex.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
-    <!-- 測量網頁距離 -->
-    <!-- <script src="https://unpkg.com/spacingjs" defer></script> -->
-    <!--header/footer component-->
-    <script src="./src/component/common/manage-header.js"></script>
-    <script src="./src/component/common/manage-footer.js"></script>
-
     <script type="module">
         // 匯入VUEX
         import {classes, coach} from "./store-classes.js";
@@ -223,8 +227,9 @@
                     this.classCategory = check;
                     
                     if(check == "G" || check == "M"){
+                
                         this.$store.classes.commit('classesContentStart', classidval);
-                        // 先找出所有教練
+                        // 找出所有教練
                         this.$store.classes.commit('newClassesInsert');
                         this.trainer = this.$store.classes.state.trainerName; 
 

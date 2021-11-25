@@ -13,7 +13,17 @@
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- js -->
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/js/vuex.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+    <!-- 測量網頁距離 -->
+    <!-- <script src="https://unpkg.com/spacingjs" defer></script> -->
+    <!--component-->
+    <script src="./src/component/common/manage-header.js"></script>
+    <script src="./src/component/common/manage-footer.js"></script>
+    <script src="./src/component/common/grid-classes.js"></script>
 
 </head>
 
@@ -51,19 +61,6 @@
     <!--這是目標標籤會被覆蓋 -->
     </footer>
 
-
-
-    <script src="./src/js/vue.js"></script>
-    <script src="./src/js/vuex.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
-    <!-- 測量網頁距離 -->
-    <script src="https://unpkg.com/spacingjs" defer></script>
-    <!--component-->
-    <script src="./src/component/common/manage-header.js"></script>
-    <script src="./src/component/common/manage-footer.js"></script>
-    <script src="./src/component/common/grid-classes.js"></script>
-    
     <script type="module">
         // 匯入VUEX
         import {classes, coach} from "./store-classes.js";
