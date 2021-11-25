@@ -15,7 +15,7 @@ $Level =$A[3];
 // echo ("//");
 // echo ($memberID);
 // echo ("/");
-echo ($RaceID);
+echo $RaceID;
 // echo ("/");
 // echo ($Distance);
 echo ("/");
