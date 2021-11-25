@@ -39,14 +39,14 @@
                 </thead>
             
                 <tbody class="member-info">
-                    <tr class="single-member" v-for="member in memberData">
+                    <tr class="single-member" v-for="member in memberData" :data-permission="member.UserPermission">
                             <td class="member-number">{{member.UserID}}</td>
                             <td class="member-number">{{member.Account}}</td>
                             <td class="member-name">{{member.UserName}}</td>
                             <td class="member-points">{{member.Points}}點</td>
                             <td class="member-email">{{member.Email}}</td>
                             <td class="member-signup-status">
-                                <input type="checkbox" @click="changing">
+                                <input type="checkbox" @click="changing" :data-id="member.UserID">
                             </td>
                     </tr>
                 </tbody>
@@ -77,12 +77,41 @@
         },
         methods: {
             changing(){
-                console.log("go");
                 let input = document.querySelector("input[type='checkbox']");    
                 let wrap = input.closest("tr");
                 if(input.checked === true) {
-                    wrap.style.backgroundColor="gray";
+                    axios({
+                        method:"post",
+                        url: "./php/noPermission.php",
+                        data: {
+                            userid: input.dataset.id
+                        }
+                    })
+                    .then((res)=>{
+                        console.log(res.data);
+                        wrap.style.backgroundColor="gray";
+                    })
+                    .catch((error)=>{
+                        console.log(error);
+                    })
+
+                   
                 } else {
+                    axios({
+                        method:"post",
+                        url: "./php/normalPermission.php",
+                        data: {
+                            userid: input.dataset.id
+                        }
+                    })
+                    .then((res)=>{
+                        console.log(res.data);
+                        wrap.style.backgroundColor="";
+                    })
+                    .catch((error)=>{
+                        console.log(error);
+                    })
+
                     wrap.style.backgroundColor="";
                 }
             }
@@ -96,10 +125,28 @@
             .then((res) => {
                 console.log(res.data);
                 this.memberData = res.data;
+                for(let i = 0; i < tr.length; i++) {
+                console.log("!!!");
+                console.log("tr",tr[i]);
+                if(tr[i].dataset.permission == 1) {
+                    tr[i].style.backgroundColor = "gray";
+                } else {
+                    tr[i].style.backgroundColor = "";
+                }
+            }
             })
             .catch((error) => {
                 console.log(res.data);
+                
             })
+
+            console.log("???");
+            let tr = document.querySelectorAll(".single-member");
+            
+            
+            
+            
+            
         }
     })
 </script>

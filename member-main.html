@@ -153,32 +153,32 @@
 		},
 		methods: {
 			upload(e){
+				const params = new FormData();
+
 				let input = document.querySelector(".upload-image");
 				let avatar = document.querySelector(".avatar");
 				let inputFile = input.files[0];
 				console.log("input.files[0]",input.files[0]);
-				// let readFile = new FileReader();  
-				// // console.log("readFile", readFile);
-				// theFile = readFile.readAsDataURL(inputFile);
+				params.append("file", inputFile)
+
 				
-				// console.log("readFile.result", readFile.result);
-
-				// console.log("readFile.result::", readFile.result);
 				let virtualPath = URL.createObjectURL(inputFile);
-
 				this.avatarSrc = virtualPath;
 				
 				console.log("virtualPath", virtualPath);
-				// console.log("readFile.result", readFile.result);
 				
 				axios({
 					method: "post",
 					url: "./php/new-avatar.php",
-					data: {
-						avatar: input.files[0].name,
-						source: virtualPath
-					}
-				})
+					headers:{
+						"Content-Type":"multipart/form-data",
+					},
+					data: params,
+						// avatar: input.files[0].name,
+						// source: virtualPath
+					
+				
+					})
 				.then((res) => {
 					console.log(res);
 				})

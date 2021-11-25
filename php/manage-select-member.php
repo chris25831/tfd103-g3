@@ -1,17 +1,7 @@
 <?php
     include("./connection.php");  
     
-    function getUserID(){
-        //先判斷session是否存在
-        if(!isset($_SESSION)){
-            session_start(); 
-        };
 
-        //有登入session->回傳ID，無登入session->回傳空字串""
-        return isset($_SESSION["UserID"]) ? $_SESSION["UserID"] : "";
-    }
-    
-    $sessionUserID = intval(getUserID());
 
     $sql = "SELECT * FROM User where UserIdentity = 'member';";
     
