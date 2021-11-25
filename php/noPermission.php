@@ -11,7 +11,7 @@
     echo "1";
     $newUserId = intval($userId);
 
-    $sql = "UPDATE User SET UserPermission = 1 where UserID = ?;";
+    $sql = "UPDATE User SET UserPermission = '1' where UserID = ?;";
     echo "2";
     
     //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
