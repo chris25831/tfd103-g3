@@ -49,25 +49,7 @@
                         </div>
                         <h3 class="article-title">{{articleDatum.PostTitle}}</h3>
                         <p class="preview-content">{{articleDatum.PostContent}}</p>
-                        <!-- <div class="counts">
-                            <div class="views">
-                                <img src="./src/images/img/forum/views.png" alt="">
-                                <span>{{articleDatum.Views}}</span>
-                            </div>
-                            <div class="likes">
-                                <img src="./src/images/img/forum/likes-count.png" alt="">
-                                <span>{{articleDatum.Likes}}</span>
-                            </div>
-                            <div class="comments">
-                                <img src="./src/images/img/forum/comments-count.png" alt="">
-                                <span>{{articleDatum.Comments}}</span>
-                            </div>
-                        </div> -->
                     </div>
-                    <!-- <div class="right"> -->
-                        <!-- <img class="demo-image" alt=""> -->
-                    <!-- </div>                           -->
-                    <!--:src="articleDatum.PostPhotoOne"-->
                 </a>
             </div>
 
@@ -178,15 +160,9 @@
                 window.location.href=`./forum-content.html#${clickTarget.dataset.id}`;
             },
             reloading(){
-                // window.location.href="./forum-home.html";
+                location.reload();
             }   
-            // addItem(item) {
-            //     this.articleData.unshift(item);
-            //     this.showModal = false;
-            //     if(item.ArticleCategory.toString() === this.currentCategory.toString() || this.currentCategory.toString() === "全部") {
-            //         this.tidedData = this.articleData;
-            //     };
-            // },
+      
         },
         watch: {
             currentPage(newValue, oldValue) {   //分頁器偵測所處頁面  

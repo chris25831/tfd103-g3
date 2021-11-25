@@ -13,6 +13,7 @@
 
     $account = $formData["account"];
     $password = $formData["password"];
+    
     $phonenumber = $formData["phoneNumber"];
     $email = $formData["email"];
 
@@ -23,7 +24,7 @@
     
     $statement->bindValue(1, $account);    
     $statement->bindValue(2, $password); 
-    $statement->bindValue(3, $account);
+    $statement->bindValue(3, $account);    
     $statement->bindValue(4, $phonenumber);    
     $statement->bindValue(5, $email);        
 

@@ -36,16 +36,16 @@
                <h2>註冊</h2>
                <div class="input-wrapper">
                    <label class="required">*</label>
-                   <input type="text" class="register-input" v-model="email" placeholder="請填入Email"><br>
+                   <input type="text" class="register-input" v-model.trim="email" placeholder="請填入Email"><br>
 
                    <label class="required">*</label>
-                   <input type="text" class="register-input" v-model="phoneNumber" placeholder="請填入手機號碼"><br>
+                   <input type="text" class="register-input" v-model.trim="phoneNumber" placeholder="請填入手機號碼"><br>
                     
                    <label class="required">*</label>
-                   <input type="text" class="register-input" v-model.trim="account" placeholder="請輸入帳號/會員名稱"><br>
+                   <input type="text" class="register-input" v-model.trim="account" placeholder="請填入帳號/會員名稱"><br>
                    
                    <label class="required">*</label>
-                   <input type="password" class="register-input" v-model="password" placeholder="請輸入密碼"><br>
+                   <input type="password" class="register-input" v-model="password" placeholder="請填入密碼"><br>
                    
                    <label class="required">*</label>
                    <input type="password" class="register-input" v-model="passwordConfirm" placeholder="再次確認密碼"><br>

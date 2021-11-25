@@ -76,9 +76,7 @@
                     <h3 class="title">{{singleArticleData.PostTitle}}</h3>
                     
                     <div class="forum-content-block">
-                        <p class="forum-content">
-                            {{singleArticleData.PostContent}}
-                        </p>
+                        <p class="forum-content">{{singleArticleData.PostContent}}</p>
                         
                     </div>
                 </div>
@@ -104,9 +102,7 @@
                         <span class="name">{{commentDatum.UserName}}</span>
                         <span class="time">{{commentDatum.CommentPostDate}}</span>
                     </div>
-                    <p class="comment-content">
-                        {{commentDatum.CommentContent}}
-                    </p>
+                    <p class="comment-content">{{commentDatum.CommentContent}}</p>
                     <!-- <div class="report">
                         <img src="./src/images/img/forum/report-button.png">
                         <div class="drop-down-comment">
@@ -288,7 +284,10 @@
                         content: this.articleContent
                     }
                 })
-                .then((res) => console.log(res))
+                .then((res) => {
+                    console.log(res)
+                    location.reload();
+                })
                 .catch((error) => console.log(error))
             },
             sendComment(){  
