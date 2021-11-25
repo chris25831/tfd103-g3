@@ -69,6 +69,8 @@
                     span.name {
                         margin: 0 15px 0 25px;
                         max-width: 60%;
+                        color: rgb(104, 103, 103);
+                        font-size: .8rem;
                         @include table() {
                             max-width: 45%;
                         }

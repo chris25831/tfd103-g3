@@ -46,15 +46,12 @@
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    font-size: 1rem;
+                    color: rgb(104, 103, 103);
+                    font-size: .8rem;
                 }
                 
                 span.name {
                     margin: 0 15px 0 0;
-                }
-                span.time {
-                    color: rgb(104, 103, 103);
-                    font-size: .8rem;
                 }
             }
             .action {
@@ -298,13 +295,14 @@
                     line-height: 70px;
                     // margin-top: 10px;
                     // border: solid red 1px;
+                    color: rgb(104, 103, 103);
+                    font-size: .8rem;
                 }
                 span.name {
                     margin: 0 15px;
                 }
                 span.time {
-                    color: rgb(104, 103, 103);
-                    font-size: .8rem;
+                    
                 }
                 
             }

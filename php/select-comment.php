@@ -14,7 +14,7 @@
     $postId = $formData["postid"];
 
 
-    $sql = "SELECT * FROM Comment where PostID = ?;";
+    $sql = "SELECT * FROM Comment c join User u on c.UserID = u.UserID where PostID = ?;";
     
 
     //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料

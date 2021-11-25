@@ -96,7 +96,7 @@
                 <div class="single-comment" v-for="commentDatum in commentData" :data-id="commentDatum.CommentID">
                     <div class="comment-author">
                         <img class="avatar avatar-comment" src="./src/images/img/forum/smile.jpg" alt="">
-                        <span class="name">{{commentDatum.UserID}}</span>
+                        <span class="name">{{commentDatum.UserName}}</span>
                         <span class="time">{{commentDatum.CommentPostDate}}</span>
                     </div>
                     <p class="comment-content">
@@ -232,9 +232,25 @@
                 
             },
             report() {
-                // this.isShowing = true;
-                this.showReportModal = true;
-                console.log("ok");
+
+                axios({
+                    method: "post",
+                    url: "./php/loginCheck.php",
+                    data: {// postid: thePostId
+                    }
+                })
+                .then((res) => {
+                    console.log("這是我的文嗎", res.data);
+                    console.log("userID??", this.singleArticleData.UserID);
+                    
+                    if(res.data != "") {
+                        this.showReportModal = true;
+                    } else {
+                        alert("請先登入")
+                    }
+                })
+                .catch((error) => console.log(error))
+                
             },
             closeReportModal() {
                 // this.reportShowing = false;
