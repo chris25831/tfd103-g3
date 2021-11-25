@@ -111,7 +111,6 @@
                     .catch((error)=>{
                         console.log(error);
                     })
-
                     wrap.style.backgroundColor="";
                 }
             }
@@ -126,8 +125,7 @@
                 console.log(res.data);
                 this.memberData = res.data;
                 for(let i = 0; i < tr.length; i++) {
-                console.log("!!!");
-                console.log("tr",tr[i]);
+              
                 if(tr[i].dataset.permission == 1) {
                     tr[i].style.backgroundColor = "gray";
                 } else {
@@ -140,13 +138,8 @@
                 
             })
 
-            console.log("???");
             let tr = document.querySelectorAll(".single-member");
-            
-            
-            
-            
-            
+      
         }
     })
 </script>

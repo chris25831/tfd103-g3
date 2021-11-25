@@ -34,8 +34,6 @@ Vue.component("manage-header", {
     },
     methods: {
         changePage(e){
-            
-
             if(e.target.innerText === "課程管理" && this.logoutHref === true) {
                 
                 location.href = "./manage-class-home.html";
@@ -49,9 +47,7 @@ Vue.component("manage-header", {
             }
         },
         logout(){
-            if(this.memberID != ""){
-                let MemberID = this.memberID;
-            }
+            
             axios({            
                 method: "POST",
                 url: "./php/logout.php",
@@ -91,7 +87,8 @@ Vue.component("manage-header", {
                 console.log(this.logoutHref);
                 this.memberID = response.data
             } 
-        }).catch(function(error){
+        }).catch((error)=>{
+            console.log(error);
             console.log("錯誤");
         })    
     },   
