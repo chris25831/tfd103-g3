@@ -4,7 +4,9 @@ Vue.component("manage-header", {
         <div class="" id="manage-header-wrapper">
             <div class="logo-wrapper">
                 <div class="logo">
-                    <img src="./src/images/icons/logo.svg"/>
+                    <a href="entrance.html">
+                      <img src="./src/images/icons/logo.svg"/>
+                    </a>
                 </div>
             </div>
             <nav class="manage-nav">

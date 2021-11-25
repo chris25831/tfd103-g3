@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <!--從scss轉譯過來的-->
     <link rel="stylesheet" href="css/style.css">
-    
+    <!-- js -->
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/js/vuex.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+    <!--component-->
+    <script src="./src/component/common/header.js"></script>
+    <script src="./src/component/common/footer.js"></script>
+    <script src="./src/component/classes/classes-content.js"></script>
     
 </head>
 
@@ -74,16 +82,6 @@
       <my-footer></my-footer><!--這是目標標籤會被覆蓋-->
    </footer>
 
-
-   <script src="./src/js/vue.js"></script>
-   <script src="./src/js/vuex.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
-   <!--component-->
-    <script src="./src/component/common/header.js"></script>
-    <script src="./src/component/common/footer.js"></script>
-    <script src="./src/component/classes/classes-content.js"></script>
-
     <script type="module">
         // 正規表達式判斷
         var catRE_G = /^G/ ;
@@ -119,72 +117,11 @@
                 
                 // 抓網址的classid
                 classID:(new URL(location.href)).searchParams.get('classid'),
-                
-                // TODO:轉換成雲端VUEX
-                // classTitle:"檸香鮭魚蘆筍藍莓沙拉",
-                // trainerName:"黃雨心",
-                // en_trainerName:"Silvia",
-                // classLocation:"台北",
-                // price:"81000",
-
+            
                 // 教練
                 trainerID:(new URL(location.href)).searchParams.get('classid'),
                 // 發送用
                 sendID: (new URL(location.href)).searchParams.get('classid'),
-                // trainerExpertise:[
-                //     '游泳四式調整',
-                //     '個人體能鍛鍊',
-                //     '體態雕塑',
-                //     '姿態評估',
-                //     '功能性訓練',
-                //     'TRX訓練'
-                // ],
-                // trainerclass:{
-                //     name:'游泳肌力訓練(初階)',
-                //     date:'12/01',
-                //     price:'3000',
-                // },
-                
-                // trainerLicense:[
-                //     'PTA GLOBAL體適能教練證',
-                //     '中華民國健身C級指導員證',
-                //     '中華民國C級健美運動教練證',
-                //     '中華民國游泳協C級教練證',
-                //     '新北市水上安全救生協會C級游泳教練證',
-                //     '台灣國際身心障礙游泳協會C級游泳教練證',
-                //     '台灣國際身心障礙游泳協會C級游泳裁判證',
-                //     '中華民國水上救生協會救生員證',
-                //     '臺北市水上運動協會救生員證',
-                //     '中華民國紅十字心肺復甦術'
-                // ],
-                // ig:"https://www.peeta.tw/fitness",
-
-
-                // nutrients:{
-                //     cal:822,
-                //     protein:55.4,
-                //     carb:69.7,
-                //     fat:36.6,
-                // },
-                // intro:[
-                //     // 用，做分隔
-                //     '菜單材料：鮭魚片、蘆筍、洋蔥、蔾麥、雞蛋、藍莓、酪梨',
-                //     '烹調方式：烤、水煮',
-                //     '鮭魚+蘆筍+酪梨+藍莓!',
-                //     '這道料理的靈感源自於美國的healthy bowl',
-                //     '美國有很多販售健康碗的店家',
-                //     '這個組合絕對能令您感到新奇和印象深刻!',
-                // ],
-
-
-                // imgSrc:[
-                    // 1
-                    // './src/images/img/classes/menu/menu01-d1.jpg',
-                    // 2
-                    // './src/images/img/classes/menu/menu01-d1.jpg',
-                    // 3
-                    // './src/images/img/classes/menu/menu01-d1.jpg',    
-                // ],
 
             },
       

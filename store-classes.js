@@ -110,7 +110,7 @@ const classes =  new Vuex.Store({
             }).then(function(response){
                 console.log(response); 
                 let selectdata = response.data[0];
-                // console.log(selectdata); 
+                console.log(selectdata); 
                 // console.log(selectdata.CourseName);
                 // 解析完 
                 state.classTitle = selectdata.CourseName;
@@ -126,6 +126,7 @@ const classes =  new Vuex.Store({
                         carb: objnutrients[2],
                         fat: objnutrients[3],
                     }
+                    console.log("有近來營養素");
 
                 }
                 // 教練
@@ -162,15 +163,15 @@ const classes =  new Vuex.Store({
                 }
 
             }).then(function(response){
-                // console.log(response); 
                 let allnames = response.data;
-
+                console.log(response.data); 
+                console.log(state.trainerName);
+                
                 // 解析完
-                if(state.trainerName == []){ //新頁面
-
+                if(state.trainerName.length == 0){ //新頁面
+                    // console.log("進來了");
                     allnames.forEach(function(item){
                         // console.log(item);
-                        // console.log(state.trainerName);
                         state.trainerName.push(item.CoachName);
                     });
                 }else{ //編輯頁
