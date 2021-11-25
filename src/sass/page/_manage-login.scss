@@ -101,9 +101,7 @@ main#manage-login{
                 .orangebutton{
                     width: 250px;
                     height: 40px;
-                    // @include mobile(){
-                    //     width: 200px;
-                    // }
+                    cursor: pointer;
                 }
             }
         }

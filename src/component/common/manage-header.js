@@ -10,13 +10,13 @@ Vue.component("manage-header", {
             <nav class="manage-nav">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="./manage-class-home.html" class="manage-link">課程管理</a>
+                        <a href="#" class="manage-link" @click="changePage">課程管理</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./manage-forum-report.html" class="manage-link">討論區管理</a>
+                        <a href="#" class="manage-link" @click="changePage">討論區管理</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./manage-member-personal-info.html" class="manage-link">會員管理</a>
+                        <a href="#" class="manage-link" @click="changePage">會員管理</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="manage-link" v-if="logoutHref" @click="logout">登出</a>
@@ -31,6 +31,21 @@ Vue.component("manage-header", {
         }
     },
     methods: {
+        changePage(e){
+            
+
+            if(e.target.innerText === "課程管理" && this.logoutHref === true) {
+                
+                location.href = "./manage-class-home.html";
+            } else if(e.target.innerText === "討論區管理" && this.logoutHref === true) {
+                location.href = "./manage-forum-report.html";
+
+            } else if(e.target.innerText === "會員管理" && this.logoutHref === true) {
+                location.href = "./manage-member-personal-info.html";
+            } else {
+                alert("請先登入");
+            }
+        },
         logout(){
             if(this.memberID != ""){
                 let MemberID = this.memberID;
@@ -63,9 +78,10 @@ Vue.component("manage-header", {
         }).then((response) => {
         // console.log(response.data)
             if(response.data === ""){
-                console.log('未登入')
-                    // alert('請先登入，將前往登入頁'); 
-                    // location.href = 'Login.html';
+                console.log('未登入');
+                // location.href = './manage-login.html';
+                // alert("請先登入")
+                // location.href = './manage-login.html';
             }else{
                 console.log("有登入")
                 console.log(response.data)
