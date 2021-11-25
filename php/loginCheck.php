@@ -3,5 +3,4 @@
     include("./connection.php");  
     //登入檢查
     echo getUserID();
-    echo "loggggin";
 ?>

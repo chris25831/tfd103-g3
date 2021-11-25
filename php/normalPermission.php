@@ -11,9 +11,9 @@
     echo "11";
     $newUserId = intval($userId);
 
-    $sql = "UPDATE User SET UserPermission = 0 where UserID = ?;";
+    $sql = "UPDATE User SET UserPermission = '0' where UserID = ?;";
     echo "22";
-    
+    echo "id".$newUserId;
     //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
     $statement = $pdo->prepare($sql);
 

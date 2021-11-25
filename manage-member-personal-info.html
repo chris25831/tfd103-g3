@@ -80,6 +80,7 @@
                 let input = document.querySelector("input[type='checkbox']");    
                 let wrap = input.closest("tr");
                 if(input.checked === true) {
+                    // wrap.dataset.permission = "1";
                     axios({
                         method:"post",
                         url: "./php/noPermission.php",
@@ -89,7 +90,7 @@
                     })
                     .then((res)=>{
                         console.log(res.data);
-                        wrap.style.backgroundColor="gray";
+                        
                     })
                     .catch((error)=>{
                         console.log(error);
@@ -97,6 +98,7 @@
 
                    
                 } else {
+                    // wrap.dataset.permission = "0";
                     axios({
                         method:"post",
                         url: "./php/normalPermission.php",
@@ -106,16 +108,16 @@
                     })
                     .then((res)=>{
                         console.log(res.data);
-                        wrap.style.backgroundColor="";
+                        location.reload();
                     })
                     .catch((error)=>{
                         console.log(error);
                     })
-                    wrap.style.backgroundColor="";
                 }
             }
         },
         mounted(){
+
             axios({
                 method: "post",
                 url: "./php/manage-select-member.php",
@@ -124,22 +126,16 @@
             .then((res) => {
                 console.log(res.data);
                 this.memberData = res.data;
-                for(let i = 0; i < tr.length; i++) {
-              
-                if(tr[i].dataset.permission == 1) {
-                    tr[i].style.backgroundColor = "gray";
-                } else {
-                    tr[i].style.backgroundColor = "";
-                }
-            }
+                
             })
             .catch((error) => {
                 console.log(res.data);
-                
             })
 
-            let tr = document.querySelectorAll(".single-member");
-      
+            let member = document.getElementsByClassName("single-member");
+            for(let i = 0; i < member.length; i++) {
+               console.log(member);
+            }
         }
     })
 </script>
