@@ -44,7 +44,7 @@
     2px 2px 3px #5d6269;
   color: #00429d;
   transition: letter-spacing 1s;
-
+  cursor: pointer;
   &:active {
     cursor: pointer;
     box-shadow: 2px 2px #00429d;
@@ -64,7 +64,7 @@
   color: $orange;
   box-shadow: 2px 2px 3px 4px white inset, 2px 2px 1px $orange;
   transition: letter-spacing 1s;
-
+  cursor: pointer;
   &:active {
     cursor: pointer;
     background-color: $white;
@@ -75,6 +75,7 @@
 }
 
 .yellowbutton {
+  cursor: pointer;
   border: 0.3px solid $yellow;
   width: 262px;
   height: 56px;

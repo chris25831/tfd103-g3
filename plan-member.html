@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--要記得改頁面標題! 統一範例:你的頁面名稱 | Triclub-->
     <title>我的計畫表|Triclub</title> 
-    <!--從scss轉譯過來的-->
-    <link rel="stylesheet" href="css/style.css">
+    <script src="./src/js/vue.js"></script>
+    <script src="./src/js/vuex.js"></script>
+   
     <!--font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <!--c3.js style-->
@@ -18,9 +19,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js"></script>
     <!--axios-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="./src/js/vue.js"></script>
-    <script src="./src/js/vuex.js"></script>
+     <!--從scss轉譯過來的-->
+     <link rel="stylesheet" href="css/style.css">
+    
 
 </head>
 
@@ -159,9 +160,8 @@
                         location.href = 'Login.html';
                      }else{
                         console.log("有登入");
-                        localStorage.clear("plandata")
+                        // localStorage.clear("plandata")
                         this.$store.commit('selectplandata',memberID)
-                        //撈會員info
                         this.$store.commit('memberdata',memberID)
                         // console.log(memberID)
                      } 
@@ -236,15 +236,36 @@
                 });
             },
             // *** 帶入會員ID去找會員Plan *** //
-            memberPlan(){
-                console.log(this.memberLogin.memberId);
-                this.$store.commit('loadMemberPlan', this.memberLogin.memberId)
-            },
-            memberinfonew(){
-                let memberID = this.memberID
-                //撈會員info
-                console.log("到底")
-                this.$store.commit('memberdata',memberID)
+            // memberPlan(){
+            //     console.log(this.memberLogin.memberId);
+            //     this.$store.commit('loadMemberPlan', this.memberLogin.memberId)
+            // }
+            getmember(){
+                axios({            
+                    method: "POST",
+                    url: "./php/loginCheck.php",
+                    data:{},            
+                    dataType: "json",
+                    }).then((response)=>{
+                        let memberID = response.data;
+                        this.memberID = memberID
+                        if(response.data === ""){
+                        alert('請先登入，將前往登入頁'); 
+                        location.href = 'Login.html';
+                     }else{
+                        console.log("有登入");
+                        this.$store.commit('memberdata',memberID)
+                        // console.log(memberID)
+                     } 
+                    
+                    }).catch((error)=>{
+                        console.log(error);
+                        this.$store.commit('noplan')
+                        localStorage.clear("plandata") 
+                    })        
+
+                
+                
             }
         },
         computed:{
@@ -275,50 +296,41 @@
                             ["Run", this.Run],
                     ]
                 },
-                //會員是否登入
-                memberLogin(){
-                    return this.$store.state.memberLogin
-                },
+             
             },
                 
             
             created() { 
-                // //留點數
-                // let theData = localStorage.getItem('plandata');
-                // if(theData != null){
-                //     console.log("localstorage有東東")
-                //     this.memberinfonew();
-                //     return this.$store.state.plandata = JSON.parse(theData);
+                
+                //留點數
+                let theData = localStorage.getItem('plandata');
+                if(theData === null ){
+                    this.checkMember();
+                }else{
+                    this.getmember();
+                    // console.log("wooow")
+                    return this.$store.state.plandata = JSON.parse(theData);
                     
-                // }else{
-                //     console.log("localstorage沒東東")
-                //     //如有登入執行請求撈計畫表
-                //     this.checkMember();
-                // }
+                }
                
                 
                 
             },
             mounted() {
-                //留點數
-                let theData = localStorage.getItem('plandata');
-                if(theData != null){
-                    console.log("localstorage有東東")
-                    this.memberinfonew();
-                    return this.$store.state.plandata = JSON.parse(theData);
-                    
-                }else{
-                    console.log("localstorage沒東東")
-                    //如有登入執行請求撈計畫表
-                    this.checkMember();
-                }
-                console.log("2")
-                //拿點數
+                let theChartR = JSON.parse(localStorage.getItem('runComplete'))
+                let theChartS = JSON.parse(localStorage.getItem('swimComplete'))
+                let theChartB = JSON.parse(localStorage.getItem('bikeComplete'))
+                // console.log(theChartR);
+                // console.log(theChartS);
+                // console.log(theChartB);
+                this.$store.state.Run = theChartR;
+                this.$store.state.Bike = theChartB;
+                this.$store.state.Swim = theChartS;
                 let thePoint = JSON.parse(localStorage.getItem('Points'));
                 if(thePoint != null){
                     return this.$store.state.memberinfo.point = thePoint;
-                    
                 }
+                
                
             },
 
@@ -339,13 +351,13 @@
                     deep: true
                 },
                 //double check 3.如果臨時登入就執行找他的plan
-                memberLogin:{
-                    handler(new_data, old_data) {
-                        this.memberPlan()
-                    },
+                // memberLogin:{
+                //     handler(new_data, old_data) {
+                //         this.memberPlan()
+                //     },
                     // immediate: true,
                     // deep: true
-                }
+                // }
             },
           
            
