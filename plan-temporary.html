@@ -133,7 +133,7 @@
                 <div class="plan_bg">
                     
                     <div class="plan_info">
-                        <p>比賽日期:{{this.choicedate}}</p>
+                        <p>比賽日期:{{this.newracedate}}</p>
                         <p>訓練週數:{{this.questionanswer[2]}}</p>
                     </div>
                     <svg id="layer02"  id="bevelyellow" xmlns="http://www.w3.org/2000/svg" width="400" height="107" viewBox="0 0 308.81 107">
@@ -237,7 +237,11 @@ import plan from "./store-plan.js"
 new Vue({
     el: '#plan_question',
     store:plan,
-    
+    data(){
+        return{
+            newracedate:"2022年1月26日"
+        }
+    },
     methods: {
         last(){      //切換按鈕index
             this.$store.commit('last')
@@ -329,11 +333,9 @@ new Vue({
         },
 
     },
+  
     mounted() {
          this.$store.commit('loadrace')
-
-
-         
             gsap.from('.plan_ques_wrapper',{
                 duration : 1,
                 x : -200,
