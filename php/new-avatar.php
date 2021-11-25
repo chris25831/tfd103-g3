@@ -16,7 +16,7 @@
     $virtualPath = $formData["source"];
     
     $ServerRoot = $_SERVER["DOCUMENT_ROOT"];
-    $filePath = "../src/images/img/member/".$fileName;
+    $filePath = $ServerRoot."/tfd103/g3/tfd103-g3/src/images/img/member".$fileName;
     // echo $filePath;
     move_uploaded_file($virtualPath, $filePath);
     // print_r($FILES["file"]);
@@ -75,7 +75,8 @@
         //有登入session->回傳ID，無登入session->回傳空字串""
         return isset($_SESSION["UserID"]) ? $_SESSION["UserID"] : "";
     }
-    $relativePath = "./src/images/img/member/".$fileName;
+    $relativePath = "/tfd103/g3/tfd103-g3/src/images/img/member/".$fileName;
+    
     $sessionUserID = intval(getUserID());
     //建立SQL
     // $sql = "INSERT into User(UserPhoto) VALUES(?);";

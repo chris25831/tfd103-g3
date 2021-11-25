@@ -30,10 +30,10 @@
                 <thead class="member-title">
                     <tr class="info-items">
                         <td class="info-item">會員編號</td>
-                        <td class="info-item">會員名稱</td>
-                        <td class="info-item">擁有點數</td>
-                        <td class="info-item">註冊日期</td>
-                        <td class="info-item">最後登入時間</td>
+                        <td class="info-item">會員帳號</td>
+                        <td class="info-item">會員暱稱</td>
+                        <td class="info-item">點數</td>
+                        <td class="info-item">電子郵件</td>
                         <td class="info-item">黑名單</td>
                     </tr>
                 </thead>
@@ -41,37 +41,16 @@
                 <tbody class="member-info">
                     <tr class="single-member" v-for="member in memberData">
                             <td class="member-number">{{member.UserID}}</td>
+                            <td class="member-number">{{member.Account}}</td>
                             <td class="member-name">{{member.UserName}}</td>
-                            <td class="member-points">???點</td>
-                            <td class="member-signup-date">?????</td>
-                            <td class="member-signin-date">??????</td>
+                            <td class="member-points">{{member.Points}}點</td>
+                            <td class="member-email">{{member.Email}}</td>
                             <td class="member-signup-status">
-                                <input type="checkbox" name="" id="">
+                                <input type="checkbox" @click="changing">
                             </td>
                     </tr>
-                   
                 </tbody>
             </table>
-            <!-- <ul class="info-items">
-                <li class="info-item">會員編號</li>
-                <li class="info-item">會員名稱</li>
-                <li class="info-item">擁有點數</li>
-                <li class="info-item">註冊日期</li>
-                <li class="info-item">最後登入時間</li>
-                <li class="info-item">會員狀態</li>
-            </ul> -->
-            <!-- <ul class="member-info">
-                <li class="member-number">M12345</li>
-                <li class="member-name">王曉明</li>
-                <li class="member-points">123點</li>
-                <li class="member-signup-date">2021/09/08</li>
-                <li class="member-signin-date">2021/09/08 18:30</li>
-                <li class="member-signup-status">
-                    <label for="">
-                        黑名單<input type="checkbox" name="" id="">
-                    </label>
-                </li>                
-            </ul> -->
         </div>
 
     </main>
@@ -94,9 +73,19 @@
         data: { 
             categories: ["會員基本資料"],
             memberData: [],
+            checkOrNot: ""
         },
         methods: {
-            
+            changing(){
+                console.log("go");
+                let input = document.querySelector("input[type='checkbox']");    
+                let wrap = input.closest("tr");
+                if(input.checked === true) {
+                    wrap.style.backgroundColor="gray";
+                } else {
+                    wrap.style.backgroundColor="";
+                }
+            }
         },
         mounted(){
             axios({

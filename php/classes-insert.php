@@ -105,7 +105,7 @@ if (!empty($_FILES["classimg"]["name"][0])) {
         } else {
             //將暫存檔搬移到正確位置
             move_uploaded_file($filePath_Temp, $filePath);
-
+            
             //顯示檔案資訊
             echo "檔案存放位置：" . $filePath;
             echo "<br/>";
