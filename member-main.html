@@ -238,15 +238,15 @@
 				url: "./php/select-avatar.php"
 			})
 			.then((res)=>{
+				let img = document.querySelector(".avatar");
+
 				console.log(res);
 				this.avatar_arr = res.data;
 				this.avatarSrc = this.avatar_arr[0].UserPhoto;
-
-				console.log("arr", this.avatar_arr);
-				
-				// console.log("ava", this.avatarSrc);
-				let img = document.querySelector(".avatar");
-				console.log("img", img);
+			
+				if(this.avatarSrc == false) {
+					img.src = "./src/images/img/member/member.jpeg";
+				}
 			})
 			.catch((error)=>{
 				console.log(error);
