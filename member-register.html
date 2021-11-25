@@ -32,17 +32,20 @@
                <div class="arrow"></div>
            </a>
            <div class="register-content">
-               <img src="./src/images/icons/logo.svg">
+               <!-- <img src="./src/images/icons/logo.svg"> -->
                <h2>註冊</h2>
                <div class="input-wrapper">
                    <label class="required">*</label>
                    <input type="text" class="register-input" v-model.trim="email" placeholder="請填入Email"><br>
 
                    <label class="required">*</label>
+                   <input type="text" class="register-input" v-model.trim="username" placeholder="請填入暱稱"><br>
+
+                   <label class="required">*</label>
                    <input type="text" class="register-input" v-model.trim="phoneNumber" placeholder="請填入手機號碼"><br>
                     
                    <label class="required">*</label>
-                   <input type="text" class="register-input" v-model.trim="account" placeholder="請填入帳號/會員名稱"><br>
+                   <input type="text" class="register-input" v-model.trim="account" placeholder="請填入帳號"><br>
                    
                    <label class="required">*</label>
                    <input type="password" class="register-input" v-model="password" placeholder="請填入密碼"><br>
@@ -54,9 +57,9 @@
                         <input type="checkbox" v-model="check">我已同意遵守本網站個人隱私權政策及交易安全宣告與其他有關著作權、版權、商標專用權等之法律規定。
                    </label>
                </div>
-               <button class="fb-btn">
+               <!-- <button class="fb-btn">
                    <i class="fab fa-facebook"><span>使用Facebook註冊/登入</span></i>
-               </button>
+               </button> -->
                <div class="btn-wrapper">
                    <button class="orangebutton" @click="join">加入會員</button>
                    <!-- onclick="self.location.href='member-login.html'" -->
@@ -83,6 +86,7 @@
         data: {
             phoneNumber: "",
             email: "",
+            username: "",
             account: "",
             password: "",
             passwordConfirm: "",
@@ -95,6 +99,7 @@
                         method: "post",
                         url: "./php/new-member.php",
                         data: {
+                            username: this.username,
                             phoneNumber: this.phoneNumber,
                             email: this.email,
                             account: this.account,
@@ -103,7 +108,7 @@
                     })
                     alert(`註冊成功，請重新登入!
                     記得更新個人資訊唷!`);
-                    document.location.href="./member-login.html";
+                    // document.location.href="./member-login.html";
                 } else {
                     alert("密碼不相符");
                 }

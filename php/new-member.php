@@ -13,18 +13,21 @@
 
     $account = $formData["account"];
     $password = $formData["password"];
-    
+    $username = $formData["username"];
     $phonenumber = $formData["phoneNumber"];
     $email = $formData["email"];
 
+
+    
     //建立SQL
-    $sql = "INSERT into User(Account, Password, UserName, Mobile, Email) VALUES(?, ?, ?, ?, ?);";
+    $sql = "INSERT into User(UserName, Account, Password, Mobile, Email) VALUES(?, ?, ?, ?, ?);";
     
     $statement = $pdo->prepare($sql);
     
-    $statement->bindValue(1, $account);    
-    $statement->bindValue(2, $password); 
-    $statement->bindValue(3, $account);    
+    $statement->bindValue(1, $username);
+    $statement->bindValue(2, $account);    
+    $statement->bindValue(3, $password); 
+    
     $statement->bindValue(4, $phonenumber);    
     $statement->bindValue(5, $email);        
 
