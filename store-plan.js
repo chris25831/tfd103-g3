@@ -160,11 +160,7 @@ const plan = new Vuex.Store({
             // },
         ],
 
-        //會員登入資料
-        memberLogin:{
-            memberId:20001245,
-            login: 0
-        }
+       
     },
 
     mutations:{
