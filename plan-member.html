@@ -161,6 +161,7 @@
                         console.log("有登入");
                         localStorage.clear("plandata")
                         this.$store.commit('selectplandata',memberID)
+                        //撈會員info
                         this.$store.commit('memberdata',memberID)
                         // console.log(memberID)
                      } 
@@ -189,7 +190,7 @@
             checkoneday(){ 
                 this.$store.commit('checkoneday')
             },
-            
+            //刪
             plancancel(){
                 let memberID = this.memberID
                 this.$store.commit('plancancel')
@@ -238,8 +239,13 @@
             memberPlan(){
                 console.log(this.memberLogin.memberId);
                 this.$store.commit('loadMemberPlan', this.memberLogin.memberId)
+            },
+            memberinfonew(){
+                let memberID = this.memberID
+                //撈會員info
+                console.log("到底")
+                this.$store.commit('memberdata',memberID)
             }
-        
         },
         computed:{
                 
@@ -277,18 +283,43 @@
                 
             
             created() { 
-                let theData = localStorage.getItem('plandata');
-                if(theData != null){
-                    return this.$store.state.plandata = JSON.parse(theData);
-                }else{
-                    this.checkMember();
-                }
+                // //留點數
+                // let theData = localStorage.getItem('plandata');
+                // if(theData != null){
+                //     console.log("localstorage有東東")
+                //     this.memberinfonew();
+                //     return this.$store.state.plandata = JSON.parse(theData);
+                    
+                // }else{
+                //     console.log("localstorage沒東東")
+                //     //如有登入執行請求撈計畫表
+                //     this.checkMember();
+                // }
+               
+                
+                
             },
             mounted() {
+                //留點數
+                let theData = localStorage.getItem('plandata');
+                if(theData != null){
+                    console.log("localstorage有東東")
+                    this.memberinfonew();
+                    return this.$store.state.plandata = JSON.parse(theData);
+                    
+                }else{
+                    console.log("localstorage沒東東")
+                    //如有登入執行請求撈計畫表
+                    this.checkMember();
+                }
+                console.log("2")
+                //拿點數
                 let thePoint = JSON.parse(localStorage.getItem('Points'));
                 if(thePoint != null){
                     return this.$store.state.memberinfo.point = thePoint;
+                    
                 }
+               
             },
 
 

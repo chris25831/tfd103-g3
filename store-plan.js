@@ -93,10 +93,10 @@ const plan = new Vuex.Store({
         //會員資料
         memberinfo:{
             memberId:"",
-            photo:"./src/images/img/plan/member00001.jpg",
+            photo:"./src/images/img/member/member.jpeg",
             membername:"maggie",
             racedate:"20221127",//會員Table裡沒有 撈Training Plan
-            week:12,            //會員Table裡沒有 撈Training Plan
+            week: "",            //會員Table裡沒有 撈Training Plan
             point:"",
             membermethod:""
         },
@@ -274,8 +274,6 @@ const plan = new Vuex.Store({
             })
         },
         
-
-
         //存入計畫表
         insertplandata(state,payload){
             console.log('存')
@@ -353,7 +351,7 @@ const plan = new Vuex.Store({
             if (yes) {
                 state.cancel = false
                 localStorage.clear("plandata")
-
+                
             } else {
                 alert('您已取消');
             }
