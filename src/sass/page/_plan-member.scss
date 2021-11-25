@@ -185,6 +185,7 @@ section.plan_member_content{
         #plan_member_table{
             display: flex;
             justify-content: center;
+            margin: 10px 0 ;
          span.week_mark{
             filter: drop-shadow(0px 3px  $orange);
             background-color: $white ;
