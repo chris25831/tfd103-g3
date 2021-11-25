@@ -44,7 +44,7 @@
                         <img  id="" :src="memberinfo.photo" alt="">
                     </div>
                     <div>
-                        <p class="title3">maggie</p>
+                        <p class="title3">{{memberinfo.membername}}</p>
                         <hr style="border: 1px dashed orange;width: 100%;">
                     </div>
                 </header>
@@ -153,6 +153,7 @@
                     data:{},            
                     dataType: "json",
                     }).then((response)=>{
+                        console.log(response.data)
                         let memberID = response.data;
                         this.memberID = memberID
                         if(response.data === ""){
@@ -163,7 +164,7 @@
                         // localStorage.clear("plandata")
                         this.$store.commit('selectplandata',memberID)
                         this.$store.commit('memberdata',memberID)
-                        // console.log(memberID)
+                        this.$store.commit('memberinfo',memberID)
                      } 
                     
                     }).catch((error)=>{
@@ -235,11 +236,7 @@
                 
                 });
             },
-            // *** 帶入會員ID去找會員Plan *** //
-            // memberPlan(){
-            //     console.log(this.memberLogin.memberId);
-            //     this.$store.commit('loadMemberPlan', this.memberLogin.memberId)
-            // }
+           
             getmember(){
                 axios({            
                     method: "POST",
@@ -255,7 +252,7 @@
                      }else{
                         console.log("有登入");
                         this.$store.commit('memberdata',memberID)
-                        // console.log(memberID)
+                        this.$store.commit('memberinfo',memberID)
                      } 
                     
                     }).catch((error)=>{
@@ -310,7 +307,6 @@
                     this.getmember();
                     // console.log("wooow")
                     return this.$store.state.plandata = JSON.parse(theData);
-                    
                 }
                
                 
@@ -350,14 +346,7 @@
                     immediate: true,
                     deep: true
                 },
-                //double check 3.如果臨時登入就執行找他的plan
-                // memberLogin:{
-                //     handler(new_data, old_data) {
-                //         this.memberPlan()
-                //     },
-                    // immediate: true,
-                    // deep: true
-                // }
+              
             },
           
            
