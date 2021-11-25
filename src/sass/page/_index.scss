@@ -452,7 +452,7 @@ video {
 /* 開始製作我的個人計畫 */
 .training__plan{
   display: block;
-  height: 1400px;
+  height: 1480px;
   width: 100%;
   position: relative;
   background-color: #00429D;
@@ -476,9 +476,13 @@ video {
   position: absolute;
   top:-45px;
   left: 50px;
+  z-index: -1;
 }
 
 @media screen and (max-width:767.98px) {
+  .training__plan{
+    height: 1150px;
+  }
   .training__plan__title{
     margin-left: 10%;
     width: 415px;
@@ -493,19 +497,20 @@ video {
     
 /* 這裡是放計畫表的黃色塊 */	
 .training__plan__container{
-  position: absolute;  
-  top: 55%;           
-  left: 0;        
-  right: 0;
-  margin: auto; 
+  margin: 6%;
+    padding: 1%;
+    text-align: center;
+    background-color: #FFEF36;
 }
 
-.plan video{
-  object-fit: cover;
-  width: 100%;
-  border: 5px solid #FFEF36;
+.training__plan__chart{
+  width: 99%;
 }
-  
+@media screen and (max-width:767.98px) {
+  .training__plan__container {
+    margin: 75% 6% 0;
+  }
+}
     
     
     
@@ -908,5 +913,7 @@ video {
     max-width: 95%;
     text-align: center;
   }
+
+
 
 
