@@ -15,7 +15,7 @@ main.classes-home {
     // grid
     .classesgrid {
       // border: 1px solid green;
-      width: 785px;
+      max-width: 785px;
       // height: 1120px;
       overflow-y: auto;
       margin: 0 auto;
@@ -23,6 +23,17 @@ main.classes-home {
       grid-template-columns: auto auto auto;
       gap: 20px 20px;
       justify-content: space-between;
+      transition: all 1s linear;
+      @include table(){
+        // max-width: 785px;
+        justify-content: center;
+        grid-template-columns: auto auto ;
+      }
+      @include mobile(){
+        min-width: 375px;
+        grid-template-columns: auto;
+        transition: all 1s linear;
+      }
       .classesgrid_simple {
         width: 245px;
         height: 358px;
@@ -30,6 +41,17 @@ main.classes-home {
         font-size: 0px;
         overflow: hidden;
         position: relative;
+        transition: all 1s linear;
+        &:hover{
+          box-shadow: 4px 4px $orange, 3px 3px 3px rgba(88, 88, 88, 0.384); 
+          border-radius: 10px;
+        }
+        @include table(){
+          max-width: 300px;
+        }
+        @include mobile(){
+          min-width: 300px;
+        }
         a {
           display: block;
           width: 100%;
@@ -39,21 +61,28 @@ main.classes-home {
           cursor: pointer;
         }
         p {
-          width: 80%;
+          width: 100%;
+          height: 50px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           position: absolute;
-          bottom: 5px;
-          left: calc(50% - 100px);
+          bottom: 0;
+          // left: calc(50% - 100px);
           z-index: 1;
+          background-color: #ebebebba;
           // border: 1px solid green;
           text-align: center;
           overflow: hidden;
           text-overflow: ellipsis;
           span {
+            font-size: 18px;
             text-align: center;
             overflow: hidden;
-            color: $white;
+            color: $black;
             &:nth-child(1) {
-              display: -webkit-box;
+              // display: -webkit-box;
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 3;
               margin-bottom: 5px;
