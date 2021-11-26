@@ -107,6 +107,9 @@ main.classes-content {
           width: 460px;
           // border: 1px solid green;
           margin: 0 auto;
+          @include table(){
+            padding: 0 20px;
+          }
           > p:first-child {
             margin-bottom: 40px;
           }
@@ -243,6 +246,7 @@ main.classes-content {
         position: relative;
         @include table(){
           width: 100%;
+          
         }
         // 藍色分隔線
         &::before {
