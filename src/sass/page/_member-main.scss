@@ -28,6 +28,12 @@
                     position: absolute;
                     top: 0;
                     left: 0;
+                    &:hover{
+                        &::before{
+                            content: "修改";
+                            width: 20px;
+                        }
+                    }
                 }
                 img.avatar{
                     object-fit: cover;
