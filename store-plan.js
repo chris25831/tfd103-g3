@@ -176,8 +176,11 @@ const plan = new Vuex.Store({
                 },
             }).then((response) =>{
                 console.log(response.data)
-                state.memberinfo.photo = response.data[1]
                 state.memberinfo.membername = response.data[0]
+                if(response.data[1]  != null){
+                    state.memberinfo.photo = response.data[1]
+                }
+                
             }).catch((error)=>{
                 console.log(error)
                 
