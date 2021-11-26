@@ -1,5 +1,8 @@
 main.classes-content {
   @include bgnormal(100%);
+  @include table(){
+    flex-direction: column;
+  }
   // 宣告圖片左側空間
   .imgleftspace {
     margin-left: 40px;
@@ -31,11 +34,17 @@ main.classes-content {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      @include table(){
+        flex-direction: column;
+      }
       // 左側圖片
       .classcontentimg {
         width: 358px;
         // border: 1px solid green;
         font-size: 0;
+        @include table(){
+          margin: 0 auto 50px auto;
+        }
         img {
           width: 100%;
           margin-bottom: 20px;
@@ -50,22 +59,36 @@ main.classes-content {
         // border: 1px solid brown;
         width: 550px;
         margin-right: 40px;
+        @include table(){
+          justify-content: center;
+          width: 100%;
+        }
         .contentdetail {
           // border: 1px solid yellow;
           margin-bottom: 70px;
           position: relative;
+          @include table(){
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+          }
           // 藍色分隔線
           &::after {
             content: "";
-            width: 520px;
+            width: 100%;
             color: $blue;
             border-top: 3px solid $blue;
             position: absolute;
             bottom: -40px;
-            left: calc(50% - 260px);
+            left: 0;
           }
           > p {
             margin: 0px 0px 65px 70px;
+            @include table(){
+              margin: 0px;
+              margin-bottom: 30px
+            }
             span.title3 {
               display: inline-block;
               margin-top: 15px;
@@ -74,6 +97,10 @@ main.classes-content {
           > div {
             display: flex;
             justify-content: space-evenly;
+            @include table(){
+              justify-content: center;
+              width: 60%;
+            }
           }
         }
         .contentintro {
@@ -108,12 +135,26 @@ main.classes-content {
       // 組件二
       .classcontentword2 {
         // border: 1px solid brown;
-        width: 604px;
+        max-width: 604px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        margin-top: 20px;
+        @include table(){
+          margin: 0 auto;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          margin-top: 44px;
+        }
         > div:nth-child(1) {
           margin-right: 32px;
+          @include table(){
+            margin-right: 0;
+            margin-bottom: 20px;
+          }
           > p.title2 {
             margin: 0px;
           }
@@ -160,6 +201,9 @@ main.classes-content {
           padding-bottom: 15px;
           overflow: hidden;
           background-color: $white;
+          @include table(){
+            width: auto;
+          }
           > p {
             margin: 0px 0px 15px 0px;
             background-color: $yellow;
@@ -179,8 +223,14 @@ main.classes-content {
           display: flex;
           justify-content: space-evenly;
           margin-top: 45px;
+          @include table(){
+            width: 80%;
+          }
           button {
             cursor: pointer;
+            @include table(){
+              font-size: 18px;
+            }
           }
         }
       }
@@ -189,17 +239,20 @@ main.classes-content {
         // border: 1px solid blue;
         margin: 83px auto 0px;
         padding: 0px 10px;
-        width: 780px;
+        width: 100%;
         position: relative;
+        @include table(){
+          width: 100%;
+        }
         // 藍色分隔線
         &::before {
           content: "";
-          width: 1032px;
+          width: 100%;
           color: $blue;
           border-top: 3px solid $blue;
           position: absolute;
           top: -41.5px;
-          left: calc(50% - 516px);
+          left: 0;
         }
         > p.title3 {
           text-align: center;
