@@ -64,7 +64,7 @@
 						<ul class="firstpartright">
 							<li>電子信箱：	{{userInfo.Email}}</li>
 							<li>會員帳號：	{{userInfo.Account}}</li>
-							<li>累積點數：	80點</li>
+							<li>累積點數：	{{userInfo.Points}}點</li>
 							<!-- <li>登入天數：	301天</li>    -->
 						</ul>
 						<button class="edit-btn" id="click-btn" @click="turnOn">
@@ -213,7 +213,7 @@
 				})
 				.then((res) => {
 					alert("修改成功!")
-					// document.location.href="../member-main.html";
+					document.location.href="./member-main.html";
 				})
 			}
 		},
@@ -226,7 +226,7 @@
 				this.userInformation = res.data;
 				this.name = this.userInformation[0].UserName;
 				this.birthday = this.userInformation[0].Birthday;
-				this.phone = this.userInformation[0].Mobile;
+				this.phone = "0" + this.userInformation[0].Mobile;
 				this.address = this.userInformation[0].Address;
 
 				console.log(this.userInformation);
@@ -243,14 +243,15 @@
 				console.log(res);
 				this.avatar_arr = res.data;
 				this.avatarSrc = this.avatar_arr[0].UserPhoto;
-			
-				if(this.avatarSrc == false) {
-					img.src = "./src/images/img/member/member.jpeg";
+				console.log(this.avatarSrc);
+				if(this.avatar_arr[0].UserPhoto == null) {
+					this.avatarSrc = "./src/images/img/member/member.jpeg";
 				}
 			})
 			.catch((error)=>{
 				console.log(error);
 			})
+			console.log(this.avatarSrc);
 		},
 	})
 </script>

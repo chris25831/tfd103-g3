@@ -98,7 +98,7 @@
             <div class="comments">
                 <div class="single-comment" v-for="commentDatum in commentData" :data-id="commentDatum.CommentID">
                     <div class="comment-author">
-                        <img class="avatar avatar-comment" src="./src/images/img/forum/smile.jpg" alt="">
+                        <!-- <img class="avatar avatar-comment" :src="commentDatum.UserPhoto" alt=""> -->
                         <span class="name">{{commentDatum.UserName}}</span>
                         <span class="time">{{commentDatum.CommentPostDate}}</span>
                     </div>
