@@ -20,7 +20,7 @@
 
     
     //建立SQL
-    $sql = "INSERT into User(UserName, Account, Password, Mobile, Email) VALUES(?, ?, ?, ?, ?);";
+    $sql = "INSERT into User(UserName, UserIdentity, Points, Account, Password, Mobile, Email) VALUES(?, 'member', 0 ,? , ?, ?, ?);";
     
     $statement = $pdo->prepare($sql);
     
