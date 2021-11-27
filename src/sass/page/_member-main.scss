@@ -29,8 +29,14 @@
                     top: 0;
                     left: 0;
                     &:hover{
-                        &::before{
+                        &::after{
+                            position: absolute;
+                            right: 0;
+                            bottom: 0;
                             content: "修改";
+                            color: white;
+                            background-color: black;
+                            height: 20px;
                             width: 20px;
                         }
                     }

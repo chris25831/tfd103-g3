@@ -227,12 +227,12 @@ const plan = new Vuex.Store({
                           var rundata = response.data[1]
                           var bikedata = response.data[2]
                           console.log("有計畫表")
-                          
+                        //   console.log(response.data)
                             for(let s in swimdata){
                                state.plandata.unshift({
                                    "Swim": swimdata[s],
-                                   "Run":  rundata[s],
                                    "Bike": bikedata[s],
+                                   "Run":  rundata[s],
                                     check:[]
                                })
                             }
@@ -253,7 +253,6 @@ const plan = new Vuex.Store({
                                 
                               
                               if(item.Swim === null && item.Run === null && item.Bike === null){
-                                  
                                   item.Rest = "rest";
                               }
                             })
@@ -423,7 +422,7 @@ const plan = new Vuex.Store({
                     var rundata = response.data[1]
                     var bikedata = response.data[2]
                     
-                    // console.log(response.data)
+                    console.log(response.data)
                     // console.log(swimdata)
                     // console.log(rundata),
                     // console.log(bikedata)
