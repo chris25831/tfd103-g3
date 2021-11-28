@@ -88,7 +88,7 @@
         data: {
             categories: ["檢舉"],
             reportData: [],
-            storeId: ""
+            storeId: "",
         },
         methods: {
             getId(){
@@ -121,6 +121,9 @@
             .then((res)=> {
                 console.log(res.data);
                 this.reportData = res.data;
+                if(this.reportData.length === 0) {
+
+                }
             })
             .catch((error) => {
                 console.log(error);
