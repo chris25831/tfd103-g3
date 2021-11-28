@@ -19,18 +19,23 @@ Vue.component("my-header", {
   
           <ul class="header_menu" :class="{slidedown:slide}">
             <li class="head_title">
-                <a class="info title3" href="information.html">三鐵資訊</a>
+                <a id="info" href="information.html" class="info title3">三鐵資訊</a>
                 <ul class="head_subtitle head_activity">
-                <a href="race-home.html"><li>近期賽事</li></a>
+                  <a href="race-home.html"><li>近期賽事</li></a>
                 </ul>
             </li>
-            <li class="head_title"><a href="classes-home.html" class="title3">訓練課程</a>
-              
+
+            <li class="head_title">
+              <a id="classes" href="classes-home.html" class="title3">訓練課程</a>
             </li>
-            <li class="head_title"><a href="forum-home.html" class="title3">討論區</a>
-             
+
+            <li class="head_title">
+              <a id="forum" href="forum-home.html" class="title3">討論區</a>
+             </li>
+
+            <li class="head_title">
+              <a id="plan" href="plan-temporary.html" class="title3">訂製計畫表</a>
             </li>
-            <li class="head_title"><a href="plan-temporary.html" class="title3">訂製計畫表</a></li>
             
            
               <ul class="head_subtitle head_contactus">
@@ -64,10 +69,56 @@ Vue.component("my-header", {
         slide: false,
         hamBar_close:false,
         logouthref:false,
-        memberID: ""
+        memberID: "",
+        headerposition:"",
+
       }
     },
+
     mounted(){
+
+        window.addEventListener("load", function(){
+        let nowurl = this.location.pathname;
+        
+        let pos = nowurl.slice(21);
+        // console.log(pos);
+
+        // 三鐵資訊
+        if(pos == 'information.html' || pos == 'race-home.html' ||  pos == 'race-content.html'){
+         let addline = this.document.getElementById("info");
+         addline.classList.add("underline");  
+        }else{
+          let addline = this.document.getElementById("info");
+          addline.classList.remove("underline");  
+        }
+        
+        //課程 
+        if(pos == 'classes-home.html' || pos == 'classes-content.html'){
+          let addline = this.document.getElementById("classes");
+          addline.classList.add("underline");  
+         }else{
+          let addline = this.document.getElementById("classes");
+           addline.classList.remove("underline");  
+         }
+        //  討論區
+         if(pos == 'forum-home.html' || pos == 'forum-content.html'){
+          let addline = this.document.getElementById("forum"); 
+          addline.classList.add("underline");  
+         }else{
+          let addline = this.document.getElementById("forum"); 
+           addline.classList.remove("underline");  
+         }
+         
+        //  計畫表
+        if(pos == 'plan-temporary.html'){
+          let addline = this.document.getElementById("plan");
+          addline.classList.add("underline");  
+         }else{
+          let addline = this.document.getElementById("plan");
+           addline.classList.remove("underline");  
+         }
+      });
+
         axios({            
             method: "POST",
             url: "./php/loginCheck.php",
@@ -90,6 +141,7 @@ Vue.component("my-header", {
                 })    
 
     },
+
     methods: {
       allocate(){
         if(this.logouthref === true) {
@@ -129,24 +181,24 @@ Vue.component("my-header", {
     },
     
 
-  });
+});
   
-  let header = new Vue({
-      el:'#header',
-      data(){
-        return{
-          active: false,
-        }
-      },
-      created(){
-        window.addEventListener("scroll", this.handleScroll);
-      },
+let header = new Vue({
+    el:'#header',
+    data(){
+      return{
+        active: false,
+      }
+    },
+    created(){
+      window.addEventListener("scroll", this.handleScroll);
+    },
    
-      methods:{
-        handleScroll(){
-          this.active = window.scrollY > 0 ? true:false
-        }
-      },
+    methods:{
+      handleScroll(){
+        this.active = window.scrollY > 0 ? true:false
+      }
+    },
   
       
-  })
+})

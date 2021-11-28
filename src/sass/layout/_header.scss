@@ -1,334 +1,309 @@
-
-
-body{
-    position: relative;
+body {
+  position: relative;
 }
 
-
-#header{
-    height: 80px;
-    background-color: $blue;    
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    z-index: 99999;
-    @include table(){
-        padding: 0 83px;
-        
-    }
-    #header_wrapper{
-        // border: 1px solid white;
-        max-width: 1200px;
-        margin: 0  10px;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        @include table(){
-            justify-content:center;
-            min-width: 576px;
-        }
-        @include mobile(){
-           
-            min-width: 375px;
-        }
-        a.logo{
-            display: flex;
-            align-items: center;
-            // border: 1px solid white;
-            color: $white;
-            width:15%;
-            @include table(){
-                width: 70%;
-                img{
-                    max-width: 40%;
-                    margin: 0 auto;
-                }
-            }
-            @include mobile(){
-                width: 50%;
-            }
-            
-        }
-        a.header_icon {
-            color: white;
-            text-decoration: none;
-        }
-        
-    }
-}
-
-
-.header_menu{
-    z-index: 120;
-    display: flex;
-    width: 70%;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    margin-left: 0%;
-    padding: 0;
-    
-    @include table(){
-        background-color: $blue;
-        position: absolute;
-        transform:translate(-100%,80px);
-        left: 0;
-        flex-direction: column;
-        opacity: 0;
-        z-index: -10;
-        height: 100vh;
-    }
-
-
-    @include mobile(){
-        width: 100%;
-    }
-    li{
-        a.title3{
-            
-            @include table(){
-                justify-content: flex-start;
-                padding-left: 22px
-            }
-            
-        }
-    }
-    li{ 
-        @include flexcenter;
-        height: 100%;
-        width: 100%;
-        list-style: none;
-        transition:all .2s;
-        
-        @include table(){
-            justify-content: left;
-            height: 10%;
-            height: 26%;
-        }
-        &:hover {
-            letter-spacing: 3px;
-            background:linear-gradient( -30deg, $yellow, $lightyellow);
-            color: $blue;
-        }
-        &:nth-child(1){
-            position: relative;
-            &:hover .head_activity {
-                padding: 0;
-               background-color: $blue;
-               z-index: 10000;
-               display: block;
-               position: absolute;
-               top: 0;
-               transform: translateY(100%);
-               height: 100%;
-               width: 100%;
-               @include table(){
-                transform: translateY(0%);
-                position: relative;
-                height: 100%;
-                width: 50%;
-                background:transparent;
-               }
-
-            }
-        }
-        a{
-            font-size: 18px;
-            color: $white;
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-            @include flexcenter;
-            transition:all .3s;
-            @include table(){
-                width: 100%;
-                
-            }
-            &:hover {
-                color: $blue;
-            }
-        }
-    }
-}
-
-.slidedown{
-    @include table(){
-        padding: 20px;
-        z-index: 90;
-        justify-content: flex-start;
-        opacity: 1;
-        transform:translate(0px,80px);
-        transition: transform  .3s;
-        width: 80%;
-    }
-    @include table(){
-        width: 50%;
-        transform:translate(0px,80px);
-    }
-    @include mobile(){
-        width: 100%;
-        transform:translate(0px,80px);
-    }
-}
-
-a.header_icon{
-    @include flexcenter;
-    align-items: center;
-    width: 5%;
-    @include table(){
-        width: 10%;
-    }
-    @include mobile(){
-        width: 15%;
-    }
-    i{
-        color: $white;
-        // width: 100%;
-        display: inline-block;
-        &:hover {
-            color: $yellow;
-          }
-    }
-} 
-
-
-.hamBar{
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    @include table(){
-        width: 10%;
-    }
-    .btn{
-        // border: 1px solid $white;
-        position: absolute;
-        
-        width: 50%;
-        height: 20px;
-        cursor: pointer;
-        @include table() {
-            width: 100%;
-        }
-        @include mobile(){
-            width: 100%;
-        }
-        span{
-            // border: 1px solid $white;
-            position: absolute;
-            width: 100%;
-            transform: translate(-50%, -50%);
-            height: 2px;
-            background-color: $white;
-            &:nth-child(1){
-                top: 0;
-            }
-            &:nth-child(2){
-                top: 45%;
-            }
-            &:nth-child(3){
-                bottom: 0%;
-            }
-           
-        }
-     }
-    
-   
-    color: $white;
-    display: none;
-    @include table{
-        display: flex;
-        
-        ::before{
-            content: "";
-       }
-    }
-   
-}
-
-.head_subtitle{
-    display: none;
-    @include table(){
-        height: 100%;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        a{
-            width: 100%;
-            li{
-                width: 100%;
-                &:hover{
-                    background: none;
-                }
-            }
-        }
-    }
-}
-ul.head_contactus{
+#header {
+  height: 80px;
+  background-color: $blue;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  z-index: 99999;
+  @include table() {
+    padding: 0 83px;
+  }
+  #header_wrapper {
     // border: 1px solid white;
-    line-height:normal;
+    max-width: 1200px;
+    margin: 0 10px;
+    display: flex;
     width: 100%;
-    height: 100%;
-    padding-left: 0;
-    li{
-        // border: 1px solid white;
-        justify-content: center;
-        p,a,i{
-            // border: 1px solid white;
-            color: azure;
-            &:hover {
-                background: none;
-                letter-spacing: normal;
-            }
-        }
-       
-        &:hover {
-            background: none;
-            letter-spacing: normal;
-            color: azure;
-        }
+    justify-content: center;
+    @include table() {
+      justify-content: center;
+      min-width: 576px;
     }
+    @include mobile() {
+      min-width: 375px;
+    }
+    a.logo {
+      display: flex;
+      align-items: center;
+      // border: 1px solid white;
+      color: $white;
+      width: 15%;
+      @include table() {
+        width: 70%;
+        img {
+          max-width: 40%;
+          margin: 0 auto;
+        }
+      }
+      @include mobile() {
+        width: 50%;
+      }
+    }
+    a.header_icon {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.header_menu {
+  z-index: 120;
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  margin-left: 0%;
+  padding: 0;
+
+  @include table() {
+    background-color: $blue;
+    position: absolute;
+    transform: translate(-100%, 80px);
+    left: 0;
+    flex-direction: column;
+    opacity: 0;
+    z-index: -10;
+    height: 100vh;
+  }
+
+  @include mobile() {
+    width: 100%;
+  }
+  li {
+    // 底線
+    > a.underline {
+      text-decoration: 3px underline $yellow;
+      text-underline-offset: 3px;
+    }
+    a.title3 {
+      @include table() {
+        justify-content: flex-start;
+        padding-left: 22px;
+      }
+    }
+  }
+  li {
+    @include flexcenter;
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    transition: all 0.2s;
+
+    @include table() {
+      justify-content: left;
+      height: 10%;
+      height: 26%;
+    }
+    &:hover {
+      letter-spacing: 3px;
+      background: linear-gradient(-30deg, $yellow, $lightyellow);
+      color: $blue;
+    }
+    &:nth-child(1) {
+      position: relative;
+      &:hover .head_activity {
+        padding: 0;
+        background-color: $blue;
+        z-index: 10000;
+        display: block;
+        position: absolute;
+        top: 0;
+        transform: translateY(100%);
+        height: 100%;
+        width: 100%;
+        @include table() {
+          transform: translateY(0%);
+          position: relative;
+          height: 100%;
+          width: 50%;
+          background: transparent;
+        }
+      }
+    }
+    a {
+      font-size: 18px;
+      color: $white;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      @include flexcenter;
+      transition: all 0.3s;
+      @include table() {
+        width: 100%;
+      }
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+}
+
+.slidedown {
+  @include table() {
+    padding: 20px;
+    z-index: 90;
+    justify-content: flex-start;
+    opacity: 1;
+    transform: translate(0px, 80px);
+    transition: transform 0.3s;
+    width: 80%;
+  }
+  @include table() {
+    width: 50%;
+    transform: translate(0px, 80px);
+  }
+  @include mobile() {
+    width: 100%;
+    transform: translate(0px, 80px);
+  }
+}
+
+a.header_icon {
+  @include flexcenter;
+  align-items: center;
+  width: 5%;
+  @include table() {
+    width: 10%;
+  }
+  @include mobile() {
+    width: 15%;
+  }
+  i {
+    color: $white;
+    // width: 100%;
+    display: inline-block;
+    &:hover {
+      color: $yellow;
+    }
+  }
+}
+
+.hamBar {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  @include table() {
+    width: 10%;
+  }
+  .btn {
+    // border: 1px solid $white;
+    position: absolute;
+
+    width: 50%;
+    height: 20px;
+    cursor: pointer;
+    @include table() {
+      width: 100%;
+    }
+    @include mobile() {
+      width: 100%;
+    }
+    span {
+      // border: 1px solid $white;
+      position: absolute;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      height: 2px;
+      background-color: $white;
+      &:nth-child(1) {
+        top: 0;
+      }
+      &:nth-child(2) {
+        top: 45%;
+      }
+      &:nth-child(3) {
+        bottom: 0%;
+      }
+    }
+  }
+
+  color: $white;
+  display: none;
+  @include table {
+    display: flex;
+
+    ::before {
+      content: "";
+    }
+  }
+}
+
+.head_subtitle {
+  display: none;
+  @include table() {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a {
+      width: 100%;
+      li {
+        width: 100%;
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+}
+ul.head_contactus {
+  // border: 1px solid white;
+  line-height: normal;
+  width: 100%;
+  height: 100%;
+  padding-left: 0;
+  li {
+    // border: 1px solid white;
+    justify-content: center;
+    p,
+    a,
+    i {
+      // border: 1px solid white;
+      color: azure;
+      &:hover {
+        background: none;
+        letter-spacing: normal;
+      }
+    }
+
+    &:hover {
+      background: none;
+      letter-spacing: normal;
+      color: azure;
+    }
+  }
 }
 
 .sticky {
-    z-index: 100;
-    top: 0;
-    position: sticky;
-    transition: all  .8s;
-    box-shadow: 1px 2px 3px  rgb(43, 42, 66);
-  }
-
-
-.-close{
-    // border: 1px solid $white;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: $white;
-    
-    &:nth-child(1){
-        display: none;
-    }
-    &:nth-child(2){
-        top: 45%;
-        transform: rotate(45deg);
-    }
-    &:nth-child(3){
-        top: 45%;
-        transform: rotate(-45deg);
-
-    }
-   
+  z-index: 100;
+  top: 0;
+  position: sticky;
+  transition: all 0.8s;
+  box-shadow: 1px 2px 3px rgb(43, 42, 66);
 }
 
+.-close {
+  // border: 1px solid $white;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: $white;
 
-
-
-
-
-
-
-
-
-
-
+  &:nth-child(1) {
+    display: none;
+  }
+  &:nth-child(2) {
+    top: 45%;
+    transform: rotate(45deg);
+  }
+  &:nth-child(3) {
+    top: 45%;
+    transform: rotate(-45deg);
+  }
+}
