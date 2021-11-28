@@ -5,8 +5,8 @@
     
     // $sql = "INSERT into User(UserName, UserIdentity, Points, Account, Password, Mobile, Email) VALUES('triclub', 'member', 100 , 'triclub' ,'triclub', 0989342123, 'triclub@gmail.com');";
 
-    // $sql = "DELETE from User WHERE Account = 'coding123';";
-    $sql = "UPDATE User SET UserIdentity = '0' WHERE Account = 'melody624';";
+    // $sql = "DELETE from User WHERE Account = 'aaa' and Account = 'elsa123';";
+    $sql = "UPDATE User SET UserIdentity = '0' WHERE Account = 'elsa123';";
 
     echo "1";
     $statement = $pdo->prepare($sql);
