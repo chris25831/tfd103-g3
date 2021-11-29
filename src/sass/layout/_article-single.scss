@@ -312,6 +312,7 @@
                 margin: 0;
                 line-height: 1.5rem;
                 height: auto;
+                white-space: pre-wrap;
                 @include mobile(){
                     padding: 16px 25px 16px;
                 }
