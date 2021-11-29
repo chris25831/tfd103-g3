@@ -43,10 +43,32 @@ main.shopcart-home {
       display: flex;
       position: relative;
       align-content: center;
+      @include table(){
+        justify-content: center;
+        top: 20px;
+        height: 32px;
+      }
+      p{
+        margin-top: 20px;
+        @include table(){
+          font-size: 18px;
+        }
+      }
       img {
         position: absolute;
         top: calc(50% - 25px);
         left: calc(50% - 195px);
+        @include table(){
+          position: absolute;
+          display: flex;
+          max-width: 275px;
+          width: 80%;
+          margin: 0 auto;
+          // border: 1px solid red;
+          top: calc(50% - 25px);
+          transform: translate(-50%, -50%);
+          left: 50%;
+        }
       }
     }
     > div:last-child {
@@ -56,14 +78,24 @@ main.shopcart-home {
         // border: 1px solid green;
         display: flex;
         justify-content: space-between;
+        @include table(){
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          
+        }
         .classlist {
           border: 1px solid $orange;
           border-radius: 10px;
           background-color: $white;
           overflow: hidden;
           padding-bottom: 44px;
-          width: 820px;
+          width: 70%;
           height: 514px;
+          box-shadow: 2px 2px 2px #80808057;
+          @include table(){
+            min-width: 275px;
+          }
           // 共同checkedbox設定
           input {
             margin-left: 20px;
@@ -145,6 +177,13 @@ main.shopcart-home {
           width: 340px;
           height: 514px;
           margin-right: 10px;
+          box-shadow: 2px 2px 2px #80808057;
+          @include table(){
+            width: 70%;
+            min-width: 275px;
+            margin-right: 0px;
+            margin-top: 30px;
+          }
           > p {
             width: 100%;
             height: 35px;
@@ -159,6 +198,7 @@ main.shopcart-home {
 
             padding: 0px 30px;
             align-items: center;
+           
             p:nth-child(2) span {
               margin-left: 20px;
             }
@@ -192,6 +232,11 @@ main.shopcart-home {
             }
             button {
               cursor: pointer;
+              @include table(){
+                width: 200px;
+                height: 35px;
+              
+              }
               &:hover {
                 background-color: $lightyellow;
               }
