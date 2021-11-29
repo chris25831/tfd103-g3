@@ -37,7 +37,7 @@
                         <td class="info-item">黑名單</td>
                     </tr>
                 </thead>
-            
+                
                 <tbody class="member-info">
                     <tr class="single-member" v-for="member in memberData" :data-permission="member.UserPermission">
                             <td class="member-number">{{member.UserID}}</td>
@@ -126,10 +126,10 @@
             .then((res) => {
                 console.log(res.data);
                 this.memberData = res.data;
-                
+                this.memberData.reverse();
             })
             .catch((error) => {
-                console.log(res.data);
+                console.log(error);
             })
 
             let member = document.getElementsByClassName("single-member");

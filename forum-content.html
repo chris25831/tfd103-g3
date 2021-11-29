@@ -186,7 +186,9 @@
             // likeString: "",
             likeArray: [],
             notMine: false,
-            isMine: false
+            isMine: false,
+
+            user: ""
         },
         methods: {
             openEditModal(){               
@@ -292,22 +294,26 @@
             },
             sendComment(){  
                 let postId = parseInt(this.singleArticleData.PostID);
-                document.querySelector(".submit-comment").disabled = true;
-                axios({
-                    method: 'post',
-                    url: './php/new-comment.php',
-                    //API要求的資料
-                    data: {    
-                        postid: postId,                     
-                        commentContent: this.commentContent,
-                        userid : parseInt(this.singleArticleData.UserID)
-                    }
-                })
-                .then((res) => {
-                    console.log(res.data)
-                    location.reload();
-                })
-                .catch((error) => console.log(error))
+                if(this.user == "") {
+                    alert("請先登入")
+                } else {
+                    document.querySelector(".submit-comment").disabled = true;
+                    axios({
+                        method: 'post',
+                        url: './php/new-comment.php',
+                        //API要求的資料
+                        data: {    
+                            postid: postId,                     
+                            commentContent: this.commentContent,
+                            userid : parseInt(this.user)
+                        }
+                    })
+                    .then((res) => {
+                        console.log(res.data)
+                        location.reload();
+                    })
+                    .catch((error) => console.log(error))
+                }
             }   
         },
         mounted() {  
@@ -352,6 +358,27 @@
                 this.commentData = res.data;
             })
             .catch((error) => console.log(error));
+
+
+
+            axios({            
+                method: "POST",
+                url: "./php/loginCheck.php",
+            })
+            .then((response) => {
+            // console.log(response.data)
+                if(response.data === ""){
+                    console.log("XXX")
+                }else{
+                    console.log("VVV");
+                    this.user = response.data;
+                    console.log("this.user",this.user);
+                }
+            })
+            .catch(function(error){
+                console.log(error);
+                console.log("錯誤");
+            })    
         },
     })
 </script>
