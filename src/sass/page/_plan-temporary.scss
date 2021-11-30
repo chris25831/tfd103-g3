@@ -1,6 +1,10 @@
+body.plan{
+  @include bgplantem(100vh);
+}
 // // ***lightbox*** //
 .plan_question_wrapper {
-  @include bgplantem(100vh);
+  // @include bgplantem(100vh);
+  margin: 10% 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +18,7 @@
     height: 400px;
     width: 700px;
     @include mobile{
-      
+      margin-top: 20px;
       width: 90%;
       height: 60%;
     }

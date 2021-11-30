@@ -21,10 +21,10 @@ body {
     justify-content: center;
     @include table() {
       justify-content: center;
-      min-width: 576px;
+      min-width: 576px !important;
     }
     @include mobile() {
-      min-width: 375px;
+      min-width: 375px !important;
     }
     a.logo {
       display: flex;
@@ -37,6 +37,10 @@ body {
         img {
           max-width: 40%;
           margin: 0 auto;
+          @include mobile(){
+            max-width: 65%;
+            padding-left: 30px;
+          }
         }
       }
       @include mobile() {
@@ -87,7 +91,7 @@ body {
       }
     }
   }
-  li {
+  li.head_title {
     @include flexcenter;
     height: 100%;
     width: 100%;
@@ -96,8 +100,8 @@ body {
 
     @include table() {
       justify-content: left;
-      height: 10%;
-      height: 26%;
+      height: 15%;
+      
     }
     &:hover {
       letter-spacing: 3px;
@@ -134,6 +138,9 @@ body {
       @include flexcenter;
       transition: all 0.3s;
       @include table() {
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
         width: 100%;
       }
       &:hover {
@@ -193,12 +200,11 @@ a.header_icon {
   .btn {
     // border: 1px solid $white;
     position: absolute;
-
     width: 50%;
     height: 20px;
     cursor: pointer;
     @include table() {
-      width: 100%;
+      width: 80%;
     }
     @include mobile() {
       width: 100%;
@@ -207,7 +213,7 @@ a.header_icon {
       // border: 1px solid $white;
       position: absolute;
       width: 100%;
-      transform: translate(-50%, -50%);
+      // transform: translate(-50%, -50%);
       height: 2px;
       background-color: $white;
       &:nth-child(1) {
@@ -241,13 +247,13 @@ a.header_icon {
     display: flex;
     flex-direction: column;
     align-items: center;
-    a {
-      width: 100%;
+   
       li {
+        display: flex;
         width: 100%;
         &:hover {
           background: none;
-        }
+        
       }
     }
   }
@@ -256,14 +262,20 @@ ul.head_contactus {
   // border: 1px solid white;
   line-height: normal;
   width: 100%;
-  height: 100%;
+  height: 10%;
   padding-left: 0;
   li {
     // border: 1px solid white;
+    color: white;
+    list-style: none;
     justify-content: center;
-    p,
-    a,
-    i {
+    &:nth-child(2){
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+ 
+    a{
       // border: 1px solid white;
       color: azure;
       &:hover {
@@ -277,6 +289,9 @@ ul.head_contactus {
       letter-spacing: normal;
       color: azure;
     }
+    // &:nth-child(2){
+    //   // border: 1px solid white;
+    // }
   }
 }
 
