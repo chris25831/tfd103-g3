@@ -16,28 +16,49 @@
       
         main.entrance_bg{
             background: linear-gradient(#00429d, #00214f);
-            height: 500px;
+            height: 100vh;
             display: flex;
         }
         div.entrance_wrapper{
             width: 80%;
             margin: 0 auto;
             display: flex;
+            flex-wrap: wrap;
             flex-direction: row;
             
+            align-content: center;
+
         }
+        @media  (max-width: 414px) { 
+            div.entrance_wrapper{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 50px;
+                align-content: center;
+                align-items: center;
+            }
+               
+         }
         div.entrance_btn{
             display: flex;
             align-items: center;
             justify-content: center;
             /* border: 1px solid white; */
-            width: 80%;
+            width: 100%;
         }
         .entrancebtn{
             vertical-align: middle;
             text-align: center;
             justify-content: center;
+            margin-bottom: 10%;
         }
+        @media  (max-width: 414px) { 
+            .entrancebtn{
+               margin-top: 30px;
+            }
+               
+         }
     </style>
 </head>
 

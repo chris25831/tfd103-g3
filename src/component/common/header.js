@@ -44,11 +44,11 @@ Vue.component("my-header", {
                     (02)2470-8053</p>
                   </li>
                   <li>
-                    <a href=""><i class="fa-brands fa-facebook-square fa-2xl" ></i></a>
-                    <a href=""><i class="fa-solid fa-envelope fa-2xl"></i></a>
-                    <a href=""><i class="fa-brands fa-line fa-2xl"></i></a>
+                    <a href=""><i class="fa-brands fa-facebook-square fa-xl" ></i></a>
+                    <a href=""><i class="fa-solid fa-envelope fa-xl"></i></a>
+                    <a href=""><i class="fa-brands fa-line fa-xl"></i></a>
                   </li>
-                  <li>
+                  <li >
                     <p class="small">
                     本網站為緯育TibaMe前端設計工程師班第70期第__組學員專題成果作品，本平台僅供學習、展示之用。參考資源：＿＿＿＿＿＿＿＿（請填入你們參考的網站）。若有侵權疑慮，您可以私訊 [ 緯育TibaMe ]，後續會由專人協助處理
                     </p>
