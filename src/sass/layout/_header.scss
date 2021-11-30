@@ -143,9 +143,9 @@ body {
         justify-content: flex-start;
         width: 100%;
       }
-      &:hover {
-        color: $blue;
-      }
+      // &:hover {
+      //   color: $blue;
+      // }
     }
   }
 }
@@ -241,6 +241,7 @@ a.header_icon {
 
 .head_subtitle {
   display: none;
+  list-style: none;
   @include table() {
     height: 100%;
     width: 50%;
@@ -252,6 +253,7 @@ a.header_icon {
         display: flex;
         width: 100%;
         &:hover {
+        
           background: none;
         
       }
