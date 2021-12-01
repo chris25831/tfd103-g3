@@ -18,7 +18,7 @@ body.plan{
     height: 400px;
     width: 700px;
     margin: 25px 0;
-    @include mobile{
+    @include table{
       background-color: rgba(255,255,255,0.8);
       background-image: none;
       box-shadow: 5px 5px 0px $orange;
@@ -204,7 +204,9 @@ div.progress_bar{
   @include flexcenter();
   width: 40%;
   @include mobile() {
-    height: 15%;
+    font-size: 18px;
+    height: 13%;
+    width: 70%;
   }
 }
 
@@ -220,6 +222,7 @@ div.progress_bar{
   padding-bottom: $bottomspacing;
   @include table(){
     height: 100%;
+    overflow:hidden;
     
   }
  
@@ -229,7 +232,9 @@ div.progress_bar{
     position: relative;
     text-align: center;
     @include mobile(){
-      top:30px;
+      width: 80%;
+      left: 15%;
+      top:40px;
     }
     .tip1{
       
@@ -272,7 +277,7 @@ div.progress_bar{
       }
       @include mobile(){
         left: 50%;
-        top:20%;
+        top:25%;
         height: auto;
         width: 80%;
       }
@@ -312,6 +317,9 @@ div.progress_bar{
   justify-content: center;
   margin-top: 5%;
   height: 180px;
+  @include mobile(){
+    margin: 30% 10% 0 0 ;
+  }
   svg {
     position: absolute;
     filter: drop-shadow(2px 2px 3px rgba(94, 51, 3, 0.205));

@@ -10,7 +10,7 @@ body {
   position: sticky;
   z-index: 99999;
   @include table() {
-    padding: 0 83px;
+    // padding: 0 83px;
   }
   #header_wrapper {
     // border: 1px solid white;
@@ -21,11 +21,11 @@ body {
     justify-content: center;
     @include table() {
       justify-content: center;
-      min-width: 576px !important;
+      width: 100% !important;
     }
-    @include mobile() {
-      min-width: 375px !important;
-    }
+    // @include mobile() {
+    //   width: 100% !important;
+    // }
     a.logo {
       display: flex;
       align-items: center;
@@ -104,7 +104,7 @@ body {
 
     @include table() {
       justify-content: left;
-      height: 15%;
+      height: 10%;
       
     }
     &:hover {
@@ -156,7 +156,7 @@ body {
 
 .slidedown {
   @include table() {
-    padding: 20px;
+    padding: 10px;
     z-index: 90;
     justify-content: flex-start;
     opacity: 1;
@@ -246,6 +246,7 @@ a.header_icon {
 .head_subtitle {
   display: none;
   list-style: none;
+  padding: 0;
   @include table() {
     height: 100%;
     width: 50%;
@@ -257,7 +258,7 @@ a.header_icon {
         display: flex;
         width: 100%;
         &:hover {
-        
+          color: $blue;
           background: none;
         
       }

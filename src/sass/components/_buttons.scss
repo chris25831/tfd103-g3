@@ -41,6 +41,7 @@
   border: 0.3px solid $blue;
   width: 262px;
   height: 56px;
+  background-color: $white;
   border-radius: 30px;
   box-shadow: 2px 2px 3px 4px white inset, 2.3px 2.3px #00429d,
     2px 2px 3px #5d6269;
@@ -59,7 +60,7 @@
 
 .orangebutton {
   border: 0.3px solid $orange;
-  max-width: 262px;
+  width: 262px;
   height: 56px;
   border-radius: 30px;
   background-color: $white;
