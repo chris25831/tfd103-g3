@@ -14,13 +14,7 @@
     <!-- js -->
     <script src="./src/js/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- LINEPAY串接 -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/hmac-sha256.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/enc-base64.min.js"></script> -->
-    <!-- 綠界串接 -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"></script> -->
+  
   
 </head>
 
@@ -65,9 +59,7 @@
    
 
     <script>
-        // 宣告qs
-        // var  qs = Qs;
-
+     
           new Vue({
             el:'#shopcart-checkout',
             data:{
@@ -132,49 +124,6 @@
                     ecpayform.submit();
 
                 
-                    // console.log(allItem_amount.amount);
-
-                    // API物件orderId和packagesId
-                    // let orderid = "order-" + Date.now();
-
-                    // let today = new Date();
-                    // let packagesid = `${today.getFullYear()}${(today.getMonth()+1)}${(today.getDate()+1)}`;
-
-                    // console.log(orderid);
-
-                    // 創造API物件規格
-                    // let orderitem = {
-
-                    //     productName: allItemName,
-                    //     total: allItem_amount.total,
-                      
-                    // };
-
-                    // for(let i=0;i < allItem.length;i++){
-                    //     let item = {
-                    //         id:allItem[i].comclassid,
-                    //         name: allItem[i].comclassTitle,
-                    //         quantity: 1,
-                    //         price:allItem[i].comprice,
-                    //     }
-                    //     orderitem.packages[0].products.push(item);
-                    // }
-
-                    // console.log(orderitem);
-                    // let jorderitem = JSON.stringify(orderitem);    
-                    
-                    // 上傳
-                    // let configs = {
-                    //     headers:{
-                    //         'Content-Type':'application/x-www-form-urlencoded'            
-                    //     }
-                    // }
-                  
-                    // axios.post('./php/sample_Credit_CreateOrder.php', qs.stringify(orderitem), configs).then((res) => {
-                    //     window.open(res);
-                    // });
-
-
                 },
 
               

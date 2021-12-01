@@ -39,35 +39,29 @@ main.shopcart-home {
     padding-top: $bottomspacing;
     background-color: rgba($color: $white, $alpha: 0.8);
     .shopcart-title {
-      // border: 1px solid red;
+      // border: 1px solid yellow;
       display: flex;
       position: relative;
       align-content: center;
-      @include table(){
-        justify-content: center;
-        top: 20px;
-        height: 32px;
+      @include table() {
+        flex-direction: column;
+        align-items: center;
       }
-      p{
-        margin-top: 20px;
-        @include table(){
-          font-size: 18px;
-        }
+      > p {
+        margin-left: 5px;
       }
       img {
         position: absolute;
         top: calc(50% - 25px);
         left: calc(50% - 195px);
-        @include table(){
-          position: absolute;
-          display: flex;
-          max-width: 275px;
-          width: 80%;
-          margin: 0 auto;
-          // border: 1px solid red;
-          top: calc(50% - 25px);
-          transform: translate(-50%, -50%);
-          left: 50%;
+        @include table() {
+          position: relative;
+          top: 0px;
+          left: 0px;
+          margin-bottom: 10px;
+        }
+        @include mobile() {
+          max-width: 80%;
         }
       }
     }
@@ -78,11 +72,10 @@ main.shopcart-home {
         // border: 1px solid green;
         display: flex;
         justify-content: space-between;
-        @include table(){
+        @include table() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          
         }
         .classlist {
           border: 1px solid $orange;
@@ -93,14 +86,22 @@ main.shopcart-home {
           width: 70%;
           height: 514px;
           box-shadow: 2px 2px 2px #80808057;
-          @include table(){
+          margin: 0px 5px;
+          @include table() {
             min-width: 275px;
+          }
+          @include mobile() {
+            width: 95%;
           }
           // 共同checkedbox設定
           input {
             margin-left: 20px;
+            margin-right: 5px;
             width: 15px;
             height: 15px;
+            @include table() {
+              margin-left: 5px;
+            }
           }
           > div:first-child {
             border: 1px solid $orange;
@@ -117,22 +118,26 @@ main.shopcart-home {
             height: 100%;
             overflow-y: auto;
             > .itemlist_li {
+              overflow-x: hidden;
               width: 100%;
               height: 128px;
               // border: 1px solid black;
               display: grid;
-              grid-template-columns: 1fr 20% 40% 20% 75px;
+              grid-template-columns: 1fr 23% 37% 20% 75px;
               align-items: center;
               padding-right: 0px;
               > div {
                 display: inline-block;
-                width: 158px;
+                max-width: 158px;
                 height: 92px;
                 overflow: hidden;
                 border: 1px solid $orange;
                 margin-left: 0px;
                 img {
                   width: 100%;
+                }
+                @include mobile() {
+                  display: none;
                 }
               }
               > p.comclasstitle {
@@ -147,6 +152,9 @@ main.shopcart-home {
                   &:visited {
                     color: $black;
                   }
+                }
+                @include table() {
+                  padding: 0px 15px;
                 }
               }
               p.comprice {
@@ -165,6 +173,12 @@ main.shopcart-home {
                 border-top: 1px solid $orange;
                 grid-column: 1 / span 5;
               }
+              @include table() {
+                grid-template-columns: 1fr 25% 35% 25% 40px;
+              }
+              @include mobile() {
+                grid-template-columns: 1fr 45% 30% 50px;
+              }
             }
           }
         }
@@ -178,7 +192,7 @@ main.shopcart-home {
           height: 514px;
           margin-right: 10px;
           box-shadow: 2px 2px 2px #80808057;
-          @include table(){
+          @include table() {
             width: 70%;
             min-width: 275px;
             margin-right: 0px;
@@ -198,13 +212,15 @@ main.shopcart-home {
 
             padding: 0px 30px;
             align-items: center;
-           
-            p:nth-child(2) span {
-              margin-left: 20px;
-            }
+
             // 前兩項固定高
             &:nth-child(-n + 3) {
               height: 132px;
+            }
+            > p {
+              &:nth-child(2) {
+                text-align: right;
+              }
             }
           }
           // 點數
@@ -217,6 +233,7 @@ main.shopcart-home {
               }
             }
           }
+          // 合計
           > div:last-child {
             max-height: 100%;
             flex-direction: column;
@@ -226,16 +243,17 @@ main.shopcart-home {
               display: grid;
               grid-template-columns: 1fr 1fr;
               margin-bottom: 60px;
-              span:nth-child(2) {
-                margin-left: 20px;
+              > span:nth-child(2) {
+                text-align: right;
               }
             }
             button {
               cursor: pointer;
-              @include table(){
+              grid-column: 1 / span 2;
+              @include table() {
                 width: 200px;
                 height: 35px;
-              
+                margin: 0 auto;
               }
               &:hover {
                 background-color: $lightyellow;
