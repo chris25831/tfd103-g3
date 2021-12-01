@@ -18,21 +18,21 @@ main.classes-home {
       max-width: 785px;
       // height: 1120px;
       overflow-y: auto;
+      overflow-x: hidden;
       margin: 0 auto;
       display: grid;
       grid-template-columns: auto auto auto;
-      gap: 20px 20px;
+      gap: 15px 15px;
       justify-content: space-between;
-      transition: all 1s linear;
-      @include table(){
+      @include table() {
         // max-width: 785px;
+        gap: 20px 20px;
         justify-content: center;
-        grid-template-columns: auto auto ;
+        grid-template-columns: auto auto;
       }
-      @include mobile(){
+      @include mobile() {
         min-width: 375px;
         grid-template-columns: auto;
-        transition: all 1s linear;
       }
       .classesgrid_simple {
         width: 245px;
@@ -41,15 +41,15 @@ main.classes-home {
         font-size: 0px;
         overflow: hidden;
         position: relative;
-        transition: all 1s linear;
-        &:hover{
-          box-shadow: 4px 4px $orange, 3px 3px 3px rgba(88, 88, 88, 0.384); 
+        transition: all 500ms linear;
+        &:hover {
+          box-shadow: 4px 4px $orange, 3px 3px 3px rgba(88, 88, 88, 0.384);
           border-radius: 10px;
         }
-        @include table(){
+        @include table() {
           max-width: 300px;
         }
-        @include mobile(){
+        @include mobile() {
           min-width: 300px;
         }
         a {
@@ -92,6 +92,10 @@ main.classes-home {
         }
         img {
           height: 100%;
+          @include mobile() {
+            height: auto;
+            width: 100%;
+          }
         }
       }
     }

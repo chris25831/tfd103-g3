@@ -1,6 +1,6 @@
 main.classes-content {
   @include bgnormal(100%);
-  @include table(){
+  @include table() {
     flex-direction: column;
   }
   // 宣告圖片左側空間
@@ -34,15 +34,19 @@ main.classes-content {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      @include table(){
+      @include table() {
         flex-direction: column;
       }
+      // @include mobile() {
+      //   overflow-x: hidden;
+      // }
+
       // 左側圖片
       .classcontentimg {
         width: 358px;
         // border: 1px solid green;
         font-size: 0;
-        @include table(){
+        @include table() {
           margin: 0 auto 50px auto;
         }
         img {
@@ -59,15 +63,17 @@ main.classes-content {
         // border: 1px solid brown;
         width: 550px;
         margin-right: 40px;
-        @include table(){
-          justify-content: center;
+        margin-left: 15px;
+        @include table() {
           width: 100%;
+          justify-content: center;
+          margin-left: 0px;
         }
         .contentdetail {
           // border: 1px solid yellow;
           margin-bottom: 70px;
           position: relative;
-          @include table(){
+          @include table() {
             align-items: center;
             display: flex;
             justify-content: center;
@@ -85,9 +91,9 @@ main.classes-content {
           }
           > p {
             margin: 0px 0px 65px 70px;
-            @include table(){
+            @include table() {
               margin: 0px;
-              margin-bottom: 30px
+              margin-bottom: 30px;
             }
             span.title3 {
               display: inline-block;
@@ -97,18 +103,31 @@ main.classes-content {
           > div {
             display: flex;
             justify-content: space-evenly;
-            @include table(){
+            @include table() {
               justify-content: center;
-              width: 60%;
+              width: 80%;
+            }
+            > button {
+              cursor: pointer;
+              @include table() {
+                font-size: 18px;
+              }
+              &:nth-child(1) {
+                margin-right: 8px;
+              }
             }
           }
         }
         .contentintro {
-          width: 460px;
+          max-width: 460px;
           // border: 1px solid green;
           margin: 0 auto;
-          @include table(){
+          @include table() {
             padding: 0 20px;
+          }
+          @include mobile() {
+            max-width: 95%;
+            padding: 0 10px;
           }
           > p:first-child {
             margin-bottom: 40px;
@@ -143,7 +162,7 @@ main.classes-content {
         flex-wrap: wrap;
         justify-content: space-evenly;
         margin-top: 20px;
-        @include table(){
+        @include table() {
           margin: 0 auto;
           justify-content: center;
           align-items: center;
@@ -154,9 +173,14 @@ main.classes-content {
         }
         > div:nth-child(1) {
           margin-right: 32px;
-          @include table(){
+          @include table() {
             margin-right: 0;
             margin-bottom: 20px;
+          }
+          > p {
+            @include table() {
+              text-align: center;
+            }
           }
           > p.title2 {
             margin: 0px;
@@ -204,7 +228,7 @@ main.classes-content {
           padding-bottom: 15px;
           overflow: hidden;
           background-color: $white;
-          @include table(){
+          @include table() {
             width: auto;
           }
           > p {
@@ -226,13 +250,16 @@ main.classes-content {
           display: flex;
           justify-content: space-evenly;
           margin-top: 45px;
-          @include table(){
+          @include table() {
             width: 80%;
           }
           button {
             cursor: pointer;
-            @include table(){
+            @include table() {
               font-size: 18px;
+            }
+            &:nth-child(1) {
+              margin-right: 8px;
             }
           }
         }
@@ -244,9 +271,8 @@ main.classes-content {
         padding: 0px 10px;
         width: 100%;
         position: relative;
-        @include table(){
+        @include table() {
           width: 100%;
-          
         }
         // 藍色分隔線
         &::before {
