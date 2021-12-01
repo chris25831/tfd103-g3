@@ -272,6 +272,23 @@ const plan = new Vuex.Store({
 
      
         },
+          //刪除計畫表
+          deleteplandata(state,payload){
+            let memberid = payload;
+            axios({
+              method: "POST",
+              url: "./php/plan-delete.php",
+              data:{
+                 memberID:memberid
+              }
+            }).then((response)=>{
+                console.log(response.data)
+                state.saveplan = false
+                
+            }).catch((error)=>{
+                console.log(error)
+            })
+        },
         //存入計畫表
         insertplandata(state,payload){
             console.log('存')
@@ -296,23 +313,7 @@ const plan = new Vuex.Store({
      
      
             },
-         //刪除計畫表
-        deleteplandata(state,payload){
-            let memberid = payload;
-            axios({
-              method: "POST",
-              url: "./php/plan-delete.php",
-              data:{
-                 memberID:memberid
-              }
-            }).then((response)=>{
-                console.log(response.data)
-                state.saveplan = false
-                
-            }).catch((error)=>{
-                console.log(error)
-            })
-        },
+       
         
         
 

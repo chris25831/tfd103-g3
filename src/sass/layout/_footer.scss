@@ -3,6 +3,7 @@ footer{
     color: white;
     padding: 10px 0;
     transition: all .1s;
+    height: 400px;
     @include table(){
         position: absolute;
         transform: translate(-100%,-100%);

@@ -4,10 +4,10 @@ body.plan{
 // // ***lightbox*** //
 .plan_question_wrapper {
   // @include bgplantem(100vh);
-  margin: 10% 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   
   .plan_ques_wrapper {
     @include questionbox();
@@ -17,6 +17,7 @@ body.plan{
     background-position: center;
     height: 400px;
     width: 700px;
+    margin: 25px 0;
     @include mobile{
       margin-top: 20px;
       width: 90%;
@@ -208,8 +209,8 @@ div.progress_bar{
 .plan_scroll {
   padding-top: 15px;
 }
-#plan_wrapper {
-  height: 100%;
+.plan_temporary_wrapper {
+  // height: 100%;
     @include bgplan(100%);
 
   padding-bottom: $bottomspacing;

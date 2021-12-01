@@ -79,6 +79,10 @@ body {
     width: 100%;
   }
   li {
+    a{
+
+      text-decoration: none;
+    }
     // 底線
     > a.underline {
       text-decoration: 3px underline $yellow;
@@ -134,7 +138,7 @@ body {
       color: $white;
       width: 100%;
       height: 100%;
-      text-decoration: none;
+      // text-decoration: none;
       @include flexcenter;
       transition: all 0.3s;
       @include table() {
@@ -143,9 +147,9 @@ body {
         justify-content: flex-start;
         width: 100%;
       }
-      // &:hover {
-      //   color: $blue;
-      // }
+      &:hover {
+        color: $blue;
+      }
     }
   }
 }

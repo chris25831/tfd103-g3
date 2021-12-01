@@ -127,7 +127,7 @@
         </section>
 
         <!--這是計畫表主體-->
-        <main id="plan_wrapper" v-show="showplan">
+        <main class="plan_temporary_wrapper" id="plan_wrapper" v-show="showplan">
            
             <div id="plan_head" >
                 <div class="plan_bg">
@@ -263,8 +263,9 @@ new Vue({
             }else{
                 console.log("有登入");
                 let memberID = response.data
-                this.$store.commit('deleteplandata',memberID)
-                this.$store.commit('insertplandata',memberID)
+                setTimeout(()=> {this.$store.commit('deleteplandata',memberID)},1000);
+                setTimeout(()=> {this.$store.commit('insertplandata',memberID)},1500);
+                // this.$store.commit('insertplandata',memberID)
             }}).catch((error)=>{
             console.log(error);
             alert('錯誤'); 
