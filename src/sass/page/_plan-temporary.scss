@@ -1,5 +1,12 @@
 body.plan{
-  @include bgplantem(100vh);
+  @include bgplantem(100%);
+  position: relative;
+  @include table(){
+    min-width: 576px;
+  }
+  @include mobile(){
+      min-width: 375px;
+  }
 }
 // // ***lightbox*** //
 .plan_question_wrapper {
@@ -7,7 +14,7 @@ body.plan{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   
   .plan_ques_wrapper {
     @include questionbox();
@@ -222,7 +229,7 @@ div.progress_bar{
   padding-bottom: $bottomspacing;
   @include table(){
     height: 100%;
-    overflow:hidden;
+    // overflow:hidden;
     
   }
  

@@ -1,5 +1,11 @@
 body.planmember{
-    @include bgplan(100%)
+    @include bgplan(100%);
+    @include table(){
+        min-width: 576px;
+    }
+    @include mobile(){
+        min-width: 375px;
+    }
 }
 main.plan_member_wrapper{
     display: grid;
