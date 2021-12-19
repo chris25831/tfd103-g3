@@ -70,8 +70,7 @@ Vue.component("my-header", {
         hamBar_close:false,
         logouthref:false,
         memberID: "",
-        headerposition:"",
-
+        
       }
     },
 

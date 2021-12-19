@@ -110,7 +110,7 @@ Vue.component("shopcart-content",{
         if(this.checksop == 0){
 
             let allItem =  JSON.parse(storage['addCartList']);
-            console.log(allItem);
+            // console.log(allItem);
     
             this.itemList = allItem;
     
@@ -140,11 +140,11 @@ Vue.component("shopcart-content",{
 
         }else{
             let allItem =  JSON.parse(storage['surePayList']);
-            console.log(allItem);
+            // console.log(allItem);
     
             this.itemList = allItem;
             let allItem_amount =  JSON.parse(storage['surePayAmount']);
-            console.log(allItem_amount);
+            // console.log(allItem_amount);
 
             this.checkitemlength = allItem_amount.itemlength;
             this.amount = allItem_amount.amount;

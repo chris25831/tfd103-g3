@@ -15,7 +15,8 @@
     <!-- shopcart-home 獨立 -->
     <link rel="stylesheet" href="css/shopcart-home.css">
     <!-- js -->
-    <script src="./src/js/vue.js"></script>
+    <!-- <script src="./src/js/vue.js"></script> -->
+    <script src="./src/js/vue.min.js"></script>
     <script src="./src/js/vuex.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -111,9 +112,9 @@
                 }
 
             }).then((response) => {
-                console.log(response);
+                // console.log(response);
                 let memberdata = response.data[0];
-                console.log(memberdata);
+                // console.log(memberdata);
 
                 if(memberdata !== "空"){
 
