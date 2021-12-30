@@ -31,7 +31,7 @@ main.classes-home {
         grid-template-columns: auto auto;
       }
       @include mobile() {
-        min-width: 375px;
+        max-width: 375px;
         grid-template-columns: auto;
       }
       .classesgrid_simple {

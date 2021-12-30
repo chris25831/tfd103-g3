@@ -1,4 +1,4 @@
-$places : "frontend", "manage";
+$places: "frontend", "manage";
 
 @each $place in $places {
   .bookmark-#{$place} {
@@ -8,13 +8,13 @@ $places : "frontend", "manage";
     padding-bottom: 20px;
     font-size: 0;
     border-bottom: solid black 1px;
-    
+
     @if $place == "frontend" {
       @include table() {
         width: 576px;
       }
       @include mobile() {
-        width: 375px;
+        max-width: 90%;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -22,7 +22,7 @@ $places : "frontend", "manage";
     } @else if $place == "manage" {
       min-width: 915px;
     }
-    
+
     .bookmark-item {
       // border: solid red 1px;
       display: inline-block;
@@ -35,12 +35,12 @@ $places : "frontend", "manage";
           font-size: 20px;
           margin: 0 20px;
         }
-      
+
         @include mobile() {
           width: auto;
           height: 22px;
           font-size: 20px;
-          margin: 0; 
+          margin: 0;
           // border-right: solid black 1px;
         }
       }
@@ -73,10 +73,7 @@ $places : "frontend", "manage";
   }
 }
 
-
 // 目前點選位置
 .active {
   color: $yellow;
 }
-
-
