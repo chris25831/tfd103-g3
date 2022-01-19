@@ -1,5 +1,5 @@
 # Triclub 三鐵訓練計畫網站
-本專案為2021年緯育TibaMe前端工程師培訓班(TFD103)期末專題，由陳彥宇、王映婷、謝昌晉、林虹萱共同發想、開發製作。
+本專案為2021年緯育TibaMe前端工程師培訓班(TFD103)期末團體協作專題，由陳彥宇、王映婷、謝昌晉、林虹萱共同發想、開發製作。
 + 直接進入網站[請點此](https://tibamef2e.com/tfd103/g3/tfd103-g3/)
 + 閱覽系統分析文件[請點此](https://drive.google.com/file/d/1F7kMWUy5eXAvGxUN1ysJlhQhD4vzN0VU/view)
 
